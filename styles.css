@@ -335,6 +335,14 @@ a {
   opacity: 0.85;
 }
 
+@media (max-width: 768px) {
+  .launches__all-btn {
+    white-space: normal;
+    text-align: center;
+    max-width: 220px;
+  }
+}
+
 .launches__arrow:disabled {
   opacity: 0.25;
   cursor: default;
