@@ -110,7 +110,15 @@ img {
   top: 32px;
 }
 
+.historial-search-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
 .historial-search {
+  flex: 1;
   width: 100%;
   padding: 10px 14px;
   border: 1px solid rgba(255, 255, 255, 0.10);
@@ -120,8 +128,11 @@ img {
   font-size: 0.82rem;
   font-weight: 300;
   color: var(--color-white);
-  margin-bottom: 28px;
   transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.filtros-toggle {
+  display: none;
 }
 
 .historial-search::placeholder {
@@ -530,7 +541,59 @@ img {
    RESPONSIVE
    ============================================= */
 
+@media (max-width: 900px) {
+  .historial-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .historial-sidebar {
+    position: static;
+  }
+
+  .historial-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .historial-pagination {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 640px) {
+  .historial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filtros-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--color-white);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .filtros-toggle:hover {
+    background: rgba(96, 78, 233, 0.15);
+    border-color: rgba(96, 78, 233, 0.35);
+  }
+
+  .historial-filters {
+    display: none;
+  }
+
+  .historial-sidebar.filters-open .historial-filters {
+    display: block;
+  }
+
   .launch-card:hover,
   .launch-card:focus-within,
   .launch-card:active {

@@ -21,13 +21,16 @@
 
       <!-- Sidebar -->
       <aside class="historial-sidebar">
-        <input
-          type="text"
-          id="historial-search"
-          class="historial-search"
-          placeholder="Buscar lanzamiento…"
-          autocomplete="off"
-        />
+        <div class="historial-search-row">
+          <input
+            type="text"
+            id="historial-search"
+            class="historial-search"
+            placeholder="Buscar lanzamiento…"
+            autocomplete="off"
+          />
+          <button id="filtros-toggle" class="filtros-toggle" aria-label="Filtros">☰</button>
+        </div>
         <nav class="historial-filters">
           <p class="historial-filters__label">Filtrar por</p>
           <div class="historial-filters__buttons">
@@ -283,7 +286,7 @@
     const paisSuboptions = document.getElementById('pais-suboptions');
     const subfilters    = document.querySelectorAll('.historial-subfilter');
 
-    const CARDS_PER_PAGE = 12;
+    function getCardsPerPage() { return window.innerWidth <= 640 ? 4 : 12; }
     let activeFilter = 'todos';
     let activePais   = null;
     let currentPage  = 1;
@@ -331,12 +334,13 @@
     }
 
     function render() {
+      const cpp         = getCardsPerPage();
       const matching    = getMatchingCards();
-      const totalPages  = Math.max(1, Math.ceil(matching.length / CARDS_PER_PAGE));
+      const totalPages  = Math.max(1, Math.ceil(matching.length / cpp));
       if (currentPage > totalPages) currentPage = totalPages;
 
-      const start = (currentPage - 1) * CARDS_PER_PAGE;
-      const end   = start + CARDS_PER_PAGE;
+      const start = (currentPage - 1) * cpp;
+      const end   = start + cpp;
 
       allCards.forEach(card => { card.style.display = 'none'; });
       matching.slice(start, end).forEach(card => { card.style.display = ''; });
@@ -380,6 +384,20 @@
         }
         applyFilters(true);
       });
+    });
+
+    // Hamburguesa mobile
+    const filtrosToggle = document.getElementById('filtros-toggle');
+    const sidebar = document.querySelector('.historial-sidebar');
+    filtrosToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('filters-open');
+    });
+
+    // Re-render al cambiar tamaño (desktop ↔ mobile)
+    let lastCpp = getCardsPerPage();
+    window.addEventListener('resize', () => {
+      const newCpp = getCardsPerPage();
+      if (newCpp !== lastCpp) { lastCpp = newCpp; currentPage = 1; render(); }
     });
 
     // Render inicial

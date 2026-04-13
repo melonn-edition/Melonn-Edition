@@ -235,6 +235,21 @@
 
     viewport.addEventListener('mouseleave', () => { clearHover(); hoverZone = null; });
 
+    // Touch swipe
+    let touchStartX = 0;
+    let touchStartY = 0;
+    viewport.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    viewport.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+      if (dx < 0 && index < maxIndex()) { index++; update(); }
+      else if (dx > 0 && index > 0) { index--; update(); }
+    }, { passive: true });
+
     update();
   })();
 
