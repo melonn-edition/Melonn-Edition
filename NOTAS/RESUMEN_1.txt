@@ -1,0 +1,33 @@
+The user wants a summary of the project state to close this conversation and continue in a new one. Let me provide a concise summary based on everything we've worked on.
+
+Estado actual — Melonn Edition Landing
+
+Estructura del proyecto
+HTML estático puro — 4 archivos: index.html, styles.css, script.js, ghost.png (raíz) + carpeta IMAGE/ con logos y assets.
+
+Secciones implementadas y corregidas
+
+-Hero — franja superior, partículas interactivas (canvas), título, subtítulo, CTA
+-Nuevos lanzamientos — carrusel con 6 cards, imágenes placeholder, botón "Ver todos los lanzamientos"
+-Ecosistema — 9 logos reales monocromáticos, grid flex centrado, hover con scale
+-Nuevos canales (Expansión) — fondo claro con radial-gradient, mini-cards con fantasma animado, hover scale
+-Próximamente — pipeline en escalera con 4 cards, nodos, numeración 01–04, línea continua
+-Footer — 3 columnas, links funcionales con IDs, copyright centrado
+
+Cambios visuales aprobados
+
+-Partículas: 140 blancas (85% opacidad) + 50 grandes blancas + 50 violeta + 50 grises
+-Efecto cometa celeste en sección Ecosistema
+-Fantasma de Melonn en cards de Nuevos Canales (hermano de card, detrás, asomándose desde izquierda)
+-Pulse animation en título de Ecosistema
+
+Último ajuste implementado
+Fantasma movido a left: -92px en la sección Nuevos Canales.
+
+Pendiente por trabajar
+
+-URLs reales en cards de lanzamientos (actualmente todas en #)
+-URLs reales en footer (Sitio web, LinkedIn, Soporte, Contacto)
+-Páginas internas (acordado trabajar después)
+-Imágenes definitivas en cards de Nuevos lanzamientos (actualmente picsum)
+-Responsive general sin revisar en todas las secciones

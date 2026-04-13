@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historial de lanzamientos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="historial.css" />
+</head>
+<body>
+
+  <div class="historial-page">
+
+    <header class="historial-header">
+      <a href="../index.html" class="historial-back">← Volver al home</a>
+      <h1 class="historial-title">Historial de lanzamientos</h1>
+    </header>
+
+    <div class="historial-layout">
+
+      <!-- Sidebar -->
+      <aside class="historial-sidebar">
+        <input
+          type="text"
+          id="historial-search"
+          class="historial-search"
+          placeholder="Buscar lanzamiento…"
+          autocomplete="off"
+        />
+        <nav class="historial-filters">
+          <p class="historial-filters__label">Filtrar por</p>
+          <div class="historial-filters__buttons">
+            <button class="historial-filter active" data-filter="todos">Todos</button>
+            <button class="historial-filter historial-filter--dropdown" id="pais-toggle">
+              País <span class="chevron">▼</span>
+            </button>
+            <div class="historial-suboptions" id="pais-suboptions">
+              <button class="historial-subfilter" data-pais="colombia">Colombia</button>
+              <button class="historial-subfilter" data-pais="mexico">México</button>
+            </div>
+            <button class="historial-filter" data-filter="integracion">Lanzamiento · Integración</button>
+            <button class="historial-filter" data-filter="b2b">B2B</button>
+            <button class="historial-filter" data-filter="b2c">B2C</button>
+            <button class="historial-filter" data-filter="canales">Canales de venta</button>
+            <button class="historial-filter" data-filter="operaciones">Operaciones</button>
+            <button class="historial-filter" data-filter="notificaciones">Notificaciones</button>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Grid de cards -->
+      <main class="historial-grid" id="historial-grid">
+
+        <article class="launch-card launch-card--featured" data-category="b2c" data-pais="colombia mexico">
+          <a href="../lanzamientos/vista-ordenes-d2c.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/CAMBIOS_ORDENES_ORBITA/banner 3.png" alt="" loading="lazy" />
+              <span class="launch-card__index">01</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Nueva vista para las órdenes de venta D2C</h3>
+            <p class="launch-card__category">B2C · Mejora · 2026</p>
+            <p class="launch-card__benefit">Identifica el estado de cada orden, incidencias y acciones pendientes desde una vista más clara y accionable.</p>
+          </div>
+          <a href="../lanzamientos/vista-ordenes-d2c.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card launch-card--featured" data-category="b2c" data-pais="colombia mexico">
+          <a href="../lanzamientos/crea-material-empaque.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/CREA_MATERIAL_EMPAQUE/banner 3.png" alt="" loading="lazy" />
+              <span class="launch-card__index">02</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Configura las presentaciones en las que envías tu material de empaque</h3>
+            <p class="launch-card__category">Mejora servicio · B2C · 2026</p>
+            <p class="launch-card__benefit">Registra en Órbita las distintas presentaciones de tu material de empaque para que Melonn lo reciba correctamente desde el inicio.</p>
+          </div>
+          <a href="../lanzamientos/crea-material-empaque.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="integracion" data-pais="colombia mexico">
+          <a href="../lanzamientos/api-melonn-v2.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/API_MELONN_V2/API_banner-landign.png" alt="" loading="lazy" />
+              <span class="launch-card__index">03</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">API Melonn V2</h3>
+            <p class="launch-card__category">API · Integración · 2026</p>
+            <p class="launch-card__benefit">Una nueva capa de integración para automatizar tu operación con más control, trazabilidad y escalabilidad.</p>
+          </div>
+          <a href="../lanzamientos/api-melonn-v2.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="b2b" data-pais="colombia mexico">
+          <a href="../lanzamientos/empaque-b2b.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/EMPAQUE_B2B/b2b-2-vas-2.jpg" alt="" loading="lazy" />
+              <span class="launch-card__index">04</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Empaque B2B con trazabilidad total</h3>
+            <p class="launch-card__category">B2B · VAS</p>
+            <p class="launch-card__benefit">Lanzamos una nueva experiencia de empaque B2B en el detalle de la orden que centraliza y sistematiza la información por paquete/caja.</p>
+          </div>
+          <a href="../lanzamientos/empaque-b2b.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="canales" data-pais="colombia mexico">
+          <a href="../lanzamientos/checkout-inteligente.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/CHECKOUT_INTELIGENTE/news-BANNER-LANDING-CHECKOUT-INTERNOcuadro.jpg" alt="" loading="lazy" />
+              <span class="launch-card__index">05</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Checkout inteligente Shopify + melonn</h3>
+            <p class="launch-card__category">Canales de venta</p>
+            <p class="launch-card__benefit">Melonn profundiza la integración con Shopify mostrando solo los métodos de envío realmente disponibles para cada cliente.</p>
+          </div>
+          <a href="../lanzamientos/checkout-inteligente.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="operaciones" data-pais="colombia mexico">
+          <a href="../lanzamientos/visualizador-cargos.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/VISULIZADOR_CARGOS_ORBITA/cargos-factura.png" alt="" loading="lazy" />
+              <span class="launch-card__index">06</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Nuevo visualizador de cargos en Órbita</h3>
+            <p class="launch-card__category">Operaciones · Marzo 2026</p>
+            <p class="launch-card__benefit">Transparencia y control total para tus costos operativos.</p>
+          </div>
+          <a href="../lanzamientos/visualizador-cargos.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="b2b" data-pais="colombia mexico">
+          <a href="../lanzamientos/trazabilidad-avanzada-b2b.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/TRAZABILIDAD_AVANZADA_B2B/banner-92ss.jpg" alt="" loading="lazy" />
+              <span class="launch-card__index">07</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Trazabilidad avanzada B2B</h3>
+            <p class="launch-card__category">B2B · 2026</p>
+            <p class="launch-card__benefit">Lote y caducidad por producto en la sección de detalles de empaque en Órbita.</p>
+          </div>
+          <a href="../lanzamientos/trazabilidad-avanzada-b2b.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="notificaciones" data-pais="colombia mexico">
+          <a href="../lanzamientos/sistema-notificaciones-whatsapp.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/SISTEMA_NOTIFICACIONES_WHATSAPP/banner-sistema-notificaciones_banner-landing-sistema-de-notificaciones.jpg" alt="" loading="lazy" />
+              <span class="launch-card__index">08</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Sistema de notificaciones por WhatsApp</h3>
+            <p class="launch-card__category">Notificaciones · 2026</p>
+            <p class="launch-card__benefit">Tus clientes reciben actualizaciones de sus órdenes en tiempo real por WhatsApp, sin configuración manual.</p>
+          </div>
+          <a href="../lanzamientos/sistema-notificaciones-whatsapp.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="operaciones" data-pais="colombia mexico">
+          <a href="../lanzamientos/gestion-orden-ingreso-destinatarios-verificados.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/GESTION_ORDENES_DESTINO_VERIFICADO/news-Gestion-ordenes-verificadascuadro-1-1.png" alt="" loading="lazy" />
+              <span class="launch-card__index">09</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Gestión de Orden de Ingreso para Destinatarios Verificados</h3>
+            <p class="launch-card__category">Operaciones · 2026</p>
+            <p class="launch-card__benefit">Envíos a Amazon FBA y Mercado Libre Full con cumplimiento logístico completo gestionado por Melonn.</p>
+          </div>
+          <a href="../lanzamientos/gestion-orden-ingreso-destinatarios-verificados.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="operaciones" data-pais="colombia mexico">
+          <a href="../lanzamientos/vas-etiquetado-codigo-barras-qr-b2b.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/ETQ_CODIGO_BARRASA_QR_B2B/Vas-con-el-vas-final.png" alt="" loading="lazy" />
+              <span class="launch-card__index">10</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">VAS - Etiquetado de ítems con código de barras o QR para órdenes B2B</h3>
+            <p class="launch-card__category">Operaciones B2B · 2026</p>
+            <p class="launch-card__benefit">Configura el etiquetado de tus ítems B2B en Órbita y garantiza entregas más precisas, con menos errores y mayor cumplimiento.</p>
+          </div>
+          <a href="../lanzamientos/vas-etiquetado-codigo-barras-qr-b2b.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="operaciones" data-pais="colombia mexico">
+          <a href="../lanzamientos/orbi-ai.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/ORBI.AI/Portada-Agente-Orbi.jpg" alt="" loading="lazy" />
+              <span class="launch-card__index">11</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Orbi.AI El nuevo asistente IA a tu servicio</h3>
+            <p class="launch-card__category">Operaciones · 2026</p>
+            <p class="launch-card__benefit">Soluciona tus dudas sobre los procesos y servicios de Melonn y recibe apoyo en la consulta del estado de las órdenes y mucho más.</p>
+          </div>
+          <a href="../lanzamientos/orbi-ai.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="operaciones" data-pais="colombia mexico">
+          <a href="../lanzamientos/promesas-logisticas.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/PROMESAS_LOGISTICAS/Portada-Promesas.jpg" alt="" loading="lazy" />
+              <span class="launch-card__index">12</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Promesas Logísticas: más visibilidad, más control, más confianza</h3>
+            <p class="launch-card__category">Operaciones · 2026</p>
+            <p class="launch-card__benefit">Visibilidad clara y en tiempo real de los tiempos de preparación, despacho y entrega de tus órdenes D2C, B2B o canales externos.</p>
+          </div>
+          <a href="../lanzamientos/promesas-logisticas.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="canales" data-pais="mexico">
+          <a href="../lanzamientos/tiktok-shop.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/TIKTOK_SHOP/Portada-Tiktok-shops.jpg" alt="" loading="lazy" />
+              <span class="launch-card__index">13</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">¡TikTok Shop llega a Melonn!</h3>
+            <p class="launch-card__category">Canales de venta · 2026</p>
+            <p class="launch-card__benefit">Con nuestra integración directa con TikTok Shop, gestiona pedidos automáticos, inventario sincronizado y entregas sin complicaciones.</p>
+          </div>
+          <a href="../lanzamientos/tiktok-shop.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card" data-category="canales" data-pais="mexico">
+          <a href="../lanzamientos/liverpool-melonn.html" class="launch-card__image-link">
+            <figure class="launch-card__image">
+              <img src="../IMAGE/LANZAMIENTOS/LIVERPOOL/Portada-Liverpool.jpg" alt="" loading="lazy" />
+              <span class="launch-card__index">14</span>
+            </figure>
+          </a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Liverpool + Melonn</h3>
+            <p class="launch-card__category">Canales de venta · 2026</p>
+            <p class="launch-card__benefit">Conecta, sincroniza y despacha sin complicaciones en uno de los marketplaces más grandes de México.</p>
+          </div>
+          <a href="../lanzamientos/liverpool-melonn.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <p class="historial-empty" id="historial-empty">No se encontraron lanzamientos.</p>
+
+      </main>
+
+    </div>
+
+    <footer style="margin-top: 48px; padding-bottom: 48px;">
+      <a href="../index.html" class="historial-back">← Volver al home</a>
+    </footer>
+
+  </div>
+
+  <script>
+    const searchInput   = document.getElementById('historial-search');
+    const filterButtons = document.querySelectorAll('.historial-filter[data-filter]');
+    const allCards      = Array.from(document.querySelectorAll('#historial-grid .launch-card'));
+    const emptyState    = document.getElementById('historial-empty');
+    const paisToggle    = document.getElementById('pais-toggle');
+    const paisSuboptions = document.getElementById('pais-suboptions');
+    const subfilters    = document.querySelectorAll('.historial-subfilter');
+
+    const CARDS_PER_PAGE = 12;
+    let activeFilter = 'todos';
+    let activePais   = null;
+    let currentPage  = 1;
+
+    // Inyectar contenedor de paginación
+    const grid = document.getElementById('historial-grid');
+    const paginationEl = document.createElement('div');
+    paginationEl.id = 'historial-pagination';
+    paginationEl.className = 'historial-pagination';
+    grid.parentNode.insertBefore(paginationEl, grid.nextSibling);
+
+    function getMatchingCards() {
+      const query = searchInput.value.toLowerCase().trim();
+      return allCards.filter(card => {
+        const category     = card.dataset.category || '';
+        const pais         = card.dataset.pais || '';
+        const name         = card.querySelector('.launch-card__name')?.textContent.toLowerCase() || '';
+        const benefit      = card.querySelector('.launch-card__benefit')?.textContent.toLowerCase() || '';
+        const categoryText = card.querySelector('.launch-card__category')?.textContent.toLowerCase() || '';
+        const matchesFilter = activeFilter === 'todos' || category === activeFilter;
+        const matchesPais   = !activePais || pais.includes(activePais);
+        const matchesSearch = !query || name.includes(query) || benefit.includes(query) || categoryText.includes(query);
+        return matchesFilter && matchesPais && matchesSearch;
+      });
+    }
+
+    function renderPagination(totalPages) {
+      if (totalPages <= 1) {
+        paginationEl.innerHTML = '';
+        paginationEl.style.display = 'none';
+        return;
+      }
+      paginationEl.style.display = 'flex';
+      paginationEl.innerHTML = `
+        <button class="historial-page-btn" id="pg-prev" ${currentPage === 1 ? 'disabled' : ''}>← Anterior</button>
+        <span class="historial-page-info">${currentPage} / ${totalPages}</span>
+        <button class="historial-page-btn" id="pg-next" ${currentPage === totalPages ? 'disabled' : ''}>Siguiente →</button>
+      `;
+      document.getElementById('pg-prev').addEventListener('click', () => {
+        if (currentPage > 1) { currentPage--; render(); }
+      });
+      document.getElementById('pg-next').addEventListener('click', () => {
+        if (currentPage < totalPages) { currentPage++; render(); }
+      });
+    }
+
+    function render() {
+      const matching    = getMatchingCards();
+      const totalPages  = Math.max(1, Math.ceil(matching.length / CARDS_PER_PAGE));
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      const start = (currentPage - 1) * CARDS_PER_PAGE;
+      const end   = start + CARDS_PER_PAGE;
+
+      allCards.forEach(card => { card.style.display = 'none'; });
+      matching.slice(start, end).forEach(card => { card.style.display = ''; });
+
+      emptyState.style.display = matching.length === 0 ? 'block' : 'none';
+      renderPagination(totalPages);
+    }
+
+    function applyFilters(resetPage) {
+      if (resetPage) currentPage = 1;
+      render();
+    }
+
+    searchInput.addEventListener('input', () => applyFilters(true));
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        subfilters.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        applyFilters(true);
+      });
+    });
+
+    paisToggle.addEventListener('click', () => {
+      const isOpen = paisSuboptions.classList.toggle('open');
+      paisToggle.classList.toggle('open', isOpen);
+    });
+
+    subfilters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selected = btn.dataset.pais;
+        if (activePais === selected) {
+          activePais = null;
+          subfilters.forEach(b => b.classList.remove('active'));
+        } else {
+          activePais = selected;
+          subfilters.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        }
+        applyFilters(true);
+      });
+    });
+
+    // Render inicial
+    render();
+  </script>
+  <script src="historial-stars.js" defer></script>
+
+</body>
+</html>

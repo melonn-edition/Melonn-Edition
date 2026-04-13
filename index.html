@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melonn Edition 02 · 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+
+    <!-- Geometric grid background -->
+    <div class="hero__grid" aria-hidden="true"></div>
+
+    <!-- Particle canvas -->
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+    <!-- Strip -->
+    <div class="hero__strip" aria-hidden="true">
+      <span class="hero__strip-left">melonn edition 2.0</span>
+      <span class="hero__strip-right">by <strong class="hero__strip-wordmark">melonn</strong></span>
+    </div>
+
+    <!-- Content -->
+    <div class="hero__content">
+      <p class="hero__edition">Edición Q2 &middot; 2026</p>
+      <h1 class="hero__headline">Tecnología para construir<br>el futuro contigo.</h1>
+      <p class="hero__subline">Descubre las integraciones, herramientas y mejoras que definen esta edición.</p>
+      <a href="#edicion" class="hero__cta">Ver novedades →</a>
+    </div>
+
+  </section>
+  <!-- =============== FIN HERO =============== -->
+
+  <!-- =============== LANZAMIENTOS =============== -->
+  <section class="launches" id="edicion">
+
+    <div class="launches__header">
+      <div class="launches__meta">
+        <p class="launches__label">Edición Q2 · 2026</p>
+        <h2 class="launches__title">Nuevos lanzamientos</h2>
+      </div>
+      <div class="launches__nav">
+        <button class="launches__arrow" id="launches-prev" aria-label="Anterior">&#8592;</button>
+        <button class="launches__arrow" id="launches-next" aria-label="Siguiente">&#8594;</button>
+      </div>
+    </div>
+
+    <div class="launches__viewport">
+      <div class="launches__track" id="launches-track">
+
+        <article class="launch-card launch-card--featured">
+          <a href="./lanzamientos/vista-ordenes-d2c.html" class="launch-card__image-link"><figure class="launch-card__image">
+            <img src="./IMAGE/LANZAMIENTOS/CAMBIOS_ORDENES_ORBITA/banner 3.png" alt="" loading="lazy" />
+            <span class="launch-card__index">01</span>
+          </figure></a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Nueva vista para las órdenes de venta D2C</h3>
+            <p class="launch-card__category">B2C · Mejora · 2026</p>
+            <p class="launch-card__benefit">Identifica el estado de cada orden, incidencias y acciones pendientes desde una vista más clara y accionable.</p>
+          </div>
+          <a href="./lanzamientos/vista-ordenes-d2c.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card launch-card--featured">
+          <a href="./lanzamientos/crea-material-empaque.html" class="launch-card__image-link"><figure class="launch-card__image">
+            <img src="./IMAGE/LANZAMIENTOS/CREA_MATERIAL_EMPAQUE/banner 3.png" alt="" loading="lazy" />
+            <span class="launch-card__index">02</span>
+          </figure></a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Configura las presentaciones en las que envías tu material de empaque</h3>
+            <p class="launch-card__category">Mejora servicio · B2C · 2026</p>
+            <p class="launch-card__benefit">Registra en Órbita las distintas presentaciones de tu material de empaque para que Melonn lo reciba correctamente desde el inicio.</p>
+          </div>
+          <a href="./lanzamientos/crea-material-empaque.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card">
+          <a href="./lanzamientos/api-melonn-v2.html" class="launch-card__image-link"><figure class="launch-card__image">
+            <img src="./IMAGE/LANZAMIENTOS/API_MELONN_V2/API_banner-landign.png" alt="" loading="lazy" />
+            <span class="launch-card__index">03</span>
+          </figure></a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">API Melonn V2</h3>
+            <p class="launch-card__category">API · Integración · 2026</p>
+            <p class="launch-card__benefit">Una nueva capa de integración para automatizar tu operación con más control, trazabilidad y escalabilidad.</p>
+          </div>
+          <a href="./lanzamientos/api-melonn-v2.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card">
+          <a href="./lanzamientos/empaque-b2b.html" class="launch-card__image-link"><figure class="launch-card__image">
+            <img src="./IMAGE/LANZAMIENTOS/EMPAQUE_B2B/b2b-2-vas-2.jpg" alt="" loading="lazy" />
+            <span class="launch-card__index">04</span>
+          </figure></a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Empaque B2B con trazabilidad total</h3>
+            <p class="launch-card__category">B2B · VAS</p>
+            <p class="launch-card__benefit">Lanzamos una nueva experiencia de empaque B2B en el detalle de la orden que centraliza y sistematiza la información por paquete/caja.</p>
+          </div>
+          <a href="./lanzamientos/empaque-b2b.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card">
+          <a href="./lanzamientos/checkout-inteligente.html" class="launch-card__image-link"><figure class="launch-card__image">
+            <img src="./IMAGE/LANZAMIENTOS/CHECKOUT_INTELIGENTE/news-BANNER-LANDING-CHECKOUT-INTERNOcuadro.jpg" alt="" loading="lazy" />
+            <span class="launch-card__index">05</span>
+          </figure></a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Checkout inteligente Shopify + melonn</h3>
+            <p class="launch-card__category">Canales de venta</p>
+            <p class="launch-card__benefit">Melonn profundiza la integración con Shopify mostrando solo los métodos de envío realmente disponibles para cada cliente.</p>
+          </div>
+          <a href="./lanzamientos/checkout-inteligente.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+        <article class="launch-card">
+          <a href="./lanzamientos/visualizador-cargos.html" class="launch-card__image-link"><figure class="launch-card__image">
+            <img src="./IMAGE/LANZAMIENTOS/VISULIZADOR_CARGOS_ORBITA/cargos-factura.png" alt="" loading="lazy" />
+            <span class="launch-card__index">06</span>
+          </figure></a>
+          <div class="launch-card__body">
+            <h3 class="launch-card__name">Nuevo visualizador de cargos en Órbita</h3>
+            <p class="launch-card__category">Operaciones · Marzo 2026</p>
+            <p class="launch-card__benefit">Transparencia y control total para tus costos operativos.</p>
+          </div>
+          <a href="./lanzamientos/visualizador-cargos.html" class="launch-card__cta">Ver lanzamiento &#8594;</a>
+        </article>
+
+      </div>
+
+      <div class="launches__footer">
+        <a href="./historial-de-lanzamientos/index.html" class="launches__all-btn">Consultar Historial de Lanzamientos →</a>
+      </div>
+    </div>
+
+  </section>
+  <!-- =========== FIN LANZAMIENTOS =========== -->
+
+  <!-- =============== ECOSISTEMA =============== -->
+  <section class="ecosystem" id="ecosistema">
+    <div class="ecosystem__comet-tail" aria-hidden="true"></div>
+    <div class="ecosystem__comet-head" aria-hidden="true"></div>
+    <div class="container">
+
+      <div class="ecosystem__header">
+<p class="ecosystem__desc">Plataformas e integraciones activas dentro del ecosistema Melonn.</p>
+      </div>
+
+      <div class="ecosystem__grid">
+        <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/SHOPIFY.png" alt="Shopify" /></div>
+        <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/WOO.png" alt="WooCommerce" /></div>
+        <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/MERCADOLIBRE.png" alt="Mercado Libre" /></div>
+        <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/VTEX.png" alt="VTEX" /></div>
+        <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/LIVERPOOL.png" alt="Liverpool" /></div>
+        <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/WALMART.png" alt="Walmart" /></div>
+        <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/AMAZON.png" alt="Amazon" /></div>
+        <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/RAPPI.png" alt="Rappi" /></div>
+        <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/TIKTOK.png" alt="TikTok" /></div>
+      </div>
+
+    </div>
+  </section>
+  <!-- =========== FIN ECOSISTEMA =========== -->
+
+  <!-- =============== GRANDES LOGROS =============== -->
+  <section class="grandes-logros" id="grandes-logros">
+    <div class="container">
+      <p class="grandes-logros__eyebrow">Grandes logros</p>
+      <h2 class="grandes-logros__title">Checkout inteligente Shopify + melonn</h2>
+      <div class="grandes-logros__body">
+        <p class="grandes-logros__text">Melonn profundiza la integración con Shopify permitiendo que ahora en tu tienda se muestren únicamente los métodos de envío que realmente están disponibles para cada cliente, teniendo en cuenta el lugar de destino del pedido, la hora de corte de cada uno y el inventario disponible en nuestros CEDIS.</p>
+        <a href="./lanzamientos/checkout-inteligente.html" class="grandes-logros__btn">Leer más ↗</a>
+      </div>
+      <img src="./IMAGE/LANZAMIENTOS/CHECKOUT_INTELIGENTE/Checkout-shopify-slides.png" alt="" class="grandes-logros__img" loading="lazy" />
+    </div>
+  </section>
+  <!-- =========== FIN GRANDES LOGROS =========== -->
+
+  <!-- =============== RETRO GRID =============== -->
+  <section class="lanzamientos-destacados" id="lanzamientos-destacados">
+    <div class="container">
+      <div class="lanzamientos-destacados__header">
+        <p class="lanzamientos-destacados__eyebrow">Resultados que marcan</p>
+        <h2 class="lanzamientos-destacados__title">Lanzamientos destacados</h2>
+      </div>
+      <div class="retro-layout">
+
+        <a href="./lanzamientos/liverpool-melonn.html" class="retro-win retro-win--main">
+          <div class="retro-win__bar">
+            <span class="retro-win__dots"><i></i><i></i><i></i></span>
+            <span class="retro-win__filename">LIVERPOOL-MELONN.HTML</span>
+          </div>
+          <div class="retro-win__img"><span class="launch-card__index">01</span><img src="./IMAGE/LANZAMIENTOS/LIVERPOOL/Portada-Liverpool.jpg" alt="" loading="lazy" /></div>
+          <div class="retro-win__footer">
+            <span class="retro-win__name">Liverpool + Melonn</span>
+            <span class="retro-win__arrow">→</span>
+          </div>
+        </a>
+
+        <div class="retro-layout__aside">
+
+          <a href="./lanzamientos/sistema-notificaciones-whatsapp.html" class="retro-win">
+            <div class="retro-win__bar">
+              <span class="retro-win__dots"><i></i><i></i><i></i></span>
+              <span class="retro-win__filename">SISTEMA-NOTIFICACIONES.HTML</span>
+            </div>
+            <div class="retro-win__img"><span class="launch-card__index">02</span><img src="./IMAGE/LANZAMIENTOS/SISTEMA_NOTIFICACIONES_WHATSAPP/banner-sistema-notificaciones_banner-landing-sistema-de-notificaciones.jpg" alt="" loading="lazy" /></div>
+            <div class="retro-win__footer">
+              <span class="retro-win__name">Sistema de notificaciones por WhatsApp</span>
+              <span class="retro-win__arrow">→</span>
+            </div>
+          </a>
+
+          <a href="./lanzamientos/checkout-inteligente.html" class="retro-win">
+            <div class="retro-win__bar">
+              <span class="retro-win__dots"><i></i><i></i><i></i></span>
+              <span class="retro-win__filename">CHECKOUT.HTML</span>
+            </div>
+            <div class="retro-win__img"><span class="launch-card__index">03</span><img src="./IMAGE/LANZAMIENTOS/CHECKOUT_INTELIGENTE/news-BANNER-LANDING-CHECKOUT-INTERNOcuadro.jpg" alt="" loading="lazy" /></div>
+            <div class="retro-win__footer">
+              <span class="retro-win__name">Checkout inteligente</span>
+              <span class="retro-win__arrow">→</span>
+            </div>
+          </a>
+
+          <a href="./lanzamientos/orbi-ai.html" class="retro-win">
+            <div class="retro-win__bar">
+              <span class="retro-win__dots"><i></i><i></i><i></i></span>
+              <span class="retro-win__filename">ORBI-AI.HTML</span>
+            </div>
+            <div class="retro-win__img"><span class="launch-card__index">04</span><img src="./IMAGE/LANZAMIENTOS/ORBI.AI/Portada-Agente-Orbi.jpg" alt="" loading="lazy" /></div>
+            <div class="retro-win__footer">
+              <span class="retro-win__name">Orbi.AI El nuevo asistente IA a tu servicio</span>
+              <span class="retro-win__arrow">→</span>
+            </div>
+          </a>
+
+          <a href="./lanzamientos/trazabilidad-avanzada-b2b.html" class="retro-win">
+            <div class="retro-win__bar">
+              <span class="retro-win__dots"><i></i><i></i><i></i></span>
+              <span class="retro-win__filename">TRAZABILIDAD-B2B.HTML</span>
+            </div>
+            <div class="retro-win__img"><span class="launch-card__index">05</span><img src="./IMAGE/LANZAMIENTOS/TRAZABILIDAD_AVANZADA_B2B/banner-92ss.jpg" alt="" loading="lazy" /></div>
+            <div class="retro-win__footer">
+              <span class="retro-win__name">Trazabilidad avanzada B2B</span>
+              <span class="retro-win__arrow">→</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- =========== FIN RETRO GRID =========== -->
+
+
+  <!-- =============== PRÓXIMAMENTE =============== -->
+  <section class="upcoming" id="upcoming">
+
+    <div class="container">
+
+      <div class="upcoming__header">
+        <p class="upcoming__eyebrow">Próximamente · Melonn Edition</p>
+        <h2 class="upcoming__title">Lo que sigue también está pensado<br>para ayudarte a crecer</h2>
+        <p class="upcoming__desc">Seguimos construyendo nuevas capacidades para impulsar la operación,<br>la escalabilidad y la experiencia de nuestros sellers.</p>
+      </div>
+
+      <div class="upcoming__pipeline">
+
+        <div class="upcoming__step upcoming__step--1">
+          <div class="upcoming__connector">
+            <span class="upcoming__num">01</span>
+            <div class="upcoming__node"></div>
+          </div>
+          <div class="upcoming__card">
+            <svg class="upcoming__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="M21 19l-1.5-1.5"/></svg>
+            <h3 class="upcoming__card-title">Nuevas funcionalidades de API Melonn</h3>
+            <p class="upcoming__card-text">Más posibilidades de integración para una operación más conectada.</p>
+          </div>
+        </div>
+
+        <div class="upcoming__step upcoming__step--2">
+          <div class="upcoming__connector">
+            <span class="upcoming__num">02</span>
+            <div class="upcoming__node"></div>
+          </div>
+          <div class="upcoming__card">
+            <svg class="upcoming__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><path d="M12 12v4"/><path d="M8 12h8"/></svg>
+            <h3 class="upcoming__card-title">Envíos cargo · B2B</h3>
+            <p class="upcoming__card-text">Nuevas capacidades para responder a flujos logísticos de mayor volumen.</p>
+          </div>
+        </div>
+
+        <div class="upcoming__step upcoming__step--3">
+          <div class="upcoming__connector">
+            <span class="upcoming__num">03</span>
+            <div class="upcoming__node"></div>
+          </div>
+          <div class="upcoming__card">
+            <svg class="upcoming__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            <h3 class="upcoming__card-title">Nueva experiencia de empaque B2B</h3>
+            <p class="upcoming__card-text">Mejoras pensadas para una preparación de pedidos más eficiente.</p>
+          </div>
+        </div>
+
+        <div class="upcoming__step upcoming__step--4">
+          <div class="upcoming__connector">
+            <span class="upcoming__num">04</span>
+            <div class="upcoming__node"></div>
+          </div>
+          <div class="upcoming__card">
+            <svg class="upcoming__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <h3 class="upcoming__card-title">Alistamiento multi órdenes</h3>
+            <p class="upcoming__card-text">Un flujo más ágil para sellers con mayor ritmo operativo.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- =========== FIN PRÓXIMAMENTE =========== -->
+
+  <!-- =============== FOOTER =============== -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <div class="footer__col">
+          <span class="footer__brand">melonn</span>
+          <p class="footer__tagline">Tecnología para construir<br>el futuro contigo.</p>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-title">Edición</p>
+          <ul class="footer__links">
+            <li><a href="#edicion">Nuevos lanzamientos</a></li>
+            <li><a href="#ecosistema">Ecosistema</a></li>
+            <li><a href="#grandes-logros">Grandes logros</a></li>
+            <li><a href="#lanzamientos-destacados">Lanzamientos destacados</a></li>
+            <li><a href="#upcoming">Próximamente</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-title">Melonn</p>
+          <ul class="footer__links">
+            <li><a href="https://www.melonn.com/" target="_blank" rel="noopener noreferrer">www.melonn.com</a></li>
+            <li><a href="https://www.melonn.com/colombia/solicitar-asesoria/" target="_blank" rel="noopener noreferrer">Asesoría Colombia</a></li>
+            <li><a href="https://www.melonn.com/mexico/solicitar-asesoria/" target="_blank" rel="noopener noreferrer">Asesoría México</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Melonn Edition by Melonn - Todos los derechos reservados</p>
+      </div>
+
+    </div>
+  </footer>
+  <!-- =========== FIN FOOTER =========== -->
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,546 @@
+/* =============================================
+   HISTORIAL DE LANZAMIENTOS — historial.css
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@200;400;600;700&family=Poppins:wght@300;400;500&display=swap');
+
+/* --- Variables --- */
+:root {
+  --color-bg:       #0A0A0F;
+  --color-surface:  #13131A;
+  --color-accent:   #604EE9;
+  --color-white:    #F5F5F5;
+  --color-muted:    #888899;
+  --font-display:   'Sora', sans-serif;
+  --font-body:      'Poppins', sans-serif;
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+p {
+  line-height: 1.20;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =============================================
+   PAGE WRAPPER
+   ============================================= */
+
+.historial-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 64px 40px 100px;
+  position: relative;
+  isolation: isolate;
+}
+
+/* =============================================
+   HEADER
+   ============================================= */
+
+.historial-header {
+  margin-bottom: 52px;
+}
+
+.historial-back {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+  transition: opacity 0.2s ease;
+}
+
+.historial-back:hover {
+  opacity: 0.7;
+}
+
+.historial-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+
+/* =============================================
+   LAYOUT
+   ============================================= */
+
+.historial-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 52px;
+  align-items: start;
+}
+
+/* =============================================
+   SIDEBAR
+   ============================================= */
+
+.historial-sidebar {
+  position: sticky;
+  top: 32px;
+}
+
+.historial-search {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--color-white);
+  margin-bottom: 28px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.historial-search::placeholder {
+  color: rgba(255, 255, 255, 0.30);
+}
+
+.historial-search:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.historial-filters__label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 14px;
+}
+
+.historial-filters__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.historial-filter {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.60);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.historial-filter:hover {
+  background: rgba(96, 78, 233, 0.08);
+  border-color: rgba(96, 78, 233, 0.25);
+  color: var(--color-accent);
+}
+
+.historial-filter.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+
+/* Botón País — desplegable */
+.historial-filter--dropdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.historial-filter--dropdown .chevron {
+  font-size: 0.6rem;
+  transition: transform 0.2s ease;
+  opacity: 0.5;
+}
+
+.historial-filter--dropdown.open .chevron {
+  transform: rotate(180deg);
+}
+
+/* Sub-opciones País */
+.historial-suboptions {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding-left: 10px;
+  margin-top: -2px;
+}
+
+.historial-suboptions.open {
+  display: flex;
+}
+
+.historial-subfilter {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.50);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.historial-subfilter:hover {
+  background: rgba(96, 78, 233, 0.08);
+  color: var(--color-accent);
+}
+
+.historial-subfilter.active {
+  background: rgba(96, 78, 233, 0.12);
+  color: var(--color-accent);
+  border-color: rgba(96, 78, 233, 0.2);
+}
+
+/* =============================================
+   CARD GRID
+   ============================================= */
+
+.historial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* =============================================
+   LAUNCH CARDS
+   ============================================= */
+
+.launch-card {
+  width: 100%;
+  min-height: 280px;
+  background: var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: default;
+  position: relative;
+  z-index: 0;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    opacity 0.35s ease;
+  opacity: 0.88;
+}
+
+.launch-card:hover,
+.launch-card:focus-within,
+.launch-card:active {
+  transform: scale(1.10);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.55);
+  opacity: 1;
+  z-index: 10;
+}
+
+.launch-card__image-link {
+  display: block;
+  cursor: pointer;
+}
+
+.launch-card__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  background: #0e0e16;
+}
+
+.launch-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(60%) brightness(0.55);
+  transition: filter 0.35s ease;
+}
+
+.launch-card:hover .launch-card__image img {
+  filter: none;
+}
+
+.launch-card__index {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(0, 0, 0, 0.45);
+  padding: 3px 8px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.launch-card__category {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 5px;
+}
+
+.launch-card__name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.launch-card__benefit {
+  font-family: var(--font-body);
+  font-size: 0.83rem;
+  font-weight: 300;
+  line-height: 1.20;
+  color: var(--color-muted);
+}
+
+.launch-card__cta {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.45);
+  transition: color 0.2s ease;
+}
+
+.launch-card:hover .launch-card__cta {
+  color: var(--color-white);
+}
+
+/* =============================================
+   PAGINACIÓN
+   ============================================= */
+
+.historial-pagination {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+  grid-column: 2 / 3;
+}
+
+@media (max-width: 768px) {
+  .historial-pagination {
+    grid-column: 1 / -1;
+  }
+}
+
+.historial-page-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.06);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.70);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.historial-page-btn:hover:not(:disabled) {
+  background: rgba(96, 78, 233, 0.12);
+  border-color: rgba(96, 78, 233, 0.30);
+  color: var(--color-white);
+}
+
+.historial-page-btn:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+.historial-page-info {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--color-muted);
+  min-width: 48px;
+  text-align: center;
+}
+
+/* =============================================
+   EMPTY STATE
+   ============================================= */
+
+.historial-empty {
+  display: none;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 0;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: #888899;
+}
+
+/* =============================================
+   ESTRELLAS
+   ============================================= */
+
+.stars-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.06; }
+  50%       { opacity: 0.44; }
+}
+
+/* =============================================
+   CARD DESTACADA — NEÓN AZUL
+   ============================================= */
+
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 8px  rgba(0, 170, 255, 0.40),
+      0 0 24px rgba(0, 170, 255, 0.22),
+      0 0 56px rgba(0, 170, 255, 0.12),
+      0 0 80px rgba(0, 170, 255, 0.06);
+    border-color: rgba(0, 170, 255, 0.55);
+  }
+  50% {
+    box-shadow:
+      0 0 14px rgba(0, 170, 255, 0.65),
+      0 0 38px rgba(0, 170, 255, 0.38),
+      0 0 72px rgba(0, 170, 255, 0.20),
+      0 0 110px rgba(0, 170, 255, 0.09);
+    border-color: rgba(0, 170, 255, 0.85);
+  }
+}
+
+.launch-card--featured {
+  border-color: rgba(0, 170, 255, 0.55);
+  box-shadow:
+    0 0 8px  rgba(0, 170, 255, 0.40),
+    0 0 24px rgba(0, 170, 255, 0.22),
+    0 0 56px rgba(0, 170, 255, 0.12),
+    0 0 80px rgba(0, 170, 255, 0.06);
+  animation: neon-pulse 2.2s ease-in-out infinite;
+}
+
+.launch-card--featured:hover,
+.launch-card--featured:focus-within,
+.launch-card--featured:active {
+  box-shadow:
+    0 0 10px rgba(0, 170, 255, 0.55),
+    0 0 28px rgba(0, 170, 255, 0.30),
+    0 24px 56px rgba(0, 0, 0, 0.55);
+  border-color: rgba(0, 170, 255, 0.85);
+  animation: none;
+}
+
+/* LED dot */
+@keyframes led-blink {
+  0%, 48%  { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.launch-card--featured .launch-card__index {
+  overflow: visible;
+}
+
+.launch-card--featured .launch-card__index::before {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgb(0, 170, 255);
+  box-shadow: 0 0 8px rgba(0, 170, 255, 0.8);
+  animation: led-blink 1.4s step-end infinite;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 640px) {
+  .launch-card:hover,
+  .launch-card:focus-within,
+  .launch-card:active {
+    transform: scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  }
+
+  .launch-card--featured {
+    box-shadow:
+      0 0 4px  rgba(0, 170, 255, 0.25),
+      0 0 12px rgba(0, 170, 255, 0.12);
+  }
+}
