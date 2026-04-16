@@ -590,6 +590,12 @@ a {
     font-weight: 300;
     letter-spacing: normal;
   }
+  /* Sección sin título: todos los textos solo cambian a blanco, ninguno escala */
+  .interna-value--no-title:hover .interna-value__text:first-child {
+    font-size: 1.05rem;
+    font-weight: 300;
+    letter-spacing: normal;
+  }
 
   /* Caps groups: group-label escala solo si existe, cards solo blanco + bold */
   .interna-caps__group .interna-caps__group-label,
