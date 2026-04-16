@@ -5,6 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simplificamos la gestión de tu material de empaque | Melonn Edition</title>
   <link rel="stylesheet" href="interna.css" />
+  <style>
+    /* Hover effect — solo bloques de contenido, solo dispositivos con puntero real */
+    @media (hover: hover) {
+
+      /* Hero: solo el párrafo */
+      .interna-hero .interna-hero__subtitle {
+        transition: color 0.35s ease;
+      }
+      .interna-hero:hover .interna-hero__subtitle {
+        color: #ffffff;
+      }
+
+      /* Bloques de contenido */
+      .scroll-block .interna-caps__group-label {
+        transition: font-size 0.35s ease, font-weight 0.35s ease, color 0.35s ease, letter-spacing 0.35s ease;
+      }
+
+      .scroll-block .interna-value__text:first-child {
+        transition: font-size 0.35s ease, font-weight 0.35s ease, color 0.35s ease, letter-spacing 0.35s ease;
+      }
+
+      .scroll-block .interna-value__text,
+      .scroll-block .interna-caps__card-title,
+      .scroll-block .interna-caps__card-desc {
+        transition: color 0.35s ease, font-weight 0.35s ease;
+      }
+
+      /* Estado hover — secciones de contenido */
+      .scroll-block:hover .interna-caps__group-label {
+        font-size: clamp(1.4rem, 5vw, 2.1rem);
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.072em;
+      }
+
+      .scroll-block:hover .interna-value__text:first-child {
+        font-size: clamp(1.4rem, 5vw, 2.1rem);
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.072em;
+      }
+
+      .scroll-block:hover .interna-value__text {
+        color: #ffffff;
+      }
+
+      .scroll-block:hover .interna-caps__card-title {
+        color: #ffffff;
+        font-weight: 700;
+      }
+
+      .scroll-block:hover .interna-caps__card-desc {
+        color: #ffffff;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -29,61 +85,57 @@
         <span class="interna-hero__badge">Melonn Colombia</span>
         <span class="interna-hero__badge">Melonn México</span>
       </div>
-      <p class="interna-hero__subtitle">Ahora puedes registrar en Órbita las distintas presentaciones en las que envías tu material de empaque, como unidades sueltas o paquetes. Así, al crear tu orden de ingreso, podrás indicar exactamente cómo lo mandarás para que Melonn lo reciba correctamente desde el inicio.</p>
+      <p class="interna-hero__subtitle">Hicimos cambios para que tu material de empaque se reciba en bodega de forma más rápida, precisa y sin errores. Ahora debes configurar en Órbita los niveles de empaque de cada producto y usarlos al crear tus órdenes de ingreso.</p>
     </div>
   </section>
 
-  <!-- UN CAMBIO CLAVE -->
-  <section class="interna-value">
+  <!-- ¿QUÉ CAMBIA? -->
+  <section class="interna-value scroll-block">
     <div class="container">
-      <p class="interna-value__text" style="font-weight: 600; color: var(--color-white); margin-bottom: 16px;">Un cambio clave en la forma de registrar tu material</p>
-      <p class="interna-value__text">A partir de ahora, todos los materiales de empaque que tengas creados en Órbita se gestionarán como unidades individuales. Por esta razón, eliminamos el campo de "unidad de presentación".</p>
+      <p class="interna-value__text" style="font-weight: 600; color: var(--color-white); margin-bottom: 16px;">¿Qué cambia?</p>
+      <p class="interna-value__text">Si hoy registras tus materiales de forma genérica, ahora deberás indicar la presentación exacta en la que los envías: por unidad o en case packs (paquetes de 100, 200, 500 unidades, por ejemplo). Esto nos permite recibir tu material sin demoras, sin colas en bodega y sin reprocesos.</p>
     </div>
   </section>
 
-  <!-- CAPACIDADES -->
+  <!-- QUÉ DEBES HACER + IMPORTANTE + APLICA PARA -->
   <section class="interna-caps">
     <div class="container">
 
-      <!-- ¿Qué significa esto? -->
-      <div class="interna-caps__group">
-        <p class="interna-caps__group-label">¿Qué significa esto?</p>
-        <div class="interna-caps__grid">
+      <!-- Qué debes hacer -->
+      <div class="interna-caps__group scroll-block">
+        <p class="interna-caps__group-label">Qué debes hacer</p>
+        <div class="interna-caps__grid" style="grid-template-columns: 1fr;">
+
           <div class="interna-caps__card">
-            <h3 class="interna-caps__card-title">Cada unidad corresponde a una pieza individual de material de empaque.</h3>
+            <h3 class="interna-caps__card-title">Configura tu material en Órbita</h3>
+            <p class="interna-caps__card-desc">Crea cada producto a nivel unitario. Si también lo envías en paquetes, agrega un nivel de empaque por presentación con nombre, código de barras (si aplica) y cantidad de unidades.</p>
           </div>
+
           <div class="interna-caps__card">
-            <h3 class="interna-caps__card-title">Esto aplica para bolsas, cajas, sobres, rollos de stickers y otros elementos similares.</h3>
+            <h3 class="interna-caps__card-title">Úsalo al crear tu orden de ingreso</h3>
+            <p class="interna-caps__card-desc">Al agregar material de empaque en una orden, selecciona la presentación exacta en la que lo vas a enviar.</p>
           </div>
+
+        </div>
+      </div>
+
+      <!-- Importante -->
+      <div class="interna-caps__group scroll-block">
+        <p class="interna-caps__group-label">Importante</p>
+        <div class="interna-caps__grid" style="grid-template-columns: 1fr;">
           <div class="interna-caps__card">
-            <h3 class="interna-caps__card-title">Al crear tu orden de ingreso, deberás indicar el número total de unidades individuales que enviarás a bodega.</h3>
-          </div>
-          <div class="interna-caps__card">
-            <h3 class="interna-caps__card-title">Este cambio busca que el registro y la recepción del material sean más claros y consistentes.</h3>
+            <p class="interna-caps__card-desc">A partir de ahora, las órdenes de ingreso deben declarar la presentación exacta del producto. Si esta configuración no está hecha, la recepción podrá presentar demoras.</p>
           </div>
         </div>
       </div>
 
-      <!-- Ejemplos -->
-      <div class="interna-caps__group">
-        <p class="interna-caps__group-label">Ejemplos de unidades</p>
+      <!-- Aplica para -->
+      <div class="interna-caps__group scroll-block">
+        <p class="interna-caps__group-label">Aplica para</p>
         <div class="interna-caps__grid" style="grid-template-columns: 1fr;">
-
           <div class="interna-caps__card">
-            <h3 class="interna-caps__card-title">1 bolsa = 1 unidad</h3>
-            <p class="interna-caps__card-desc">Cada bolsa cuenta como una unidad individual dentro de tu orden de ingreso.</p>
+            <p class="interna-caps__card-desc">Todos los sellers activos en Colombia y México que manejan material de empaque propio: bolsas, cajas, sobres u otros insumos.</p>
           </div>
-
-          <div class="interna-caps__card">
-            <h3 class="interna-caps__card-title">1 caja = 1 unidad</h3>
-            <p class="interna-caps__card-desc">Cada caja se registra como una unidad independiente.</p>
-          </div>
-
-          <div class="interna-caps__card">
-            <h3 class="interna-caps__card-title">1 sobre = 1 unidad</h3>
-            <p class="interna-caps__card-desc">Cada sobre debe ingresarse como una unidad individual.</p>
-          </div>
-
         </div>
       </div>
 
