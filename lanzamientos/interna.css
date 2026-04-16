@@ -554,3 +554,64 @@ a {
     padding-right: 0;
   }
 }
+
+/* =============================================
+   Hover effect — solo dispositivos con puntero real
+   ============================================= */
+@media (hover: hover) {
+
+  /* Hero: solo el párrafo si existe */
+  .interna-hero .interna-hero__subtitle {
+    transition: color 0.35s ease;
+  }
+  .interna-hero:hover .interna-hero__subtitle {
+    color: #ffffff;
+  }
+
+  /* Value: primer texto escala como título, segundo solo cambia a blanco */
+  .interna-value .interna-value__text:first-child {
+    transition: font-size 0.35s ease, font-weight 0.35s ease, color 0.35s ease, letter-spacing 0.35s ease;
+  }
+  .interna-value .interna-value__text {
+    transition: color 0.35s ease;
+  }
+  .interna-value:hover .interna-value__text:first-child {
+    font-size: clamp(1.4rem, 5vw, 2.1rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.072em;
+  }
+  .interna-value:hover .interna-value__text {
+    color: #ffffff;
+  }
+  /* Párrafo único: solo cambia a blanco, no escala */
+  .interna-value:hover .interna-value__text:only-child {
+    font-size: 1.05rem;
+    font-weight: 300;
+    letter-spacing: normal;
+  }
+
+  /* Caps groups: group-label escala solo si existe, cards solo blanco + bold */
+  .interna-caps__group .interna-caps__group-label,
+  .interna-caps__group .interna-caps__eyebrow {
+    transition: font-size 0.35s ease, font-weight 0.35s ease, color 0.35s ease, letter-spacing 0.35s ease;
+  }
+  .interna-caps__group .interna-caps__card-title,
+  .interna-caps__group .interna-caps__card-desc {
+    transition: color 0.35s ease, font-weight 0.35s ease;
+  }
+  .interna-caps__group:hover .interna-caps__group-label,
+  .interna-caps__group:hover .interna-caps__eyebrow {
+    font-size: clamp(1.4rem, 5vw, 2.1rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.072em;
+  }
+  .interna-caps__group:hover .interna-caps__card-title {
+    color: #ffffff;
+    font-weight: 700;
+  }
+  .interna-caps__group:hover .interna-caps__card-desc {
+    color: #ffffff;
+  }
+}

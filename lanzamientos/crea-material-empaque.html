@@ -5,62 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simplificamos la gestión de tu material de empaque | Melonn Edition</title>
   <link rel="stylesheet" href="interna.css" />
-  <style>
-    /* Hover effect — solo bloques de contenido, solo dispositivos con puntero real */
-    @media (hover: hover) {
 
-      /* Hero: solo el párrafo */
-      .interna-hero .interna-hero__subtitle {
-        transition: color 0.35s ease;
-      }
-      .interna-hero:hover .interna-hero__subtitle {
-        color: #ffffff;
-      }
-
-      /* Bloques de contenido */
-      .scroll-block .interna-caps__group-label {
-        transition: font-size 0.35s ease, font-weight 0.35s ease, color 0.35s ease, letter-spacing 0.35s ease;
-      }
-
-      .scroll-block .interna-value__text:first-child {
-        transition: font-size 0.35s ease, font-weight 0.35s ease, color 0.35s ease, letter-spacing 0.35s ease;
-      }
-
-      .scroll-block .interna-value__text,
-      .scroll-block .interna-caps__card-title,
-      .scroll-block .interna-caps__card-desc {
-        transition: color 0.35s ease, font-weight 0.35s ease;
-      }
-
-      /* Estado hover — secciones de contenido */
-      .scroll-block:hover .interna-caps__group-label {
-        font-size: clamp(1.4rem, 5vw, 2.1rem);
-        font-weight: 700;
-        color: #ffffff;
-        letter-spacing: 0.072em;
-      }
-
-      .scroll-block:hover .interna-value__text:first-child {
-        font-size: clamp(1.4rem, 5vw, 2.1rem);
-        font-weight: 700;
-        color: #ffffff;
-        letter-spacing: 0.072em;
-      }
-
-      .scroll-block:hover .interna-value__text {
-        color: #ffffff;
-      }
-
-      .scroll-block:hover .interna-caps__card-title {
-        color: #ffffff;
-        font-weight: 700;
-      }
-
-      .scroll-block:hover .interna-caps__card-desc {
-        color: #ffffff;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -90,7 +35,7 @@
   </section>
 
   <!-- ¿QUÉ CAMBIA? -->
-  <section class="interna-value scroll-block">
+  <section class="interna-value">
     <div class="container">
       <p class="interna-value__text" style="font-weight: 600; color: var(--color-white); margin-bottom: 16px;">¿Qué cambia?</p>
       <p class="interna-value__text">Si hoy registras tus materiales de forma genérica, ahora deberás indicar la presentación exacta en la que los envías: por unidad o en case packs (paquetes de 100, 200, 500 unidades, por ejemplo). Esto nos permite recibir tu material sin demoras, sin colas en bodega y sin reprocesos.</p>
@@ -102,7 +47,7 @@
     <div class="container">
 
       <!-- Qué debes hacer -->
-      <div class="interna-caps__group scroll-block">
+      <div class="interna-caps__group">
         <p class="interna-caps__group-label">Qué debes hacer</p>
         <div class="interna-caps__grid" style="grid-template-columns: 1fr;">
 
@@ -120,7 +65,7 @@
       </div>
 
       <!-- Importante -->
-      <div class="interna-caps__group scroll-block">
+      <div class="interna-caps__group">
         <p class="interna-caps__group-label">Importante</p>
         <div class="interna-caps__grid" style="grid-template-columns: 1fr;">
           <div class="interna-caps__card">
@@ -130,7 +75,7 @@
       </div>
 
       <!-- Aplica para -->
-      <div class="interna-caps__group scroll-block">
+      <div class="interna-caps__group">
         <p class="interna-caps__group-label">Aplica para</p>
         <div class="interna-caps__grid" style="grid-template-columns: 1fr;">
           <div class="interna-caps__card">
