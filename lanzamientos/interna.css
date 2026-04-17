@@ -532,6 +532,23 @@ a {
     font-size: 1.7rem;
   }
 
+  .interna-hero__subtitle {
+    color: var(--color-white);
+  }
+
+  .interna-value__text {
+    color: var(--color-white);
+  }
+
+  .interna-caps__card-title {
+    font-size: 1.84rem;
+    line-height: 1.15;
+  }
+
+  .interna-caps__card-desc {
+    color: var(--color-white);
+  }
+
   .container {
     padding: 0 35px;
   }
