@@ -1,0 +1,45 @@
+# Melonn Edition
+
+> Melonn Edition es el sitio de lanzamientos y novedades de Melonn, plataforma de fulfillment para e-commerce en Colombia y México. Cada edición reúne las nuevas funcionalidades, integraciones y mejoras disponibles para los sellers que operan con Melonn.
+
+Melonn opera centros de distribución (CEDIS) en Colombia y México. Su plataforma de gestión se llama Órbita. Los sellers usan Órbita para gestionar órdenes, inventario, integraciones con canales de venta y servicios de valor agregado (VAS).
+
+Edición actual: Q2 · 2026
+
+## Lanzamientos
+
+- [Vista de órdenes D2C](/lanzamientos/vista-ordenes-d2c): Nueva vista unificada de la orden D2C y Explorador de Órdenes en Órbita. Mejora la trazabilidad, el seguimiento y la gestión de pedidos D2C desde un solo lugar.
+- [API Melonn V2](/lanzamientos/api-melonn-v2): Nueva versión de la API con soporte para órdenes de ingreso, devoluciones, webhooks para estados de órdenes y ajustes de inventario. Migración requerida desde V1 antes de noviembre de 2026.
+- [Empaque B2B con trazabilidad total](/lanzamientos/empaque-b2b): Nueva experiencia de empaque B2B en Órbita con detalle por caja (contenido, cantidades, peso, evidencia). Reemplaza 3 VAS anteriores.
+- [Checkout inteligente Shopify + Melonn](/lanzamientos/checkout-inteligente): Integración profunda con Shopify que muestra solo los métodos de envío realmente disponibles para cada cliente según destino, hora de corte e inventario en CEDIS.
+- [Nuevo visualizador de cargos en Órbita](/lanzamientos/visualizador-cargos): Módulo financiero en Órbita que muestra el desglose detallado de costos en tiempo real. Permite filtrar por periodo, bodega y canal, y exportar a Excel.
+- [Trazabilidad avanzada B2B](/lanzamientos/trazabilidad-avanzada-b2b): Captura de fecha de caducidad/vencimiento y número de lote por producto durante el empaque en órdenes B2B. Visible en el detalle del contenido de cada paquete.
+- [Gestión de Orden de Ingreso para Destinatarios Verificados](/lanzamientos/gestion-orden-ingreso-destinatarios-verificados): VAS para envíos a Amazon FBA y Mercado Libre Full. Melonn gestiona etiquetas, citas y cumplimiento de requisitos logísticos de estos marketplaces.
+- [VAS - Etiquetado de ítems con código de barras o QR para órdenes B2B](/lanzamientos/vas-etiquetado-codigo-barras-qr-b2b): Configuración de etiquetado de ítems en órdenes B2B desde Órbita. Soporta asignación manual, por carga masiva o automática para destinatarios verificados (Amazon, Mercado Libre, Melonn).
+- [Orbi.AI](/lanzamientos/orbi-ai): Asistente de inteligencia artificial disponible 24/7 para sellers de Melonn. Permite consultar y cancelar órdenes, verificar coberturas, promesas de entrega y métodos de envío. Accesible desde orbiai.melonn.com.
+- [Promesas Logísticas](/lanzamientos/promesas-logisticas): Visibilidad en tiempo real de los tiempos de preparación, despacho y entrega por orden. Incluye modificadores de esfuerzo (VAS, volumen de ítems) y modificadores operacionales (temporadas, eventos de fuerza mayor).
+- [TikTok Shop llega a Melonn](/lanzamientos/tiktok-shop): Integración oficial de Melonn con TikTok Shop, disponible para sellers en México. Automatización de pedidos, inventario sincronizado y gestión centralizada en Órbita.
+- [Liverpool + Melonn](/lanzamientos/liverpool-melonn): Integración con Liverpool para sellers en México. Soporta Home Delivery y Click & Collect. Pedidos automáticos e inventario sincronizado desde Órbita.
+- [Simplificamos la gestión de tu material de empaque](/lanzamientos/crea-material-empaque): Cambio en el registro de materiales de empaque en Órbita: ahora todo se gestiona por unidad individual. Se elimina el campo "unidad de presentación".
+- [Sistema de notificaciones por WhatsApp](/lanzamientos/sistema-notificaciones-whatsapp): Melonn envía notificaciones automáticas al comprador por WhatsApp en momentos clave del pedido: cambios de estado, incidencias, promesa vencida y comunicados masivos.
+
+## Historial de lanzamientos
+
+- [Historial completo de lanzamientos](/historial-de-lanzamientos): Archivo cronológico de todos los lanzamientos de Melonn Edition, filtrable por país (Colombia, México) y tipo.
+
+## Plataformas y disponibilidad
+
+- Melonn Colombia: disponible para la mayoría de funcionalidades
+- Melonn México: disponible para la mayoría de funcionalidades
+- Algunas funcionalidades son exclusivas de un país (Liverpool, TikTok Shop → solo México)
+
+## Glosario
+
+- **Órbita**: plataforma web de gestión de Melonn donde los sellers administran órdenes, inventario, integraciones y configuraciones
+- **VAS (Valor Agregado / Value Added Service)**: servicios adicionales al fulfillment estándar, como etiquetado, trazabilidad de lote, empaque especial, etc.
+- **CEDIS**: centros de distribución de Melonn en Colombia y México
+- **Destinatarios verificados**: marketplaces con requisitos logísticos específicos que Melonn cumple automáticamente (Amazon FBA, Mercado Libre Full, Melonn)
+- **Seller**: marca o empresa que usa Melonn como operador logístico
+- **D2C (Direct to Consumer)**: ventas directas al consumidor final
+- **B2B (Business to Business)**: ventas a otras empresas o retailers
+- **Orbi.AI**: asistente de inteligencia artificial de Melonn, accesible en orbiai.melonn.com
