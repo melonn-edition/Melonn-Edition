@@ -310,6 +310,20 @@
   targets.forEach(({ el, count, launches, upper }) => createStars(el, count, launches, upper));
 })();
 
+// --- Scroll limpio sin hash ---
+(function () {
+  document.querySelectorAll('[data-scroll]').forEach(function (el) {
+    function activate() {
+      var target = document.getElementById(el.dataset.scroll);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
+    el.addEventListener('click', activate);
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+    });
+  });
+})();
+
 // --- Upcoming scroll reveal ---
 (function () {
   const targets = document.querySelectorAll('.upcoming__header, .upcoming__step, .launches__header, .launch-card, .launches__footer');
