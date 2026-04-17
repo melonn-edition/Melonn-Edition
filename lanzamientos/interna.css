@@ -547,6 +547,13 @@ a {
 
   .interna-caps__group-label {
     color: var(--color-white);
+    font-size: 1.4rem;
+    line-height: 1.15;
+  }
+
+  .interna-caps__eyebrow {
+    font-size: 1.4rem;
+    line-height: 1.15;
   }
 
   .interna-caps__card-desc {
