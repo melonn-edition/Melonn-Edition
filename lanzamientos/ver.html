@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lanzamiento · Melonn Edition</title>
+  <link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0a0818; min-height: 100vh; font-family: 'Poppins', sans-serif; color: #fff; }
+
+    .launch-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .launch-nav__brand {
+      font-family: 'Sora', sans-serif; font-weight: 700; color: #fff;
+      font-size: 1.1rem; text-decoration: none; letter-spacing: -0.02em;
+    }
+    .launch-nav__edition { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+    .launch-page { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 6rem; }
+
+    .launch-page__back {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.45); text-decoration: none;
+      font-size: 0.875rem; margin: 2.5rem 0 2rem;
+      transition: color 0.2s;
+    }
+    .launch-page__back:hover { color: #fff; }
+
+    .launch-page__meta {
+      display: flex; align-items: center; gap: 0.6rem;
+      flex-wrap: wrap; margin-bottom: 1.25rem;
+    }
+    .launch-page__badge {
+      font-size: 0.75rem; padding: 0.3rem 0.8rem; border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.65);
+      font-family: 'Sora', sans-serif;
+    }
+
+    .launch-page__title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700; color: #fff; line-height: 1.15;
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .launch-page__desc {
+      font-size: 1.05rem; color: rgba(255,255,255,0.55);
+      line-height: 1.75; margin-bottom: 2.5rem; max-width: 640px;
+    }
+    .launch-page__banner {
+      width: 100%; border-radius: 1rem; margin-bottom: 3rem;
+      aspect-ratio: 16/9; object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .launch-page__body {
+      font-size: 1rem; color: rgba(255,255,255,0.75); line-height: 1.85;
+    }
+    .launch-page__body h2 {
+      font-family: 'Sora', sans-serif; font-size: 1.5rem;
+      font-weight: 700; color: #fff; margin: 2.5rem 0 1rem;
+    }
+    .launch-page__body h3 {
+      font-family: 'Sora', sans-serif; font-size: 1.15rem;
+      font-weight: 600; color: #fff; margin: 2rem 0 0.75rem;
+    }
+    .launch-page__body p { margin-bottom: 1.1rem; }
+    .launch-page__body ul, .launch-page__body ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .launch-page__body li { margin-bottom: 0.5rem; }
+    .launch-page__body img { width: 100%; border-radius: 0.75rem; margin: 1.5rem 0; }
+
+    .launch-divider {
+      border: none; border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 3rem 0;
+    }
+
+    .launch-loading, .launch-error {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; min-height: 60vh; gap: 1rem;
+      color: rgba(255,255,255,0.35); font-family: 'Sora', sans-serif;
+      text-align: center; padding: 2rem;
+    }
+    .launch-error h2 { color: #fff; font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .launch-error a {
+      margin-top: 0.5rem; color: #604EE9; text-decoration: none;
+      font-size: 0.9rem; transition: opacity 0.2s;
+    }
+    .launch-error a:hover { opacity: 0.75; }
+  </style>
+</head>
+<body>
+
+  <nav class="launch-nav">
+    <a href="/" class="launch-nav__brand">melonn edition</a>
+    <span class="launch-nav__edition">Edición Q2 · 2026</span>
+  </nav>
+
+  <main id="launch-content" class="launch-loading">
+    <span>Cargando lanzamiento…</span>
+  </main>
+
+  <script>
+    (async function () {
+      const params  = new URLSearchParams(window.location.search)
+      const slug    = params.get('slug')
+      const content = document.getElementById('launch-content')
+
+      function showError(msg) {
+        content.className = 'launch-error'
+        content.innerHTML = `<h2>Lanzamiento no encontrado</h2><p>${msg}</p><a href="/">← Volver a Melonn Edition</a>`
+      }
+
+      if (!slug) { showError('No se especificó un slug válido.'); return }
+
+      try {
+        const db = supabase.createClient(
+          'https://vbizdvysjuhhdxpwhmgz.supabase.co',
+          'sb_publishable_68fyA5MzemogWPRgCNkcaQ_-aiLgA_V'
+        )
+
+        const { data: launch, error } = await db
+          .from('launches')
+          .select('*')
+          .eq('slug', slug)
+          .eq('is_published', true)
+          .maybeSingle()
+
+        if (error || !launch) { showError('Este lanzamiento no existe o no está publicado.'); return }
+
+        document.title = `${launch.title} · Melonn Edition`
+
+        const badges = [launch.category, launch.launch_type, launch.country ? launch.country.toUpperCase() : null]
+          .filter(Boolean)
+          .map(b => `<span class="launch-page__badge">${b}</span>`)
+          .join('')
+
+        content.className = 'launch-page'
+        content.innerHTML = `
+          <a href="/" class="launch-page__back">← Volver a Melonn Edition</a>
+          ${badges ? `<div class="launch-page__meta">${badges}</div>` : ''}
+          <h1 class="launch-page__title">${launch.title}</h1>
+          ${launch.description ? `<p class="launch-page__desc">${launch.description}</p>` : ''}
+          ${launch.banner_url ? `<img src="${launch.banner_url}" alt="${launch.title}" class="launch-page__banner" />` : ''}
+          ${launch.body_html ? `<hr class="launch-divider"><div class="launch-page__body">${launch.body_html}</div>` : ''}
+        `
+      } catch (e) {
+        showError('Intenta de nuevo más tarde.')
+      }
+    })()
+  </script>
+
+</body>
+</html>
