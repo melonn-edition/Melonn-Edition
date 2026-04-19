@@ -1,5 +1,52 @@
 // script.js — Melonn Edition
 
+// --- Supabase: datos dinámicos ---
+(async function () {
+  const SUPABASE_URL = 'https://vbizdvysjuhhdxpwhmgz.supabase.co'
+  const SUPABASE_KEY = 'sb_publishable_68fyA5MzemogWPRgCNkcaQ_-aiLgA_V'
+  const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+
+  // Ecosystem logos
+  const grid = document.getElementById('ecosystem-grid')
+  if (grid) {
+    const { data: logos } = await db
+      .from('ecosystem_logos')
+      .select('name, logo_url')
+      .eq('is_visible', true)
+      .order('order_index')
+    if (logos && logos.length > 0) {
+      grid.innerHTML = logos.map(l =>
+        `<div class="ecosystem__logo-item"><img src="${l.logo_url}" alt="${l.name}" loading="lazy" /></div>`
+      ).join('')
+    }
+  }
+
+  // Upcoming items
+  const pipeline = document.getElementById('upcoming-pipeline')
+  if (pipeline) {
+    const { data: items } = await db
+      .from('upcoming_items')
+      .select('title, description')
+      .eq('is_visible', true)
+      .order('order_index')
+    if (items && items.length > 0) {
+      const stepClasses = ['upcoming__step--1', 'upcoming__step--2', 'upcoming__step--3', 'upcoming__step--4', 'upcoming__step--5']
+      pipeline.innerHTML = items.map((item, i) => `
+        <div class="upcoming__step ${stepClasses[i] || ''}">
+          <div class="upcoming__connector">
+            <span class="upcoming__num">${String(i + 1).padStart(2, '0')}</span>
+            <div class="upcoming__node"></div>
+          </div>
+          <div class="upcoming__card">
+            <h3 class="upcoming__card-title">${item.title}</h3>
+            <p class="upcoming__card-text">${item.description || ''}</p>
+          </div>
+        </div>`
+      ).join('')
+    }
+  }
+})()
+
 // --- Ecosystem comet ---
 (function () {
   const section = document.querySelector('.ecosystem');

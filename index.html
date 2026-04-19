@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -154,7 +155,7 @@
 <p class="ecosystem__desc">Plataformas e integraciones activas dentro del ecosistema Melonn.</p>
       </div>
 
-      <div class="ecosystem__grid">
+      <div class="ecosystem__grid" id="ecosystem-grid">
         <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/SHOPIFY.png" alt="Shopify" /></div>
         <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/WOO.png" alt="WooCommerce" /></div>
         <div class="ecosystem__logo-item"><img src="IMAGE/ECOSISTEMA/LOGOS/MERCADOLIBRE.png" alt="Mercado Libre" /></div>
@@ -273,7 +274,7 @@
         <p class="upcoming__desc">Seguimos construyendo nuevas capacidades para impulsar la operación,<br>la escalabilidad y la experiencia de nuestros sellers.</p>
       </div>
 
-      <div class="upcoming__pipeline">
+      <div class="upcoming__pipeline" id="upcoming-pipeline">
 
         <div class="upcoming__step upcoming__step--1">
           <div class="upcoming__connector">
