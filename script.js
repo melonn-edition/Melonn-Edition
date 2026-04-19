@@ -2,6 +2,7 @@
 
 // --- Supabase: datos dinámicos ---
 (async function () {
+  try {
   const SUPABASE_URL = 'https://vbizdvysjuhhdxpwhmgz.supabase.co'
   const SUPABASE_KEY = 'sb_publishable_68fyA5MzemogWPRgCNkcaQ_-aiLgA_V'
   const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
@@ -45,6 +46,7 @@
       ).join('')
     }
   }
+  } catch (e) { console.warn('Supabase load error:', e) }
 })()
 
 // --- Ecosystem comet ---
