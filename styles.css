@@ -183,7 +183,8 @@ a {
 }
 
 .hero__strip-edilab {
-  display: inline-flex;
+  display: none;
+  /* display: inline-flex; */
   align-items: center;
   gap: 0;
   margin-left: 20px;
