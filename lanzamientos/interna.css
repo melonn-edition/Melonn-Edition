@@ -310,7 +310,8 @@ a {
 }
 
 .interna-caps__card:hover {
-  border-color: rgba(77, 42, 173, 0.4);
+  border-color: rgba(155, 124, 255, 0.45);
+  box-shadow: 0 0 28px rgba(155, 124, 255, 0.35);
 }
 
 .interna-caps__card:hover .interna-caps__card-desc {
