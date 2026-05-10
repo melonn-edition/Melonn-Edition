@@ -1,141 +1,1011 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
-  <link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evidencia de entrega en Órbita | Melonn Edition</title>
-  <link rel="stylesheet" href="interna.css" />
-  <style>
-    .hl { color: #FFC800; transition: color 0.35s ease; }
-    @media (hover: hover) {
-      .interna-value:hover .hl { color: #FFC800; }
-      .interna-caps__card:hover .interna-caps__card-desc .hl { color: #FFC800; }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
+<link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
+<title>Evidencia de entrega en Órbita – Melonn Editions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg-0:#050410;
+  --bg-1:#0a0918;
+  --bg-2:#131125;
+  --line:rgba(196,181,253,.10);
+  --line-strong:rgba(196,181,253,.22);
+  --ink-0:#F4F3FF;
+  --ink-1:#C9C7E0;
+  --ink-2:#9C9AB5;
+  --ink-3:#5E5C78;
+  --violet-0:#C4B5FD;
+  --violet-1:#A78BFA;
+  --violet-2:#7C5CFF;
+  --violet-3:#5B3DF5;
+  --violet-glow:rgba(196,181,253,.55);
+  --card:linear-gradient(180deg,rgba(28,24,52,.55) 0%,rgba(13,11,28,.55) 100%);
+  --r-sm:10px;
+  --r-md:16px;
+  --r-lg:22px;
+  --r-xl:28px;
+  --maxw:1320px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg-0);color:var(--ink-0);font-family:'Sora',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv11";line-height:1.45}
+body{overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(196,181,253,.4);color:#fff}
+
+/* ——— ambient backdrop ——— */
+.bg-stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-stage::before{
+  content:"";position:absolute;inset:-30%;
+  background:
+    radial-gradient(50% 35% at 78% 8%,rgba(167,139,250,.45),transparent 60%),
+    radial-gradient(35% 25% at 20% 28%,rgba(124,92,255,.32),transparent 70%),
+    radial-gradient(40% 30% at 90% 60%,rgba(91,61,245,.25),transparent 70%),
+    radial-gradient(80% 50% at 50% 100%,rgba(15,12,40,.95),transparent 70%),
+    linear-gradient(180deg,#050410 0%,#080720 50%,#040310 100%);
+  filter:saturate(1.15);
+}
+.bg-stage::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(45% 30% at 78% 8%,rgba(196,181,253,.18),transparent 60%);
+  filter:blur(40px);
+  animation:bgpulse 6s ease-in-out infinite;
+}
+@keyframes bgpulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+.grid-overlay{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.4;
+  background-image:
+    linear-gradient(to right,rgba(196,181,253,.05) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(196,181,253,.05) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%);
+}
+.scanline{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(196,181,253,.012) 3px,rgba(196,181,253,.012) 4px);
+}
+.noise{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+
+/* ——— top nav ——— */
+.shell{position:relative;z-index:10}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px clamp(24px,4vw,56px);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(18px);
+  background:linear-gradient(180deg,rgba(5,4,16,.7),rgba(5,4,16,0));
+  position:sticky;top:0;z-index:50;
+}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:-.01em;font-size:15px}
+.brand-mark{
+  width:28px;height:28px;border-radius:9px;
+  background:conic-gradient(from 210deg,#C4B5FD,#7C5CFF,#A78BFA,#5B3DF5,#C4B5FD);
+  position:relative;box-shadow:0 0 0 1px rgba(196,181,253,.4),0 8px 24px rgba(167,139,250,.55);
+  animation:spin 18s linear infinite;
+}
+.brand-mark::after{content:"";position:absolute;inset:6px;border-radius:5px;background:#08071a;}
+.brand small{color:var(--ink-2);font-weight:400;margin-left:4px;font-size:12px;letter-spacing:.04em}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-link{font-size:13px;color:var(--ink-2);padding:8px 14px;border-radius:999px;transition:color .2s,background .2s}
+.nav-link:hover{color:var(--ink-0);background:rgba(196,181,253,.06)}
+.nav-link.active{color:var(--violet-0);background:rgba(196,181,253,.10);border:1px solid var(--line-strong);box-shadow:0 0 24px -6px var(--violet-glow)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.icon-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:999px;border:1px solid var(--line);color:var(--ink-1);cursor:pointer;background:transparent;transition:.2s}
+.icon-btn:hover{border-color:var(--line-strong);color:var(--violet-0);box-shadow:0 0 24px -6px var(--violet-glow)}
+.avatar{width:34px;height:34px;border-radius:999px;background:linear-gradient(135deg,#C4B5FD,#7C5CFF);display:grid;place-items:center;font-size:12px;font-weight:600;color:#1a0e3d;box-shadow:0 0 0 2px #08071a,0 0 18px var(--violet-glow)}
+
+/* ——— breadcrumb ——— */
+.crumbs{max-width:var(--maxw);margin:0 auto;padding:18px clamp(24px,4vw,56px) 0;display:flex;gap:10px;align-items:center;font-size:12px;color:var(--ink-2);letter-spacing:.02em}
+.crumbs a:hover{color:var(--violet-0)}
+.crumbs .sep{opacity:.5}
+.crumbs .here{color:var(--ink-0)}
+
+/* ——— hero ——— */
+.hero{position:relative;max-width:var(--maxw);margin:0 auto;padding:48px clamp(24px,4vw,56px) 80px;min-height:92vh;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:end;overflow:visible}
+.hero-content{position:relative;z-index:3}
+.hero-visual{position:relative;height:600px;align-self:stretch;display:flex;align-items:center;justify-content:center}
+
+.banner-frame{
+  position:relative;width:100%;height:100%;
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  border:1px solid var(--line-strong);
+  background:
+    radial-gradient(70% 80% at 50% 50%,rgba(124,92,255,.35),transparent 70%),
+    radial-gradient(circle at 70% 30%,rgba(196,181,253,.25),transparent 50%),
+    linear-gradient(180deg,#0d0a26 0%,#070414 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(196,181,253,.15),
+    inset 0 80px 120px -40px rgba(167,139,250,.25),
+    0 30px 80px -20px rgba(124,92,255,.4),
+    0 0 200px -40px rgba(196,181,253,.6);
+}
+.banner-frame::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(to right,rgba(196,181,253,.06) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(196,181,253,.06) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse at 50% 50%,#000 0%,transparent 80%);
+}
+.banner-tag{
+  position:absolute;top:18px;left:18px;
+  padding:6px 12px;border-radius:999px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;
+  background:rgba(7,5,22,.85);color:var(--violet-0);
+  border:1px solid rgba(196,181,253,.35);
+  text-transform:uppercase;
+  backdrop-filter:blur(8px);
+  z-index:5;
+}
+.banner-tag .pip{display:inline-block;width:6px;height:6px;border-radius:50%;background:#5EEAD4;box-shadow:0 0 10px #5EEAD4;margin-right:8px;vertical-align:middle;animation:pulse 1.6s ease-in-out infinite}
+
+.banner-corner{
+  position:absolute;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--ink-3);text-transform:uppercase;
+}
+.banner-corner.tr{top:18px;right:18px}
+.banner-corner.bl{bottom:18px;left:18px}
+.banner-corner.br{bottom:18px;right:18px;color:var(--violet-0)}
+
+.orbit-stage{position:absolute;inset:0;display:grid;place-items:center}
+.orbit{position:absolute;border-radius:50%;border:1px solid rgba(196,181,253,.18)}
+.orbit.o1{width:78%;aspect-ratio:1;border-style:dashed}
+.orbit.o2{width:55%;aspect-ratio:1}
+.orbit.o3{width:32%;aspect-ratio:1;border-color:rgba(196,181,253,.3)}
+.orbit-spin{animation:spin 40s linear infinite}
+.orbit-spin.r{animation-direction:reverse;animation-duration:60s}
+.orbit-spin.f{animation-duration:24s}
+
+.planet{
+  position:absolute;width:38%;aspect-ratio:1;border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 28%,rgba(255,255,255,.5) 0%,transparent 22%),
+    radial-gradient(circle at 70% 70%,rgba(91,61,245,.95) 0%,transparent 55%),
+    radial-gradient(circle at 50% 50%,#1a1248 0%,#08051f 70%);
+  box-shadow:
+    inset -30px -50px 100px rgba(0,0,0,.7),
+    inset 30px 30px 80px rgba(196,181,253,.15),
+    0 0 80px 8px rgba(167,139,250,.6),
+    0 0 200px 30px rgba(124,92,255,.35);
+}
+.planet::before{
+  content:"";position:absolute;inset:-8%;border-radius:50%;
+  background:radial-gradient(circle,transparent 50%,rgba(196,181,253,.2) 60%,transparent 75%);
+  filter:blur(12px);
+  animation:bgpulse 4s ease-in-out infinite;
+}
+.planet::after{
+  content:"";position:absolute;inset:6%;border-radius:50%;
+  background:repeating-conic-gradient(from 0deg,rgba(196,181,253,.06) 0deg 6deg,transparent 6deg 12deg);
+  mix-blend-mode:overlay;
+  animation:spin 80s linear infinite;
+}
+
+.sat{
+  position:absolute;width:14px;height:14px;border-radius:3px;
+  background:linear-gradient(135deg,#fff,#C4B5FD);
+  box-shadow:0 0 24px 6px var(--violet-glow),0 0 60px 10px rgba(196,181,253,.3);
+  top:50%;left:0;transform:translateY(-50%);
+}
+.sat::before,.sat::after{content:"";position:absolute;width:14px;height:6px;background:linear-gradient(90deg,rgba(196,181,253,.6),rgba(196,181,253,.2));top:50%;transform:translateY(-50%);border-radius:1px}
+.sat::before{right:100%;margin-right:2px}
+.sat::after{left:100%;margin-left:2px}
+
+.pkg{
+  position:absolute;width:10px;height:10px;border-radius:50%;
+  background:#C4B5FD;
+  box-shadow:0 0 18px 4px var(--violet-glow),0 0 40px 8px rgba(196,181,253,.4);
+  top:0;left:50%;transform:translate(-50%,-50%);
+}
+.pkg.dim{background:rgba(255,255,255,.6);box-shadow:0 0 12px 2px rgba(255,255,255,.5)}
+
+.check-badge{
+  position:absolute;
+  display:flex;align-items:center;gap:8px;
+  padding:8px 12px;border-radius:999px;
+  background:rgba(7,5,22,.92);
+  border:1px solid rgba(196,181,253,.4);
+  font-size:11px;font-weight:500;color:var(--violet-0);
+  backdrop-filter:blur(8px);
+  box-shadow:0 0 30px var(--violet-glow);
+  font-family:'JetBrains Mono',monospace;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  z-index:6;
+  animation:floaty 4s ease-in-out infinite;
+}
+.check-badge .ico{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#C4B5FD,#7C5CFF);display:grid;place-items:center;color:#0a0820;font-size:10px;font-weight:700;font-family:Sora,sans-serif}
+.check-badge.b1{top:16%;left:8%}
+.check-badge.b2{bottom:18%;right:10%;animation-delay:1.2s}
+.check-badge.b3{top:55%;right:6%;animation-delay:.7s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+.coord{
+  position:absolute;bottom:18px;right:18px;
+  display:flex;flex-direction:column;gap:4px;text-align:right;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--ink-2);
+  z-index:5;
+}
+.coord b{color:var(--violet-0);font-weight:500}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.4)}}
+
+.particle{position:absolute;width:2px;height:2px;border-radius:50%;background:#C4B5FD;box-shadow:0 0 12px #C4B5FD,0 0 24px rgba(196,181,253,.6);animation:twinkle 3s infinite;z-index:4}
+
+/* ——— hero content ——— */
+.hero-meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;font-size:12px;letter-spacing:.02em;border:1px solid var(--line-strong);background:rgba(196,181,253,.04);color:var(--ink-1)}
+.tag.violet{background:linear-gradient(180deg,rgba(196,181,253,.22),rgba(124,92,255,.10));color:var(--violet-0);border-color:rgba(196,181,253,.45);box-shadow:0 0 32px -6px var(--violet-glow)}
+.tag .dot{width:6px;height:6px;border-radius:50%;background:var(--violet-0);box-shadow:0 0 14px var(--violet-0)}
+.tag.live .dot{background:#5EEAD4;box-shadow:0 0 12px #5EEAD4;animation:pulse 1.6s ease-in-out infinite}
+.tag.flag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;color:var(--violet-0);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:14px;text-shadow:0 0 24px var(--violet-glow)}
+.eyebrow .line{width:48px;height:1px;background:linear-gradient(90deg,var(--violet-0),transparent);box-shadow:0 0 8px var(--violet-glow)}
+
+.h-title{font-size:clamp(44px,5.6vw,84px);font-weight:600;letter-spacing:-.04em;line-height:.98;max-width:14ch;margin-bottom:20px;text-wrap:balance}
+.h-title em{
+  font-style:normal;
+  background:linear-gradient(120deg,#fff 0%,#C4B5FD 40%,#7C5CFF 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-weight:500;
+  filter:drop-shadow(0 0 24px rgba(196,181,253,.45));
+}
+.h-tagline{font-size:clamp(18px,1.6vw,22px);color:var(--violet-0);font-weight:400;letter-spacing:-.01em;margin-bottom:18px;line-height:1.3;max-width:32ch}
+.h-sub{font-size:15px;color:var(--ink-1);max-width:50ch;font-weight:300;line-height:1.6;margin-bottom:32px}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;
+  font-family:inherit;font-size:14px;font-weight:500;letter-spacing:-.005em;
+  border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;
+}
+.btn-primary{
+  background:linear-gradient(180deg,#C4B5FD 0%,#A78BFA 100%);
+  color:#180a3b;border-color:rgba(255,255,255,.4);
+  box-shadow:0 12px 40px -10px rgba(167,139,250,.7),0 0 60px -10px rgba(196,181,253,.6),inset 0 1px 0 rgba(255,255,255,.5);
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 18px 60px -10px rgba(167,139,250,.9),0 0 80px -10px rgba(196,181,253,.8),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-ghost{background:transparent;color:var(--ink-0);border-color:var(--line-strong)}
+.btn-ghost:hover{background:rgba(196,181,253,.06);border-color:var(--violet-0);box-shadow:0 0 32px -8px var(--violet-glow)}
+.btn svg{width:14px;height:14px}
+
+.hero-foot{display:flex;gap:36px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);max-width:760px;flex-wrap:wrap}
+.hf-item{display:flex;flex-direction:column;gap:4px}
+.hf-key{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--ink-3);text-transform:uppercase}
+.hf-val{font-size:13px;color:var(--ink-0);font-weight:500}
+.hf-val .pip{display:inline-block;width:6px;height:6px;border-radius:50%;background:#5EEAD4;box-shadow:0 0 10px #5EEAD4;margin-right:8px;vertical-align:middle}
+
+/* ——— sections ——— */
+section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp(24px,4vw,56px)}
+.s-head{margin-bottom:48px;display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.s-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--violet-0);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px;text-shadow:0 0 16px var(--violet-glow)}
+.s-eyebrow .num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:6px;border:1px solid var(--line-strong);font-size:11px;color:var(--ink-1);background:rgba(196,181,253,.08)}
+.s-title{font-size:clamp(32px,4vw,52px);font-weight:500;letter-spacing:-.03em;line-height:1.05;max-width:18ch;text-wrap:balance}
+.s-title em{font-style:normal;color:var(--violet-0);filter:drop-shadow(0 0 16px var(--violet-glow))}
+.s-aside{font-size:14px;color:var(--ink-2);max-width:36ch;line-height:1.6}
+
+/* ——— mensaje clave (callout) ——— */
+.callout{
+  position:relative;border-radius:var(--r-xl);
+  padding:64px 56px;
+  background:
+    radial-gradient(80% 100% at 50% 0%,rgba(167,139,250,.25),transparent 60%),
+    linear-gradient(180deg,rgba(28,22,72,.6),rgba(10,8,28,.7));
+  border:1px solid var(--line-strong);
+  overflow:hidden;
+  box-shadow:0 0 0 1px rgba(196,181,253,.05),0 60px 120px -40px rgba(124,92,255,.5);
+}
+.callout::before{content:"";position:absolute;left:50%;top:-1px;width:80%;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);transform:translateX(-50%);box-shadow:0 0 24px var(--violet-glow)}
+.callout::after{
+  content:"";position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(196,181,253,.18) 0%,transparent 60%);
+  filter:blur(40px);
+  bottom:-300px;left:50%;transform:translateX(-50%);
+  pointer-events:none;
+  animation:bgpulse 5s ease-in-out infinite;
+}
+.callout-inner{position:relative;z-index:2;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center}
+.callout-mark{
+  width:80px;height:80px;border-radius:24px;
+  background:linear-gradient(180deg,#C4B5FD,#7C5CFF);
+  display:grid;place-items:center;color:#180a3b;
+  box-shadow:0 0 0 1px rgba(255,255,255,.3),0 0 80px var(--violet-glow),0 30px 60px -10px rgba(124,92,255,.6);
+  flex-shrink:0;
+  position:relative;
+}
+.callout-mark::before{content:"";position:absolute;inset:-4px;border-radius:28px;background:conic-gradient(from 0deg,#C4B5FD,#7C5CFF,#C4B5FD);z-index:-1;filter:blur(8px);opacity:.7;animation:spin 6s linear infinite}
+.callout-mark svg{width:40px;height:40px}
+.callout-key{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--violet-0);text-transform:uppercase;margin-bottom:14px}
+.callout-text{font-size:clamp(22px,2.4vw,32px);font-weight:400;letter-spacing:-.02em;line-height:1.25;color:var(--ink-0);text-wrap:balance}
+.callout-text strong{font-weight:600;color:var(--violet-0);filter:drop-shadow(0 0 12px var(--violet-glow))}
+
+/* ——— antes/ahora ——— */
+.compare{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:stretch;
+}
+.cmp-card{
+  position:relative;border-radius:var(--r-lg);
+  padding:36px 32px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(20,17,42,.5),rgba(10,8,22,.5));
+  overflow:hidden;
+}
+.cmp-card.before{opacity:.7}
+.cmp-card.before .cmp-num{color:var(--ink-2)}
+.cmp-card.after{
+  border-color:rgba(196,181,253,.35);
+  background:
+    radial-gradient(70% 100% at 50% 0%,rgba(167,139,250,.2),transparent 60%),
+    linear-gradient(180deg,rgba(28,24,60,.6),rgba(13,11,28,.6));
+  box-shadow:0 30px 80px -20px rgba(124,92,255,.4),inset 0 0 80px -20px rgba(196,181,253,.15);
+}
+.cmp-card.after::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);box-shadow:0 0 24px var(--violet-glow)}
+.cmp-key{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.cmp-card.after .cmp-key{color:var(--violet-0)}
+.cmp-num{font-size:clamp(48px,5.6vw,84px);font-weight:500;letter-spacing:-.04em;line-height:.95;margin-bottom:8px}
+.cmp-card.after .cmp-num{background:linear-gradient(180deg,#fff,#C4B5FD);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 24px var(--violet-glow))}
+.cmp-num small{font-size:.4em;color:var(--ink-2);font-weight:400;-webkit-text-fill-color:var(--ink-2);margin-left:6px}
+.cmp-card.after .cmp-num small{-webkit-text-fill-color:var(--ink-2)}
+.cmp-h{font-size:16px;font-weight:500;letter-spacing:-.01em;margin-bottom:12px}
+.cmp-card.before .cmp-h{color:var(--ink-1)}
+.cmp-p{font-size:13px;color:var(--ink-2);line-height:1.55;font-weight:300}
+.cmp-bullet{display:flex;align-items:flex-start;gap:10px;margin-top:14px;font-size:12.5px;color:var(--ink-2);line-height:1.5;font-weight:300}
+.cmp-bullet svg{width:14px;height:14px;flex-shrink:0;margin-top:3px}
+.cmp-card.before .cmp-bullet svg{color:#a85a8a}
+.cmp-card.after .cmp-bullet svg{color:var(--violet-0)}
+
+.cmp-arrow{
+  display:grid;place-items:center;color:var(--violet-0);
+  width:80px;
+}
+.cmp-arrow-svg{
+  width:100%;height:80px;
+  position:relative;
+}
+.cmp-arrow-svg::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at center,var(--violet-glow),transparent 60%);
+  filter:blur(16px);
+  animation:bgpulse 2s ease-in-out infinite;
+}
+.cmp-arrow svg{position:relative;z-index:1;filter:drop-shadow(0 0 12px var(--violet-glow))}
+
+/* ——— características (4 cards) ——— */
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.f-card{
+  position:relative;padding:32px 26px;border-radius:var(--r-md);
+  background:var(--card);
+  border:1px solid var(--line);
+  overflow:hidden;
+  transition:transform .3s,border-color .3s;
+  min-height:340px;
+  display:flex;flex-direction:column;
+}
+.f-card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 30px 60px -20px rgba(124,92,255,.4)}
+.f-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);opacity:.5;box-shadow:0 0 16px var(--violet-glow)}
+.f-card .glow{position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.28),transparent 70%);top:-100px;right:-100px;filter:blur(28px);opacity:.4;transition:opacity .4s}
+.f-card:hover .glow{opacity:1}
+.f-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--ink-3);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.f-num .pill{display:inline-grid;place-items:center;min-width:28px;height:22px;padding:0 8px;border-radius:999px;border:1px solid var(--line-strong);background:rgba(196,181,253,.06);color:var(--violet-0)}
+.f-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,rgba(196,181,253,.22),rgba(124,92,255,.04));border:1px solid var(--line-strong);color:var(--violet-0);margin-bottom:20px;position:relative;flex-shrink:0}
+.f-icon svg{width:22px;height:22px}
+.f-icon::before{content:"";position:absolute;inset:-2px;border-radius:14px;background:linear-gradient(135deg,rgba(196,181,253,.5),transparent 50%);opacity:0;transition:opacity .3s;z-index:-1;filter:blur(8px)}
+.f-card:hover .f-icon::before{opacity:1}
+.f-h{font-size:17px;font-weight:500;letter-spacing:-.015em;margin-bottom:10px;line-height:1.2}
+.f-p{font-size:13px;color:var(--ink-2);line-height:1.55;font-weight:300;margin-bottom:auto}
+
+.carriers{margin-top:18px;padding-top:18px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:8px}
+.carrier-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-1);font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+.carrier-row .country{color:var(--ink-3);width:48px;flex-shrink:0}
+.carrier-row .names{display:flex;gap:6px;flex-wrap:wrap}
+.carrier-pill{padding:3px 8px;border-radius:6px;background:rgba(196,181,253,.08);border:1px solid var(--line);color:var(--violet-0);font-size:10px;font-weight:500;letter-spacing:.04em;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+
+/* ——— flow infografía ——— */
+.flow-section{
+  position:relative;border-radius:var(--r-xl);
+  background:
+    radial-gradient(60% 80% at 50% 0%,rgba(167,139,250,.18),transparent 60%),
+    linear-gradient(180deg,rgba(20,17,42,.7),rgba(10,8,22,.8));
+  border:1px solid var(--line);
+  padding:64px 48px 56px;
+  overflow:hidden;
+}
+.flow-section::before{content:"";position:absolute;inset:0;background-image:
+    linear-gradient(to right,rgba(196,181,253,.06) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(196,181,253,.06) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse at 50% 50%,#000 20%,transparent 80%);
+  pointer-events:none;
+}
+.flow{position:relative;display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:18px;margin-top:8px}
+.flow-pill{
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;
+  padding:32px 22px;border-radius:var(--r-lg);
+  background:linear-gradient(180deg,rgba(28,24,60,.7),rgba(13,11,28,.7));
+  border:1px solid var(--line-strong);
+  position:relative;
+  transition:transform .3s;
+  min-height:260px;
+  justify-content:flex-start;
+}
+.flow-pill:hover{transform:translateY(-3px)}
+.flow-pill.center{background:linear-gradient(180deg,rgba(124,92,255,.3),rgba(167,139,250,.10));border-color:rgba(196,181,253,.45);box-shadow:0 30px 80px -20px rgba(167,139,250,.6),0 0 100px -20px var(--violet-glow)}
+.flow-icon{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;background:rgba(196,181,253,.06);border:1px solid var(--line-strong);color:var(--violet-0)}
+.flow-pill.center .flow-icon{background:linear-gradient(180deg,#C4B5FD,#7C5CFF);color:#180a3b;border-color:rgba(255,255,255,.4);box-shadow:0 0 40px var(--violet-glow)}
+.flow-icon svg{width:24px;height:24px}
+.fp-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.flow-pill.center .fp-tag{color:var(--violet-0)}
+.fp-h{font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--ink-0);line-height:1.25}
+.fp-p{font-size:11.5px;color:var(--ink-2);line-height:1.5;font-weight:300;max-width:22ch}
+.flow-pill .stat{position:absolute;top:14px;right:14px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet-0);background:rgba(196,181,253,.08);padding:3px 7px;border-radius:6px;border:1px solid var(--line-strong)}
+
+.flow-arrow{display:grid;place-items:center;color:var(--violet-1);position:relative}
+.flow-arrow svg{width:36px;height:14px;animation:slide 2.5s ease-in-out infinite;filter:drop-shadow(0 0 8px var(--violet-glow))}
+@keyframes slide{0%,100%{transform:translateX(0);opacity:.6}50%{transform:translateX(6px);opacity:1}}
+
+/* ——— beneficios (asymmetric grid) ——— */
+.benefits-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  grid-auto-rows:minmax(220px,auto);
+  gap:18px;
+}
+.b-card{
+  position:relative;padding:32px 26px;border-radius:var(--r-md);
+  background:linear-gradient(180deg,rgba(20,17,42,.5),rgba(10,8,22,.5));
+  border:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:space-between;
+  transition:.3s;
+  overflow:hidden;
+}
+.b-card:hover{border-color:rgba(196,181,253,.35);transform:translateY(-3px);box-shadow:0 30px 70px -20px rgba(124,92,255,.4)}
+.b-card::after{content:"";position:absolute;left:0;top:0;width:1px;height:0;background:linear-gradient(180deg,var(--violet-0),transparent);transition:height .4s;box-shadow:0 0 8px var(--violet-glow)}
+.b-card:hover::after{height:100%}
+.b-card .b-glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.18),transparent 70%);bottom:-120px;right:-120px;filter:blur(28px);opacity:0;transition:opacity .4s}
+.b-card:hover .b-glow{opacity:1}
+.b-icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,rgba(196,181,253,.22),rgba(124,92,255,.04));border:1px solid var(--line-strong);color:var(--violet-0);margin-bottom:24px;position:relative}
+.b-icon svg{width:22px;height:22px}
+.b-num{position:absolute;top:18px;right:20px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.1em}
+.b-h{font-size:17px;font-weight:500;letter-spacing:-.015em;margin-bottom:8px;line-height:1.2}
+.b-p{font-size:13px;color:var(--ink-2);line-height:1.55;font-weight:300}
+
+.b-card.span-2{grid-column:span 3}
+.b-card.span-1{grid-column:span 2}
+.b-card.feat .b-h{font-size:22px}
+.b-card.feat{
+  background:
+    radial-gradient(70% 100% at 0% 100%,rgba(167,139,250,.2),transparent 60%),
+    linear-gradient(180deg,rgba(28,24,60,.55),rgba(13,11,28,.55));
+  border-color:rgba(196,181,253,.25);
+}
+.b-card.feat .b-stat{
+  font-size:48px;font-weight:500;letter-spacing:-.03em;line-height:1;margin-bottom:6px;
+  background:linear-gradient(180deg,#fff,#C4B5FD);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 24px var(--violet-glow));
+}
+.b-card.feat .b-stat small{font-size:.4em;color:var(--ink-2);font-weight:400;-webkit-text-fill-color:var(--ink-2);margin-left:6px}
+
+/* ——— cierre ——— */
+.cierre{
+  position:relative;border-radius:var(--r-xl);
+  padding:72px 48px;
+  background:
+    radial-gradient(70% 120% at 50% 100%,rgba(167,139,250,.28),transparent 70%),
+    linear-gradient(180deg,rgba(20,17,42,.6),rgba(10,8,22,.6));
+  border:1px solid var(--line-strong);
+  text-align:center;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(196,181,253,.05),0 60px 120px -40px rgba(124,92,255,.5);
+}
+.cierre::before{content:"";position:absolute;left:50%;top:-1px;width:60%;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);transform:translateX(-50%);box-shadow:0 0 24px var(--violet-glow)}
+.cierre .ring-deco{position:absolute;width:700px;height:700px;border-radius:50%;border:1px solid var(--line);bottom:-440px;left:50%;transform:translateX(-50%);pointer-events:none}
+.cierre .ring-deco::before{content:"";position:absolute;inset:80px;border-radius:50%;border:1px solid rgba(196,181,253,.08)}
+.cierre .ring-deco::after{content:"";position:absolute;inset:160px;border-radius:50%;border:1px solid rgba(196,181,253,.05)}
+.c-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--violet-0);text-transform:uppercase;margin-bottom:18px;text-shadow:0 0 16px var(--violet-glow)}
+.c-title{font-size:clamp(28px,3.4vw,42px);font-weight:500;letter-spacing:-.03em;line-height:1.1;max-width:24ch;margin:0 auto 14px;text-wrap:balance}
+.c-title em{font-style:normal;color:var(--violet-0);filter:drop-shadow(0 0 16px var(--violet-glow))}
+.c-sub{font-size:15px;color:var(--ink-2);max-width:54ch;margin:0 auto 32px;line-height:1.55;font-weight:300}
+.c-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;position:relative;z-index:2}
+
+/* ——— footer ——— */
+footer{max-width:var(--maxw);margin:0 auto;padding:48px clamp(24px,4vw,56px) 56px;border-top:1px solid var(--line);margin-top:80px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;color:var(--ink-3);font-size:12px;letter-spacing:.04em}
+footer .l{display:flex;align-items:center;gap:18px}
+
+/* ——— responsive ——— */
+@media (max-width:1180px){
+  .hero{grid-template-columns:1fr;gap:0}
+  .hero-visual{height:480px;order:-1;margin-bottom:24px}
+  .features{grid-template-columns:repeat(2,1fr)}
+  .flow{grid-template-columns:1fr;gap:14px}
+  .flow-arrow{transform:rotate(90deg)}
+  .compare{grid-template-columns:1fr;gap:14px}
+  .cmp-arrow{width:auto;justify-self:center;transform:rotate(90deg)}
+  .benefits-grid{grid-template-columns:repeat(2,1fr)}
+  .b-card.span-2,.b-card.span-1{grid-column:span 1}
+}
+@media (max-width:680px){
+  .features,.benefits-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero-foot{flex-wrap:wrap;gap:18px}
+  .callout-inner{grid-template-columns:1fr;text-align:left}
+  .callout{padding:40px 28px}
+}
+</style>
 </head>
 <body>
 
-  <!-- NAV MÍNIMO -->
-  <nav class="interna-nav">
-    <div class="container">
-      <div class="interna-nav__inner">
-        <span class="interna-nav__brand">melonn <span class="interna-nav__brand-edition">edition</span></span>
-        <a href="../" class="interna-nav__back">← Volver a lanzamientos</a>
+<div class="bg-stage"></div>
+<div class="grid-overlay"></div>
+<div class="scanline"></div>
+<div class="noise"></div>
+
+<div class="shell">
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="brand">
+    <div class="brand-mark"></div>
+    <span>Melonn Editions</span>
+    <small>· consola</small>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="../">Inicio</a>
+    <a class="nav-link active" href="../historial-de-lanzamientos/">Lanzamientos</a>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn" title="Buscar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </button>
+    <button class="icon-btn" title="Notificaciones">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16l-2-2Z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+    </button>
+    <div class="avatar">ME</div>
+  </div>
+</nav>
+
+<!-- ============ CRUMBS ============ -->
+<div class="crumbs">
+  <a href="../historial-de-lanzamientos/">Lanzamientos</a>
+  <span class="sep">/</span>
+  <a href="../">Q2 · 2026</a>
+  <span class="sep">/</span>
+  <span class="here">Evidencia de entrega en Órbita</span>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-meta">
+      <span class="tag violet"><span class="dot"></span>Mejora B2C · B2B</span>
+      <span class="tag flag">🇨🇴 Melonn Colombia</span>
+      <span class="tag flag">🇲🇽 Melonn México</span>
+      <span class="tag live"><span class="dot"></span>Activo</span>
+    </div>
+
+    <div class="eyebrow"><span class="line"></span>Lanzamiento · Nueva funcionalidad en Órbita</div>
+
+    <h1 class="h-title">Evidencia de entrega en <em>Órbita</em></h1>
+    <p class="h-tagline">Menos tickets, más autogestión y mejor respuesta al seller.</p>
+    <p class="h-sub">Los sellers ahora pueden consultar el comprobante de entrega de sus órdenes directamente desde el detalle, sin depender de soporte. Si no aparece, lo solicitan desde el mismo flujo. Cero pasos manuales.</p>
+
+    <div class="hero-foot">
+      <div class="hf-item">
+        <span class="hf-key">Categoría</span>
+        <span class="hf-val">Servicio · B2C / B2B</span>
+      </div>
+      <div class="hf-item">
+        <span class="hf-key">Disponibilidad</span>
+        <span class="hf-val"><span class="pip"></span>Colombia · México</span>
+      </div>
+      <div class="hf-item">
+        <span class="hf-key">Impacta a</span>
+        <span class="hf-val">Sellers · Soporte</span>
+      </div>
+      <div class="hf-item">
+        <span class="hf-key">Liberación</span>
+        <span class="hf-val">09 · MAY · 2026</span>
       </div>
     </div>
-  </nav>
 
-  <!-- HERO INTERNO -->
-  <section class="interna-hero">
-    <div class="container">
-      <img src="../IMAGE/LANZAMIENTOS/COMPROBANTE_ENTREGA_DESDE_ORBITA/COMPROBANTE_ENTREGA_DESDE_ORBITA_5.png" alt="" class="interna-hero__img" />
-      <p class="interna-hero__eyebrow">MEJORA SERVICIO · B2C · B2B</p>
-      <h1 class="interna-hero__title">Evidencia de entrega en Órbita</h1>
-      <div class="interna-hero__availability">
-        <span class="interna-hero__availability-label">Disponible en</span>
-        <span class="interna-hero__badge">Melonn Colombia</span>
-        <span class="interna-hero__badge">Melonn México</span>
+  </div>
+
+  <div class="hero-visual">
+    <div class="banner-frame" id="banner">
+      <div class="banner-tag"><span class="pip"></span>Live · Órbita</div>
+      <div class="banner-corner tr">REL/026 · 09–05–26</div>
+      <div class="banner-corner bl">COMPROBANTE_ENTREGA_DESDE_ORBITA</div>
+
+      <div class="orbit-stage">
+        <div class="orbit o1 orbit-spin"></div>
+        <div class="orbit o2 orbit-spin r"></div>
+        <div class="orbit o3 orbit-spin f"></div>
+
+        <div class="planet"></div>
+
+        <div class="orbit o1 orbit-spin" style="position:absolute"><div class="sat"></div></div>
+        <div class="orbit o2 orbit-spin r" style="position:absolute"><div class="pkg"></div></div>
+        <div class="orbit o3 orbit-spin f" style="position:absolute"><div class="pkg dim"></div></div>
       </div>
-      <p class="interna-hero__subtitle">Menos tickets, más autogestión y mejor respuesta al seller.</p>
+
+      <div class="check-badge b1"><span class="ico">✓</span>Entregado</div>
+      <div class="check-badge b2"><span class="ico">✓</span>Comprobante</div>
+      <div class="check-badge b3"><span class="ico">⚡</span>Sin tickets</div>
+
+      <div class="particle" style="top:10%;left:14%;animation-delay:.2s"></div>
+      <div class="particle" style="top:24%;left:78%;animation-delay:1.1s"></div>
+      <div class="particle" style="top:48%;left:8%;animation-delay:.6s"></div>
+      <div class="particle" style="top:72%;left:84%;animation-delay:1.6s"></div>
+      <div class="particle" style="top:60%;left:20%;animation-delay:2.1s"></div>
+      <div class="particle" style="top:88%;left:50%;animation-delay:.9s"></div>
+      <div class="particle" style="top:18%;left:50%;animation-delay:1.4s"></div>
+      <div class="particle" style="top:82%;left:30%;animation-delay:.4s"></div>
+
+      <div class="coord">
+        <span><b>STATUS</b> · DELIVERED</span>
+        <span><b>POD</b> · AVAILABLE</span>
+        <span><b>LAT/LNG</b> · 4.6533, –74.0836</span>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- RESUMEN DE VALOR -->
-  <section class="interna-value interna-value--no-title">
-    <div class="container">
-      <p class="interna-value__text">Con esta mejora, los sellers podrán <span class="hl">consultar la evidencia de entrega</span> de sus órdenes directamente desde el <span class="hl">detalle de la orden</span>, siempre que la transportadora la tenga disponible.</p>
-      <p class="interna-value__text" style="margin-top: 20px;">Y si el comprobante aún no aparece, podrán solicitarlo desde el mismo flujo, sin depender de un ticket con soporte.</p>
-      <p class="interna-value__text" style="margin-top: 20px;">Esto reduce tiempos de espera, elimina pasos manuales y facilita la gestión de reclamaciones o validaciones con compradores, especialmente cuando se necesita confirmar que una orden fue entregada correctamente.</p>
+</header>
+
+<!-- ============ MENSAJE CLAVE ============ -->
+<section>
+  <div class="callout">
+    <div class="callout-inner">
+      <div class="callout-mark">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 20l6 6 14-14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="callout-key">→ Mensaje clave</div>
+        <p class="callout-text">Ahora los sellers pueden consultar o <strong>solicitar el comprobante de entrega</strong> directamente desde Órbita, con menos pasos, menos espera y mayor autonomía.</p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CARACTERÍSTICAS Y BENEFICIOS -->
-  <section class="interna-caps">
-    <div class="container">
+<!-- ============ ANTES / AHORA ============ -->
+<section>
+  <div class="s-head">
+    <div>
+      <div class="s-eyebrow"><span class="num">01</span>Antes vs Ahora</div>
+      <h2 class="s-title">De <em>3–4 días</em> de espera a <em>cero fricción</em>.</h2>
+    </div>
+    <p class="s-aside">El comprobante deja de ser un trámite manual con soporte y pasa a ser un acceso directo desde el detalle de la orden.</p>
+  </div>
 
-      <!-- Características -->
-      <div class="interna-caps__group">
-        <p class="interna-caps__group-label">Características</p>
-        <div class="interna-caps__grid">
-          <div class="interna-caps__card">
-            <p class="interna-caps__card-title">Disponibilidad inicial por transportadora</p>
-            <p class="interna-caps__card-desc">Disponible inicialmente para <span class="hl"><strong>Coordinadora</strong> y <strong>TCC</strong> en Colombia</span>, y <span class="hl"><strong>FedEx</strong> e <strong>iMile</strong> en México</span>.</p>
-          </div>
-          <div class="interna-caps__card">
-            <p class="interna-caps__card-title">Visualización automática del comprobante</p>
-            <p class="interna-caps__card-desc">Cuando la transportadora tenga disponible el comprobante de entrega, podrás verlo directamente en Órbita desde el detalle de la orden.</p>
-          </div>
-          <div class="interna-caps__card">
-            <p class="interna-caps__card-title">Solicitud directa desde la orden</p>
-            <p class="interna-caps__card-desc">Si el comprobante aún no está disponible, podrás solicitarlo desde el detalle de la orden, sin crear un ticket con soporte.</p>
-          </div>
-          <div class="interna-caps__card">
-            <p class="interna-caps__card-title">Gestión centralizada en Órbita</p>
-            <p class="interna-caps__card-desc">La consulta y solicitud del comprobante se hará desde el mismo lugar donde revisas la información de la orden.</p>
-          </div>
+  <div class="compare">
+
+    <div class="cmp-card before">
+      <div class="cmp-key">✗ Antes</div>
+      <div class="cmp-num">3–4<small> días</small></div>
+      <h3 class="cmp-h">Ticket con soporte</h3>
+      <p class="cmp-p">El seller abría un caso, soporte contactaba a la transportadora y devolvía la evidencia. Ciclo manual y dependiente.</p>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span>Sin visibilidad del estado de la solicitud</span>
+      </div>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span>Pasos manuales para cada orden</span>
+      </div>
+    </div>
+
+    <div class="cmp-arrow">
+      <div class="cmp-arrow-svg">
+        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 40h54" stroke-linecap="round"/>
+          <path d="m58 30 12 10-12 10" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="cmp-card after">
+      <div class="cmp-key">✓ Ahora</div>
+      <div class="cmp-num">~ 1<small> click</small></div>
+      <h3 class="cmp-h">Directo desde Órbita</h3>
+      <p class="cmp-p">El comprobante aparece en el detalle de la orden cuando la transportadora lo tiene; si no, se solicita desde el mismo flujo.</p>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Visualización automática cuando está disponible</span>
+      </div>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Solicitud sin abrir ticket de soporte</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FLUJO ============ -->
+<section>
+  <div class="s-head">
+    <div>
+      <div class="s-eyebrow"><span class="num">02</span>Cómo funciona</div>
+      <h2 class="s-title">Del courier al seller, en <em>un solo flujo</em>.</h2>
+    </div>
+    <p class="s-aside">Cuatro pasos. La transportadora reporta, Órbita despliega, el seller consulta o solicita.</p>
+  </div>
+
+  <div class="flow-section">
+    <div class="flow">
+
+      <div class="flow-pill">
+        <span class="stat">01</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="14" height="10" rx="1.5"/><path d="M17 11h3l1 3v4h-4"/><circle cx="7" cy="20" r="2"/><circle cx="17" cy="20" r="2"/></svg>
+        </div>
+        <span class="fp-tag">Paso 01</span>
+        <span class="fp-h">Transportadora entrega</span>
+        <span class="fp-p">Coordinadora, TCC, FedEx o iMile completan la entrega y registran el comprobante.</span>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 36 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 7h30"/><path d="m26 2 5 5-5 5"/></svg>
+      </div>
+
+      <div class="flow-pill">
+        <span class="stat">02</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="20" cy="17" r="2"/></svg>
+        </div>
+        <span class="fp-tag">Paso 02</span>
+        <span class="fp-h">Órbita lo recibe</span>
+        <span class="fp-p">El comprobante se asocia a la orden automáticamente cuando está disponible.</span>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 36 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 7h30"/><path d="m26 2 5 5-5 5"/></svg>
+      </div>
+
+      <div class="flow-pill center">
+        <span class="stat">core</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12h2l1.5-3 3 6 1.5-3h2"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <span class="fp-tag">Paso 03</span>
+        <span class="fp-h">Seller consulta</span>
+        <span class="fp-p">Desde el detalle de la orden visualiza el comprobante. Sin ticket. Sin esperas.</span>
+      </div>
+
+      <div class="flow-arrow">
+        <svg viewBox="0 0 36 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 7h30"/><path d="m26 2 5 5-5 5"/></svg>
+      </div>
+
+      <div class="flow-pill">
+        <span class="stat">04</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+        </div>
+        <span class="fp-tag">Paso 04</span>
+        <span class="fp-h">¿No está? Lo solicita</span>
+        <span class="fp-p">Si la transportadora aún no lo cargó, lo solicita desde el mismo flujo.</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARACTERÍSTICAS ============ -->
+<section>
+  <div class="s-head">
+    <div>
+      <div class="s-eyebrow"><span class="num">03</span>Características</div>
+      <h2 class="s-title">Qué incluye <em>esta liberación</em>.</h2>
+    </div>
+    <p class="s-aside">Cuatro capacidades nuevas dentro del detalle de orden en Órbita, alineadas con las transportadoras prioritarias por país.</p>
+  </div>
+
+  <div class="features">
+
+    <article class="f-card">
+      <div class="glow"></div>
+      <div class="f-num"><span class="pill">01</span>Cobertura inicial</div>
+      <div class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <h3 class="f-h">Disponibilidad por transportadora</h3>
+      <p class="f-p">Habilitado para los couriers prioritarios en cada país. Iremos sumando cobertura en próximos releases.</p>
+      <div class="carriers">
+        <div class="carrier-row">
+          <span class="country">CO</span>
+          <span class="names">
+            <span class="carrier-pill">Coordinadora</span>
+            <span class="carrier-pill">TCC</span>
+          </span>
+        </div>
+        <div class="carrier-row">
+          <span class="country">MX</span>
+          <span class="names">
+            <span class="carrier-pill">FedEx</span>
+            <span class="carrier-pill">iMile</span>
+          </span>
         </div>
       </div>
+    </article>
 
-      <!-- Beneficios -->
-      <div class="interna-caps__group">
-        <p class="interna-caps__group-label">Beneficios</p>
-        <div class="interna-caps__grid">
-          <div class="interna-caps__card">
-            <p class="interna-caps__card-title">Menos dependencia de soporte</p>
-            <p class="interna-caps__card-desc">Ya no será necesario abrir un ticket para solicitar el comprobante cuando la opción esté disponible en Órbita.</p>
-          </div>
-          <div class="interna-caps__card">
-            <p class="interna-caps__card-title">Respuesta más rápida</p>
-            <p class="interna-caps__card-desc">Reduce los tiempos de espera de un proceso que antes podía tardar entre 3 y 4 días hábiles.</p>
-          </div>
-          <div class="interna-caps__card">
-            <p class="interna-caps__card-title">Más autonomía para el seller</p>
-            <p class="interna-caps__card-desc">Permite consultar o solicitar evidencias de entrega directamente, sin depender de procesos manuales externos.</p>
-          </div>
-          <div class="interna-caps__card">
-            <p class="interna-caps__card-title">Mejor gestión de reclamaciones</p>
-            <p class="interna-caps__card-desc">Ayuda a responder con mayor claridad y rapidez cuando un comprador solicita una evidencia de entrega o presenta una reclamación.</p>
-          </div>
-          <div class="interna-caps__card interna-caps__card--full">
-            <p class="interna-caps__card-title">Menos fricción operativa</p>
-            <p class="interna-caps__card-desc">Simplifica el proceso, reduce pasos innecesarios y mejora la experiencia de consulta dentro de Órbita.</p>
-          </div>
-        </div>
-        <p class="interna-caps__card-desc" style="margin-top: 24px; font-style: italic;">Ahora los sellers pueden consultar o solicitar el comprobante de entrega directamente desde Órbita, con menos pasos, menos espera y mayor autonomía.</p>
+    <article class="f-card">
+      <div class="glow"></div>
+      <div class="f-num"><span class="pill">02</span>Visualización</div>
+      <div class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
       </div>
+      <h3 class="f-h">Visualización automática</h3>
+      <p class="f-p">Cuando la transportadora ya cargó el comprobante, aparece directamente en el detalle de la orden. Cero gestión.</p>
+    </article>
 
-    </div>
-  </section>
-
-  <!-- CTA FINAL -->
-  <section class="interna-cta">
-    <div class="container">
-      <div class="interna-cta__inner">
-        <div class="interna-cta__actions">
-          <a href="../" class="interna-cta__back">← Volver a lanzamientos</a>
-        </div>
+    <article class="f-card">
+      <div class="glow"></div>
+      <div class="f-num"><span class="pill">03</span>Solicitud</div>
+      <div class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14"/><path d="m6 11 6-6 6 6"/></svg>
       </div>
-    </div>
-  </section>
+      <h3 class="f-h">Solicitud desde la orden</h3>
+      <p class="f-p">Si el comprobante no está aún disponible, se solicita en el mismo lugar, sin abrir ticket con soporte.</p>
+    </article>
 
-  <!-- NAVEGACIÓN ENTRE PÁGINAS -->
-  <nav class="interna-page-nav">
-    <div class="container">
-      <div class="interna-page-nav__inner">
-        <a href="#" class="interna-hero__badge">← Ver anterior</a>
-        <a href="#" class="interna-hero__badge">Ver siguiente →</a>
+    <article class="f-card">
+      <div class="glow"></div>
+      <div class="f-num"><span class="pill">04</span>Centralización</div>
+      <div class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></svg>
       </div>
-    </div>
-  </nav>
+      <h3 class="f-h">Todo desde Órbita</h3>
+      <p class="f-p">Consulta y solicitud viven en el mismo lugar donde el seller ya revisa la información de cada orden.</p>
+    </article>
 
-  <!-- FOOTER -->
-  <footer class="interna-footer">
-    <div class="container">
-      <p class="interna-footer__copy">© 2026 Melonn Edition by Melonn</p>
+  </div>
+</section>
+
+<!-- ============ BENEFICIOS ============ -->
+<section>
+  <div class="s-head">
+    <div>
+      <div class="s-eyebrow"><span class="num">04</span>Beneficios</div>
+      <h2 class="s-title">Por qué <em>te importa</em>.</h2>
     </div>
-  </footer>
+    <p class="s-aside">Cinco impactos operativos con efecto inmediato en la cuenta del seller y en la carga del equipo de soporte.</p>
+  </div>
+
+  <div class="benefits-grid">
+
+    <article class="b-card feat span-2">
+      <div class="b-glow"></div>
+      <span class="b-num">B/01</span>
+      <div class="b-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+      </div>
+      <div>
+        <div class="b-stat">−1<small>ticket por orden</small></div>
+        <h3 class="b-h">Menos dependencia de soporte</h3>
+        <p class="b-p">Ya no es necesario abrir ticket para pedir el comprobante cuando está disponible en Órbita. El soporte se libera para casos de mayor valor.</p>
+      </div>
+    </article>
+
+    <article class="b-card feat span-2">
+      <div class="b-glow"></div>
+      <span class="b-num">B/02</span>
+      <div class="b-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      </div>
+      <div>
+        <div class="b-stat">→ 0<small>días</small></div>
+        <h3 class="b-h">Respuesta más rápida</h3>
+        <p class="b-p">Lo que antes tomaba entre 3 y 4 días hábiles, hoy se resuelve en segundos cuando el comprobante está disponible.</p>
+      </div>
+    </article>
+
+    <article class="b-card span-1">
+      <div class="b-glow"></div>
+      <span class="b-num">B/03</span>
+      <div class="b-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </div>
+      <h3 class="b-h">Más autonomía para el seller</h3>
+      <p class="b-p">Consulta o solicita evidencias sin depender de procesos manuales externos.</p>
+    </article>
+
+    <article class="b-card span-1">
+      <div class="b-glow"></div>
+      <span class="b-num">B/04</span>
+      <div class="b-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4Z"/></svg>
+      </div>
+      <h3 class="b-h">Mejor gestión de reclamaciones</h3>
+      <p class="b-p">Responde con claridad cuando un comprador pide evidencia o presenta una reclamación.</p>
+    </article>
+
+    <article class="b-card span-1">
+      <div class="b-glow"></div>
+      <span class="b-num">B/05</span>
+      <div class="b-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m4 12 6-6M4 12l6 6M4 12h16"/></svg>
+      </div>
+      <h3 class="b-h">Menos fricción operativa</h3>
+      <p class="b-p">Simplifica el proceso, reduce pasos innecesarios y mejora la experiencia dentro de Órbita.</p>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<section>
+  <div class="cierre">
+    <div class="ring-deco"></div>
+    <div class="c-eyebrow">→ Próximos pasos</div>
+    <h2 class="c-title">¿Listo para usar la <em>evidencia de entrega</em> en tus órdenes?</h2>
+    <p class="c-sub">Revisa la documentación con requisitos, transportadoras soportadas y guía paso a paso. Disponible ya en Órbita Colombia y México.</p>
+    <div class="c-actions">
+      <a class="btn btn-primary" href="#">
+        Ver documentación
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="../historial-de-lanzamientos/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>
+        Volver a lanzamientos
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="l">
+    <div class="brand-mark" style="width:18px;height:18px"></div>
+    <span>Melonn Editions · Plataforma para sellers</span>
+  </div>
+  <div>© 2026 · Build 026 · Última actualización 09 · MAY · 2026</div>
+</footer>
+
+</div>
+
+<script>
+(()=>{
+  const banner = document.getElementById('banner');
+  if(!banner) return;
+  let raf=null;
+  banner.addEventListener('mousemove', (e)=>{
+    if(raf) return;
+    raf = requestAnimationFrame(()=>{
+      const r = banner.getBoundingClientRect();
+      const cx = (e.clientX - (r.left + r.width/2)) / r.width;
+      const cy = (e.clientY - (r.top + r.height/2)) / r.height;
+      banner.querySelectorAll('.planet,.check-badge').forEach((o,i)=>{
+        const d = (i+1)*4;
+        o.style.transform = `translate(${-cx*d}px, ${-cy*d}px)`;
+      });
+      raf=null;
+    });
+  });
+  banner.addEventListener('mouseleave',()=>{
+    banner.querySelectorAll('.planet,.check-badge').forEach(o=>o.style.transform='');
+  });
+})();
+
+(()=>{
+  const els = document.querySelectorAll('section, .hero, footer');
+  els.forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .8s ease, transform .8s ease';});
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.08});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
 
 </body>
 </html>
