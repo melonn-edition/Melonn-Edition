@@ -389,7 +389,7 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
   overflow:hidden;
   transition:box-shadow .35s,transform .35s,border-color .3s;
   min-height:340px;
-  display:flex;flex-direction:column;
+  display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;
   box-shadow:0 8px 40px -12px rgba(124,92,255,.35),0 0 60px -20px var(--violet-glow);
   animation:float-card 4.8s ease-in-out infinite;
 }
@@ -401,7 +401,7 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 .f-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);opacity:.5;box-shadow:0 0 16px var(--violet-glow)}
 .f-card .glow{position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.28),transparent 70%);top:-100px;right:-100px;filter:blur(28px);opacity:.4;transition:opacity .4s}
 .f-card:hover .glow{opacity:1}
-.f-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--ink-2);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.f-num{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.18em;color:var(--ink-2);margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .f-num .pill{display:inline-grid;place-items:center;min-width:28px;height:22px;padding:0 8px;border-radius:999px;border:1px solid var(--line-strong);background:rgba(196,181,253,.06);color:var(--violet-0)}
 .f-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,rgba(196,181,253,.22),rgba(124,92,255,.04));border:1px solid var(--line-strong);color:var(--violet-0);margin-bottom:20px;position:relative;flex-shrink:0}
 .f-icon svg{width:22px;height:22px}
@@ -412,7 +412,7 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 
 .carriers{margin-top:18px;padding-top:18px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:8px}
 .carrier-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-1);font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
-.carrier-row .country{color:var(--ink-3);width:48px;flex-shrink:0}
+.carrier-row .country{color:var(--ink-1);width:48px;flex-shrink:0;font-weight:600}
 .carrier-row .names{display:flex;gap:6px;flex-wrap:wrap}
 .carrier-pill{padding:3px 8px;border-radius:6px;background:rgba(196,181,253,.08);border:1px solid var(--line);color:var(--violet-0);font-size:10px;font-weight:500;letter-spacing:.04em;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
 
@@ -894,14 +894,14 @@ footer .l{display:flex;align-items:center;gap:18px}
       <p class="f-p">Disponible inicialmente para transportadoras seleccionadas en Colombia y México.</p>
       <div class="carriers">
         <div class="carrier-row">
-          <span class="country">CO</span>
+          <span class="country">COL</span>
           <span class="names">
             <span class="carrier-pill">Coordinadora</span>
             <span class="carrier-pill">TCC</span>
           </span>
         </div>
         <div class="carrier-row">
-          <span class="country">MX</span>
+          <span class="country">MEX</span>
           <span class="names">
             <span class="carrier-pill">FedEx</span>
             <span class="carrier-pill">iMile</span>
