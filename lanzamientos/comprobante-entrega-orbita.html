@@ -525,7 +525,7 @@ footer .l{display:flex;align-items:center;gap:18px}
   top:-20%;right:-33%;
   background:radial-gradient(circle at center,rgba(150,20,230,.72) 0%,rgba(110,15,195,.44) 35%,rgba(70,8,150,.16) 62%,transparent 78%);
   filter:blur(48px);
-  animation:nebula-pulse 10s ease-in-out infinite;
+  animation:nebula-pulse 5s linear infinite;
 }
 .nebula::after{
   content:"";position:absolute;
@@ -533,7 +533,7 @@ footer .l{display:flex;align-items:center;gap:18px}
   bottom:-15%;right:-30%;
   background:radial-gradient(circle at center,rgba(20,65,235,.70) 0%,rgba(15,45,195,.42) 38%,rgba(8,25,140,.15) 64%,transparent 78%);
   filter:blur(50px);
-  animation:nebula-pulse 10s ease-in-out infinite;
+  animation:nebula-pulse 5s linear infinite;
   animation-delay:5s;
 }
 /* ——— nebula accent sup-izq ——— */
@@ -544,12 +544,15 @@ footer .l{display:flex;align-items:center;gap:18px}
   top:-19vw;left:-19vw;
   background:radial-gradient(circle at center,rgba(150,20,230,.60) 0%,rgba(20,65,235,.32) 48%,transparent 74%);
   filter:blur(46px);
-  animation:nebula-pulse 10s ease-in-out infinite;
-  animation-delay:2.5s;
+  animation:nebula-pulse 5s linear infinite;
+  animation-delay:1.25s;
 }
 @keyframes nebula-pulse{
-  0%,100%{transform:scale(.82);opacity:.60}
-  50%{transform:scale(1.18);opacity:1}
+  0%  {transform:scale(1.0);opacity:.78}
+  25% {transform:scale(1.15);opacity:1}
+  50% {transform:scale(1.0);opacity:.78}
+  75% {transform:scale(.85);opacity:.55}
+  100%{transform:scale(1.0);opacity:.78}
 }
 /* ——— cosmos ——— */
 .cosmos{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
