@@ -517,6 +517,18 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 footer{max-width:var(--maxw);margin:0 auto;padding:48px clamp(24px,4vw,56px) 56px;border-top:1px solid var(--line);margin-top:80px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;color:var(--ink-3);font-size:12px;letter-spacing:.04em}
 footer .l{display:flex;align-items:center;gap:18px}
 
+/* ——— antes/ahora overrides ——— */
+.cmp-card.before{opacity:1;border-color:rgba(239,68,68,.4);background:linear-gradient(180deg,rgba(42,17,17,.6),rgba(22,8,8,.55));box-shadow:0 30px 80px -20px rgba(239,68,68,.3)}
+.cmp-card.before::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(239,68,68,.9),transparent);box-shadow:0 0 24px rgba(239,68,68,.5)}
+.cmp-card.before .cmp-key{color:rgba(239,68,68,.9)}
+.cmp-card.after{border-color:rgba(34,197,94,.4);background:radial-gradient(70% 100% at 50% 0%,rgba(34,197,94,.15),transparent 60%),linear-gradient(180deg,rgba(17,40,24,.6),rgba(8,22,13,.6));box-shadow:0 30px 80px -20px rgba(34,197,94,.35),inset 0 0 80px -20px rgba(34,197,94,.12)}
+.cmp-card.after::before{background:linear-gradient(90deg,transparent,#22c55e,transparent);box-shadow:0 0 24px rgba(34,197,94,.5)}
+.cmp-card.after .cmp-key{color:#22c55e}
+.cmp-card.after .cmp-num{background:linear-gradient(180deg,#fff,#86efac);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 24px rgba(34,197,94,.5))}
+.cmp-p{font-size:15px;color:var(--ink-1)}
+.cmp-bullet{font-size:14.5px;color:var(--ink-1)}
+.hf-key{color:var(--ink-2);font-weight:500}
+
 /* ——— responsive ——— */
 @media (max-width:1180px){
   .hero{grid-template-columns:1fr;gap:0}
@@ -579,7 +591,7 @@ footer .l{display:flex;align-items:center;gap:18px}
     <div class="eyebrow"><span class="line"></span>Lanzamiento · Nueva funcionalidad en Órbita</div>
 
     <h1 class="h-title">Ahora a un clic: tu comprobante de entrega en <em>Órbita</em></h1>
-    <p class="h-tagline">Consulta o solicita la evidencia de una entrega sin abrir tickets y sin salir del detalle de la orden.</p>
+    <p class="h-tagline">Consulta o solicita la evidencia de una entrega sin abrir tickets y sin salir del detalle de la orden. Disponible inicialmente para Coordinadora y TCC en Colombia, y FedEx e iMile en México.</p>
 
     <div class="hero-foot" style="align-items:center">
       <div class="hf-item">
@@ -596,7 +608,7 @@ footer .l{display:flex;align-items:center;gap:18px}
       </div>
       <div class="hf-item">
         <span class="hf-key">Liberación</span>
-        <span class="hf-val">09 · MAY · 2026</span>
+        <span class="hf-val">MAY · 2026</span>
       </div>
       <span class="tag live"><span class="dot"></span>Activo</span>
     </div>
@@ -620,7 +632,7 @@ footer .l{display:flex;align-items:center;gap:18px}
 
 <!-- ============ ANTES / AHORA ============ -->
 <section>
-  <div class="s-head">
+  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
       <div class="s-eyebrow" style="font-size:15px"><span class="num" style="width:30px;height:30px;font-size:13px;border-radius:8px">01</span>Antes vs Ahora</div>
       <h2 class="s-title">De <em>3–4 días</em> de espera a <em>cero fricción</em>.</h2>
@@ -631,7 +643,7 @@ footer .l{display:flex;align-items:center;gap:18px}
   <div class="compare">
 
     <div class="cmp-card before">
-      <div class="cmp-key">✗ Antes</div>
+      <div class="cmp-key" style="font-size:14px;gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ef4444;box-shadow:0 0 10px #ef4444;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Antes</div>
       <div class="cmp-num">3–4<small> días</small></div>
       <h3 class="cmp-h">Pedirlo por soporte</h3>
       <p class="cmp-p">Abrías un ticket y esperabas la respuesta del equipo.</p>
@@ -659,20 +671,20 @@ footer .l{display:flex;align-items:center;gap:18px}
     </div>
 
     <div class="cmp-card after">
-      <div class="cmp-key">✓ Ahora</div>
+      <div class="cmp-key" style="font-size:14px;gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Ahora</div>
       <div class="cmp-num">~ 1<small> click</small></div>
       <h3 class="cmp-h">Consultarlo desde Órbita</h3>
       <p class="cmp-p">Entras al detalle de la orden, revisas el comprobante o lo solicitas ahí mismo.</p>
       <div class="cmp-bullet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
         <span>Menos tickets</span>
       </div>
       <div class="cmp-bullet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
         <span>Menos espera</span>
       </div>
       <div class="cmp-bullet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
         <span>Más control para el seller</span>
       </div>
     </div>
