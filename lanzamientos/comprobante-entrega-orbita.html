@@ -521,31 +521,27 @@ footer .l{display:flex;align-items:center;gap:18px}
 .nebula{position:fixed;inset:0;z-index:0;pointer-events:none}
 .nebula::before{
   content:"";position:absolute;
-  width:140vw;height:90vw;border-radius:50%;
-  top:-30%;right:-20%;
-  background:
-    radial-gradient(ellipse at 60% 30%,rgba(56,189,248,.30) 0%,rgba(37,99,235,.18) 40%,transparent 70%),
-    radial-gradient(ellipse at 85% 10%,rgba(99,214,255,.22) 0%,transparent 55%);
-  filter:blur(55px);
-  animation:nebula-breathe-a 16s ease-in-out infinite;
+  width:46vw;height:46vw;border-radius:50%;
+  top:-12vh;left:-12vw;
+  background:radial-gradient(circle at center,rgba(167,139,250,.55) 0%,rgba(56,189,248,.30) 48%,transparent 72%);
+  filter:blur(42px);
+  animation:nebula-corner-a 6s ease-in-out infinite;
 }
 .nebula::after{
   content:"";position:absolute;
-  width:130vw;height:80vw;border-radius:50%;
-  bottom:-25%;left:-15%;
-  background:
-    radial-gradient(ellipse at 35% 70%,rgba(167,139,250,.30) 0%,rgba(147,51,234,.18) 40%,transparent 68%),
-    radial-gradient(ellipse at 10% 90%,rgba(196,181,253,.22) 0%,transparent 52%);
-  filter:blur(60px);
-  animation:nebula-breathe-b 20s ease-in-out infinite;
+  width:42vw;height:42vw;border-radius:50%;
+  bottom:-10vh;right:-10vw;
+  background:radial-gradient(circle at center,rgba(167,139,250,.50) 0%,rgba(56,189,248,.28) 48%,transparent 72%);
+  filter:blur(44px);
+  animation:nebula-corner-b 7s ease-in-out infinite;
 }
-@keyframes nebula-breathe-a{
-  0%,100%{transform:scale(1);opacity:.75}
-  50%{transform:scale(1.06);opacity:1}
+@keyframes nebula-corner-a{
+  0%,100%{transform:scale(1);opacity:.72}
+  50%{transform:scale(1.14);opacity:1}
 }
-@keyframes nebula-breathe-b{
-  0%,100%{transform:scale(1);opacity:.65}
-  50%{transform:scale(1.05);opacity:.92}
+@keyframes nebula-corner-b{
+  0%,100%{transform:scale(1);opacity:.62}
+  50%{transform:scale(1.12);opacity:.95}
 }
 /* ——— cosmos ——— */
 .cosmos{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
