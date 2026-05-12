@@ -518,30 +518,34 @@ footer{max-width:var(--maxw);margin:0 auto;padding:48px clamp(24px,4vw,56px) 56p
 footer .l{display:flex;align-items:center;gap:18px}
 
 /* ——— nebula ——— */
-.nebula{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.nebula{position:fixed;inset:0;z-index:0;pointer-events:none}
 .nebula::before{
   content:"";position:absolute;
-  width:80vw;height:80vw;border-radius:50%;
-  top:-20%;left:-10%;
-  background:radial-gradient(circle at 18% 14%,rgba(37,99,235,.22) 0%,rgba(56,189,248,.12) 35%,transparent 65%);
-  animation:nebula-breathe-a 14s ease-in-out infinite;
+  width:140vw;height:90vw;border-radius:50%;
+  top:-30%;right:-20%;
+  background:
+    radial-gradient(ellipse at 60% 30%,rgba(56,189,248,.30) 0%,rgba(37,99,235,.18) 40%,transparent 70%),
+    radial-gradient(ellipse at 85% 10%,rgba(99,214,255,.22) 0%,transparent 55%);
+  filter:blur(55px);
+  animation:nebula-breathe-a 16s ease-in-out infinite;
 }
 .nebula::after{
   content:"";position:absolute;
-  width:70vw;height:70vw;border-radius:50%;
-  bottom:-20%;left:-5%;
-  background:radial-gradient(circle at 14% 86%,rgba(147,51,234,.22) 0%,rgba(168,85,247,.12) 35%,transparent 65%);
-  animation:nebula-breathe-b 18s ease-in-out infinite;
+  width:130vw;height:80vw;border-radius:50%;
+  bottom:-25%;left:-15%;
+  background:
+    radial-gradient(ellipse at 35% 70%,rgba(167,139,250,.30) 0%,rgba(147,51,234,.18) 40%,transparent 68%),
+    radial-gradient(ellipse at 10% 90%,rgba(196,181,253,.22) 0%,transparent 52%);
+  filter:blur(60px);
+  animation:nebula-breathe-b 20s ease-in-out infinite;
 }
 @keyframes nebula-breathe-a{
-  0%,100%{transform:scale(1) translate(0,0);opacity:.65}
-  35%{transform:scale(1.06) translate(1%,.5%);opacity:.9}
-  70%{transform:scale(.97) translate(-.5%,1%);opacity:.75}
+  0%,100%{transform:scale(1);opacity:.75}
+  50%{transform:scale(1.06);opacity:1}
 }
 @keyframes nebula-breathe-b{
-  0%,100%{transform:scale(1) translate(0,0);opacity:.55}
-  40%{transform:scale(1.05) translate(-.5%,1%);opacity:.85}
-  75%{transform:scale(.98) translate(.5%,-.5%);opacity:.7}
+  0%,100%{transform:scale(1);opacity:.65}
+  50%{transform:scale(1.05);opacity:.92}
 }
 /* ——— cosmos ——— */
 .cosmos{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
@@ -562,7 +566,7 @@ footer .l{display:flex;align-items:center;gap:18px}
   100%{transform:scale(.65);opacity:.1}
 }
 @media(prefers-reduced-motion:reduce){.nebula::before,.nebula::after,.star{animation:none!important;opacity:.3}}
-@media(max-width:680px){.nebula{opacity:.5}.cosmos{opacity:.5}}
+@media(max-width:680px){.nebula{opacity:.6}.cosmos{opacity:.5}}
 
 /* ——— antes/ahora overrides ——— */
 .cmp-card.before{opacity:1;border-color:rgba(239,68,68,.4);background:linear-gradient(180deg,rgba(42,17,17,.6),rgba(22,8,8,.55));box-shadow:0 30px 80px -20px rgba(239,68,68,.3)}
