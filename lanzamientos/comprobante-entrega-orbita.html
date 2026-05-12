@@ -285,8 +285,8 @@ a{color:inherit;text-decoration:none}
 /* ——— sections ——— */
 section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp(24px,4vw,56px)}
 .s-head{margin-bottom:48px;display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap}
-.s-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--violet-0);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px;text-shadow:0 0 16px var(--violet-glow)}
-.s-eyebrow .num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:6px;border:1px solid var(--line-strong);font-size:11px;color:var(--ink-1);background:rgba(196,181,253,.08)}
+.s-eyebrow{font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:.22em;color:var(--violet-0);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px;text-shadow:0 0 16px var(--violet-glow)}
+.s-eyebrow .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;border:1px solid var(--line-strong);font-size:13px;color:var(--ink-1);background:rgba(196,181,253,.08)}
 .s-title{font-size:clamp(32px,4vw,52px);font-weight:500;letter-spacing:-.03em;line-height:1.05;max-width:18ch;text-wrap:balance}
 .s-title em{font-style:normal;color:var(--violet-0);filter:drop-shadow(0 0 16px var(--violet-glow))}
 .s-aside{font-size:14px;color:var(--ink-2);max-width:36ch;line-height:1.6}
@@ -411,22 +411,7 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 .carrier-pill{padding:3px 8px;border-radius:6px;background:rgba(196,181,253,.08);border:1px solid var(--line);color:var(--violet-0);font-size:10px;font-weight:500;letter-spacing:.04em;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
 
 /* ——— flow infografía ——— */
-.flow-section{
-  position:relative;border-radius:var(--r-xl);
-  background:
-    radial-gradient(60% 80% at 50% 0%,rgba(167,139,250,.18),transparent 60%),
-    linear-gradient(180deg,rgba(20,17,42,.7),rgba(10,8,22,.8));
-  border:1px solid var(--line);
-  padding:64px 48px 56px;
-  overflow:hidden;
-}
-.flow-section::before{content:"";position:absolute;inset:0;background-image:
-    linear-gradient(to right,rgba(196,181,253,.06) 1px,transparent 1px),
-    linear-gradient(to bottom,rgba(196,181,253,.06) 1px,transparent 1px);
-  background-size:40px 40px;
-  mask-image:radial-gradient(ellipse at 50% 50%,#000 20%,transparent 80%);
-  pointer-events:none;
-}
+.flow-section{position:relative;padding:0}
 .flow{position:relative;display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:18px;margin-top:8px}
 .flow-pill{
   display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;
@@ -434,20 +419,22 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
   background:linear-gradient(180deg,rgba(28,24,60,.7),rgba(13,11,28,.7));
   border:1px solid var(--line-strong);
   position:relative;
-  transition:transform .3s;
+  transition:transform .35s,box-shadow .35s;
   min-height:260px;
   justify-content:flex-start;
+  box-shadow:0 8px 40px -12px rgba(124,92,255,.35),0 0 60px -20px var(--violet-glow);
 }
-.flow-pill:hover{transform:translateY(-3px)}
+.flow-pill:hover{transform:translateY(-7px) scale(1.025);box-shadow:0 24px 60px -12px rgba(124,92,255,.55),0 0 80px -16px var(--violet-glow)}
 .flow-pill.center{background:linear-gradient(180deg,rgba(124,92,255,.3),rgba(167,139,250,.10));border-color:rgba(196,181,253,.45);box-shadow:0 30px 80px -20px rgba(167,139,250,.6),0 0 100px -20px var(--violet-glow)}
+.flow-pill.center:hover{box-shadow:0 30px 80px -16px rgba(34,197,94,.55),0 0 100px -16px rgba(34,197,94,.35)}
 .flow-icon{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;background:rgba(196,181,253,.06);border:1px solid var(--line-strong);color:var(--violet-0)}
 .flow-pill.center .flow-icon{background:linear-gradient(180deg,#C4B5FD,#7C5CFF);color:#180a3b;border-color:rgba(255,255,255,.4);box-shadow:0 0 40px var(--violet-glow)}
 .flow-icon svg{width:24px;height:24px}
-.fp-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.fp-tag{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
 .flow-pill.center .fp-tag{color:var(--violet-0)}
-.fp-h{font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--ink-0);line-height:1.25}
-.fp-p{font-size:11.5px;color:var(--ink-2);line-height:1.5;font-weight:300;max-width:22ch}
-.flow-pill .stat{position:absolute;top:14px;right:14px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet-0);background:rgba(196,181,253,.08);padding:3px 7px;border-radius:6px;border:1px solid var(--line-strong)}
+.fp-h{font-size:18px;font-weight:500;letter-spacing:-.01em;color:var(--ink-0);line-height:1.25}
+.fp-p{font-size:14.5px;color:var(--ink-1);line-height:1.5;font-weight:300;max-width:22ch}
+.flow-pill .stat{position:absolute;top:14px;right:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--violet-0);background:rgba(196,181,253,.08);padding:3px 7px;border-radius:6px;border:1px solid var(--line-strong)}
 
 .flow-arrow{display:grid;place-items:center;color:var(--violet-1);position:relative}
 .flow-arrow svg{width:36px;height:14px;animation:slide 2.5s ease-in-out infinite;filter:drop-shadow(0 0 8px var(--violet-glow))}
@@ -740,7 +727,7 @@ footer .l{display:flex;align-items:center;gap:18px}
 <section>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow" style="font-size:15px"><span class="num" style="width:30px;height:30px;font-size:13px;border-radius:8px">01</span>Antes vs Ahora</div>
+      <div class="s-eyebrow"><span class="num">01</span>Antes vs Ahora</div>
       <h2 class="s-title">De <em>3–4 días</em> de espera a <em>cero fricción</em>.</h2>
     </div>
     <p class="s-aside">El comprobante deja de ser un trámite manual con soporte y pasa a ser un acceso directo desde el detalle de la orden.</p>
