@@ -522,7 +522,7 @@ footer .l{display:flex;align-items:center;gap:18px}
 .nebula::before{
   content:"";position:absolute;
   width:65vw;height:65vw;border-radius:50%;
-  top:-20%;right:-10%;
+  top:-20%;right:-22%;
   background:radial-gradient(circle at center,rgba(150,20,230,.72) 0%,rgba(110,15,195,.44) 35%,rgba(70,8,150,.16) 62%,transparent 78%);
   filter:blur(48px);
   animation:nebula-corner-a 6s ease-in-out infinite;
@@ -530,10 +530,21 @@ footer .l{display:flex;align-items:center;gap:18px}
 .nebula::after{
   content:"";position:absolute;
   width:60vw;height:60vw;border-radius:50%;
-  bottom:-15%;right:-8%;
+  bottom:-15%;right:-18%;
   background:radial-gradient(circle at center,rgba(20,65,235,.70) 0%,rgba(15,45,195,.42) 38%,rgba(8,25,140,.15) 64%,transparent 78%);
   filter:blur(50px);
   animation:nebula-corner-b 7s ease-in-out infinite;
+}
+/* ——— nebula accent sup-izq ——— */
+.nebula-left{position:fixed;inset:0;z-index:0;pointer-events:none}
+.nebula-left::before{
+  content:"";position:absolute;
+  width:38vw;height:38vw;border-radius:50%;
+  top:-12%;left:-12%;
+  background:radial-gradient(circle at center,rgba(150,20,230,.60) 0%,rgba(20,65,235,.32) 48%,transparent 74%);
+  filter:blur(46px);
+  animation:nebula-corner-a 6.5s ease-in-out infinite;
+  animation-delay:1.2s;
 }
 @keyframes nebula-corner-a{
   0%,100%{transform:scale(1);opacity:.80}
@@ -563,8 +574,8 @@ footer .l{display:flex;align-items:center;gap:18px}
   84%{transform:scale(.72);opacity:.24}
   100%{transform:scale(.65);opacity:.1}
 }
-@media(prefers-reduced-motion:reduce){.nebula::before,.nebula::after,.star{animation:none!important;opacity:.3}}
-@media(max-width:680px){.nebula{opacity:.6}.cosmos{opacity:.5}}
+@media(prefers-reduced-motion:reduce){.nebula::before,.nebula::after,.nebula-left::before,.star{animation:none!important;opacity:.3}}
+@media(max-width:680px){.nebula{opacity:.6}.nebula-left{opacity:.5}.cosmos{opacity:.5}}
 
 /* ——— antes/ahora overrides ——— */
 .cmp-card.before{opacity:1;border-color:rgba(239,68,68,.4);background:linear-gradient(180deg,rgba(42,17,17,.6),rgba(22,8,8,.55));box-shadow:0 30px 80px -20px rgba(239,68,68,.3)}
@@ -603,6 +614,7 @@ footer .l{display:flex;align-items:center;gap:18px}
 
 <div class="bg-stage"></div>
 <div class="nebula"></div>
+<div class="nebula-left"></div>
 <div class="cosmos">
   <!-- zona izquierda — dim scattered -->
   <span class="star star-b" style="width:2px;height:2px;top:4%;left:3%;animation-duration:6.4s;animation-delay:0s"></span>
