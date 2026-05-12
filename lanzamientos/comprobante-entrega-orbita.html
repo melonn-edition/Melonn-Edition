@@ -387,11 +387,17 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
   background:var(--card);
   border:1px solid var(--line);
   overflow:hidden;
-  transition:transform .3s,border-color .3s;
+  transition:box-shadow .35s,transform .35s,border-color .3s;
   min-height:340px;
   display:flex;flex-direction:column;
+  box-shadow:0 8px 40px -12px rgba(124,92,255,.35),0 0 60px -20px var(--violet-glow);
+  animation:float-card 4.8s ease-in-out infinite;
 }
-.f-card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 30px 60px -20px rgba(124,92,255,.4)}
+.features > .f-card:nth-child(1){animation-delay:0s}
+.features > .f-card:nth-child(2){animation-delay:1.2s}
+.features > .f-card:nth-child(3){animation-delay:2.4s}
+.features > .f-card:nth-child(4){animation-delay:3.6s}
+.f-card:hover{animation-play-state:paused;transform:scale(1.03);border-color:var(--line-strong);box-shadow:0 24px 60px -12px rgba(124,92,255,.55),0 0 80px -16px var(--violet-glow)}
 .f-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);opacity:.5;box-shadow:0 0 16px var(--violet-glow)}
 .f-card .glow{position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.28),transparent 70%);top:-100px;right:-100px;filter:blur(28px);opacity:.4;transition:opacity .4s}
 .f-card:hover .glow{opacity:1}
