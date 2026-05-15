@@ -17,22 +17,66 @@
     return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
+  var PAIS_MAP = {
+    'both':     'colombia mexico',
+    'mx':       'mexico',
+    'co':       'colombia',
+    'colombia': 'colombia',
+    'mexico':   'mexico',
+    'méxico':   'mexico'
+  };
+
   function normalizePais(country) {
-    return (country || '')
-      .toLowerCase()
-      .replace(/méxico/g, 'mexico')
-      .replace(/[,;]+\s*/g, ' ')
-      .trim() || 'colombia mexico';
+    var key = (country || '').toLowerCase().trim();
+    return PAIS_MAP[key] || key.replace(/méxico/g, 'mexico').replace(/[,;]+\s*/g, ' ').trim() || 'colombia mexico';
   }
+
+  var STATIC_SLUGS = new Set([
+    'vista-ordenes-d2c', 'crea-material-empaque', 'api-melonn-v2',
+    'empaque-b2b', 'checkout-inteligente', 'visualizador-cargos',
+    'trazabilidad-avanzada-b2b', 'sistema-notificaciones-whatsapp',
+    'gestion-orden-ingreso-destinatarios-verificados',
+    'vas-etiquetado-codigo-barras-qr-b2b', 'orbi-ai',
+    'promesas-logisticas', 'tiktok-shop', 'liverpool-melonn',
+    'reporte-cargos-orbita', 'comprobante-entrega-orbita', 'prueba-interna'
+  ]);
+
+  var SLUG_IMAGES = {
+    'vista-ordenes-d2c':                              '../IMAGE/LANZAMIENTOS/CAMBIOS_ORDENES_ORBITA/banner 3.png',
+    'crea-material-empaque':                          '../IMAGE/LANZAMIENTOS/CREA_MATERIAL_EMPAQUE/banner 3.png',
+    'api-melonn-v2':                                  '../IMAGE/LANZAMIENTOS/API_MELONN_V2/API_banner-landign.png',
+    'empaque-b2b':                                    '../IMAGE/LANZAMIENTOS/EMPAQUE_B2B/b2b-2-vas-2.jpg',
+    'checkout-inteligente':                           '../IMAGE/LANZAMIENTOS/CHECKOUT_INTELIGENTE/news-BANNER-LANDING-CHECKOUT-INTERNOcuadro.jpg',
+    'visualizador-cargos':                            '../IMAGE/LANZAMIENTOS/VISULIZADOR_CARGOS_ORBITA/cargos-factura.png',
+    'trazabilidad-avanzada-b2b':                      '../IMAGE/LANZAMIENTOS/TRAZABILIDAD_AVANZADA_B2B/banner-92ss.jpg',
+    'sistema-notificaciones-whatsapp':                '../IMAGE/LANZAMIENTOS/SISTEMA_NOTIFICACIONES_WHATSAPP/banner-sistema-notificaciones_banner-landing-sistema-de-notificaciones.jpg',
+    'gestion-orden-ingreso-destinatarios-verificados':'../IMAGE/LANZAMIENTOS/GESTION_ORDENES_DESTINO_VERIFICADO/news-Gestion-ordenes-verificadascuadro-1-1.png',
+    'vas-etiquetado-codigo-barras-qr-b2b':            '../IMAGE/LANZAMIENTOS/ETQ_CODIGO_BARRASA_QR_B2B/Vas-con-el-vas-final.png',
+    'orbi-ai':                                        '../IMAGE/LANZAMIENTOS/ORBI.AI/Portada-Agente-Orbi.jpg',
+    'promesas-logisticas':                            '../IMAGE/LANZAMIENTOS/PROMESAS_LOGISTICAS/Portada-Promesas.jpg',
+    'tiktok-shop':                                    '../IMAGE/LANZAMIENTOS/TIKTOK_SHOP/Portada-Tiktok-shops.jpg',
+    'liverpool-melonn':                               '../IMAGE/LANZAMIENTOS/LIVERPOOL/Portada-Liverpool.jpg'
+  };
 
   function buildCard(launch, i) {
     var pais     = normalizePais(launch.country);
-    var category = (launch.launch_type || '').toLowerCase();
+    var CAT_MAP = {
+      'b2c': 'b2c', 'b2b': 'b2b',
+      'integración': 'integracion', 'integracion': 'integracion',
+      'canales de venta': 'canales', 'canales': 'canales',
+      'operaciones': 'operaciones',
+      'notificaciones': 'notificaciones'
+    };
+    var category = CAT_MAP[(launch.category || '').toLowerCase()] || (launch.launch_type || '').toLowerCase();
     var featured = launch.is_featured ? ' launch-card--featured' : '';
     var idx      = String(launch.index_order || i + 1).padStart(2, '0');
-    var href     = '../lanzamientos/' + (launch.slug || '') + '.html';
-    var imgHtml  = launch.banner_url
-      ? '<img src="' + esc(launch.banner_url) + '" alt="" loading="lazy" />'
+    var slug     = launch.slug || '';
+    var href     = STATIC_SLUGS.has(slug)
+      ? '../lanzamientos/' + encodeURIComponent(slug) + '.html'
+      : '../lanzamientos/ver?slug=' + encodeURIComponent(slug);
+    var imgSrc   = launch.banner_url || SLUG_IMAGES[slug] || '';
+    var imgHtml  = imgSrc
+      ? '<img src="' + esc(imgSrc) + '" alt="" loading="lazy" />'
       : '';
 
     return '<article class="launch-card' + featured + '" data-category="' + esc(category) + '" data-pais="' + esc(pais) + '">'
