@@ -56,7 +56,7 @@
     'promesas-logisticas':                            '../IMAGE/LANZAMIENTOS/PROMESAS_LOGISTICAS/Portada-Promesas.jpg',
     'tiktok-shop':                                    '../IMAGE/LANZAMIENTOS/TIKTOK_SHOP/Portada-Tiktok-shops.jpg',
     'liverpool-melonn':                               '../IMAGE/LANZAMIENTOS/LIVERPOOL/Portada-Liverpool.jpg',
-    'comprobante-entrega-orbita':                     '../IMAGE/LANZAMIENTOS/COMPROBANTE_ENTREGA_DESDE_ORBITA/Evidencia_Entrega_Orbita.png',
+    'comprobante-entrega-orbita':                     '../IMAGE/LANZAMIENTOS/COMPROBANTE_ENTREGA_DESDE_ORBITA/Evidencia_Entrega_Orbita_1-1.png',
     'reporte-cargos-orbita':                          '../IMAGE/LANZAMIENTOS/REPORTE_CARGOS_ORBITA/reporte-cargos-orbita-hero-Melonn-Editions-1-1.png'
   };
 
