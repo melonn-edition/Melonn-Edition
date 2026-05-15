@@ -63,7 +63,7 @@
   var PINNED_CARDS = [
     {
       slug: 'reporte-cargos-orbita',
-      title: 'Reporte de Cargos en Órbita',
+      title: 'Entiende tus cargos antes de que lleguen a factura',
       category: 'Administrativo · Contable · B2B/D2C',
       description: 'Visualiza, filtra y descarga el detalle de tu operación antes de facturar, desde el módulo de Cargos en Órbita.',
       banner_url: null,
