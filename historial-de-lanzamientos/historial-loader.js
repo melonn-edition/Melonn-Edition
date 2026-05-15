@@ -74,7 +74,7 @@
     },
     {
       slug: 'comprobante-entrega-orbita',
-      title: 'Evidencia de entrega en Órbita',
+      title: 'Ahora a un clic: tu comprobante de entrega en Órbita',
       category: 'Servicio · B2C / B2B',
       description: 'Consulta o solicita la evidencia de una entrega sin salir del detalle de la orden.',
       banner_url: null,
