@@ -282,7 +282,7 @@
   <script>
     const searchInput   = document.getElementById('historial-search');
     const filterButtons = document.querySelectorAll('.historial-filter[data-filter]');
-    const allCards      = Array.from(document.querySelectorAll('#historial-grid .launch-card'));
+    let allCards = [];
     const emptyState    = document.getElementById('historial-empty');
     const paisToggle    = document.getElementById('pais-toggle');
     const paisSuboptions = document.getElementById('pais-suboptions');
@@ -402,10 +402,16 @@
       if (newCpp !== lastCpp) { lastCpp = newCpp; currentPage = 1; render(); }
     });
 
-    // Render inicial
-    render();
+    // Render inicial — también re-usado por el loader dinámico
+    window.__historialBoot = function () {
+      allCards = Array.from(document.querySelectorAll('#historial-grid .launch-card'));
+      currentPage = 1;
+      render();
+    };
+    window.__historialBoot();
   </script>
   <script src="historial-stars.js" defer></script>
+  <script defer src="historial-loader.js"></script>
 
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
