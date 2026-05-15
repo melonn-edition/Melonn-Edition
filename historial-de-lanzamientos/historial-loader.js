@@ -56,10 +56,22 @@
     'promesas-logisticas':                            '../IMAGE/LANZAMIENTOS/PROMESAS_LOGISTICAS/Portada-Promesas.jpg',
     'tiktok-shop':                                    '../IMAGE/LANZAMIENTOS/TIKTOK_SHOP/Portada-Tiktok-shops.jpg',
     'liverpool-melonn':                               '../IMAGE/LANZAMIENTOS/LIVERPOOL/Portada-Liverpool.jpg',
-    'comprobante-entrega-orbita':                     '../IMAGE/LANZAMIENTOS/COMPROBANTE_ENTREGA_DESDE_ORBITA/Evidencia_Entrega_Orbita.png'
+    'comprobante-entrega-orbita':                     '../IMAGE/LANZAMIENTOS/COMPROBANTE_ENTREGA_DESDE_ORBITA/Evidencia_Entrega_Orbita.png',
+    'reporte-cargos-orbita':                          '../IMAGE/LANZAMIENTOS/REPORTE_CARGOS_ORBITA/reporte-cargos-orbita-hero-Melonn-Editions-2.png'
   };
 
   var PINNED_CARDS = [
+    {
+      slug: 'reporte-cargos-orbita',
+      title: 'Reporte de Cargos en Órbita',
+      category: 'Administrativo · Contable · B2B/D2C',
+      description: 'Visualiza, filtra y descarga el detalle de tu operación antes de facturar, desde el módulo de Cargos en Órbita.',
+      banner_url: null,
+      country: 'both',
+      launch_type: 'operaciones',
+      index_order: 0,
+      is_featured: true
+    },
     {
       slug: 'comprobante-entrega-orbita',
       title: 'Evidencia de entrega en Órbita',
