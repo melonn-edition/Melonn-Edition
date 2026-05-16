@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="historial.css" />
+  <script src="/posthog.js"></script>
 </head>
 <body>
 
@@ -386,7 +387,10 @@
       render();
     }
 
-    searchInput.addEventListener('input', () => applyFilters(true));
+    searchInput.addEventListener('input', () => {
+      if (window.posthog) posthog.capture('search_historial', { query: searchInput.value.trim() });
+      applyFilters(true);
+    });
 
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -394,6 +398,7 @@
         subfilters.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         activeFilter = btn.dataset.filter;
+        if (window.posthog) posthog.capture('filter_historial', { filter: btn.dataset.filter });
         applyFilters(true);
       });
     });

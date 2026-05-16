@@ -338,3 +338,15 @@
   }, { threshold: 0.12 });
   targets.forEach(el => observer.observe(el));
 })();
+
+// --- PostHog: launch card click ---
+(function () {
+  document.querySelectorAll('.launch-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var cta = card.querySelector('.launch-card__cta');
+      var href = cta ? cta.getAttribute('href') : '';
+      var slug = href.replace(/.*\//, '').replace('.html', '');
+      if (window.posthog) posthog.capture('launch_card_click', { slug: slug });
+    });
+  });
+})();
