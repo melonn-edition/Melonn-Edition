@@ -32,6 +32,7 @@
   }
 
   var STATIC_SLUGS = new Set([
+    'buyer-portal',
     'vista-ordenes-d2c', 'crea-material-empaque', 'api-melonn-v2',
     'empaque-b2b', 'checkout-inteligente', 'visualizador-cargos',
     'trazabilidad-avanzada-b2b', 'sistema-notificaciones-whatsapp',
@@ -42,6 +43,7 @@
   ]);
 
   var SLUG_IMAGES = {
+    'buyer-portal':                                    '../IMAGE/LANZAMIENTOS/BUYER_PORTAL/Card_Buyer_Portal.png',
     'vista-ordenes-d2c':                              '../IMAGE/LANZAMIENTOS/CAMBIOS_ORDENES_ORBITA/banner 3.png',
     'crea-material-empaque':                          '../IMAGE/LANZAMIENTOS/CREA_MATERIAL_EMPAQUE/banner 3.png',
     'api-melonn-v2':                                  '../IMAGE/LANZAMIENTOS/API_MELONN_V2/API_banner-landign.png',
@@ -61,6 +63,17 @@
   };
 
   var PINNED_CARDS = [
+    {
+      slug: 'buyer-portal',
+      title: 'Tu comprador resuelve solo. Tu operación respira.',
+      category: 'Canales de venta · D2C · 2026',
+      description: 'Seguimiento en tiempo real, promesa de entrega, modificación de dirección y gestión de novedades — sin escribirte.',
+      banner_url: null,
+      country: 'both',
+      launch_type: 'b2c',
+      index_order: -1,
+      is_featured: true
+    },
     {
       slug: 'reporte-cargos-orbita',
       title: 'Entiende tus cargos antes de que lleguen a factura',
