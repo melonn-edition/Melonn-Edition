@@ -65,7 +65,7 @@
   var PINNED_CARDS = [
     {
       slug: 'buyer-portal',
-      title: 'Tu comprador resuelve solo. Tu operación respira.',
+      title: 'Ahora tus compradores tienen respuestas. Y tu operación, menos interrupciones.',
       category: 'Canales de venta · D2C · 2026',
       description: 'Seguimiento en tiempo real, promesa de entrega, modificación de dirección y gestión de novedades — sin escribirte.',
       banner_url: null,
