@@ -471,8 +471,16 @@ footer .l{display:flex;align-items:center;gap:18px}
       </div>
       <div style="flex:1;min-width:0">
         <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(251,191,36,.8);margin-bottom:16px">Importante</p>
-        <p style="font-size:14px;color:var(--ink-1);line-height:1.6;font-weight:300;margin-bottom:14px">Ten en cuenta que si tu orden permanece más de 30 días abierta sin finalizar, Melonn podrá dar por finalizada la orden.</p>
-        <p style="font-size:14px;color:var(--ink-1);line-height:1.6;font-weight:300">Solo puedes modificar productos mientras la orden está en <strong style="color:var(--ink-0);font-weight:500">Borrador</strong>. A partir de Confirmada ya no podrás agregar ni eliminar ítems. Desde ese punto, la orden avanza hacia recepción, desempacado y cierre según lo que ocurra en bodega.</p>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <span style="flex-shrink:0;width:5px;height:5px;border-radius:50%;background:rgba(251,191,36,.8);margin-top:7px"></span>
+            <p style="font-size:14px;color:var(--ink-1);line-height:1.6;font-weight:300">Ten en cuenta que si tu orden permanece abierta por <strong style="color:var(--ink-0);font-weight:500">más de 30 días</strong> sin gestión, <strong style="color:var(--ink-0);font-weight:500">Melonn podrá cerrarla automáticamente.</strong></p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <span style="flex-shrink:0;width:5px;height:5px;border-radius:50%;background:rgba(251,191,36,.8);margin-top:7px"></span>
+            <p style="font-size:14px;color:var(--ink-1);line-height:1.6;font-weight:300"><strong style="color:var(--ink-0);font-weight:500">Solo puedes modificar productos mientras la orden está en Borrador.</strong> A partir de Confirmada ya no podrás agregar ni eliminar ítems. Desde ese punto, la orden avanza hacia recepción, desempacado y cierre según lo que ocurra en bodega.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
