@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- NOTE: página oculta / en preparación — no indexar ni enlazar públicamente hasta nueva instrucción -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
+<link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
+<title>Estados de una orden de ingreso – Melonn Editions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg-0:#050410;
+  --bg-1:#0a0918;
+  --bg-2:#131125;
+  --line:rgba(196,181,253,.10);
+  --line-strong:rgba(196,181,253,.22);
+  --ink-0:#F4F3FF;
+  --ink-1:#C9C7E0;
+  --ink-2:#9C9AB5;
+  --ink-3:#5E5C78;
+  --violet-0:#C4B5FD;
+  --violet-1:#A78BFA;
+  --violet-2:#7C5CFF;
+  --violet-3:#5B3DF5;
+  --violet-glow:rgba(196,181,253,.55);
+  --card:linear-gradient(180deg,rgba(28,24,52,.55) 0%,rgba(13,11,28,.55) 100%);
+  --r-sm:10px;
+  --r-md:16px;
+  --r-lg:22px;
+  --r-xl:28px;
+  --maxw:1320px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg-0);color:var(--ink-0);font-family:'Sora',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv11";line-height:1.45}
+body{overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(196,181,253,.4);color:#fff}
+
+.bg-stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-stage::before{
+  content:"";position:absolute;inset:-30%;
+  background:
+    radial-gradient(50% 35% at 78% 8%,rgba(167,139,250,.45),transparent 60%),
+    radial-gradient(35% 25% at 20% 28%,rgba(124,92,255,.32),transparent 70%),
+    radial-gradient(40% 30% at 90% 60%,rgba(91,61,245,.25),transparent 70%),
+    radial-gradient(80% 50% at 50% 100%,rgba(15,12,40,.95),transparent 70%),
+    linear-gradient(180deg,#050410 0%,#080720 50%,#040310 100%);
+  filter:saturate(1.15);
+}
+.bg-stage::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(45% 30% at 78% 8%,rgba(196,181,253,.18),transparent 60%);
+  filter:blur(40px);
+  animation:bgpulse 6s ease-in-out infinite;
+}
+@keyframes bgpulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+.grid-overlay{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.4;
+  background-image:linear-gradient(to right,rgba(196,181,253,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(196,181,253,.05) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%);
+}
+.scanline{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(196,181,253,.012) 3px,rgba(196,181,253,.012) 4px);
+}
+.noise{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+
+.shell{position:relative;z-index:10}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px clamp(24px,4vw,56px);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(18px);
+  background:linear-gradient(180deg,rgba(5,4,16,.7),rgba(5,4,16,0));
+  position:sticky;top:0;z-index:50;
+}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:-.01em;font-size:15px}
+.brand-mark{width:28px;height:28px;border-radius:9px;background:conic-gradient(from 210deg,#C4B5FD,#7C5CFF,#A78BFA,#5B3DF5,#C4B5FD);position:relative;box-shadow:0 0 0 1px rgba(196,181,253,.4),0 8px 24px rgba(167,139,250,.55);animation:spin 18s linear infinite;}
+.brand-mark::after{content:"";position:absolute;inset:6px;border-radius:5px;background:#08071a;}
+.brand small{color:var(--ink-2);font-weight:400;margin-left:4px;font-size:12px;letter-spacing:.04em}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-link{font-size:13px;color:var(--ink-2);padding:8px 14px;border-radius:999px;transition:color .2s,background .2s}
+.nav-link:hover{color:var(--ink-0);background:rgba(196,181,253,.06)}
+.nav-link.active{color:var(--violet-0);background:rgba(196,181,253,.10);border:1px solid var(--line-strong);box-shadow:0 0 24px -6px var(--violet-glow)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.icon-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:999px;border:1px solid var(--line);color:var(--ink-1);cursor:pointer;background:transparent;transition:.2s}
+.icon-btn:hover{border-color:var(--line-strong);color:var(--violet-0);box-shadow:0 0 24px -6px var(--violet-glow)}
+
+.hero{position:relative;max-width:var(--maxw);margin:0 auto;padding:48px clamp(24px,4vw,56px) 80px;min-height:auto;display:grid;grid-template-columns:1fr;gap:48px;align-items:end;overflow:visible}
+.hero-content{position:relative;z-index:3}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;color:var(--violet-0);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:14px;text-shadow:0 0 24px var(--violet-glow)}
+.eyebrow .line{width:48px;height:1px;background:linear-gradient(90deg,var(--violet-0),transparent);box-shadow:0 0 8px var(--violet-glow)}
+
+.h-title{font-size:clamp(44px,5.6vw,84px);font-weight:600;letter-spacing:-.04em;line-height:.98;max-width:14ch;margin-bottom:20px;text-wrap:balance}
+.h-title em{font-style:normal;background:linear-gradient(120deg,#fff 0%,#C4B5FD 40%,#7C5CFF 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:500;filter:drop-shadow(0 0 24px rgba(196,181,253,.45));}
+.h-tagline{font-size:clamp(18px,1.6vw,22px);color:var(--violet-0);font-weight:400;letter-spacing:-.01em;margin-bottom:18px;line-height:1.3;max-width:32ch}
+.h-sub{font-size:15px;color:var(--ink-1);max-width:50ch;font-weight:300;line-height:1.6;margin-bottom:32px}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-family:inherit;font-size:14px;font-weight:500;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;}
+.btn-primary{background:linear-gradient(180deg,#C4B5FD 0%,#A78BFA 100%);color:#180a3b;border-color:rgba(255,255,255,.4);box-shadow:0 12px 40px -10px rgba(167,139,250,.7),0 0 60px -10px rgba(196,181,253,.6),inset 0 1px 0 rgba(255,255,255,.5);}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 18px 60px -10px rgba(167,139,250,.9),0 0 80px -10px rgba(196,181,253,.8),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-ghost{background:transparent;color:var(--ink-0);border-color:var(--line-strong)}
+.btn-ghost:hover{background:rgba(196,181,253,.06);border-color:var(--violet-0);box-shadow:0 0 32px -8px var(--violet-glow)}
+.btn svg{width:14px;height:14px}
+
+.hero-foot{display:flex;gap:36px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);max-width:760px;flex-wrap:wrap}
+.hf-item{display:flex;flex-direction:column;gap:4px}
+.hf-key{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--ink-2);text-transform:uppercase;font-weight:500}
+.hf-val{font-size:13px;color:var(--ink-0);font-weight:500}
+.hf-val .pip{display:inline-block;width:6px;height:6px;border-radius:50%;background:#5EEAD4;box-shadow:0 0 10px #5EEAD4;margin-right:8px;vertical-align:middle}
+
+.tag{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;font-size:12px;letter-spacing:.02em;border:1px solid var(--line-strong);background:rgba(196,181,253,.04);color:var(--ink-1)}
+.tag.violet{background:linear-gradient(180deg,rgba(196,181,253,.22),rgba(124,92,255,.10));color:var(--violet-0);border-color:rgba(196,181,253,.45);box-shadow:0 0 32px -6px var(--violet-glow)}
+.tag .dot{width:6px;height:6px;border-radius:50%;background:var(--violet-0);box-shadow:0 0 14px var(--violet-0)}
+.tag.live .dot{background:#5EEAD4;box-shadow:0 0 12px #5EEAD4;animation:pulse 1.6s ease-in-out infinite}
+.tag.flag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+
+section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp(24px,4vw,56px)}
+.s-head{margin-bottom:48px;display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.s-eyebrow{font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:.22em;color:var(--violet-0);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px;text-shadow:0 0 16px var(--violet-glow)}
+.s-eyebrow .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;border:1px solid var(--line-strong);font-size:13px;color:var(--ink-1);background:rgba(196,181,253,.08)}
+.s-eyebrow .line{width:48px;height:1px;background:linear-gradient(90deg,var(--violet-0),transparent);box-shadow:0 0 8px var(--violet-glow)}
+.s-title{font-size:clamp(32px,4vw,52px);font-weight:500;letter-spacing:-.03em;line-height:1.05;max-width:18ch;text-wrap:balance}
+.s-title em{font-style:normal;color:var(--violet-0);filter:drop-shadow(0 0 16px var(--violet-glow))}
+.s-aside{font-size:16px;color:var(--ink-2);max-width:44ch;line-height:1.6;margin-top:12px}
+
+/* callout */
+.callout{position:relative;border-radius:var(--r-xl);padding:64px 56px;background:radial-gradient(80% 100% at 50% 0%,rgba(167,139,250,.25),transparent 60%),linear-gradient(180deg,rgba(28,22,72,.6),rgba(10,8,28,.7));border:1px solid var(--line-strong);overflow:hidden;box-shadow:0 0 0 1px rgba(196,181,253,.05),0 60px 120px -40px rgba(124,92,255,.5);}
+.callout::before{content:"";position:absolute;left:50%;top:-1px;width:80%;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);transform:translateX(-50%);box-shadow:0 0 24px var(--violet-glow)}
+.callout::after{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(196,181,253,.18) 0%,transparent 60%);filter:blur(40px);bottom:-300px;left:50%;transform:translateX(-50%);pointer-events:none;animation:bgpulse 5s ease-in-out infinite;}
+.callout-inner{position:relative;z-index:2;display:flex;flex-direction:row;align-items:center;gap:36px}
+.callout-mark{width:80px;height:80px;border-radius:24px;background:linear-gradient(180deg,#4ade80,#16a34a);display:grid;place-items:center;color:#052e16;box-shadow:0 0 0 1px rgba(255,255,255,.25),0 0 80px rgba(34,197,94,.45),0 30px 60px -10px rgba(22,163,74,.5);flex-shrink:0;position:relative;}
+.callout-mark::before{content:"";position:absolute;inset:-4px;border-radius:28px;background:conic-gradient(from 0deg,#4ade80,#16a34a,#4ade80);z-index:-1;filter:blur(8px);opacity:.6;animation:spin 6s linear infinite}
+.callout-mark svg{width:40px;height:40px}
+.callout-key{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--violet-0);text-transform:uppercase;margin-bottom:14px}
+.callout-text{font-size:clamp(16px,1.85vw,26px);font-weight:400;letter-spacing:-.02em;line-height:1.3;color:var(--ink-0);text-wrap:balance;flex:1;min-width:0}
+.callout-text strong{font-weight:600;color:var(--violet-0);filter:drop-shadow(0 0 12px var(--violet-glow))}
+
+/* antes/ahora */
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:stretch;}
+.cmp-card{position:relative;border-radius:var(--r-lg);padding:36px 32px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(20,17,42,.5),rgba(10,8,22,.5));overflow:hidden;}
+.cmp-card.before{opacity:1;border-color:rgba(196,181,253,.35);background:linear-gradient(180deg,rgba(25,17,50,.6),rgba(13,8,30,.55));box-shadow:0 30px 80px -20px rgba(124,92,255,.35)}
+.cmp-card.before::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,181,253,.9),transparent);box-shadow:0 0 24px rgba(196,181,253,.5)}
+.cmp-card.before .cmp-key{color:rgba(239,68,68,.9)}
+.cmp-card.after{border-color:rgba(34,197,94,.4);background:radial-gradient(70% 100% at 50% 0%,rgba(34,197,94,.15),transparent 60%),linear-gradient(180deg,rgba(17,40,24,.6),rgba(8,22,13,.6));box-shadow:0 30px 80px -20px rgba(34,197,94,.35),inset 0 0 80px -20px rgba(34,197,94,.12)}
+.cmp-card.after::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#22c55e,transparent);box-shadow:0 0 24px rgba(34,197,94,.5)}
+.cmp-card.after .cmp-key{color:#22c55e}
+.cmp-key{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.cmp-num{font-size:clamp(48px,5.6vw,84px);font-weight:500;letter-spacing:-.04em;line-height:.95;margin-bottom:8px}
+.cmp-card.after .cmp-num{background:linear-gradient(180deg,#fff,#86efac);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 24px rgba(34,197,94,.5))}
+.cmp-num small{font-size:.4em;color:var(--ink-2);font-weight:400;-webkit-text-fill-color:var(--ink-2);margin-left:6px}
+.cmp-h{font-size:16px;font-weight:500;letter-spacing:-.01em;margin-bottom:12px}
+.cmp-card.before .cmp-h{color:var(--ink-1)}
+.cmp-p{font-size:15px;color:var(--ink-1);line-height:1.55;font-weight:300}
+.cmp-bullet{display:flex;align-items:flex-start;gap:10px;margin-top:14px;font-size:14.5px;color:var(--ink-1);line-height:1.5;font-weight:300}
+.cmp-bullet svg{width:14px;height:14px;flex-shrink:0;margin-top:3px}
+.cmp-card.before .cmp-bullet svg{color:#ef4444}
+.cmp-arrow{display:grid;place-items:center;color:var(--violet-0);width:80px;}
+.cmp-arrow-svg{width:100%;height:80px;position:relative;}
+.cmp-arrow-svg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,var(--violet-glow),transparent 60%);filter:blur(16px);animation:bgpulse 2s ease-in-out infinite;}
+.cmp-arrow svg{position:relative;z-index:1;filter:drop-shadow(0 0 12px var(--violet-glow))}
+
+/* características (4 cards) */
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.f-card{position:relative;padding:72px 26px 32px;border-radius:var(--r-md);background:var(--card);border:1px solid var(--line);transition:box-shadow .35s,transform .35s,border-color .3s;min-height:340px;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;box-shadow:0 8px 40px -12px rgba(124,92,255,.35),0 0 60px -20px var(--violet-glow);animation:float-card 4.8s ease-in-out infinite;}
+.f-card::after{content:"";position:absolute;inset:-1px;border-radius:inherit;border:1px solid #67e8f9;box-shadow:inset 0 0 8px rgba(34,211,238,.5),0 0 4px rgba(103,232,249,1),0 0 10px rgba(34,211,238,.95),0 0 24px rgba(34,211,238,.7),0 0 50px rgba(34,211,238,.4),0 0 90px rgba(6,182,212,.2);pointer-events:none;animation:neon-pulse 3s ease-in-out infinite;}
+.features > .f-card:nth-child(1)::after{animation-delay:0s}
+.features > .f-card:nth-child(2)::after{animation-delay:.75s}
+.features > .f-card:nth-child(3)::after{animation-delay:1.5s}
+.features > .f-card:nth-child(4)::after{animation-delay:2.25s}
+.features > .f-card:nth-child(1){animation-delay:0s}
+.features > .f-card:nth-child(2){animation-delay:1.2s}
+.features > .f-card:nth-child(3){animation-delay:2.4s}
+.features > .f-card:nth-child(4){animation-delay:3.6s}
+.f-card:hover{animation-play-state:paused;transform:scale(1.03);border-color:var(--line-strong);box-shadow:0 24px 60px -12px rgba(124,92,255,.55),0 0 80px -16px var(--violet-glow)}
+.f-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);opacity:.5;box-shadow:0 0 16px var(--violet-glow)}
+.f-card .glow{position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.28),transparent 70%);top:-100px;right:-100px;filter:blur(28px);opacity:.4;transition:opacity .4s}
+.f-card:hover .glow{opacity:1}
+.f-num{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.18em;color:var(--ink-2);display:flex;align-items:center;gap:10px;position:absolute;top:28px;left:26px}
+.f-num .pill{display:inline-grid;place-items:center;min-width:28px;height:22px;padding:0 8px;border-radius:999px;border:1px solid var(--line-strong);background:rgba(196,181,253,.06);color:var(--violet-0)}
+.f-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,rgba(196,181,253,.22),rgba(124,92,255,.04));border:1px solid var(--line-strong);color:var(--violet-0);margin-bottom:20px;position:relative;flex-shrink:0}
+.f-icon svg{width:22px;height:22px}
+.f-icon::before{content:"";position:absolute;inset:-2px;border-radius:14px;background:linear-gradient(135deg,rgba(196,181,253,.5),transparent 50%);opacity:0;transition:opacity .3s;z-index:-1;filter:blur(8px)}
+.f-card:hover .f-icon::before{opacity:1}
+.f-h{font-size:17px;font-weight:500;letter-spacing:-.015em;margin-bottom:10px;line-height:1.2}
+.f-p{font-size:13px;color:var(--ink-1);line-height:1.55;font-weight:300}
+
+/* flow 6 pasos — 3×2 sin flechas */
+.flow-section{position:relative;padding:0}
+.flow{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+.flow-pill{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:32px 22px;border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(28,24,60,.7),rgba(13,11,28,.7));border:1px solid var(--line-strong);position:relative;transition:box-shadow .35s,transform .35s;min-height:260px;justify-content:center;box-shadow:0 8px 40px -12px rgba(124,92,255,.35),0 0 60px -20px var(--violet-glow);animation:float-card 4.8s ease-in-out infinite;}
+.flow-pill::after{content:"";position:absolute;inset:-1px;border-radius:inherit;border:1px solid #67e8f9;box-shadow:inset 0 0 8px rgba(34,211,238,.5),0 0 4px rgba(103,232,249,1),0 0 10px rgba(34,211,238,.95),0 0 24px rgba(34,211,238,.7),0 0 50px rgba(34,211,238,.4),0 0 90px rgba(6,182,212,.2);pointer-events:none;animation:neon-pulse 3s ease-in-out infinite;}
+@keyframes neon-pulse{0%,100%{opacity:.7}42%{opacity:.7}44%{opacity:.3}46%{opacity:.7}72%{opacity:.7}74%{opacity:.2}76%{opacity:.7}}
+.flow > .flow-pill:nth-child(1){animation-delay:0s}
+.flow > .flow-pill:nth-child(1)::after{animation-delay:0s}
+.flow > .flow-pill:nth-child(2){animation-delay:.8s}
+.flow > .flow-pill:nth-child(2)::after{animation-delay:.5s}
+.flow > .flow-pill:nth-child(3){animation-delay:1.6s}
+.flow > .flow-pill:nth-child(3)::after{animation-delay:.9s}
+.flow > .flow-pill:nth-child(4){animation-delay:2.4s}
+.flow > .flow-pill:nth-child(4)::after{animation-delay:1.3s}
+.flow > .flow-pill:nth-child(5){animation-delay:3.2s}
+.flow > .flow-pill:nth-child(5)::after{animation-delay:1.7s}
+.flow > .flow-pill:nth-child(6){animation-delay:4.0s}
+.flow > .flow-pill:nth-child(6)::after{animation-delay:2.1s}
+@keyframes float-card{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.flow-pill:hover{animation-play-state:paused;transform:scale(1.03);box-shadow:0 24px 60px -12px rgba(124,92,255,.55),0 0 80px -16px var(--violet-glow)}
+@media(prefers-reduced-motion:reduce){.flow-pill{animation:none}}
+.flow-pill.center{background:linear-gradient(180deg,rgba(124,92,255,.3),rgba(167,139,250,.10));border-color:rgba(196,181,253,.45);box-shadow:0 30px 80px -20px rgba(167,139,250,.6),0 0 100px -20px var(--violet-glow)}
+.flow-pill.center:hover{box-shadow:0 30px 80px -16px rgba(34,197,94,.55),0 0 100px -16px rgba(34,197,94,.35)}
+.flow-icon{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;background:rgba(196,181,253,.06);border:1px solid var(--line-strong);color:var(--violet-0)}
+.flow-pill.center .flow-icon{background:linear-gradient(180deg,#C4B5FD,#7C5CFF);color:#180a3b;border-color:rgba(255,255,255,.4);box-shadow:0 0 40px var(--violet-glow)}
+.flow-icon svg{width:24px;height:24px}
+.fp-tag{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+.flow-pill.center .fp-tag{color:var(--violet-0)}
+.fp-h{font-size:18px;font-weight:500;letter-spacing:-.01em;color:var(--ink-0);line-height:1.25}
+.fp-p{font-size:14.5px;color:var(--ink-1);line-height:1.5;font-weight:300;max-width:22ch}
+.flow-pill .stat{position:absolute;top:14px;right:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--violet-0);background:rgba(196,181,253,.08);padding:3px 7px;border-radius:6px;border:1px solid var(--line-strong)}
+
+/* beneficios */
+.benefits-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(220px,auto);gap:18px;}
+.b-card{position:relative;padding:32px 26px;border-radius:var(--r-md);background:linear-gradient(180deg,rgba(20,17,42,.5),rgba(10,8,22,.5));border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;transition:box-shadow .35s,transform .35s,border-color .3s;box-shadow:0 8px 40px -12px rgba(124,92,255,.35),0 0 60px -20px var(--violet-glow);animation:float-card 4.8s ease-in-out infinite;}
+.benefits-grid > .b-card:nth-child(1){animation-delay:0s}
+.benefits-grid > .b-card:nth-child(2){animation-delay:1.2s}
+.benefits-grid > .b-card:nth-child(3){animation-delay:2.4s}
+.b-card:hover{animation-play-state:paused;transform:scale(1.03);border-color:var(--line-strong);box-shadow:0 24px 60px -12px rgba(124,92,255,.55),0 0 80px -16px var(--violet-glow)}
+.b-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);opacity:.5;box-shadow:0 0 16px var(--violet-glow)}
+.b-card::after{content:"";position:absolute;inset:-1px;border-radius:inherit;border:1px solid #67e8f9;box-shadow:inset 0 0 8px rgba(34,211,238,.5),0 0 4px rgba(103,232,249,1),0 0 10px rgba(34,211,238,.95),0 0 24px rgba(34,211,238,.7),0 0 50px rgba(34,211,238,.4),0 0 90px rgba(6,182,212,.2);pointer-events:none;animation:neon-pulse 3s ease-in-out infinite;}
+.benefits-grid > .b-card:nth-child(1)::after{animation-delay:0s}
+.benefits-grid > .b-card:nth-child(2)::after{animation-delay:.75s}
+.benefits-grid > .b-card:nth-child(3)::after{animation-delay:1.5s}
+.b-card .b-glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.18),transparent 70%);bottom:-120px;right:-120px;filter:blur(28px);opacity:0;transition:opacity .4s}
+.b-card:hover .b-glow{opacity:1}
+.b-icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,rgba(196,181,253,.22),rgba(124,92,255,.04));border:1px solid var(--line-strong);color:var(--violet-0);margin-bottom:24px;position:relative}
+.b-icon svg{width:22px;height:22px}
+.b-num{position:absolute;top:18px;right:20px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.1em}
+.b-h{font-size:17px;font-weight:500;letter-spacing:-.015em;margin-bottom:8px;line-height:1.2}
+.b-p{font-size:13px;color:var(--ink-1);line-height:1.55;font-weight:300}
+.b-card.span-2{grid-column:span 3}
+.b-card.span-1{grid-column:span 2}
+
+/* cierre */
+.cierre{position:relative;border-radius:var(--r-xl);padding:72px 48px;background:radial-gradient(70% 120% at 50% 100%,rgba(167,139,250,.28),transparent 70%),linear-gradient(180deg,rgba(20,17,42,.6),rgba(10,8,22,.6));border:1px solid var(--line-strong);text-align:center;overflow:hidden;box-shadow:0 0 0 1px rgba(196,181,253,.05),0 60px 120px -40px rgba(124,92,255,.5);}
+.cierre::before{content:"";position:absolute;left:50%;top:-1px;width:60%;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);transform:translateX(-50%);box-shadow:0 0 24px var(--violet-glow)}
+.cierre .ring-deco{position:absolute;width:700px;height:700px;border-radius:50%;border:1px solid var(--line);bottom:-440px;left:50%;transform:translateX(-50%);pointer-events:none}
+.cierre .ring-deco::before{content:"";position:absolute;inset:80px;border-radius:50%;border:1px solid rgba(196,181,253,.08)}
+.cierre .ring-deco::after{content:"";position:absolute;inset:160px;border-radius:50%;border:1px solid rgba(196,181,253,.05)}
+.c-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--violet-0);text-transform:uppercase;margin-bottom:18px;text-shadow:0 0 16px var(--violet-glow)}
+.c-title{font-size:clamp(28px,3.4vw,42px);font-weight:500;letter-spacing:-.03em;line-height:1.1;max-width:24ch;margin:0 auto 14px;text-wrap:balance}
+.c-title em{font-style:normal;color:var(--violet-0);filter:drop-shadow(0 0 16px var(--violet-glow))}
+.c-sub{font-size:15px;color:var(--ink-2);max-width:54ch;margin:0 auto 32px;line-height:1.55;font-weight:300}
+.c-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;position:relative;z-index:2}
+
+footer{max-width:var(--maxw);margin:0 auto;padding:48px clamp(24px,4vw,56px) 56px;border-top:1px solid var(--line);margin-top:80px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;color:var(--ink-3);font-size:12px;letter-spacing:.04em}
+footer .l{display:flex;align-items:center;gap:18px}
+
+/* nebula */
+.nebula{position:fixed;inset:0;z-index:0;pointer-events:none}
+.nebula::before{content:"";position:absolute;width:65vw;height:65vw;border-radius:50%;top:-20%;right:-33%;background:radial-gradient(circle at center,rgba(150,20,230,.72) 0%,rgba(110,15,195,.44) 35%,rgba(70,8,150,.16) 62%,transparent 78%);filter:blur(48px);animation:nebula-pulse 5s linear infinite;}
+.nebula::after{content:"";position:absolute;width:60vw;height:60vw;border-radius:50%;bottom:-15%;right:-30%;background:radial-gradient(circle at center,rgba(20,65,235,.70) 0%,rgba(15,45,195,.42) 38%,rgba(8,25,140,.15) 64%,transparent 78%);filter:blur(50px);animation:nebula-pulse 5s linear infinite;animation-delay:5s;}
+.nebula-left{position:fixed;inset:0;z-index:0;pointer-events:none}
+.nebula-left::before{content:"";position:absolute;width:38vw;height:38vw;border-radius:50%;top:-19vw;left:-19vw;background:radial-gradient(circle at center,rgba(150,20,230,.60) 0%,rgba(20,65,235,.32) 48%,transparent 74%);filter:blur(46px);animation:nebula-pulse 5s linear infinite;animation-delay:1.25s;}
+@keyframes nebula-pulse{0%{transform:scale(1.0);opacity:.78}25%{transform:scale(1.15);opacity:1}50%{transform:scale(1.0);opacity:.78}75%{transform:scale(.85);opacity:.55}100%{transform:scale(1.0);opacity:.78}}
+.cosmos{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.star{position:absolute;border-radius:50%;animation:star-twinkle ease-in-out infinite;animation-duration:2.4s!important}
+.star-v{background:radial-gradient(circle,rgba(196,181,253,1) 0%,rgba(167,139,250,.45) 45%,transparent 70%);box-shadow:0 0 8px 1px rgba(196,181,253,.75),0 0 20px 2px rgba(196,181,253,.25)}
+.star-b{background:radial-gradient(circle,rgba(147,210,255,1) 0%,rgba(94,194,240,.45) 45%,transparent 70%);box-shadow:0 0 8px 1px rgba(147,210,255,.75),0 0 20px 2px rgba(94,194,240,.25)}
+.star-bright-v{background:radial-gradient(circle,#fff 0%,rgba(220,180,255,1) 18%,rgba(180,100,255,.5) 50%,transparent 72%);box-shadow:0 0 6px 2px rgba(255,255,255,.95),0 0 18px 5px rgba(210,140,255,.8),0 0 48px 12px rgba(167,100,255,.35)}
+.star-bright-b{background:radial-gradient(circle,#fff 0%,rgba(180,220,255,1) 18%,rgba(80,160,255,.5) 50%,transparent 72%);box-shadow:0 0 6px 2px rgba(255,255,255,.95),0 0 18px 5px rgba(120,190,255,.8),0 0 48px 12px rgba(60,130,255,.35)}
+.star.organic{animation-name:star-organic}
+@keyframes star-twinkle{0%,100%{transform:scale(.7);opacity:.12}50%{transform:scale(1.2);opacity:.85}}
+@keyframes star-organic{0%{transform:scale(.65);opacity:.1}18%{transform:scale(1.25);opacity:.9}42%{transform:scale(.88);opacity:.44}68%{transform:scale(1.12);opacity:.78}84%{transform:scale(.72);opacity:.24}100%{transform:scale(.65);opacity:.1}}
+@media(prefers-reduced-motion:reduce){.nebula::before,.nebula::after,.nebula-left::before,.star{animation:none!important;opacity:.3}}
+@media(max-width:680px){.nebula{opacity:.6}.nebula-left{opacity:.5}.cosmos{opacity:.5}}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.4)}}
+
+/* search overlay */
+.search-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,7,26,.88);backdrop-filter:blur(22px);display:none;align-items:flex-start;justify-content:center;padding-top:96px;padding-inline:24px;}
+.search-overlay.open{display:flex}
+.search-box{width:100%;max-width:580px;background:rgba(20,17,42,.98);border:1px solid var(--line-strong);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 0 0 1px rgba(196,181,253,.12),0 40px 80px -20px rgba(124,92,255,.5);}
+.search-input-wrap{display:flex;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line);}
+.search-input-wrap svg{width:16px;height:16px;color:var(--ink-2);flex-shrink:0}
+#searchInput{flex:1;background:transparent;border:none;outline:none;font-size:16px;color:var(--ink-0);font-family:inherit;caret-color:var(--violet-0);}
+#searchInput::placeholder{color:var(--ink-3)}
+.search-close-btn{background:transparent;border:1px solid var(--line);border-radius:6px;color:var(--ink-2);cursor:pointer;padding:4px 8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em;transition:.2s;flex-shrink:0;}
+.search-close-btn:hover{border-color:var(--line-strong);color:var(--ink-0)}
+.search-results{max-height:380px;overflow-y:auto;padding:8px}
+.search-result-item{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:10px;cursor:pointer;transition:background .15s;border:1px solid transparent;}
+.search-result-item:hover{background:rgba(196,181,253,.07);border-color:var(--line)}
+.r-section{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--violet-0);letter-spacing:.12em;text-transform:uppercase}
+.r-text{font-size:14px;color:var(--ink-1);line-height:1.45}
+.r-text mark{background:rgba(196,181,253,.22);color:var(--violet-0);border-radius:3px;padding:0 3px;font-style:normal}
+.search-empty{padding:36px;text-align:center;color:var(--ink-3);font-size:14px}
+
+/* responsive */
+@media(max-width:1180px){
+  .hero{grid-template-columns:1fr;gap:0}
+  .features{grid-template-columns:repeat(2,1fr)}
+  .flow{grid-template-columns:1fr}
+  .compare{grid-template-columns:1fr;gap:14px}
+  .cmp-arrow{width:auto;justify-self:center;transform:rotate(90deg)}
+  .benefits-grid{grid-template-columns:repeat(2,1fr)}
+  .b-card.span-2,.b-card.span-1{grid-column:span 1}
+}
+.hamburger{display:none}
+.mobile-menu{display:none}
+@media(max-width:680px){
+  .features,.benefits-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero-foot{flex-wrap:wrap;gap:18px}
+  .callout-inner{flex-direction:column;text-align:left}
+  .callout{padding:40px 28px}
+  section,.hero,footer{padding-left:40px;padding-right:40px}
+  .nav{padding-left:40px;padding-right:40px;display:flex!important;justify-content:space-between;align-items:center}
+  .eyebrow{display:none}
+  .hamburger{display:grid;place-items:center;width:34px;height:34px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink-1);cursor:pointer;transition:.2s;flex-shrink:0;}
+  .hamburger:hover{border-color:var(--line-strong);color:var(--violet-0);box-shadow:0 0 24px -6px var(--violet-glow)}
+  .hb-bar{display:block;width:14px;height:1.5px;background:currentColor;border-radius:2px;transition:.25s ease}
+  .hb-bar+.hb-bar{margin-top:4px}
+  .nav.open .hb-bar:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+  .nav.open .hb-bar:nth-child(2){opacity:0;transform:scaleX(0)}
+  .nav.open .hb-bar:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+  .mobile-menu{display:none;flex-direction:column;gap:4px;padding:12px 40px 20px;border-bottom:1px solid var(--line);background:rgba(8,7,26,.96);backdrop-filter:blur(20px);position:relative;z-index:10;}
+  .mobile-menu.open{display:flex}
+  .mobile-menu .nav-link{font-size:15px;padding:12px 16px;border-radius:12px}
+}
+</style>
+  <script src="/posthog.js"></script>
+</head>
+<body>
+
+<div class="bg-stage"></div>
+<div class="nebula"></div>
+<div class="nebula-left"></div>
+<div class="cosmos">
+  <span class="star star-b" style="width:2px;height:2px;top:4%;left:3%;animation-duration:6.4s;animation-delay:0s"></span>
+  <span class="star star-v" style="width:2px;height:2px;top:11%;left:9%;animation-duration:7.9s;animation-delay:1.6s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:19%;left:6%;animation-duration:5.8s;animation-delay:.7s"></span>
+  <span class="star star-v" style="width:3px;height:3px;top:27%;left:17%;animation-duration:8.2s;animation-delay:2.3s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:35%;left:13%;animation-duration:6.7s;animation-delay:3.2s"></span>
+  <span class="star star-v" style="width:2px;height:2px;top:43%;left:24%;animation-duration:7.4s;animation-delay:.9s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:51%;left:7%;animation-duration:5.6s;animation-delay:2.0s"></span>
+  <span class="star star-v" style="width:3px;height:3px;top:59%;left:20%;animation-duration:8.5s;animation-delay:4.1s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:67%;left:15%;animation-duration:6.2s;animation-delay:2.8s"></span>
+  <span class="star star-v" style="width:2px;height:2px;top:74%;left:27%;animation-duration:7.7s;animation-delay:.4s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:82%;left:11%;animation-duration:5.9s;animation-delay:3.7s"></span>
+  <span class="star star-v" style="width:3px;height:3px;top:88%;left:22%;animation-duration:9.0s;animation-delay:1.2s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:95%;left:5%;animation-duration:6.6s;animation-delay:2.5s"></span>
+  <span class="star star-v" style="width:2px;height:2px;top:6%;left:34%;animation-duration:7.8s;animation-delay:3.4s"></span>
+  <span class="star star-b" style="width:3px;height:3px;top:14%;left:44%;animation-duration:5.7s;animation-delay:.8s"></span>
+  <span class="star star-v" style="width:2px;height:2px;top:23%;left:52%;animation-duration:8.3s;animation-delay:2.1s"></span>
+  <span class="star star-v organic" style="width:4px;height:4px;top:31%;left:38%;animation-duration:9.2s;animation-delay:4.3s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:40%;left:58%;animation-duration:6.5s;animation-delay:1.4s"></span>
+  <span class="star star-v" style="width:3px;height:3px;top:49%;left:46%;animation-duration:7.6s;animation-delay:.3s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:55%;left:62%;animation-duration:5.5s;animation-delay:3.9s"></span>
+  <span class="star star-v" style="width:3px;height:3px;top:63%;left:54%;animation-duration:8.9s;animation-delay:2.7s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:71%;left:64%;animation-duration:7.0s;animation-delay:1.3s"></span>
+  <span class="star star-v" style="width:4px;height:4px;top:78%;left:40%;animation-duration:7.5s;animation-delay:.6s"></span>
+  <span class="star star-v" style="width:3px;height:3px;top:5%;left:69%;animation-duration:7.1s;animation-delay:1.9s"></span>
+  <span class="star star-bright-v" style="width:8px;height:8px;top:9%;left:78%;animation-duration:7.4s;animation-delay:.2s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:17%;left:86%;animation-duration:8.4s;animation-delay:3.5s"></span>
+  <span class="star star-v" style="width:4px;height:4px;top:25%;left:73%;animation-duration:6.6s;animation-delay:3.0s"></span>
+  <span class="star star-bright-v" style="width:7px;height:7px;top:4%;left:95%;animation-duration:9.1s;animation-delay:.1s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:42%;left:67%;animation-duration:5.3s;animation-delay:.7s"></span>
+  <span class="star star-v" style="width:3px;height:3px;top:51%;left:81%;animation-duration:7.5s;animation-delay:4.2s"></span>
+  <span class="star star-bright-b" style="width:9px;height:9px;top:32%;left:93%;animation-duration:9.5s;animation-delay:1.4s"></span>
+  <span class="star star-b" style="width:2px;height:2px;top:66%;left:76%;animation-duration:6.3s;animation-delay:3.1s"></span>
+  <span class="star star-bright-b" style="width:8px;height:8px;top:73%;left:88%;animation-duration:7.3s;animation-delay:2.6s"></span>
+  <span class="star star-bright-b" style="width:7px;height:7px;top:58%;left:96%;animation-duration:8.2s;animation-delay:1.1s"></span>
+</div>
+<div class="grid-overlay"></div>
+<div class="scanline"></div>
+<div class="noise"></div>
+
+<div class="shell">
+
+<!-- ============ NAV ============ -->
+<nav class="nav" style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center">
+  <div class="brand">
+    <span style="font-size:18px;color:var(--violet-0);animation:twinkle 2.4s ease-in-out infinite;display:inline-block;line-height:1;flex-shrink:0">✦</span>
+    <span>Melonn Editions</span>
+    <span style="color:var(--ink-3);margin:0 8px;font-weight:400">·</span>
+    <button class="icon-btn" id="searchBtn" title="Buscar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </button>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="../">Home</a>
+    <a class="nav-link active" href="../historial-de-lanzamientos/">Historial de lanzamientos</a>
+  </div>
+  <div style="display:flex;justify-content:flex-end">
+    <button class="hamburger" aria-label="Menú" onclick="this.closest('nav').classList.toggle('open');document.querySelector('.mobile-menu').classList.toggle('open')">
+      <span class="hb-bar"></span>
+      <span class="hb-bar"></span>
+      <span class="hb-bar"></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a class="nav-link" href="../">Inicio</a>
+  <a class="nav-link active" href="../historial-de-lanzamientos/">Lanzamientos</a>
+</div>
+
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-content">
+
+    <div class="eyebrow"><span class="line"></span>Lanzamiento · Nueva mejora en Órbita</div>
+
+    <h1 class="h-title">Entiende cada estado de tu orden de ingreso sin perder <em>trazabilidad</em></h1>
+    <p class="h-sub">Ahora puedes identificar en qué etapa está tu orden, qué acciones tienes disponibles y cuándo debes gestionar diferencias antes de que la orden finalice.</p>
+
+    <div class="hero-foot" style="align-items:center">
+      <div class="hf-item">
+        <span class="hf-key">Categoría</span>
+        <span class="hf-val">Operación · Inventario · Órbita</span>
+      </div>
+      <div class="hf-item">
+        <span class="hf-key">Disponibilidad</span>
+        <span class="hf-val"><span class="pip"></span>Colombia · México</span>
+      </div>
+      <div class="hf-item">
+        <span class="hf-key">Impacta a</span>
+        <span class="hf-val">Sellers · Operaciones · Inventario</span>
+      </div>
+      <div class="hf-item">
+        <span class="hf-key">Liberación</span>
+        <span class="hf-val">MAY · 2026</span>
+      </div>
+      <span class="tag flag">En preparación</span>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- ============ CALLOUT ============ -->
+<section>
+  <div class="callout">
+    <div class="callout-inner">
+      <div class="callout-mark">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 12h24M8 20h16M8 28h20" stroke-linecap="round"/><circle cx="32" cy="20" r="5" stroke-width="2"/></svg>
+      </div>
+      <p class="callout-text">Desde el módulo de <strong>Órdenes de Ingreso en Órbita</strong>, el seller puede consultar el estado actual de cada orden, qué acciones tiene disponibles según la etapa y gestionar diferencias antes del cierre automático.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ BLOQUE IMPORTANTE ============ -->
+<section style="padding-top:0">
+  <div style="position:relative;border-radius:var(--r-lg);padding:32px 36px;background:linear-gradient(135deg,rgba(251,191,36,.06),rgba(196,181,253,.05));border:1px solid rgba(251,191,36,.28);box-shadow:0 0 0 1px rgba(251,191,36,.06),0 20px 60px -20px rgba(251,191,36,.12);overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(251,191,36,.6),transparent)"></div>
+    <div style="display:flex;align-items:flex-start;gap:20px">
+      <div style="flex-shrink:0;width:44px;height:44px;border-radius:12px;background:rgba(251,191,36,.10);border:1px solid rgba(251,191,36,.3);display:grid;place-items:center;margin-top:2px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(251,191,36,.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div style="flex:1;min-width:0">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(251,191,36,.8);margin-bottom:10px">Importante</p>
+        <h3 style="font-size:16px;font-weight:500;letter-spacing:-.01em;line-height:1.3;margin-bottom:12px;color:var(--ink-0)">Solo puedes modificar productos mientras la orden está en Borrador</h3>
+        <p style="font-size:14px;color:var(--ink-1);line-height:1.6;font-weight:300">A partir de Confirmada ya no podrás agregar ni eliminar ítems. Desde ese punto, la orden avanza hacia recepción, desempacado y cierre según lo que ocurra en bodega.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ ANTES / AHORA ============ -->
+<section>
+  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
+    <div>
+      <div class="s-eyebrow"><span class="num">01</span>Antes vs Ahora</div>
+      <h2 class="s-title">De crear una orden a entender <em>cada etapa</em>.</h2>
+    </div>
+  </div>
+
+  <div class="compare">
+
+    <div class="cmp-card before">
+      <div class="cmp-key" style="gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ef4444;box-shadow:0 0 10px #ef4444;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Antes</div>
+      <div class="cmp-num">Antes<small> del módulo</small></div>
+      <h3 class="cmp-h">La orden avanzaba sin suficiente claridad para el seller</h3>
+      <p class="cmp-p">Con menos visibilidad sobre qué estaba pasando y qué acciones eran posibles en cada etapa.</p>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span>Dudas sobre cuándo enviar mercancía</span>
+      </div>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span>Menor claridad sobre acciones disponibles</span>
+      </div>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span>Más seguimiento manual</span>
+      </div>
+    </div>
+
+    <div class="cmp-arrow">
+      <div class="cmp-arrow-svg">
+        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 40h54" stroke-linecap="round"/>
+          <path d="m58 30 12 10-12 10" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="cmp-card after">
+      <div class="cmp-key" style="gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Ahora</div>
+      <div class="cmp-num">Ahora<small> en Órbita</small></div>
+      <h3 class="cmp-h">Cada estado muestra qué está pasando y qué puedes hacer</h3>
+      <p class="cmp-p">El flujo es claro de principio a fin, con restricciones y acciones visibles según la etapa.</p>
+      <div class="cmp-bullet">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
+        <span>Flujo claro desde Borrador hasta Finalizada</span>
+      </div>
+      <div class="cmp-bullet">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
+        <span>Restricciones visibles según etapa</span>
+      </div>
+      <div class="cmp-bullet">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
+        <span>Mejor trazabilidad desde el historial de actividad</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============ FLUJO 6 PASOS ============ -->
+<section>
+  <div class="s-head">
+    <div>
+      <div class="s-eyebrow"><span class="num">02</span></div>
+      <h2 class="s-title">¿Cómo funciona?</h2>
+      <p class="s-aside">Seis estados, del momento en que creas la orden hasta que se cierra.</p>
+    </div>
+  </div>
+
+  <div class="flow-section">
+    <div class="flow">
+
+      <div class="flow-pill">
+        <span class="stat">01</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5Z"/></svg>
+        </div>
+        <span class="fp-tag">Borrador</span>
+        <span class="fp-h">Edita antes de confirmar</span>
+        <span class="fp-p">Guarda la orden para continuar después. Es el único estado donde puedes agregar o eliminar productos, editar cantidades y cancelar.</span>
+      </div>
+
+      <div class="flow-pill">
+        <span class="stat">02</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 2 11 13M22 2 15 22 11 13 2 9l20-7Z"/></svg>
+        </div>
+        <span class="fp-tag">Confirmada</span>
+        <span class="fp-h">Lista para enviar mercancía</span>
+        <span class="fp-p">Ya puedes enviar mercancía a la bodega. No puedes agregar ni eliminar productos; solo editar lote o fecha de caducidad si aplica.</span>
+      </div>
+
+      <div class="flow-pill">
+        <span class="stat">03</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16.5 9.4l-9-5.4M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <span class="fp-tag">En recepción</span>
+        <span class="fp-h">Melonn recibió al menos un paquete</span>
+        <span class="fp-p">Melonn ya recibió al menos un paquete, pero aún no empieza el desempacado. Ya no puedes cancelar ni eliminar la orden.</span>
+      </div>
+
+      <div class="flow-pill">
+        <span class="stat">04</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <span class="fp-tag">Desempacado en proceso</span>
+        <span class="fp-h">Tus paquetes están siendo revisados</span>
+        <span class="fp-p">Tus paquetes ya están siendo abiertos y revisados. El resultado final todavía está en curso.</span>
+      </div>
+
+      <div class="flow-pill center">
+        <span class="stat">05</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <span class="fp-tag">Desempacado con diferencias</span>
+        <span class="fp-h">Se recibieron menos unidades</span>
+        <span class="fp-p">Aparece cuando se recibieron menos unidades de las declaradas. Puedes revisar SKUs con diferencias, enviar faltantes o finalizar manualmente.</span>
+      </div>
+
+      <div class="flow-pill">
+        <span class="stat">06</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <span class="fp-tag">Finalizada</span>
+        <span class="fp-h">La orden se cerró</span>
+        <span class="fp-p">Se cierra automáticamente si todo coincide, manualmente si decides no enviar faltantes, o por sistema tras 30 días con diferencias sin acción.</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ DEMO / PLACEHOLDER ============ -->
+<section>
+  <div style="text-align:center;margin-bottom:32px">
+    <div class="s-eyebrow" style="justify-content:center;margin-bottom:12px"><span class="line"></span>Demo<span class="line" style="transform:scaleX(-1)"></span></div>
+    <h2 style="font-size:clamp(24px,3vw,38px);font-weight:500;letter-spacing:-.03em;line-height:1.1;margin-bottom:10px">Mira el flujo de estados</h2>
+    <p style="font-size:15px;color:var(--ink-2);max-width:48ch;margin:0 auto;line-height:1.6;font-weight:300">Visualiza cómo avanza una orden de ingreso desde su creación hasta el cierre.</p>
+  </div>
+
+  <div style="position:relative;border-radius:var(--r-xl);padding:18px;background:linear-gradient(180deg,rgba(28,24,60,.85),rgba(10,8,28,.9));border:1px solid var(--line-strong);box-shadow:0 0 0 1px rgba(196,181,253,.08),inset 0 1px 0 rgba(196,181,253,.18),inset 0 0 80px -20px rgba(124,92,255,.25),0 40px 100px -20px rgba(124,92,255,.5),0 0 120px -30px rgba(196,181,253,.4);max-width:960px;margin:0 auto;">
+    <!-- reflejo superior -->
+    <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:70%;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);box-shadow:0 0 24px var(--violet-glow)"></div>
+    <!-- esquinas decorativas -->
+    <div style="position:absolute;top:10px;left:10px;width:18px;height:18px;border-top:1px solid var(--violet-0);border-left:1px solid var(--violet-0);border-radius:4px 0 0 0;opacity:.6"></div>
+    <div style="position:absolute;top:10px;right:10px;width:18px;height:18px;border-top:1px solid var(--violet-0);border-right:1px solid var(--violet-0);border-radius:0 4px 0 0;opacity:.6"></div>
+    <div style="position:absolute;bottom:10px;left:10px;width:18px;height:18px;border-bottom:1px solid var(--violet-0);border-left:1px solid var(--violet-0);border-radius:0 0 0 4px;opacity:.6"></div>
+    <div style="position:absolute;bottom:10px;right:10px;width:18px;height:18px;border-bottom:1px solid var(--violet-0);border-right:1px solid var(--violet-0);border-radius:0 0 4px 0;opacity:.6"></div>
+    <!-- placeholder visual -->
+    <div style="aspect-ratio:16/9;border-radius:calc(var(--r-xl) - 8px);overflow:hidden;position:relative;z-index:2;background:linear-gradient(135deg,rgba(20,16,48,.9),rgba(8,6,24,.95));border:1px dashed rgba(196,181,253,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(196,181,253,.3)" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 3v18"/></svg>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:rgba(196,181,253,.3);text-transform:uppercase;text-align:center;max-width:40ch;line-height:1.7">[imagen pendiente: flujo horizontal de estados de orden de ingreso en estilo Melonn]</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ CARACTERÍSTICAS ============ -->
+<section>
+  <div class="s-head">
+    <div>
+      <div class="s-eyebrow"><span class="num">03</span>Características</div>
+      <h2 class="s-title">Qué puedes identificar <em>ahora</em>.</h2>
+      <p class="s-aside">Cuatro capacidades del módulo de estados para la gestión de órdenes de ingreso desde Órbita.</p>
+    </div>
+  </div>
+
+  <div class="features">
+
+    <article class="f-card">
+      <div class="glow"></div>
+      <div class="f-num"><span class="pill">01</span>Estado actual</div>
+      <div class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      </div>
+      <h3 class="f-h">Estado actual de la orden</h3>
+      <p class="f-p">Saber exactamente en qué punto está tu orden de ingreso.</p>
+    </article>
+
+    <article class="f-card">
+      <div class="glow"></div>
+      <div class="f-num"><span class="pill">02</span>Acciones disponibles</div>
+      <div class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <h3 class="f-h">Acciones disponibles</h3>
+      <p class="f-p">Entender si puedes editar, cancelar, enviar mercancía faltante o finalizar.</p>
+    </article>
+
+    <article class="f-card">
+      <div class="glow"></div>
+      <div class="f-num"><span class="pill">03</span>Diferencias de inventario</div>
+      <div class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3 class="f-h">Diferencias de inventario</h3>
+      <p class="f-p">Filtrar SKUs con diferencias para ver qué llegó de más o de menos.</p>
+    </article>
+
+    <article class="f-card">
+      <div class="glow"></div>
+      <div class="f-num"><span class="pill">04</span>Historial de actividad</div>
+      <div class="f-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </div>
+      <h3 class="f-h">Historial de actividad</h3>
+      <p class="f-p">Consultar los cambios de estado, quién los realizó y cuándo ocurrieron.</p>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ============ BENEFICIOS ============ -->
+<section>
+  <div class="s-head">
+    <div>
+      <div class="s-eyebrow"><span class="num">04</span>Beneficios</div>
+      <h2 class="s-title">Qué mejora para <em>el seller</em>.</h2>
+      <p class="s-aside">Tres impactos directos en la operación de inventario del seller.</p>
+    </div>
+  </div>
+
+  <div class="benefits-grid">
+
+    <article class="b-card span-2">
+      <div class="b-glow"></div>
+      <span class="b-num">B/01</span>
+      <div class="b-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      </div>
+      <h3 class="b-h">Menos incertidumbre operativa</h3>
+      <p class="b-p">El seller entiende qué está pasando con su mercancía sin depender de seguimiento manual.</p>
+    </article>
+
+    <article class="b-card span-2">
+      <div class="b-glow"></div>
+      <span class="b-num">B/02</span>
+      <div class="b-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16.5 9.4l-9-5.4M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
+      <h3 class="b-h">Mejor control del inventario entrante</h3>
+      <p class="b-p">Las diferencias se pueden revisar antes de cerrar la orden.</p>
+    </article>
+
+    <article class="b-card span-2">
+      <div class="b-glow"></div>
+      <span class="b-num">B/03</span>
+      <div class="b-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+      </div>
+      <h3 class="b-h">Menos errores y reprocesos</h3>
+      <p class="b-p">Cada estado deja claro qué se puede hacer y qué ya no es posible.</p>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ============ CIERRE ============ -->
+<section>
+  <div class="cierre">
+    <div class="ring-deco"></div>
+    <h2 class="c-title">Tu orden de ingreso ahora se entiende de principio a <em>fin</em>.</h2>
+    <p class="c-sub">Consulta el estado, revisa diferencias y toma acción desde Órbita antes de que la orden finalice.</p>
+    <div class="c-actions">
+      <!-- TODO: reemplazar href="#" con URL real de documentación antes de publicar -->
+      <a class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+        Ver documentación →
+      </a>
+      <a class="btn btn-ghost" href="../historial-de-lanzamientos/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>
+        ← Volver a lanzamientos
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="l">
+    <span style="font-size:18px;color:var(--violet-0);animation:twinkle 2.4s ease-in-out infinite;display:inline-block;line-height:1;flex-shrink:0">✦</span>
+    <span>© 2026 Melonn Edition by Melonn · Plataforma para sellers</span>
+  </div>
+  <div>Última actualización MAY/2026 · Todos los derechos reservados</div>
+</footer>
+
+</div>
+
+<script>
+(()=>{
+  const els = document.querySelectorAll('section, .hero, footer');
+  els.forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .8s ease, transform .8s ease';});
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';io.unobserve(e.target);}
+    });
+  },{threshold:.08});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+
+<!-- ============ SEARCH OVERLAY ============ -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="text" id="searchInput" placeholder="Buscar en esta página..." autocomplete="off" spellcheck="false">
+      <button class="search-close-btn" id="searchClose">ESC</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay=document.getElementById('searchOverlay');
+  const input=document.getElementById('searchInput');
+  const results=document.getElementById('searchResults');
+  const openBtn=document.getElementById('searchBtn');
+  const closeBtn=document.getElementById('searchClose');
+  function open(){overlay.classList.add('open');input.value='';results.innerHTML='';setTimeout(()=>input.focus(),60);}
+  function close(){overlay.classList.remove('open');}
+  openBtn.addEventListener('click',open);
+  closeBtn.addEventListener('click',close);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();open();}});
+  function highlight(text,query){const esc=query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');return text.replace(new RegExp(`(${esc})`,'gi'),'<mark>$1</mark>');}
+  function getSection(el){let p=el.parentElement;while(p&&p!==document.body){const ey=p.querySelector('.s-eyebrow');if(ey)return ey.innerText.trim();p=p.parentElement;}return 'Página';}
+  input.addEventListener('input',function(){
+    const q=this.value.trim();
+    if(q.length<2){results.innerHTML='';return;}
+    const nodes=document.querySelectorAll('h1,h2,h3,.fp-h,.fp-p,.f-h,.f-p,.b-h,.b-p,.cmp-h,.c-title');
+    const found=[];
+    nodes.forEach(el=>{const text=el.innerText||el.textContent||'';if(text.toLowerCase().includes(q.toLowerCase()))found.push({el,text:text.trim()});});
+    if(!found.length){results.innerHTML=`<div class="search-empty">Sin resultados para "<strong>${q}</strong>"</div>`;return;}
+    results.innerHTML=found.slice(0,10).map((f,i)=>`<div class="search-result-item" data-idx="${i}"><span class="r-section">${getSection(f.el)}</span><span class="r-text">${highlight(f.text.slice(0,120),q)}</span></div>`).join('');
+    results.querySelectorAll('.search-result-item').forEach((item,i)=>{
+      item.addEventListener('click',()=>{close();found[i].el.scrollIntoView({behavior:'smooth',block:'center'});found[i].el.style.transition='outline .3s';found[i].el.style.outline='2px solid rgba(196,181,253,.6)';found[i].el.style.borderRadius='4px';setTimeout(()=>{found[i].el.style.outline='';},1800);});
+    });
+  });
+})();
+</script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
