@@ -32,7 +32,7 @@
   }
 
   var STATIC_SLUGS = new Set([
-    'buyer-portal',
+    'buyer-portal', 'estados-orden-ingreso',
     'vista-ordenes-d2c', 'crea-material-empaque', 'api-melonn-v2',
     'empaque-b2b', 'checkout-inteligente', 'visualizador-cargos',
     'trazabilidad-avanzada-b2b', 'sistema-notificaciones-whatsapp',
@@ -44,6 +44,7 @@
 
   var SLUG_IMAGES = {
     'buyer-portal':                                    '../IMAGE/LANZAMIENTOS/BUYER_PORTAL/Card_Buyer_Portal.png',
+    'estados-orden-ingreso':                           '../IMAGE/LANZAMIENTOS/ESTADO_ORDEN_INGRESO/Estado_Orden_Ingreso_1-1.png',
     'vista-ordenes-d2c':                              '../IMAGE/LANZAMIENTOS/CAMBIOS_ORDENES_ORBITA/banner 3.png',
     'crea-material-empaque':                          '../IMAGE/LANZAMIENTOS/CREA_MATERIAL_EMPAQUE/banner 3.png',
     'api-melonn-v2':                                  '../IMAGE/LANZAMIENTOS/API_MELONN_V2/API_banner-landign.png',
@@ -72,6 +73,17 @@
       country: 'both',
       launch_type: 'b2c',
       index_order: -1,
+      is_featured: true
+    },
+    {
+      slug: 'estados-orden-ingreso',
+      title: 'Entiende cada estado de tu orden de ingreso sin perder trazabilidad',
+      category: 'Operación · Inventario · Órbita · 2026',
+      description: 'Identifica en qué etapa está tu orden, qué acciones tienes disponibles y cómo gestionar diferencias antes del cierre.',
+      banner_url: null,
+      country: 'both',
+      launch_type: 'operaciones',
+      index_order: -0.5,
       is_featured: true
     },
     {
