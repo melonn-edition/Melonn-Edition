@@ -931,7 +931,7 @@ footer .l{display:flex;align-items:center;gap:18px}
 })();
 </script>
 <script>
-/* solicitudes-reposicion — hero → seccion 01 transition */
+/* solicitudes-reposicion — hero → panel transition (user-controlled release) */
 (()=>{
   const mq = window.matchMedia('(max-width:680px),(prefers-reduced-motion:reduce)');
   if(mq.matches) return;
@@ -943,15 +943,13 @@ footer .l{display:flex;align-items:center;gap:18px}
   const panel   = document.querySelector('.hero-panel');
   if(!wrap||!heroBg||!content||!panel) return;
 
-  let state = 'IDLE';
-  let timer = null;
-
   const S01_TOP   = () => wrap.offsetTop + wrap.offsetHeight;
   const stickyEnd = () => wrap.offsetTop + wrap.offsetHeight - window.innerHeight;
-  const ANIM_MS  = 800;
-  const EXIT_MS  = 1000;
-  const ENTER_MS = 3000;
-  const HOLD_MS  = 2800;
+  const ANIM_MS   = 800;
+  const EXIT_MS   = 1000;
+
+  let state = 'IDLE';
+  let timer = null;
 
   function lock()   { document.documentElement.style.overflow = document.body.style.overflow = 'hidden'; }
   function unlock() { document.documentElement.style.overflow = document.body.style.overflow = ''; }
@@ -959,8 +957,8 @@ footer .l{display:flex;align-items:center;gap:18px}
   function resetHero(){
     [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition='none'; });
     heroBg.style.transform = '';
-    if(content){ content.style.opacity='1'; }
-    if(cosmos){  cosmos.style.opacity='1';  }
+    if(content) content.style.opacity = '1';
+    if(cosmos)  cosmos.style.opacity  = '1';
     panel.style.position  = '';
     panel.style.inset     = '';
     panel.style.zIndex    = '';
@@ -970,24 +968,56 @@ footer .l{display:flex;align-items:center;gap:18px}
     [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition=''; });
   }
 
-  let _ty = 0;
-  function onBWheel(e){  if(e.deltaY > 0) e.preventDefault(); }
-  function onBKey(e){    if([' ','ArrowDown','PageDown'].includes(e.key)) e.preventDefault(); }
-  function onBTStart(e){ _ty = e.touches[0].clientY; }
-  function onBTMove(e){  if(_ty - e.touches[0].clientY > 0) e.preventDefault(); }
-  function attachBlock(){
-    window.addEventListener('wheel',      onBWheel,  {passive:false});
-    document.addEventListener('keydown',  onBKey,    {capture:true});
-    window.addEventListener('touchstart', onBTStart, {passive:true});
-    window.addEventListener('touchmove',  onBTMove,  {passive:false});
-  }
-  function detachBlock(){
-    window.removeEventListener('wheel',      onBWheel);
-    document.removeEventListener('keydown',  onBKey, {capture:true});
-    window.removeEventListener('touchstart', onBTStart);
-    window.removeEventListener('touchmove',  onBTMove);
+  /* ── HOLDING: fade out on user action ── */
+  let holdScrollReady = false;
+
+  function release(){
+    if(state !== 'HOLDING') return;
+    state = 'READY';
+    detachHold();
+    panel.style.transition = `opacity ${EXIT_MS}ms ease`;
+    panel.style.opacity    = '0';
+    if(timer){ clearTimeout(timer); timer=null; }
+    timer = setTimeout(()=>{
+      timer = null;
+      resetHero();
+      state = 'IDLE';
+      armTriggers();
+    }, EXIT_MS);
   }
 
+  function onHoldWheel(e){
+    if(e.deltaY > 0){ e.preventDefault(); release(); }
+  }
+  function onHoldKey(e){
+    if([' ','ArrowDown','PageDown'].includes(e.key)){ e.preventDefault(); release(); }
+  }
+  let _hty = 0;
+  function onHoldTStart(e){ _hty = e.touches[0].clientY; }
+  function onHoldTMove(e){
+    if(_hty - e.touches[0].clientY > 10){ e.preventDefault(); release(); }
+  }
+  function onHoldScroll(){ if(holdScrollReady) release(); }
+
+  function attachHold(){
+    holdScrollReady = false;
+    window.addEventListener('wheel',      onHoldWheel,  {passive:false});
+    window.addEventListener('keydown',    onHoldKey,    {capture:true});
+    window.addEventListener('touchstart', onHoldTStart, {passive:true});
+    window.addEventListener('touchmove',  onHoldTMove,  {passive:false});
+    window.addEventListener('scroll',     onHoldScroll, {passive:true});
+    setTimeout(()=>{ holdScrollReady = true; }, 150);
+  }
+  function detachHold(){
+    holdScrollReady = false;
+    window.removeEventListener('wheel',      onHoldWheel);
+    window.removeEventListener('keydown',    onHoldKey, {capture:true});
+    window.removeEventListener('touchstart', onHoldTStart);
+    window.removeEventListener('touchmove',  onHoldTMove);
+    window.removeEventListener('scroll',     onHoldScroll);
+  }
+
+  /* ── IDLE triggers ── */
   function onTWheel(e){
     if(state !== 'IDLE' || window.scrollY > 80) return;
     if(e.deltaY > 0){ e.preventDefault(); go(); }
@@ -1011,6 +1041,7 @@ footer .l{display:flex;align-items:center;gap:18px}
     window.removeEventListener('touchstart', onTTouch);
   }
 
+  /* ── ENTERING → HOLDING ── */
   function go(){
     if(state !== 'IDLE') return;
     state = 'ENTERING';
@@ -1019,7 +1050,6 @@ footer .l{display:flex;align-items:center;gap:18px}
     panel.style.position = 'fixed';
     panel.style.inset    = '0';
     panel.style.zIndex   = '100';
-
     lock();
 
     heroBg.style.transition  = `transform ${ANIM_MS}ms ease-in-out`;
@@ -1033,38 +1063,18 @@ footer .l{display:flex;align-items:center;gap:18px}
     panel.style.transform  = 'translateX(0)';
 
     timer = setTimeout(()=>{
+      timer = null;
       [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition=''; });
       window.scrollTo(0, S01_TOP());
-
-      timer = setTimeout(()=>{
-        timer = null;
-        state = 'HOLDING';
-        unlock();
-        attachBlock();
-
-        timer = setTimeout(()=>{
-          timer = null;
-          state = 'READY';
-          detachBlock();
-
-          panel.style.transition = `opacity ${EXIT_MS}ms ease`;
-          panel.style.opacity    = '0';
-
-          timer = setTimeout(()=>{
-            timer = null;
-            resetHero();
-            state = 'IDLE';
-            armTriggers();
-          }, EXIT_MS);
-
-        }, HOLD_MS);
-      }, ENTER_MS - ANIM_MS);
+      unlock();
+      state = 'HOLDING';
+      attachHold();
     }, ANIM_MS);
   }
 
   armTriggers();
 
-  /* scrollbar detection: intercept when user drags scrollbar out of hero zone */
+  /* ── scrollbar detection in hero zone (IDLE only) ── */
   let prevScrollY = window.scrollY;
   function onScrollbarDetect(){
     const curr = window.scrollY;
@@ -1077,10 +1087,11 @@ footer .l{display:flex;align-items:center;gap:18px}
   }
   window.addEventListener('scroll', onScrollbarDetect, {passive:true});
 
+  /* ── responsive bailout ── */
   mq.addEventListener('change', e=>{
     if(!e.matches) return;
     if(timer){ clearTimeout(timer); timer=null; }
-    detachBlock(); disarmTriggers(); unlock();
+    detachHold(); disarmTriggers(); unlock();
     resetHero();
     state = 'IDLE';
   });
