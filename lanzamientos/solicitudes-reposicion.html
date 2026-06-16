@@ -326,35 +326,6 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 .cmp-arrow-svg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,var(--violet-glow),transparent 60%);filter:blur(16px);animation:bgpulse 2s ease-in-out infinite}
 .cmp-arrow svg{position:relative;z-index:1;filter:drop-shadow(0 0 12px var(--violet-glow))}
 
-/* ——— trigger card (cuándo aplica) ——— */
-.trigger-card{
-  position:relative;border-radius:var(--r-lg);
-  padding:44px 48px;
-  background:linear-gradient(180deg,rgba(22,18,50,.6),rgba(10,8,24,.6));
-  border:1px solid var(--line-strong);
-  overflow:hidden;
-}
-.trigger-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);box-shadow:0 0 20px var(--violet-glow)}
-.trigger-intro{font-size:clamp(16px,1.6vw,20px);color:var(--ink-0);font-weight:400;letter-spacing:-.015em;line-height:1.45;margin-bottom:36px;max-width:58ch}
-.motivos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px}
-.motivo{
-  display:flex;align-items:flex-start;gap:12px;
-  padding:18px 20px;border-radius:var(--r-md);
-  background:rgba(196,181,253,.05);
-  border:1px solid var(--line);
-}
-.motivo-icon{flex-shrink:0;width:32px;height:32px;border-radius:8px;background:rgba(196,181,253,.08);border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--violet-0);margin-top:2px}
-.motivo-icon svg{width:14px;height:14px}
-.motivo-text{font-size:13.5px;color:var(--ink-1);line-height:1.45;font-weight:300}
-.email-note{
-  display:flex;align-items:flex-start;gap:16px;
-  padding:18px 22px;border-radius:var(--r-md);
-  background:rgba(196,181,253,.06);
-  border:1px solid var(--line-strong);
-}
-.email-note-icon{flex-shrink:0;width:36px;height:36px;border-radius:10px;background:rgba(196,181,253,.10);border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--violet-0)}
-.email-note-icon svg{width:16px;height:16px}
-.email-note-text{font-size:14px;color:var(--ink-1);line-height:1.6;font-weight:300;padding-top:8px}
 
 /* ——— flow (5 pasos) ——— */
 .flow-section{position:relative;padding:0}
@@ -406,66 +377,6 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 .fp-p{font-size:14px;color:var(--ink-1);line-height:1.5;font-weight:300;max-width:24ch}
 .flow-pill .stat{position:absolute;top:14px;right:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--violet-0);background:rgba(196,181,253,.08);padding:3px 7px;border-radius:6px;border:1px solid var(--line-strong)}
 
-/* ——— estados ——— */
-.states-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-.state-card{
-  position:relative;padding:28px 22px;border-radius:var(--r-md);
-  border:1px solid var(--line);
-  background:linear-gradient(180deg,rgba(20,17,42,.55),rgba(10,8,22,.5));
-  display:flex;flex-direction:column;gap:12px;
-  min-height:188px;
-  transition:box-shadow .3s,transform .3s,border-color .3s;
-  overflow:hidden;
-  animation:float-card 4.8s ease-in-out infinite;
-}
-.state-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px}
-.state-card:hover{animation-play-state:paused;transform:translateY(-4px)}
-.state-card:nth-child(1){animation-delay:0s}
-.state-card:nth-child(2){animation-delay:1s}
-.state-card:nth-child(3){animation-delay:2s}
-.state-card:nth-child(4){animation-delay:3s}
-.state-card:nth-child(5){animation-delay:4s}
-
-/* Pendiente – amber */
-.state-card.pendiente{border-color:rgba(245,158,11,.28);background:radial-gradient(65% 80% at 50% 0%,rgba(245,158,11,.06),transparent 55%),linear-gradient(180deg,rgba(28,22,10,.55),rgba(10,8,22,.5))}
-.state-card.pendiente::before{background:linear-gradient(90deg,transparent,rgba(245,158,11,.6),transparent);box-shadow:0 0 16px rgba(245,158,11,.35)}
-.state-card.pendiente:hover{box-shadow:0 20px 50px -12px rgba(245,158,11,.25),0 0 60px -20px rgba(245,158,11,.15)}
-.state-dot.pendiente-dot{background:#f59e0b;box-shadow:0 0 10px #f59e0b;animation:pulse 1.6s ease-in-out infinite}
-.state-label.pendiente-label{color:#f59e0b}
-
-/* Aprobada – green */
-.state-card.aprobada{border-color:rgba(34,197,94,.28);background:radial-gradient(65% 80% at 50% 0%,rgba(34,197,94,.07),transparent 55%),linear-gradient(180deg,rgba(10,24,14,.55),rgba(8,20,12,.5))}
-.state-card.aprobada::before{background:linear-gradient(90deg,transparent,rgba(34,197,94,.6),transparent);box-shadow:0 0 16px rgba(34,197,94,.35)}
-.state-card.aprobada:hover{box-shadow:0 20px 50px -12px rgba(34,197,94,.25),0 0 60px -20px rgba(34,197,94,.15)}
-.state-dot.aprobada-dot{background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite}
-.state-label.aprobada-label{color:#22c55e}
-
-/* Rechazada – red */
-.state-card.rechazada{border-color:rgba(239,68,68,.28);background:radial-gradient(65% 80% at 50% 0%,rgba(239,68,68,.06),transparent 55%),linear-gradient(180deg,rgba(26,10,10,.55),rgba(10,8,22,.5))}
-.state-card.rechazada::before{background:linear-gradient(90deg,transparent,rgba(239,68,68,.6),transparent);box-shadow:0 0 16px rgba(239,68,68,.35)}
-.state-card.rechazada:hover{box-shadow:0 20px 50px -12px rgba(239,68,68,.25),0 0 60px -20px rgba(239,68,68,.15)}
-.state-dot.rechazada-dot{background:#ef4444;box-shadow:0 0 10px #ef4444}
-.state-label.rechazada-label{color:#ef4444}
-
-/* Expirada – gray */
-.state-card.expirada{border-color:rgba(100,116,139,.28);background:radial-gradient(65% 80% at 50% 0%,rgba(100,116,139,.08),transparent 55%),linear-gradient(180deg,rgba(18,16,28,.55),rgba(10,8,22,.5))}
-.state-card.expirada::before{background:linear-gradient(90deg,transparent,rgba(100,116,139,.48),transparent);box-shadow:0 0 14px rgba(100,116,139,.28)}
-.state-card.expirada:hover{box-shadow:0 20px 50px -12px rgba(100,116,139,.18)}
-.state-dot.expirada-dot{background:#64748b;box-shadow:0 0 8px #64748b}
-.state-label.expirada-label{color:#94a3b8}
-
-/* Cancelada – slate */
-.state-card.cancelada{border-color:rgba(71,85,105,.28);background:radial-gradient(65% 80% at 50% 0%,rgba(71,85,105,.08),transparent 55%),linear-gradient(180deg,rgba(16,16,28,.55),rgba(8,8,20,.5))}
-.state-card.cancelada::before{background:linear-gradient(90deg,transparent,rgba(71,85,105,.48),transparent);box-shadow:0 0 14px rgba(71,85,105,.28)}
-.state-card.cancelada:hover{box-shadow:0 20px 50px -12px rgba(71,85,105,.18)}
-.state-dot.cancelada-dot{background:#475569;box-shadow:0 0 8px #475569}
-.state-label.cancelada-label{color:#94a3b8}
-
-.state-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
-.state-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.state-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
-.state-h{font-size:16px;font-weight:500;letter-spacing:-.015em;color:var(--ink-0);line-height:1.2;margin-bottom:6px}
-.state-p{font-size:13px;color:var(--ink-2);line-height:1.5;font-weight:300}
 
 /* ——— capabilities list ——— */
 .cap-card{
@@ -476,32 +387,14 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
   overflow:hidden;
 }
 .cap-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);box-shadow:0 0 20px var(--violet-glow)}
-.cap-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 48px}
-.cap-item{display:flex;align-items:flex-start;gap:12px;padding:4px 0}
-.cap-check{flex-shrink:0;width:20px;height:20px;border-radius:6px;background:rgba(196,181,253,.08);border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--violet-0);margin-top:2px}
-.cap-check svg{width:10px;height:10px}
-.cap-text{font-size:14.5px;color:var(--ink-1);line-height:1.5;font-weight:300}
+.info-card{position:relative;border-radius:var(--r-lg);padding:32px 28px;background:linear-gradient(180deg,rgba(22,18,50,.6),rgba(10,8,24,.6));border:1px solid var(--line-strong);overflow:hidden}
+.info-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);box-shadow:0 0 20px var(--violet-glow)}
+.info-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
+.info-h{font-size:17px;font-weight:500;letter-spacing:-.01em;color:var(--ink-0);margin-bottom:8px}
+.info-p{font-size:14px;color:var(--ink-2);line-height:1.55;font-weight:300}
+.chars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.bens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 
-/* ——— consideraciones (alert blocks) ——— */
-.alert-block{
-  position:relative;border-radius:var(--r-md);
-  padding:28px 32px 28px 28px;
-  display:flex;align-items:flex-start;gap:18px;
-  background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(196,181,253,.04));
-  border:1px solid rgba(245,158,11,.26);
-  box-shadow:0 0 0 1px rgba(245,158,11,.05),0 16px 48px -16px rgba(245,158,11,.10);
-  overflow:hidden;
-  transition:box-shadow .3s;
-}
-.alert-block::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(245,158,11,.55),transparent)}
-.alert-block:hover{box-shadow:0 0 0 1px rgba(245,158,11,.08),0 20px 60px -16px rgba(245,158,11,.16)}
-.alert-icon{flex-shrink:0;width:40px;height:40px;border-radius:11px;background:rgba(245,158,11,.09);border:1px solid rgba(245,158,11,.28);display:grid;place-items:center;margin-top:2px}
-.alert-icon svg{width:18px;height:18px;color:rgba(245,158,11,.9)}
-.alert-body{flex:1;min-width:0}
-.alert-title{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,158,11,.85);margin-bottom:6px}
-.alert-text{font-size:14px;color:var(--ink-1);line-height:1.6;font-weight:300}
-.alert-text strong{color:var(--ink-0);font-weight:500}
-.alerts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 
 /* ——— cierre ——— */
 .cierre{
@@ -570,10 +463,6 @@ footer .l{display:flex;align-items:center;gap:18px}
 @media(max-width:1180px){
   .compare{grid-template-columns:1fr;gap:14px}
   .cmp-arrow{width:auto;justify-self:center;transform:rotate(90deg)}
-  .motivos-grid{grid-template-columns:repeat(2,1fr)}
-  .states-grid{grid-template-columns:repeat(3,1fr)}
-  .cap-list{grid-template-columns:1fr}
-  .alerts-grid{grid-template-columns:1fr}
 }
 @media(max-width:840px){
   .flow-pill{flex:0 0 calc(50% - 9px);min-width:0}
@@ -612,14 +501,11 @@ footer .l{display:flex;align-items:center;gap:18px}
   .mobile-menu.open{display:flex}
   .mobile-menu .nav-link{font-size:15px;padding:12px 16px;border-radius:12px}
   .hero-content{padding-left:40px;padding-right:40px}
-  .motivos-grid{grid-template-columns:1fr}
-  .states-grid{grid-template-columns:repeat(2,1fr)}
-  .trigger-card{padding:28px 24px}
   .cap-card{padding:28px 24px}
   .flow-pill{flex:0 0 100%;min-width:0}
+  .chars-grid,.bens-grid{grid-template-columns:1fr}
 }
 @media(max-width:400px){
-  .states-grid{grid-template-columns:1fr}
   section,.hero,footer{padding-left:20px;padding-right:20px}
   .nav{padding-left:20px;padding-right:20px}
   .hero-content{padding-left:20px;padding-right:20px}
@@ -800,9 +686,9 @@ footer .l{display:flex;align-items:center;gap:18px}
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
       <div class="s-eyebrow"><span class="num">01</span>Antes vs Ahora</div>
-      <h2 class="s-title">De gestionar reposiciones por separado, a resolverlas desde una <em>sola solicitud.</em></h2>
+      <h2 class="s-title">De decidir reposiciones por varios canales, a resolverlas desde una <em>sola solicitud.</em></h2>
     </div>
-    <p class="s-aside">Con Solicitudes de Reposición, el flujo está centralizado: revisas, decides y creas la nueva orden sin salir de Órbita.</p>
+    <p class="s-aside">Cuando una orden presenta una pérdida, daño o faltante, ya no necesitas coordinar el proceso por separado. Ahora revisas el caso, tomas una decisión y creas la nueva orden desde Órbita.</p>
   </div>
 
   <div class="compare">
@@ -810,19 +696,23 @@ footer .l{display:flex;align-items:center;gap:18px}
     <div class="cmp-card before">
       <div class="cmp-key" style="gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ef4444;box-shadow:0 0 10px #ef4444;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Antes</div>
       <div class="cmp-num"><span>Antes</span><span class="title-sub">de Solicitudes de Reposición</span></div>
-      <h3 class="cmp-h">Las reposiciones requerían validaciones manuales y coordinación separada</h3>
-      <p class="cmp-p">El proceso podía implicar revisión de datos por fuera de Órbita, coordinación con soporte y creación separada de la nueva orden.</p>
+      <h3 class="cmp-h">Gestionar una reposición implicaba múltiples canales y pasos separados</h3>
+      <p class="cmp-p">El proceso requería revisar información por fuera de Órbita y coordinar cada paso de forma manual.</p>
       <div class="cmp-bullet">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        <span>Validaciones manuales fuera de Órbita</span>
+        <span>Validar el caso por diferentes canales</span>
       </div>
       <div class="cmp-bullet">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        <span>Coordinación con soporte para cada caso</span>
+        <span>Revisar información de la orden por separado</span>
       </div>
       <div class="cmp-bullet">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        <span>Creación de la orden de reposición por separado</span>
+        <span>Crear una nueva orden manualmente</span>
+      </div>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span>Poca visibilidad sobre la trazabilidad del proceso</span>
       </div>
     </div>
 
@@ -838,80 +728,37 @@ footer .l{display:flex;align-items:center;gap:18px}
     <div class="cmp-card after">
       <div class="cmp-key" style="gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Ahora</div>
       <div class="cmp-num"><span>Ahora</span><span class="title-sub">con Solicitudes de Reposición</span></div>
-      <h3 class="cmp-h">Órbita centraliza la solicitud: revisas, decides y creas la orden desde un mismo lugar</h3>
-      <p class="cmp-p">Ves el motivo, revisas productos, apruebas o rechazas y completas la creación de la orden de reposición con información prellenada.</p>
+      <h3 class="cmp-h">Revisas, decides y creas la reposición desde una sola solicitud en Órbita</h3>
+      <p class="cmp-p">Todo está centralizado: el motivo, los productos afectados, la decisión y la creación de la nueva orden.</p>
       <div class="cmp-bullet">
         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Revisión del caso y productos afectados en Órbita</span>
+        <span>Revisas el motivo y los productos afectados</span>
       </div>
       <div class="cmp-bullet">
         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Aprobación o rechazo sin contactar a soporte</span>
+        <span>Apruebas o rechazas desde Órbita</span>
       </div>
       <div class="cmp-bullet">
         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Orden de reposición con datos prellenados y trazabilidad vinculada</span>
+        <span>La nueva orden se crea con información prellenada</span>
+      </div>
+      <div class="cmp-bullet">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
+        <span>Mantienes trazabilidad entre la orden original y la reposición</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ============ CUÁNDO APLICA ============ -->
-<section>
-  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
-    <div>
-      <div class="s-eyebrow"><span class="num">02</span>Cuándo aplica</div>
-      <h2 class="s-title">¿Cuándo recibes una <em>solicitud?</em></h2>
-    </div>
-  </div>
-
-  <div class="trigger-card">
-    <p class="trigger-intro">Recibes una solicitud de reposición cuando Melonn identifica una novedad en tránsito o un siniestro relacionado con una orden.</p>
-
-    <div class="motivos-grid">
-      <div class="motivo">
-        <div class="motivo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-3.5-3.5"/><path d="M11 8v3l2 2"/></svg>
-        </div>
-        <span class="motivo-text">Orden con presunción de pérdida</span>
-      </div>
-      <div class="motivo">
-        <div class="motivo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        </div>
-        <span class="motivo-text">Confirmación de orden perdida</span>
-      </div>
-      <div class="motivo">
-        <div class="motivo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z"/><path d="M16 2H8l-2 5h12l-2-5Z"/><path d="M12 17v4M8 21h8"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
-        </div>
-        <span class="motivo-text">Producto(s) dañado(s)</span>
-      </div>
-      <div class="motivo">
-        <div class="motivo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><line x1="12" y1="22" x2="12" y2="11"/><path d="M3.27 6.96 12 12 20.73 6.96"/></svg>
-        </div>
-        <span class="motivo-text">Producto(s) faltante(s)</span>
-      </div>
-    </div>
-
-    <div class="email-note">
-      <div class="email-note-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      </div>
-      <p class="email-note-text">Cuando la solicitud se crea, recibes una <strong style="color:var(--ink-0);font-weight:500">notificación por correo</strong> con acceso directo al detalle en Órbita.</p>
-    </div>
-  </div>
-</section>
 
 <!-- ============ FLUJO 5 PASOS ============ -->
 <section>
   <div class="s-head">
     <div>
-      <div class="s-eyebrow"><span class="num">03</span>Flujo</div>
-      <h2 class="s-title">¿Cómo <em>funciona?</em></h2>
-      <p class="s-aside">Cinco pasos desde que recibes la solicitud hasta que consultas la trazabilidad de la reposición.</p>
+      <div class="s-eyebrow"><span class="num">02</span>¿Cómo funciona?</div>
+      <h2 class="s-title">Cinco pasos desde la novedad hasta la <em>nueva orden.</em></h2>
+      <p class="s-aside">Cuando Melonn identifica una pérdida, daño o faltante, genera una solicitud para que puedas decidir cómo proceder.</p>
     </div>
   </div>
 
@@ -934,8 +781,8 @@ footer .l{display:flex;align-items:center;gap:18px}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
         </div>
         <span class="fp-tag">Paso 02</span>
-        <span class="fp-h">Revisas el detalle en Órbita</span>
-        <span class="fp-p">Desde Ventas → Solicitudes de reposición ves el motivo, la orden original, productos, cantidades, observaciones y fecha límite de respuesta.</span>
+        <span class="fp-h">Revisas el caso</span>
+        <span class="fp-p">Consultas el motivo, los productos afectados y la información de la orden original.</span>
       </div>
 
       <div class="flow-pill center">
@@ -944,8 +791,8 @@ footer .l{display:flex;align-items:center;gap:18px}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
         </div>
         <span class="fp-tag">Paso 03</span>
-        <span class="fp-h">Apruebas o rechazas</span>
-        <span class="fp-p">Puedes aprobar la solicitud para continuar con la creación de la orden, o rechazarla si no corresponde.</span>
+        <span class="fp-h">Tomas una decisión</span>
+        <span class="fp-p">Apruebas o rechazas la solicitud directamente desde Órbita.</span>
       </div>
 
       <div class="flow-pill">
@@ -954,8 +801,8 @@ footer .l{display:flex;align-items:center;gap:18px}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 14l2 2 4-4"/></svg>
         </div>
         <span class="fp-tag">Paso 04</span>
-        <span class="fp-h">Completas la orden de reposición</span>
-        <span class="fp-p">Al aprobar, se abre el modal de creación con datos prellenados. Puedes ajustar dirección, contacto, cantidades y agregar productos adicionales.</span>
+        <span class="fp-h">Creas la reposición</span>
+        <span class="fp-p">Si apruebas, se abre la creación de orden con datos prellenados para que ajustes lo necesario.</span>
       </div>
 
       <div class="flow-pill">
@@ -964,196 +811,78 @@ footer .l{display:flex;align-items:center;gap:18px}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h7"/><circle cx="17" cy="17" r="4"/><path d="m19 15-3 3.5-1.5-1.5"/></svg>
         </div>
         <span class="fp-tag">Paso 05</span>
-        <span class="fp-h">Consultas la trazabilidad</span>
-        <span class="fp-p">Una vez creada, puedes ver la orden de reposición vinculada desde la solicitud y desde la orden original.</span>
+        <span class="fp-h">Mantienes la trazabilidad</span>
+        <span class="fp-p">La solicitud queda vinculada tanto a la orden original como a la nueva orden de reposición.</span>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ============ ESTADOS ============ -->
-<section>
-  <div class="s-head">
-    <div>
-      <div class="s-eyebrow"><span class="num">04</span>Estados</div>
-      <h2 class="s-title">Estados de una <em>solicitud.</em></h2>
-      <p class="s-aside">Cada solicitud avanza por uno de estos estados desde que se crea hasta que se resuelve.</p>
-    </div>
-  </div>
 
-  <div class="states-grid">
-
-    <div class="state-card pendiente">
-      <div class="state-header">
-        <span class="state-dot pendiente-dot"></span>
-        <span class="state-label pendiente-label">Pendiente</span>
-      </div>
-      <h3 class="state-h">Esperando tu respuesta</h3>
-      <p class="state-p">La solicitud fue creada por Melonn y está esperando que apruebes o rechaces.</p>
-    </div>
-
-    <div class="state-card aprobada">
-      <div class="state-header">
-        <span class="state-dot aprobada-dot"></span>
-        <span class="state-label aprobada-label">Aprobada</span>
-      </div>
-      <h3 class="state-h">Reposición generada</h3>
-      <p class="state-p">Aprobaste la solicitud y se completó el proceso de creación de la orden de reposición.</p>
-    </div>
-
-    <div class="state-card rechazada">
-      <div class="state-header">
-        <span class="state-dot rechazada-dot"></span>
-        <span class="state-label rechazada-label">Rechazada</span>
-      </div>
-      <h3 class="state-h">Sin nueva orden</h3>
-      <p class="state-p">Rechazaste la solicitud. No se genera una nueva orden de reposición.</p>
-    </div>
-
-    <div class="state-card expirada">
-      <div class="state-header">
-        <span class="state-dot expirada-dot"></span>
-        <span class="state-label expirada-label">Expirada</span>
-      </div>
-      <h3 class="state-h">Cerrada por inactividad</h3>
-      <p class="state-p">Pasaron 15 días sin respuesta. La solicitud se cerró sin generar una nueva orden.</p>
-    </div>
-
-    <div class="state-card cancelada">
-      <div class="state-header">
-        <span class="state-dot cancelada-dot"></span>
-        <span class="state-label cancelada-label">Cancelada</span>
-      </div>
-      <h3 class="state-h">Cancelada por soporte</h3>
-      <p class="state-p">El equipo de soporte canceló la solicitud antes de que respondieras.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============ QUÉ PUEDES HACER ============ -->
+<!-- ============ CARACTERÍSTICAS ============ -->
 <section>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">05</span>Módulo</div>
-      <h2 class="s-title">Qué puedes hacer desde el <em>módulo.</em></h2>
-      <p class="s-aside">Todo lo que tienes disponible en Ventas → Solicitudes de reposición desde Órbita.</p>
+      <div class="s-eyebrow"><span class="num">03</span>Características</div>
+      <h2 class="s-title">Qué puedes ver <em>ahora.</em></h2>
     </div>
+    <p class="s-aside">Toda la información relevante de una reposición concentrada en un mismo lugar.</p>
   </div>
 
   <div class="cap-card">
-    <div class="cap-list">
-      <div class="cap-item">
-        <div class="cap-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span class="cap-text">Ver todas tus solicitudes de reposición en un solo lugar</span>
+    <div class="chars-grid">
+      <div class="info-card">
+        <p class="info-num">01</p>
+        <h3 class="info-h">Motivo de la solicitud</h3>
+        <p class="info-p">Identifica rápidamente si se trata de una pérdida, daño o faltante.</p>
       </div>
-      <div class="cap-item">
-        <div class="cap-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span class="cap-text">Crear la orden de reposición con información prellenada</span>
+      <div class="info-card">
+        <p class="info-num">02</p>
+        <h3 class="info-h">Productos afectados</h3>
+        <p class="info-p">Consulta los SKU e ítems incluidos en la reposición.</p>
       </div>
-      <div class="cap-item">
-        <div class="cap-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span class="cap-text">Revisar motivo, productos y cantidades afectadas</span>
+      <div class="info-card">
+        <p class="info-num">03</p>
+        <h3 class="info-h">Información prellenada</h3>
+        <p class="info-p">La nueva orden toma como base la información de la orden original.</p>
       </div>
-      <div class="cap-item">
-        <div class="cap-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span class="cap-text">Ajustar datos de envío antes de crear la nueva orden</span>
-      </div>
-      <div class="cap-item">
-        <div class="cap-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span class="cap-text">Aprobar o rechazar la solicitud</span>
-      </div>
-      <div class="cap-item">
-        <div class="cap-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span class="cap-text">Agregar productos adicionales si lo necesitas</span>
-      </div>
-      <div class="cap-item">
-        <div class="cap-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span class="cap-text">Consultar la orden de reposición vinculada</span>
+      <div class="info-card">
+        <p class="info-num">04</p>
+        <h3 class="info-h">Trazabilidad completa</h3>
+        <p class="info-p">Consulta la relación entre solicitud, orden original y orden de reposición.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CONSIDERACIONES ============ -->
+
+<!-- ============ BENEFICIOS ============ -->
 <section>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">06</span>Consideraciones</div>
-      <h2 class="s-title">Cosas importantes antes de <em>responder.</em></h2>
+      <div class="s-eyebrow"><span class="num">04</span>Beneficios</div>
+      <h2 class="s-title">Menos seguimiento manual. Más control del <em>proceso.</em></h2>
     </div>
+    <p class="s-aside">Solicitudes de Reposición centraliza la decisión y ejecución de cada caso para reducir fricción operativa.</p>
   </div>
 
-  <div class="alerts-grid">
-
-    <div class="alert-block">
-      <div class="alert-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
-        </svg>
-      </div>
-      <div class="alert-body">
-        <p class="alert-title">Tienes 15 días para responder</p>
-        <p class="alert-text">Si no apruebas ni rechazas la solicitud en ese tiempo, <strong>expira automáticamente</strong> y no se genera una nueva orden.</p>
-      </div>
+  <div class="bens-grid">
+    <div class="info-card">
+      <p class="info-num">01</p>
+      <h3 class="info-h">Menos coordinación manual</h3>
+      <p class="info-p">La información y la decisión viven dentro de una misma solicitud.</p>
     </div>
-
-    <div class="alert-block">
-      <div class="alert-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
-          <line x1="12" y1="9" x2="12" y2="13"/>
-          <line x1="12" y1="17" x2="12.01" y2="17"/>
-        </svg>
-      </div>
-      <div class="alert-body">
-        <p class="alert-title">Solo puede haber una solicitud pendiente por orden</p>
-        <p class="alert-text">Si ya existe una solicitud activa para una orden, <strong>no se puede crear otra</strong> hasta que se resuelva la anterior.</p>
-      </div>
+    <div class="info-card">
+      <p class="info-num">02</p>
+      <h3 class="info-h">Reposiciones más rápidas</h3>
+      <p class="info-p">La orden se crea con información prellenada y lista para completar.</p>
     </div>
-
-    <div class="alert-block">
-      <div class="alert-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>
-          <path d="M12 8v4M12 16h.01"/>
-        </svg>
-      </div>
-      <div class="alert-body">
-        <p class="alert-title">Aprobar una reposición no siempre cierra el siniestro</p>
-        <p class="alert-text">El caso puede seguir en <strong>evaluación en otra etapa del proceso</strong> aunque ya hayas aprobado la solicitud.</p>
-      </div>
+    <div class="info-card">
+      <p class="info-num">03</p>
+      <h3 class="info-h">Mayor visibilidad</h3>
+      <p class="info-p">Puedes entender qué ocurrió, qué se repone y cómo quedó resuelto.</p>
     </div>
-
-    <div class="alert-block">
-      <div class="alert-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5Z"/>
-        </svg>
-      </div>
-      <div class="alert-body">
-        <p class="alert-title">Puedes modificar datos antes de crear la orden</p>
-        <p class="alert-text">Al aprobar, puedes <strong>ajustar dirección, contacto, cantidades</strong> y agregar productos adicionales desde el modal de creación.</p>
-      </div>
-    </div>
-
-    <div class="alert-block" style="grid-column:1 / -1">
-      <div class="alert-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="8" width="14" height="10" rx="1.5"/>
-          <path d="M17 11h3l1 3v4h-4"/>
-          <circle cx="7" cy="20" r="2"/>
-          <circle cx="17" cy="20" r="2"/>
-        </svg>
-      </div>
-      <div class="alert-body">
-        <p class="alert-title">La orden original puede seguir su proceso</p>
-        <p class="alert-text">Si la orden original termina siendo <strong>entregada antes de que apruebes la reposición</strong>, puedes rechazar la solicitud.</p>
-      </div>
-    </div>
-
   </div>
 </section>
 
