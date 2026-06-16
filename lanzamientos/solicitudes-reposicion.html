@@ -1204,11 +1204,10 @@ footer .l{display:flex;align-items:center;gap:18px}
 })();
 </script>
 <script>
-/* Hero → panel: 3 s forward + 2 s hold + 3 s reverse — loop infinito */
+/* solicitudes-reposicion — hero → seccion 01 transition */
 (()=>{
-  const mq680    = window.matchMedia('(max-width:680px)');
-  const mqMotion = window.matchMedia('(prefers-reduced-motion:reduce)');
-  if(mq680.matches || mqMotion.matches) return;
+  const mq = window.matchMedia('(max-width:680px),(prefers-reduced-motion:reduce)');
+  if(mq.matches) return;
 
   const wrap    = document.querySelector('.hero-wrap');
   const heroBg  = document.querySelector('.hero-bg');
@@ -1217,212 +1216,130 @@ footer .l{display:flex;align-items:center;gap:18px}
   const panel   = document.querySelector('.hero-panel');
   if(!wrap||!heroBg||!content||!panel) return;
 
-  /* States: 'idle' | 'entering' | 'holding' | 'free' | 'reversing' */
-  let state      = 'idle';
-  let holdTimer  = null;
-  let touchStart = 0;
+  let state = 'IDLE';
+  let timer = null;
 
-  /* scrollY donde comienza seccion 01 */
-  const s01Top    = () => wrap.offsetTop + wrap.offsetHeight;
-  /* scrollY en que el hero queda totalmente sticky (ocupa el viewport completo) */
-  const stickyEnd = () => wrap.offsetTop + wrap.offsetHeight - window.innerHeight;
+  const S01_TOP  = () => wrap.offsetTop + wrap.offsetHeight;
+  const ANIM_MS  = 800;
+  const ENTER_MS = 3000;
+  const HOLD_MS  = 2000;
 
-  const ANIM     = 800;   /* duracion del deslizamiento del panel */
-  const HOLD_PNL = 2200;  /* pausa con panel quieto (total panel visible: 3 s) */
-  const HOLD_S01 = 2000;  /* pausa en seccion 01 antes de liberar scroll */
+  function lock()   { document.documentElement.style.overflow = document.body.style.overflow = 'hidden'; }
+  function unlock() { document.documentElement.style.overflow = document.body.style.overflow = ''; }
 
-  /* ---- visual helpers ---- */
-  function clearCSS(){
+  function resetHero(){
+    [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition='none'; });
+    heroBg.style.transform = '';
+    if(content){ content.style.opacity='1'; }
+    if(cosmos){  cosmos.style.opacity='1';  }
+    panel.style.position  = '';
+    panel.style.inset     = '';
+    panel.style.zIndex    = '';
+    panel.style.transform = 'translateX(-100%)';
+    panel.offsetHeight;
     [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition=''; });
   }
-  function snapHeroVisible(){
-    /* restaura hero sin animacion (cancel de transicion forward) */
-    clearCSS();
-    heroBg.style.transform = '';
-    content.style.opacity  = '';
-    if(cosmos) cosmos.style.opacity = '';
-    panel.style.transform  = 'translateX(-100%)';
+
+  let _ty = 0;
+  function onBWheel(e){  if(e.deltaY > 0) e.preventDefault(); }
+  function onBKey(e){    if([' ','ArrowDown','PageDown'].includes(e.key)) e.preventDefault(); }
+  function onBTStart(e){ _ty = e.touches[0].clientY; }
+  function onBTMove(e){  if(_ty - e.touches[0].clientY > 0) e.preventDefault(); }
+  function attachBlock(){
+    window.addEventListener('wheel',      onBWheel,  {passive:false});
+    document.addEventListener('keydown',  onBKey,    {capture:true});
+    window.addEventListener('touchstart', onBTStart, {passive:true});
+    window.addEventListener('touchmove',  onBTMove,  {passive:false});
   }
-  function lock(){
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-  }
-  function unlock(){
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
+  function detachBlock(){
+    window.removeEventListener('wheel',      onBWheel);
+    document.removeEventListener('keydown',  onBKey, {capture:true});
+    window.removeEventListener('touchstart', onBTStart);
+    window.removeEventListener('touchmove',  onBTMove);
   }
 
-  /* ---- watcher de posicion (activo en estado 'free') ----
-     Dispara la transicion inversa cuando el usuario entra a la zona sticky
-     del hero (scrollY <= stickyEnd ~ 1 viewport desde el top).
-     En ese punto el hero ya llena el viewport: saltar a 0 es imperceptible. */
-  function onScrollWatch(){
-    /* solo dispara cuando el usuario está dentro de la zona sticky del hero */
-    if(state === 'free' && window.scrollY >= wrap.offsetTop && window.scrollY <= stickyEnd()) reverse();
+  function onTWheel(e){
+    if(state !== 'IDLE' || window.scrollY > 80) return;
+    if(e.deltaY > 0){ e.preventDefault(); go(); }
   }
-  function startWatch(){ window.addEventListener('scroll', onScrollWatch, {passive:true}); }
-  function stopWatch(){  window.removeEventListener('scroll', onScrollWatch); }
-
-  /* ---- cancelar transicion forward (solo desde entering/holding) ---- */
-  function cancelForward(){
-    if(state !== 'entering' && state !== 'holding') return;
-    if(holdTimer){ clearTimeout(holdTimer); holdTimer = null; }
-    detachRun();
-    unlock();
-    snapHeroVisible();
-    state = 'idle';
-    armTriggers();
+  function onTKey(e){
+    if(state !== 'IDLE' || window.scrollY > 80) return;
+    if([' ','ArrowDown','PageDown'].includes(e.key)){ e.preventDefault(); go(); }
   }
-
-  /* ---- transicion inversa: seccion 01 -> hero (3 s) ---- */
-  function reverse(){
-    if(state !== 'free') return;
-    state = 'reversing';
-    stopWatch();
-    window.scrollTo(0, wrap.offsetTop);
-    lock();
-    attachRun();
-
-    heroBg.style.transition  = `transform ${ANIM}ms ease-in-out`;
-    content.style.transition = `opacity ${ANIM * .75 | 0}ms ease`;
-    if(cosmos) cosmos.style.transition = `opacity ${ANIM * .75 | 0}ms ease`;
-    panel.style.transition   = `transform ${ANIM}ms ease-in-out`;
-
-    /* panel sale a la izquierda, hero bg vuelve desde la derecha */
-    heroBg.style.transform = '';              /* 100% -> 0 (entra desde derecha) */
-    content.style.opacity  = '1';
-    if(cosmos) cosmos.style.opacity = '1';
-    panel.style.transform  = 'translateX(-100%)'; /* 0% -> -100% (sale a izquierda) */
-
-    holdTimer = setTimeout(()=>{
-      holdTimer = null;
-      clearCSS();
-      detachRun();
-      unlock();
-      state = 'idle';
-      armTriggers();
-    }, ANIM + HOLD_PNL);
-  }
-
-  /* ---- handlers direccionales ---- */
-  function onRunWheel(e){
-    if(state === 'reversing'){ e.preventDefault(); return; }
-    if(e.deltaY > 0) e.preventDefault();
-    else if(e.deltaY < 0) cancelForward();
-  }
-  function onRunKey(e){
-    if(state === 'reversing'){
-      if([' ','ArrowDown','PageDown','ArrowUp','PageUp'].includes(e.key)) e.preventDefault();
-      return;
-    }
-    if([' ','ArrowDown','PageDown'].includes(e.key))  e.preventDefault();
-    else if(['ArrowUp','PageUp'].includes(e.key))     cancelForward();
-  }
-  function onRunTouchStart(e){ touchStart = e.touches[0].clientY; }
-  function onRunTouchMove(e){
-    if(state === 'reversing'){ e.preventDefault(); return; }
-    const dy = touchStart - e.touches[0].clientY;
-    if(dy > 0)      e.preventDefault();
-    else if(dy < -8) cancelForward();
-  }
-  function attachRun(){
-    window.addEventListener('wheel',      onRunWheel,      {passive:false});
-    document.addEventListener('keydown',  onRunKey,        {capture:true});
-    window.addEventListener('touchstart', onRunTouchStart, {passive:true});
-    window.addEventListener('touchmove',  onRunTouchMove,  {passive:false});
-  }
-  function detachRun(){
-    window.removeEventListener('wheel',      onRunWheel);
-    document.removeEventListener('keydown',  onRunKey, {capture:true});
-    window.removeEventListener('touchstart', onRunTouchStart);
-    window.removeEventListener('touchmove',  onRunTouchMove);
-  }
-
-  /* ---- transicion forward: hero -> seccion 01 (3 s panel + 2 s hold) ---- */
-  function run(){
-    if(state !== 'idle') return;
-    state = 'entering';
-    disarmTriggers();
-    window.scrollTo(0, 0);
-    lock();
-    attachRun();
-
-    heroBg.style.transition  = `transform ${ANIM}ms ease-in-out`;
-    content.style.transition = `opacity ${ANIM * .75 | 0}ms ease`;
-    if(cosmos) cosmos.style.transition = `opacity ${ANIM * .75 | 0}ms ease`;
-    panel.style.transition   = `transform ${ANIM}ms ease-in-out`;
-
-    heroBg.style.transform = 'translateX(100%)';
-    content.style.opacity  = '0';
-    if(cosmos) cosmos.style.opacity = '0';
-    panel.style.transform  = 'translateX(0%)';
-
-    /* despues de 3 s: saltar a seccion 01, luego hold 2 s */
-    holdTimer = setTimeout(()=>{
-      holdTimer = null;
-      state = 'holding';
-      clearCSS();
-      requestAnimationFrame(()=>requestAnimationFrame(()=>{
-        unlock();
-        window.scrollTo(0, s01Top());
-        lock();
-        holdTimer = setTimeout(()=>{
-          holdTimer = null;
-          detachRun();
-          /* dead zone de 150ms: overflow:hidden sigue activo para absorber
-             inertia de trackpad y key-repeat acumulados durante el hold */
-          holdTimer = setTimeout(()=>{
-            holdTimer = null;
-            unlock();
-            state = 'free';
-            startWatch();
-          }, 150);
-        }, HOLD_S01);
-      }));
-    }, ANIM + HOLD_PNL);
-  }
-
-  /* ---- trigger listeners (solo cerca del top, solo estado idle) ---- */
-  function onWheel(e){
-    if(state !== 'idle' || window.scrollY > wrap.offsetTop) return;
-    if(e.deltaY > 0){ e.preventDefault(); run(); }
-  }
-  function onTouch(){
-    if(state === 'idle' && window.scrollY <= wrap.offsetTop) run();
-  }
-  function onKey(e){
-    if(state !== 'idle' || window.scrollY > wrap.offsetTop) return;
-    if([' ','ArrowDown','PageDown'].includes(e.key)) run();
+  function onTTouch(){
+    if(state !== 'IDLE' || window.scrollY > 80) return;
+    go();
   }
   function armTriggers(){
-    window.addEventListener('wheel',      onWheel, {passive:false});
-    window.addEventListener('touchstart', onTouch, {passive:true});
-    window.addEventListener('keydown',    onKey);
+    window.addEventListener('wheel',      onTWheel,  {passive:false});
+    window.addEventListener('keydown',    onTKey);
+    window.addEventListener('touchstart', onTTouch,  {passive:true});
   }
   function disarmTriggers(){
-    window.removeEventListener('wheel',      onWheel, {passive:false});
-    window.removeEventListener('touchstart', onTouch);
-    window.removeEventListener('keydown',    onKey);
+    window.removeEventListener('wheel',      onTWheel);
+    window.removeEventListener('keydown',    onTKey);
+    window.removeEventListener('touchstart', onTTouch);
   }
 
-  /* ---- boot ---- */
-  if(window.scrollY >= s01Top()){
-    state = 'free';
-    startWatch();
-  } else {
-    armTriggers();
+  function go(){
+    if(state !== 'IDLE') return;
+    state = 'ENTERING';
+    disarmTriggers();
+
+    panel.style.position = 'fixed';
+    panel.style.inset    = '0';
+    panel.style.zIndex   = '100';
+
+    lock();
+
+    heroBg.style.transition  = `transform ${ANIM_MS}ms ease-in-out`;
+    content.style.transition = `opacity ${ANIM_MS*.75|0}ms ease`;
+    if(cosmos) cosmos.style.transition = `opacity ${ANIM_MS*.75|0}ms ease`;
+    panel.style.transition   = `transform ${ANIM_MS}ms ease-in-out`;
+
+    heroBg.style.transform = 'translateX(100%)';
+    if(content) content.style.opacity = '0';
+    if(cosmos)  cosmos.style.opacity  = '0';
+    panel.style.transform  = 'translateX(0)';
+
+    timer = setTimeout(()=>{
+      [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition=''; });
+      window.scrollTo(0, S01_TOP());
+
+      timer = setTimeout(()=>{
+        timer = null;
+        state = 'HOLDING';
+        unlock();
+        attachBlock();
+
+        timer = setTimeout(()=>{
+          timer = null;
+          state = 'READY';
+          detachBlock();
+
+          panel.style.transition = `transform ${ANIM_MS}ms ease-in-out`;
+          panel.style.transform  = 'translateX(-100%)';
+
+          timer = setTimeout(()=>{
+            timer = null;
+            resetHero();
+            state = 'IDLE';
+            armTriggers();
+          }, ANIM_MS);
+
+        }, HOLD_MS);
+      }, ENTER_MS - ANIM_MS);
+    }, ANIM_MS);
   }
 
-  /* ---- cleanup en resize a mobile ---- */
-  mq680.addEventListener('change', e=>{
+  armTriggers();
+
+  mq.addEventListener('change', e=>{
     if(!e.matches) return;
-    disarmTriggers(); detachRun(); stopWatch();
-    if(holdTimer){ clearTimeout(holdTimer); holdTimer = null; }
-    clearCSS(); unlock();
-    [heroBg,content,cosmos,panel].forEach(el=>{
-      if(el){ el.style.transform=''; el.style.opacity=''; }
-    });
-    state = 'idle';
+    if(timer){ clearTimeout(timer); timer=null; }
+    detachBlock(); disarmTriggers(); unlock();
+    resetHero();
+    state = 'IDLE';
   });
 })();
 </script>
