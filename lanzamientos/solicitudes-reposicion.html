@@ -1219,7 +1219,8 @@ footer .l{display:flex;align-items:center;gap:18px}
   let state = 'IDLE';
   let timer = null;
 
-  const S01_TOP  = () => wrap.offsetTop + wrap.offsetHeight;
+  const S01_TOP   = () => wrap.offsetTop + wrap.offsetHeight;
+  const stickyEnd = () => wrap.offsetTop + wrap.offsetHeight - window.innerHeight;
   const ANIM_MS  = 800;
   const ENTER_MS = 3000;
   const HOLD_MS  = 2000;
@@ -1333,6 +1334,19 @@ footer .l{display:flex;align-items:center;gap:18px}
   }
 
   armTriggers();
+
+  /* scrollbar detection: intercept when user drags scrollbar out of hero zone */
+  let prevScrollY = window.scrollY;
+  function onScrollbarDetect(){
+    const curr = window.scrollY;
+    if(state !== 'IDLE'){ prevScrollY = curr; return; }
+    if(prevScrollY <= 80 && curr > 80 && curr < S01_TOP()){
+      if(curr <= stickyEnd()) window.scrollTo(0, wrap.offsetTop);
+      go();
+    }
+    prevScrollY = curr;
+  }
+  window.addEventListener('scroll', onScrollbarDetect, {passive:true});
 
   mq.addEventListener('change', e=>{
     if(!e.matches) return;
