@@ -951,8 +951,9 @@ footer .l{display:flex;align-items:center;gap:18px}
   const S01_TOP   = () => wrap.offsetTop + wrap.offsetHeight;
   const stickyEnd = () => wrap.offsetTop + wrap.offsetHeight - window.innerHeight;
   const ANIM_MS  = 800;
+  const EXIT_MS  = 1000;
   const ENTER_MS = 3000;
-  const HOLD_MS  = 2000;
+  const HOLD_MS  = 2800;
 
   function lock()   { document.documentElement.style.overflow = document.body.style.overflow = 'hidden'; }
   function unlock() { document.documentElement.style.overflow = document.body.style.overflow = ''; }
@@ -965,6 +966,7 @@ footer .l{display:flex;align-items:center;gap:18px}
     panel.style.position  = '';
     panel.style.inset     = '';
     panel.style.zIndex    = '';
+    panel.style.opacity   = '';
     panel.style.transform = 'translateX(-100%)';
     panel.offsetHeight;
     [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition=''; });
@@ -1047,15 +1049,15 @@ footer .l{display:flex;align-items:center;gap:18px}
           state = 'READY';
           detachBlock();
 
-          panel.style.transition = `transform ${ANIM_MS}ms ease-in-out`;
-          panel.style.transform  = 'translateX(-100%)';
+          panel.style.transition = `opacity ${EXIT_MS}ms ease`;
+          panel.style.opacity    = '0';
 
           timer = setTimeout(()=>{
             timer = null;
             resetHero();
             state = 'IDLE';
             armTriggers();
-          }, ANIM_MS);
+          }, EXIT_MS);
 
         }, HOLD_MS);
       }, ENTER_MS - ANIM_MS);
