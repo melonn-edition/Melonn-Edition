@@ -969,8 +969,11 @@ footer .l{display:flex;align-items:center;gap:18px}
     [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition=''; });
   }
 
-  /* ── HOLDING: fade out on user action ── */
+  /* ── HOLDING flags ──
+     holdScrollReady: ignora el scroll que genera el propio scrollTo()
+     holdWheelReady:  ignora la inercia del trackpad tras el gesto inicial        */
   let holdScrollReady = false;
+  let holdWheelReady  = false;
 
   function release(){
     if(state !== 'HOLDING') return;
@@ -987,8 +990,13 @@ footer .l{display:flex;align-items:center;gap:18px}
     }, EXIT_MS);
   }
 
+  /* wheel: siempre preventDefault() para evitar scroll accidental,
+     pero solo libera si holdWheelReady (inercia de trackpad ignorada) */
   function onHoldWheel(e){
-    if(e.deltaY > 0){ e.preventDefault(); release(); }
+    if(e.deltaY > 0){
+      e.preventDefault();
+      if(holdWheelReady) release();
+    }
   }
   function onHoldKey(e){
     if([' ','ArrowDown','PageDown'].includes(e.key)){ e.preventDefault(); release(); }
@@ -996,21 +1004,27 @@ footer .l{display:flex;align-items:center;gap:18px}
   let _hty = 0;
   function onHoldTStart(e){ _hty = e.touches[0].clientY; }
   function onHoldTMove(e){
-    if(_hty - e.touches[0].clientY > 10){ e.preventDefault(); release(); }
+    if(_hty - e.touches[0].clientY > 10){
+      e.preventDefault();
+      if(holdWheelReady) release();
+    }
   }
   function onHoldScroll(){ if(holdScrollReady) release(); }
 
   function attachHold(){
     holdScrollReady = false;
+    holdWheelReady  = false;
     window.addEventListener('wheel',      onHoldWheel,  {passive:false});
     window.addEventListener('keydown',    onHoldKey,    {capture:true});
     window.addEventListener('touchstart', onHoldTStart, {passive:true});
     window.addEventListener('touchmove',  onHoldTMove,  {passive:false});
     window.addEventListener('scroll',     onHoldScroll, {passive:true});
     setTimeout(()=>{ holdScrollReady = true; }, 150);
+    setTimeout(()=>{ holdWheelReady  = true; }, 500);
   }
   function detachHold(){
     holdScrollReady = false;
+    holdWheelReady  = false;
     window.removeEventListener('wheel',      onHoldWheel);
     window.removeEventListener('keydown',    onHoldKey, {capture:true});
     window.removeEventListener('touchstart', onHoldTStart);
