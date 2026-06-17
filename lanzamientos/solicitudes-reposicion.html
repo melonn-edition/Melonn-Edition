@@ -256,8 +256,22 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
   pointer-events:none;
   animation:neon-pulse 3s ease-in-out infinite;
 }
-.cmp-card.before::after{animation-delay:0s}
-.cmp-card.after::after{animation-delay:.6s}
+.cmp-card.before::after{
+  animation-delay:0s;
+  border-color:#f87171;
+  box-shadow:
+    inset 0 0 8px rgba(239,68,68,.5),0 0 4px rgba(248,113,113,1),
+    0 0 10px rgba(239,68,68,.95),0 0 24px rgba(239,68,68,.7),
+    0 0 50px rgba(239,68,68,.4),0 0 90px rgba(185,28,28,.2);
+}
+.cmp-card.after::after{
+  animation-delay:.6s;
+  border-color:#4ade80;
+  box-shadow:
+    inset 0 0 8px rgba(34,197,94,.5),0 0 4px rgba(74,222,128,1),
+    0 0 10px rgba(34,197,94,.95),0 0 24px rgba(34,197,94,.7),
+    0 0 50px rgba(34,197,94,.4),0 0 90px rgba(21,128,61,.2);
+}
 .cmp-card.before{opacity:1;border-color:rgba(196,181,253,.35);background:linear-gradient(180deg,rgba(25,17,50,.6),rgba(13,8,30,.55));box-shadow:0 30px 80px -20px rgba(124,92,255,.35)}
 .cmp-card.before::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,181,253,.9),transparent);box-shadow:0 0 24px rgba(196,181,253,.5)}
 .cmp-card.before .cmp-key{color:rgba(239,68,68,.9)}
