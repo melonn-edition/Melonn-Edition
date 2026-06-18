@@ -390,7 +390,7 @@ footer .l{display:flex;align-items:center;gap:18px}
 @keyframes star-twinkle{0%,100%{transform:scale(.7);opacity:.12}50%{transform:scale(1.2);opacity:.85}}
 @keyframes star-organic{0%{transform:scale(.65);opacity:.1}18%{transform:scale(1.25);opacity:.9}42%{transform:scale(.88);opacity:.44}68%{transform:scale(1.12);opacity:.78}84%{transform:scale(.72);opacity:.24}100%{transform:scale(.65);opacity:.1}}
 @media(prefers-reduced-motion:reduce){.nebula::before,.nebula::after,.nebula-left::before,.star{animation:none!important;opacity:.3}}
-@media(max-width:680px){.nebula{opacity:.6}.nebula-left{opacity:.5}.cosmos{opacity:.5}}
+@media(max-width:768px){.nebula{opacity:.6}.nebula-left{opacity:.5}.cosmos{opacity:.5}}
 
 /* ——— keyframes ——— */
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
@@ -411,7 +411,7 @@ footer .l{display:flex;align-items:center;gap:18px}
   .hero-panel{position:relative!important;inset:auto!important;transform:none!important;width:100%!important;overflow:visible!important;will-change:auto;background:none}
   .panel-stage{display:none}
 }
-@media(max-width:680px){
+@media(max-width:768px){
   .hero-wrap{height:auto}
   .hero{position:relative;top:auto;min-height:580px;overflow:visible;z-index:auto}
   .hero-bg{will-change:auto;transform:none!important}
@@ -915,6 +915,7 @@ footer .l{display:flex;align-items:center;gap:18px}
 
 <script>
 (()=>{
+  if(window.matchMedia('(max-width:768px)').matches) return;
   const els = document.querySelectorAll('section, footer');
   els.forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .8s ease, transform .8s ease';});
   const io = new IntersectionObserver((entries)=>{
@@ -932,7 +933,7 @@ footer .l{display:flex;align-items:center;gap:18px}
 <script>
 /* dashboard-kpis-orbita — hero ↔ panel transition */
 (()=>{
-  const mq = window.matchMedia('(max-width:680px),(prefers-reduced-motion:reduce)');
+  const mq = window.matchMedia('(max-width:768px),(prefers-reduced-motion:reduce)');
   if(mq.matches) return;
 
   const wrap  = document.querySelector('.hero-wrap');
