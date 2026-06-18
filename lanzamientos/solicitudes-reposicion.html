@@ -91,7 +91,7 @@ a{color:inherit;text-decoration:none}
 .nav-link.active{color:var(--violet-0);background:rgba(196,181,253,.10);border:1px solid var(--line-strong);box-shadow:0 0 24px -6px var(--violet-glow)}
 
 /* ——— hero ——— */
-.hero-wrap{position:relative;height:175vh}
+.hero-wrap{position:relative;height:100vh}
 .hero{
   position:sticky;top:0;z-index:2;
   max-width:none;
@@ -125,13 +125,13 @@ a{color:inherit;text-decoration:none}
 .hero-panel{
   position:absolute;inset:0;z-index:10;
   background-image:url('../IMAGE/LANZAMIENTOS/SOLICITUDES_REPOSICION/banner_Transicion.png?v=2');
-  background-size:cover;
-  background-position:center;
+  background-size:100% 100vh;
+  background-position:top center;
   background-repeat:no-repeat;
-  display:flex;align-items:center;justify-content:center;
   transform:translateX(-100%);
   will-change:transform;
 }
+.panel-stage{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative}
 .panel-cosmos{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .panel-preview{
   position:relative;z-index:2;
@@ -460,14 +460,16 @@ footer .l{display:flex;align-items:center;gap:18px}
 @media(prefers-reduced-motion:reduce){
   .hero-wrap{height:auto}
   .hero{position:relative;top:auto;min-height:580px;overflow:visible;z-index:auto}
-  .hero-bg,.hero-panel,.hero-content{transform:none!important;opacity:1!important;will-change:auto}
-  .hero-panel{display:none}
+  .hero-bg,.hero-content{transform:none!important;opacity:1!important;will-change:auto}
+  .hero-panel{transform:none!important;will-change:auto;background:none}
+  .panel-stage{display:none}
 }
 @media(max-width:680px){
   .hero-wrap{height:auto}
   .hero{position:relative;top:auto;min-height:580px;overflow:visible;z-index:auto}
   .hero-bg{will-change:auto;transform:none!important}
-  .hero-panel{display:none}
+  .hero-panel{transform:none!important;background:none}
+  .panel-stage{display:none}
   .hero-content{opacity:1!important;will-change:auto}
   .hero-cosmos{opacity:1!important}
   .nav-links{display:none}
@@ -611,7 +613,11 @@ footer .l{display:flex;align-items:center;gap:18px}
       <span class="tag live"><span class="dot"></span>Activo</span>
     </div>
   </div>
-  <div class="hero-panel">
+</header>
+</div><!-- /hero-wrap -->
+
+<div class="hero-panel">
+<div class="panel-stage">
     <div class="panel-cosmos">
       <span class="star star-b"         style="width:2px;height:2px;top:3%;left:7%;animation-duration:6.3s;animation-delay:.4s"></span>
       <span class="star star-v"         style="width:2px;height:2px;top:5%;left:21%;animation-duration:7.8s;animation-delay:1.9s"></span>
@@ -664,9 +670,7 @@ footer .l{display:flex;align-items:center;gap:18px}
         </div>
       </div>
     </div>
-  </div>
-</header>
-</div><!-- /hero-wrap -->
+</div><!-- /panel-stage -->
 
 <!-- ============ ANTES / AHORA ============ -->
 <section>
@@ -899,7 +903,7 @@ footer .l{display:flex;align-items:center;gap:18px}
   <div>Última actualización JUN/2026 · Todos los derechos reservados</div>
 </footer>
 
-</div>
+</div><!-- /hero-panel -->
 
 <script>
 (()=>{
@@ -918,184 +922,66 @@ footer .l{display:flex;align-items:center;gap:18px}
 })();
 </script>
 <script>
-/* solicitudes-reposicion — hero → panel transition (user-controlled release) */
+/* solicitudes-reposicion — hero → panel transition */
 (()=>{
   const mq = window.matchMedia('(max-width:680px),(prefers-reduced-motion:reduce)');
   if(mq.matches) return;
 
-  const wrap    = document.querySelector('.hero-wrap');
-  const heroBg  = document.querySelector('.hero-bg');
-  const content = document.querySelector('.hero-content');
-  const cosmos  = document.querySelector('.hero-cosmos');
-  const panel   = document.querySelector('.hero-panel');
-  if(!wrap||!heroBg||!content||!panel) return;
+  const wrap  = document.querySelector('.hero-wrap');
+  const panel = document.querySelector('.hero-panel');
+  if(!wrap||!panel) return;
 
-  const S01_TOP   = () => wrap.offsetTop + wrap.offsetHeight;
-  const stickyEnd = () => wrap.offsetTop + wrap.offsetHeight - window.innerHeight;
-  const ANIM_MS   = 800;
-  const EXIT_MS   = 1000;
-
-  let state = 'IDLE';
-  let timer = null;
+  const ANIM_MS = 800;
+  let entered = false;
 
   function lock()   { document.documentElement.style.overflow = document.body.style.overflow = 'hidden'; }
   function unlock() { document.documentElement.style.overflow = document.body.style.overflow = ''; }
 
-  function resetHero(){
-    [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition='none'; });
-    heroBg.style.transform = '';
-    if(content) content.style.opacity = '1';
-    if(cosmos)  cosmos.style.opacity  = '1';
-    panel.style.position  = '';
-    panel.style.inset     = '';
-    panel.style.zIndex    = '';
-    panel.style.opacity   = '';
-    panel.style.transform = 'translateX(-100%)';
-    panel.offsetHeight;
-    [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition=''; });
-  }
+  function enter(e){
+    if(entered) return;
+    entered = true;
+    if(e && e.preventDefault) e.preventDefault();
 
-  /* ── HOLDING flags ──
-     holdScrollReady: ignora el scroll que genera el propio scrollTo()
-     holdWheelReady:  ignora la inercia del trackpad tras el gesto inicial        */
-  let holdScrollReady = false;
-  let holdWheelReady  = false;
-
-  function release(){
-    if(state !== 'HOLDING') return;
-    state = 'READY';
-    detachHold();
-    panel.style.transition = `opacity ${EXIT_MS}ms ease`;
-    panel.style.opacity    = '0';
-    if(timer){ clearTimeout(timer); timer=null; }
-    timer = setTimeout(()=>{
-      timer = null;
-      resetHero();
-      state = 'IDLE';
-      armTriggers();
-    }, EXIT_MS);
-  }
-
-  /* wheel: siempre preventDefault() para evitar scroll accidental,
-     pero solo libera si holdWheelReady (inercia de trackpad ignorada) */
-  function onHoldWheel(e){
-    if(e.deltaY > 0){
-      e.preventDefault();
-      if(holdWheelReady) release();
-    }
-  }
-  function onHoldKey(e){
-    if([' ','ArrowDown','PageDown'].includes(e.key)){ e.preventDefault(); release(); }
-  }
-  let _hty = 0;
-  function onHoldTStart(e){ _hty = e.touches[0].clientY; }
-  function onHoldTMove(e){
-    if(_hty - e.touches[0].clientY > 10){
-      e.preventDefault();
-      if(holdWheelReady) release();
-    }
-  }
-  function onHoldScroll(){ if(holdScrollReady) release(); }
-
-  function attachHold(){
-    holdScrollReady = false;
-    holdWheelReady  = false;
-    window.addEventListener('wheel',      onHoldWheel,  {passive:false});
-    window.addEventListener('keydown',    onHoldKey,    {capture:true});
-    window.addEventListener('touchstart', onHoldTStart, {passive:true});
-    window.addEventListener('touchmove',  onHoldTMove,  {passive:false});
-    window.addEventListener('scroll',     onHoldScroll, {passive:true});
-    setTimeout(()=>{ holdScrollReady = true; }, 150);
-    setTimeout(()=>{ holdWheelReady  = true; }, 500);
-  }
-  function detachHold(){
-    holdScrollReady = false;
-    holdWheelReady  = false;
-    window.removeEventListener('wheel',      onHoldWheel);
-    window.removeEventListener('keydown',    onHoldKey, {capture:true});
-    window.removeEventListener('touchstart', onHoldTStart);
-    window.removeEventListener('touchmove',  onHoldTMove);
-    window.removeEventListener('scroll',     onHoldScroll);
-  }
-
-  /* ── IDLE triggers ── */
-  function onTWheel(e){
-    if(state !== 'IDLE' || window.scrollY > 80) return;
-    if(e.deltaY > 0){ e.preventDefault(); go(); }
-  }
-  function onTKey(e){
-    if(state !== 'IDLE' || window.scrollY > 80) return;
-    if([' ','ArrowDown','PageDown'].includes(e.key)){ e.preventDefault(); go(); }
-  }
-  function onTTouch(){
-    if(state !== 'IDLE' || window.scrollY > 80) return;
-    go();
-  }
-  function armTriggers(){
-    window.addEventListener('wheel',      onTWheel,  {passive:false});
-    window.addEventListener('keydown',    onTKey);
-    window.addEventListener('touchstart', onTTouch,  {passive:true});
-  }
-  function disarmTriggers(){
-    window.removeEventListener('wheel',      onTWheel);
-    window.removeEventListener('keydown',    onTKey);
-    window.removeEventListener('touchstart', onTTouch);
-  }
-
-  /* ── ENTERING → HOLDING ── */
-  function go(){
-    if(state !== 'IDLE') return;
-    state = 'ENTERING';
-    disarmTriggers();
-
-    panel.style.position = 'fixed';
-    panel.style.inset    = '0';
-    panel.style.zIndex   = '100';
-    lock();
-
-    heroBg.style.transition  = `transform ${ANIM_MS}ms ease-in-out`;
-    content.style.transition = `opacity ${ANIM_MS*.75|0}ms ease`;
-    if(cosmos) cosmos.style.transition = `opacity ${ANIM_MS*.75|0}ms ease`;
-    panel.style.transition   = `transform ${ANIM_MS}ms ease-in-out`;
-
-    heroBg.style.transform = 'translateX(100%)';
-    if(content) content.style.opacity = '0';
-    if(cosmos)  cosmos.style.opacity  = '0';
+    panel.style.transition = `transform ${ANIM_MS}ms cubic-bezier(.76,0,.24,1)`;
     panel.style.transform  = 'translateX(0)';
 
-    timer = setTimeout(()=>{
-      timer = null;
-      [heroBg,content,cosmos,panel].forEach(el=>{ if(el) el.style.transition=''; });
-      window.scrollTo(0, S01_TOP());
+    setTimeout(()=>{
+      panel.style.transition = 'none';
+      panel.style.transform  = 'none';
+      panel.style.position   = 'relative';
+      panel.style.inset      = 'auto';
+      panel.style.zIndex     = '2';
+      panel.style.width      = '100%';
+      panel.style.overflowY  = '';
+      wrap.style.display     = 'none';
       unlock();
-      state = 'HOLDING';
-      attachHold();
+      window.scrollTo(0, 0);
+      window.removeEventListener('wheel',      onWheel);
+      window.removeEventListener('keydown',    onKey);
+      window.removeEventListener('touchstart', onTStart);
+      window.removeEventListener('touchend',   onTEnd);
     }, ANIM_MS);
   }
 
-  armTriggers();
+  let _ty = 0;
+  function onWheel(e)  { if(e.deltaY > 0) enter(e); }
+  function onKey(e)    { if([' ','ArrowDown','PageDown'].includes(e.key)) enter(e); }
+  function onTStart(e) { _ty = e.touches[0].clientY; }
+  function onTEnd(e)   { if(e.changedTouches[0].clientY < _ty - 30) enter(); }
 
-  /* ── scrollbar detection in hero zone (IDLE only) ── */
-  let prevScrollY = window.scrollY;
-  function onScrollbarDetect(){
-    const curr = window.scrollY;
-    if(state !== 'IDLE'){ prevScrollY = curr; return; }
-    if(prevScrollY <= 80 && curr > 80 && curr < S01_TOP()){
-      if(curr <= stickyEnd()) window.scrollTo(0, wrap.offsetTop);
-      go();
-    }
-    prevScrollY = curr;
-  }
-  window.addEventListener('scroll', onScrollbarDetect, {passive:true});
+  panel.style.position  = 'fixed';
+  panel.style.inset     = '0';
+  panel.style.zIndex    = '10';
+  panel.style.width     = '100vw';
+  panel.style.overflowY = 'hidden';
+  panel.style.transition = 'none';
+  lock();
 
-  /* ── responsive bailout ── */
-  mq.addEventListener('change', e=>{
-    if(!e.matches) return;
-    if(timer){ clearTimeout(timer); timer=null; }
-    detachHold(); disarmTriggers(); unlock();
-    resetHero();
-    state = 'IDLE';
-  });
+  window.addEventListener('wheel',      onWheel,  {passive:false});
+  window.addEventListener('keydown',    onKey);
+  window.addEventListener('touchstart', onTStart, {passive:true});
+  window.addEventListener('touchend',   onTEnd,   {passive:true});
+
 })();
 </script>
 <script>
