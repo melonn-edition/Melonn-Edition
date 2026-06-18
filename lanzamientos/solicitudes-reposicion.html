@@ -123,13 +123,10 @@ a{color:inherit;text-decoration:none}
   pointer-events:none;
 }
 .hero-panel{
-  position:absolute;inset:0;z-index:10;
   background-image:url('../IMAGE/LANZAMIENTOS/SOLICITUDES_REPOSICION/banner_Transicion.png?v=2');
   background-size:100% 100vh;
   background-position:top center;
   background-repeat:no-repeat;
-  transform:translateX(-100%);
-  will-change:transform;
 }
 .panel-stage{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative}
 .back-btn{position:fixed;top:108px;right:20px;z-index:200;display:flex;align-items:center;gap:7px;padding:9px 16px 9px 12px;border-radius:999px;background:rgba(8,7,26,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--violet-0);color:var(--violet-0);font-size:13px;font-family:inherit;font-weight:600;letter-spacing:.02em;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s ease,box-shadow .2s ease;white-space:nowrap;}
@@ -387,6 +384,20 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 .chars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .bens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 
+/* ——— siniestro sub-block ——— */
+.sin-block{margin-top:40px;border-top:1px solid var(--line);padding-top:36px}
+.sin-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--violet-0);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sin-label svg{width:12px;height:12px;flex-shrink:0}
+.sin-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;margin-bottom:16px}
+.sin-mini{border-radius:var(--r-lg);padding:22px 24px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(22,18,50,.45),rgba(10,8,24,.45))}
+.sin-mini-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.sin-mini-label svg{width:12px;height:12px;flex-shrink:0}
+.sin-mini.accept .sin-mini-label{color:#4ade80}
+.sin-mini.decline .sin-mini-label{color:rgba(245,158,11,.9)}
+.sin-mini p{font-size:14.5px;color:var(--ink-1);line-height:1.5;font-weight:300}
+.sin-nota{font-size:13px;color:var(--ink-2);line-height:1.55;display:flex;align-items:flex-start;gap:8px;font-style:italic}
+.sin-nota svg{width:12px;height:12px;margin-top:2px;flex-shrink:0;color:var(--violet-0)}
+@media(max-width:768px){.sin-grid{grid-template-columns:1fr}}
 
 /* ——— cierre ——— */
 .cierre{
@@ -465,14 +476,14 @@ footer .l{display:flex;align-items:center;gap:18px}
   .hero-wrap{height:auto}
   .hero{position:relative;top:auto;min-height:580px;overflow:visible;z-index:auto}
   .hero-bg,.hero-content{transform:none!important;opacity:1!important;will-change:auto}
-  .hero-panel{position:relative!important;inset:auto!important;transform:none!important;width:100%!important;overflow:visible!important;will-change:auto;background:none}
+  .hero-panel{background:none}
   .panel-stage{display:none}
 }
 @media(max-width:768px){
   .hero-wrap{height:auto}
   .hero{position:relative;top:auto;min-height:580px;overflow:visible;z-index:auto}
   .hero-bg{will-change:auto;transform:none!important}
-  .hero-panel{position:relative!important;inset:auto!important;transform:none!important;width:100%!important;overflow:visible!important;background:none}
+  .hero-panel{background:none}
   .panel-stage{display:none}
   .hero-content{opacity:1!important;will-change:auto}
   .hero-cosmos{opacity:1!important}
@@ -810,6 +821,36 @@ footer .l{display:flex;align-items:center;gap:18px}
 
     </div>
   </div>
+
+  <!-- ▼ También aplica cuando reportas un siniestro ▼ -->
+  <div class="sin-block">
+    <p class="sin-label">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="8" r="7"/><path d="M8 5v3M8 11h.01" stroke-linecap="round"/></svg>
+      También aplica cuando reportas un siniestro
+    </p>
+    <p class="info-p" style="max-width:72ch">Si reportas un siniestro en Órbita, el sistema puede preguntarte si quieres crear una orden de reposición en ese momento. Si aceptas, validas la información, aceptas los términos y continúas con la creación de la orden. Si decides esperar, Melonn podrá generar una solicitud automáticamente cuando el siniestro sea aprobado.</p>
+    <div class="sin-grid">
+      <div class="sin-mini accept">
+        <p class="sin-mini-label">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8l4 4 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Si aceptas
+        </p>
+        <p>Se abre la solicitud de reposición para validar información, aceptar términos y continuar con la creación de la orden.</p>
+      </div>
+      <div class="sin-mini decline">
+        <p class="sin-mini-label">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h8" stroke-linecap="round"/></svg>
+          Si rechazas o prefieres esperar
+        </p>
+        <p>No se genera una orden en ese momento. Si el siniestro se aprueba después, Melonn podrá generar una nueva solicitud.</p>
+      </div>
+    </div>
+    <p class="sin-nota">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="8" r="7"/><path d="M8 5v3M8 11h.01" stroke-linecap="round"/></svg>
+      Si no respondes, el aviso seguirá apareciendo hasta que tomes una decisión.
+    </p>
+  </div>
+
 </section>
 
 
@@ -1065,11 +1106,13 @@ footer .l{display:flex;align-items:center;gap:18px}
   if(btn) btn.addEventListener('click', ()=>exit());
 
   /* ── Init ── */
+  panel.style.transform  = 'translateX(-100%)';
   panel.style.position   = 'fixed';
   panel.style.inset      = '0';
   panel.style.zIndex     = '10';
   panel.style.width      = '100vw';
   panel.style.overflowY  = 'hidden';
+  panel.style.willChange = 'transform';
   panel.style.transition = 'none';
   lock();
   addEnterListeners();
