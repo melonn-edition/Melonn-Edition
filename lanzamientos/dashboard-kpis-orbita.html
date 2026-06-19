@@ -312,7 +312,7 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 .bens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 
 /* ——— kpi cards (sección 02) ——— */
-.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .kpi-card{position:relative;border-radius:var(--r-lg);padding:28px 24px;background:linear-gradient(180deg,rgba(22,18,50,.6),rgba(10,8,24,.6));border:1px solid var(--line-strong);display:flex;flex-direction:column;gap:14px;box-shadow:0 8px 40px -12px rgba(124,92,255,.35),0 0 60px -20px var(--violet-glow)}
 .kpi-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);box-shadow:0 0 20px var(--violet-glow)}
 .kpi-card::after{content:"";position:absolute;inset:-1px;border-radius:inherit;border:1px solid #67e8f9;box-shadow:inset 0 0 8px rgba(34,211,238,.5),0 0 4px rgba(103,232,249,1),0 0 10px rgba(34,211,238,.95),0 0 24px rgba(34,211,238,.7),0 0 50px rgba(34,211,238,.4),0 0 90px rgba(6,182,212,.2);pointer-events:none;animation:neon-pulse 3s ease-in-out infinite}
@@ -320,8 +320,7 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 .kpi-card:nth-child(2)::after{animation-delay:.5s}
 .kpi-card:nth-child(3)::after{animation-delay:1s}
 .kpi-card:nth-child(4)::after{animation-delay:1.5s}
-.kpi-card:nth-child(5)::after{animation-delay:2s}
-.kpi-card:nth-child(6)::after{animation-delay:2.5s}
+
 .kpi-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(196,181,253,.06);border:1px solid var(--line-strong);color:var(--violet-0);flex-shrink:0}
 .kpi-icon svg{width:22px;height:22px}
 .kpi-label{font-size:16px;font-weight:500;color:var(--ink-0);letter-spacing:-.01em}
@@ -654,9 +653,9 @@ footer .l{display:flex;align-items:center;gap:18px}
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
       <div class="s-eyebrow"><span class="num">02</span>Qué puedes consultar</div>
-      <h2 class="s-title">Seis secciones, <em>una sola pantalla.</em></h2>
+      <h2 class="s-title">Cuatro vistas para entender mejor tu <em>operación.</em></h2>
     </div>
-    <p class="s-aside">Cada sección del dashboard concentra los KPIs relevantes de una categoría de tu operación.</p>
+    <p class="s-aside">El dashboard organiza la información en cuatro vistas clave: Overview, On Time, Inventario e Incidencias &amp; Siniestros, para analizar cada categoría de tu operación con más contexto.</p>
   </div>
 
   <div class="kpi-grid">
@@ -706,31 +705,8 @@ footer .l{display:flex;align-items:center;gap:18px}
       <span class="kpi-desc">Seguimiento de pérdidas, daños y faltantes reportados en tu operación.</span>
     </div>
 
-    <div class="kpi-card">
-      <div class="kpi-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
-          <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
-        </svg>
-      </div>
-      <span class="kpi-label">Órdenes</span>
-      <span class="kpi-desc">Volumen, estado y distribución de tus órdenes procesadas por periodo.</span>
-    </div>
-
-    <div class="kpi-card">
-      <div class="kpi-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path d="M9 14 4 9l5-5"/>
-          <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <span class="kpi-label">Devoluciones</span>
-      <span class="kpi-desc">Tasa y motivos de tus órdenes devueltas o en proceso de retorno.</span>
-    </div>
-
   </div>
 </section>
-
 
 <!-- ============ 03 — CÓMO FUNCIONA ============ -->
 <section>
