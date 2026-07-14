@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="robots" content="noindex, nofollow" />
+<meta name="robots" content="noindex, nofollow, noarchive" />
 <link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <title>Multipaquete – Melonn Editions</title>
@@ -112,10 +112,7 @@ a{color:inherit;text-decoration:none}
 }
 .hero-bg{
   position:absolute;inset:0;z-index:0;
-  background-image:url('../IMAGENES/multipaquete/hero/Banner_Hero.png');
-  background-size:cover;
-  background-position:center left;
-  background-repeat:no-repeat;
+  background-color:#0d0b22;
   will-change:transform;
 }
 .hero-bg::before{
@@ -142,7 +139,7 @@ a{color:inherit;text-decoration:none}
 }
 .callout-img-wrap{margin:-64px -56px 0;overflow:hidden;border-radius:calc(var(--r-xl) - 1px) calc(var(--r-xl) - 1px) 0 0;line-height:0;position:relative;z-index:2}
 .callout-img{width:100%;height:auto;display:block}
-.panel-preview .callout{padding:64px 56px 28px}
+.panel-preview .callout{padding:56px 56px}
 .panel-preview .callout-mark{width:60px;height:60px}
 .panel-preview .callout-mark svg{width:30px;height:30px}
 .panel-preview .callout-text{font-size:clamp(14px,1.55vw,20px)}
@@ -158,7 +155,7 @@ a{color:inherit;text-decoration:none}
 .hero-cosmos{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
 .hero-copy{max-width:560px;margin:0 auto;text-align:center}
 
-.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;color:#fff;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:14px;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;color:#fff;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:14px;text-shadow:0 2px 18px rgba(0,0,0,.35)}
 .eyebrow .line{width:48px;height:1px;background:linear-gradient(90deg,var(--violet-0),transparent);box-shadow:0 0 8px var(--violet-glow)}
 
 .h-title{font-size:clamp(36px,4.2vw,60px);font-weight:600;letter-spacing:-.04em;line-height:.98;max-width:22ch;margin:0 auto 20px;text-wrap:balance}
@@ -169,7 +166,7 @@ a{color:inherit;text-decoration:none}
   font-weight:500;
   filter:drop-shadow(0 0 24px rgba(196,181,253,.45));
 }
-.h-tagline{font-size:clamp(15px,1.2vw,17px);color:#fff;font-weight:300;letter-spacing:-.01em;margin:18px auto 0;line-height:1.6;max-width:44ch;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.h-tagline{font-size:clamp(15px,1.2vw,17px);color:#fff;font-weight:300;letter-spacing:-.01em;margin:20px auto 0;line-height:1.6;max-width:44ch;text-shadow:0 2px 18px rgba(0,0,0,.35)}
 .h-sub{display:none}
 
 .btn{
@@ -193,7 +190,7 @@ a{color:inherit;text-decoration:none}
 .tag.live .dot{background:#5EEAD4;box-shadow:0 0 12px #5EEAD4;animation:pulse 1.6s ease-in-out infinite}
 .tag.pending .dot{background:#FCD34D;box-shadow:0 0 12px #FCD34D;animation:pulse 2.4s ease-in-out infinite}
 
-.hero-foot{display:flex;margin-top:36px;gap:32px;flex-wrap:wrap;align-items:center;justify-content:center}
+.hero-foot{display:flex;margin-top:44px;gap:32px;flex-wrap:wrap;align-items:center;justify-content:center}
 .hf-item{display:flex;flex-direction:column;gap:4px}
 .hf-key{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--ink-3);text-transform:uppercase;font-weight:500}
 .hf-val{font-size:13px;color:var(--ink-0);font-weight:500}
@@ -241,25 +238,64 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 .callout-text{font-size:clamp(16px,1.85vw,24px);font-weight:400;letter-spacing:-.02em;line-height:1.35;color:var(--ink-0);text-wrap:balance;flex:1;min-width:0}
 .callout-text strong{font-weight:600;color:var(--violet-0);filter:drop-shadow(0 0 12px var(--violet-glow))}
 
-/* ——— before / after comparison ——— */
-.ba-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  margin:-64px -56px 32px;
-  position:relative;z-index:2;
-  border-bottom:1px solid var(--line-strong);
+/* ——— antes/ahora comparison ——— */
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:stretch}
+.cmp-card{
+  position:relative;border-radius:var(--r-lg);
+  padding:36px 32px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(20,17,42,.5),rgba(10,8,22,.5));
 }
-.ba-col{padding:36px 40px;display:flex;flex-direction:column;gap:16px}
-.ba-col.ba-before{background:rgba(8,6,18,.92)}
-.ba-col.ba-after{background:rgba(18,12,42,.92)}
-.ba-divider{position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--line-strong)}
-.ba-head{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--line)}
-.bh-before{color:var(--ink-3)}
-.bh-after{color:var(--violet-0);text-shadow:0 0 10px var(--violet-glow)}
-.ba-items{display:flex;flex-direction:column;gap:10px}
-.ba-li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink-1);line-height:1.5;font-weight:300}
-.ba-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px}
-.ba-li.neg .ba-dot{background:rgba(239,68,68,.55);box-shadow:0 0 8px rgba(239,68,68,.3)}
-.ba-li.pos .ba-dot{background:var(--violet-1);box-shadow:0 0 8px var(--violet-glow)}
+.cmp-card::after{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;
+  border:1px solid #67e8f9;
+  box-shadow:
+    inset 0 0 8px rgba(34,211,238,.5),0 0 4px rgba(103,232,249,1),
+    0 0 10px rgba(34,211,238,.95),0 0 24px rgba(34,211,238,.7),
+    0 0 50px rgba(34,211,238,.4),0 0 90px rgba(6,182,212,.2);
+  pointer-events:none;
+  animation:neon-pulse 3s ease-in-out infinite;
+}
+.cmp-card.before::after{
+  animation-delay:0s;
+  border-color:#f87171;
+  box-shadow:
+    inset 0 0 8px rgba(239,68,68,.5),0 0 4px rgba(248,113,113,1),
+    0 0 10px rgba(239,68,68,.95),0 0 24px rgba(239,68,68,.7),
+    0 0 50px rgba(239,68,68,.4),0 0 90px rgba(185,28,28,.2);
+}
+.cmp-card.after::after{
+  animation-delay:.6s;
+  border-color:#4ade80;
+  box-shadow:
+    inset 0 0 8px rgba(34,197,94,.5),0 0 4px rgba(74,222,128,1),
+    0 0 10px rgba(34,197,94,.95),0 0 24px rgba(34,197,94,.7),
+    0 0 50px rgba(34,197,94,.4),0 0 90px rgba(21,128,61,.2);
+}
+.cmp-card.before{opacity:1;border-color:rgba(196,181,253,.35);background:linear-gradient(180deg,rgba(25,17,50,.6),rgba(13,8,30,.55));box-shadow:0 30px 80px -20px rgba(124,92,255,.35)}
+.cmp-card.before::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,181,253,.9),transparent);box-shadow:0 0 24px rgba(196,181,253,.5)}
+.cmp-card.before .cmp-key{color:rgba(239,68,68,.9)}
+.cmp-card.after{
+  border-color:rgba(34,197,94,.4);
+  background:radial-gradient(70% 100% at 50% 0%,rgba(34,197,94,.15),transparent 60%),linear-gradient(180deg,rgba(17,40,24,.6),rgba(8,22,13,.6));
+  box-shadow:0 30px 80px -20px rgba(34,197,94,.35),inset 0 0 80px -20px rgba(34,197,94,.12);
+}
+.cmp-card.after::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#22c55e,transparent);box-shadow:0 0 24px rgba(34,197,94,.5)}
+.cmp-card.after .cmp-key{color:#22c55e}
+.cmp-key{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.cmp-num{display:flex;flex-direction:column;line-height:.88;font-size:clamp(48px,5.6vw,84px);font-weight:500;letter-spacing:-.04em;line-height:.95;margin-bottom:8px}
+.cmp-card.after .cmp-num{background:linear-gradient(180deg,#fff,#86efac);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 24px rgba(34,197,94,.5))}
+.title-sub{font-size:calc(.38em + 2px);font-weight:400;letter-spacing:-.01em;margin-top:4px;color:var(--ink-1);-webkit-text-fill-color:var(--ink-1);background:none;-webkit-background-clip:initial;background-clip:initial}
+.cmp-h{font-size:16px;font-weight:500;letter-spacing:-.01em;margin-bottom:12px}
+.cmp-p{font-size:17px;color:var(--ink-0);line-height:1.55;font-weight:300}
+.cmp-bullet{display:flex;align-items:flex-start;gap:10px;margin-top:14px;font-size:16.5px;color:var(--ink-0);line-height:1.5;font-weight:300}
+.cmp-bullet svg{width:14px;height:14px;flex-shrink:0;margin-top:3px}
+.cmp-card.before .cmp-bullet,.cmp-card.after .cmp-bullet{font-size:14.5px}
+.cmp-card.before .cmp-bullet svg{color:#ef4444}
+.cmp-arrow{display:grid;place-items:center;color:var(--violet-0);width:80px}
+.cmp-arrow-svg{width:100%;height:80px;position:relative}
+.cmp-arrow-svg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,var(--violet-glow),transparent 60%);filter:blur(16px);animation:bgpulse 2s ease-in-out infinite}
+.cmp-arrow svg{position:relative;z-index:1;filter:drop-shadow(0 0 12px var(--violet-glow))}
 
 /* ——— flow (pasos) ——— */
 .flow-section{position:relative;padding:0}
@@ -269,7 +305,7 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
   justify-content:center;
 }
 .flow-pill{
-  flex:0 0 calc(50% - 9px);
+  flex:0 0 calc(25% - 14px);
   min-width:200px;
   display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;
   padding:32px 22px;border-radius:var(--r-lg);
@@ -330,20 +366,6 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp
 .cap-card .chars-grid{grid-template-columns:repeat(3,1fr)}
 .bens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 
-/* ——— kpi cards ——— */
-.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.kpi-card{position:relative;border-radius:var(--r-lg);padding:28px 24px;background:linear-gradient(180deg,rgba(22,18,50,.6),rgba(10,8,24,.6));border:1px solid var(--line-strong);display:flex;flex-direction:column;gap:14px;box-shadow:0 8px 40px -12px rgba(124,92,255,.35),0 0 60px -20px var(--violet-glow)}
-.kpi-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--violet-0),transparent);box-shadow:0 0 20px var(--violet-glow)}
-.kpi-card::after{content:"";position:absolute;inset:-1px;border-radius:inherit;border:1px solid #67e8f9;box-shadow:inset 0 0 8px rgba(34,211,238,.5),0 0 4px rgba(103,232,249,1),0 0 10px rgba(34,211,238,.95),0 0 24px rgba(34,211,238,.7),0 0 50px rgba(34,211,238,.4),0 0 90px rgba(6,182,212,.2);pointer-events:none;animation:neon-pulse 3s ease-in-out infinite}
-.kpi-card:nth-child(1)::after{animation-delay:0s}
-.kpi-card:nth-child(2)::after{animation-delay:.5s}
-.kpi-card:nth-child(3)::after{animation-delay:1s}
-.kpi-card:nth-child(4)::after{animation-delay:1.5s}
-.kpi-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(196,181,253,.06);border:1px solid var(--line-strong);color:var(--violet-0);flex-shrink:0}
-.kpi-icon svg{width:22px;height:22px}
-.kpi-label{font-size:16px;font-weight:500;color:var(--ink-0);letter-spacing:-.01em}
-.kpi-desc{font-size:14px;color:var(--ink-2);line-height:1.5;font-weight:300}
-.kpi-badge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);background:rgba(196,181,253,.04);padding:3px 8px;border-radius:4px;border:1px solid var(--line);display:inline-flex;align-self:flex-start}
 
 /* ——— cierre ——— */
 .cierre{
@@ -377,10 +399,7 @@ footer .l{display:flex;align-items:center;gap:18px}
 .nebula-left{position:fixed;inset:0;z-index:0;pointer-events:none}
 .page-bg{
   position:fixed;inset:0;z-index:0;
-  background-image:url('../IMAGE/LANZAMIENTOS/DASHBOARD_KPIS_ORBITA/Fondo_Page.png?v=1');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  background-color:#0d0b22;
   pointer-events:none;
 }
 .page-bg::after{
@@ -409,9 +428,12 @@ footer .l{display:flex;align-items:center;gap:18px}
 @keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.4)}}
 
 /* ——— responsive ——— */
+@media(max-width:1100px){
+  .compare{grid-template-columns:1fr;gap:14px}
+  .cmp-arrow{width:auto;justify-self:center;transform:rotate(90deg)}
+}
 @media(max-width:840px){
   .flow-pill{flex:0 0 calc(50% - 9px);min-width:0}
-  .kpi-grid{grid-template-columns:repeat(2,1fr)}
 }
 .hamburger{display:none}
 .mobile-menu{display:none}
@@ -434,9 +456,6 @@ footer .l{display:flex;align-items:center;gap:18px}
   .hero-foot{flex-wrap:wrap;gap:18px}
   .callout-inner{flex-direction:column!important;text-align:left}
   .callout{padding:40px 28px}
-  .callout-img-wrap{margin:-40px -28px 0}
-  .ba-grid{margin:-40px -28px 24px}
-  .ba-col{padding:24px 24px}
   section,.hero,footer{padding-left:40px;padding-right:40px}
   .nav{padding-left:40px;padding-right:40px;display:flex!important;justify-content:space-between;align-items:center}
   .eyebrow{display:none}
@@ -453,9 +472,7 @@ footer .l{display:flex;align-items:center;gap:18px}
   .hero-content{padding-left:40px;padding-right:40px}
   .cap-card{padding:28px 24px}
   .flow-pill{flex:0 0 100%;min-width:0}
-  .chars-grid,.bens-grid,.kpi-grid{grid-template-columns:1fr}
-  .ba-grid{grid-template-columns:1fr}
-  .ba-divider{display:none}
+  .chars-grid,.bens-grid{grid-template-columns:1fr}
   .hero-foot{margin-top:24px;gap:20px;justify-content:flex-start}
 }
 @media(max-width:400px){
@@ -547,23 +564,27 @@ footer .l{display:flex;align-items:center;gap:18px}
     <div class="hero-copy">
       <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Multipaquete</div>
       <h1 class="h-title">Cada paquete cuenta su propia <em>historia.</em></h1>
-      <p class="h-tagline">Cuando una orden se divide en varios envíos, la claridad no tiene por qué fragmentarse. Ahora puedes consultar <strong style="font-weight:800">el estado, la guía, la transportadora y el historial de cada paquete</strong> de forma 100% independiente.</p>
+      <p class="h-tagline">Olvídate de rastrear a ciegas. Sigue cada paquete de tu orden de forma independiente con su propia guía, transportadora e historial, sin perder la visión general desde Órbita.</p>
     </div>
 
     <div class="hero-foot">
       <div class="hf-item">
         <span class="hf-key">Categoría</span>
-        <span class="hf-val">Transporte · Outbound</span>
+        <span class="hf-val">Operación · Transporte</span>
       </div>
       <div class="hf-item">
         <span class="hf-key">Disponibilidad</span>
         <span class="hf-val">México · Colombia · Chile</span>
       </div>
       <div class="hf-item">
-        <span class="hf-key">Lanzamiento estimado</span>
-        <span class="hf-val">23 junio 2026</span>
+        <span class="hf-key">Impacta a</span>
+        <span class="hf-val">Sellers</span>
       </div>
-      <span class="tag pending"><span class="dot"></span>Pendiente</span>
+      <div class="hf-item">
+        <span class="hf-key">Fecha</span>
+        <span class="hf-val">JUL · 2026</span>
+      </div>
+      <span class="tag live"><span class="dot"></span>Activo</span>
     </div>
   </div>
 </header>
@@ -609,38 +630,7 @@ footer .l{display:flex;align-items:center;gap:18px}
 
     <div class="panel-preview">
       <div class="callout">
-
-        <!-- Antes / Ahora -->
-        <div class="ba-grid" style="position:relative">
-          <div class="ba-divider"></div>
-          <div class="ba-col ba-before">
-            <p class="ba-head bh-before">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-              Antes
-            </p>
-            <p style="font-size:13px;color:var(--ink-2);font-weight:300;line-height:1.5">Si una orden tenía varios paquetes, la logística se volvía una caja negra:</p>
-            <div class="ba-items">
-              <div class="ba-li neg"><span class="ba-dot"></span>Descifrar cuál de los paquetes iba en camino era casi un juego de adivinanzas.</div>
-              <div class="ba-li neg"><span class="ba-dot"></span>No había certeza real de cuál ya estaba en manos del cliente y cuál seguía en ruta.</div>
-              <div class="ba-li neg"><span class="ba-dot"></span>El seguimiento se limitaba a la orden general, perdiendo el rastro de los detalles.</div>
-            </div>
-          </div>
-          <div class="ba-col ba-after">
-            <p class="ba-head bh-after">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
-              Ahora
-            </p>
-            <p style="font-size:13px;color:var(--violet-1);font-weight:300;line-height:1.5;text-shadow:0 0 10px var(--violet-glow)">Cada paquete toma el control de su propio camino:</p>
-            <div class="ba-items">
-              <div class="ba-li pos"><span class="ba-dot"></span><span><strong style="font-weight:600;color:var(--ink-0)">Estados individuales.</strong> Autonomía total para cada envío.</span></div>
-              <div class="ba-li pos"><span class="ba-dot"></span><span><strong style="font-weight:600;color:var(--ink-0)">Guías propias.</strong> Rastreo preciso sin confusiones.</span></div>
-              <div class="ba-li pos"><span class="ba-dot"></span><span><strong style="font-weight:600;color:var(--ink-0)">Transportadoras asignadas.</strong> Claridad de quién lleva qué.</span></div>
-              <div class="ba-li pos"><span class="ba-dot"></span><span><strong style="font-weight:600;color:var(--ink-0)">Historial independiente.</strong> La película completa de cada paquete.</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout-inner" style="display:flex;flex-direction:row;align-items:center;gap:36px;padding-top:36px">
+        <div class="callout-inner" style="display:flex;flex-direction:row;align-items:center;gap:36px">
           <div class="callout-mark">
             <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2">
               <rect x="4" y="16" width="13" height="13" rx="2.5"/>
@@ -650,182 +640,197 @@ footer .l{display:flex;align-items:center;gap:18px}
               <line x1="30" y1="8" x2="30" y2="16" stroke-linecap="round"/>
             </svg>
           </div>
-          <p class="callout-text">Cuando una orden tiene <strong>varios paquetes</strong>, ahora puedes consultar el estado, la guía y el historial de cada envío de forma independiente.</p>
+          <p class="callout-text">Cuando tu orden contiene varios paquetes, ya no tienes que adivinar qué pasa con cada uno. Consulta cada envío de forma independiente: revisa su estado, guía, transportadora e historial detallado, mientras mantienes el <strong>control consolidado de toda la orden</strong> en un mismo lugar.</p>
         </div>
-
       </div>
     </div>
 </div><!-- /panel-stage -->
 
 
-<!-- ============ 01 — UNA VISTA COMPLETA DE CADA PAQUETE ============ -->
+<!-- ============ 01 — ANTES VS AHORA ============ -->
 <section>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">01</span>Una vista completa de cada paquete</div>
-      <h2 class="s-title">Toda la información de cada envío, <em>en un solo lugar.</em></h2>
+      <div class="s-eyebrow"><span class="num">01</span>Antes vs Ahora</div>
+      <h2 class="s-title">De seguir una orden a ciegas, a entender el recorrido exacto de cada paquete.</h2>
     </div>
-    <p class="s-aside">Cada paquete tiene su propia identidad dentro de la orden. Estado, guía, transportadora e historial: todo separado, todo claro, todo bajo tu control.</p>
+    <p class="s-aside">Obtén una visibilidad total cuando los paquetes de una misma orden avanzan en momentos, rutas o condiciones diferentes.</p>
+  </div>
+
+  <div class="compare">
+
+    <div class="cmp-card before">
+      <div class="cmp-key" style="gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ef4444;box-shadow:0 0 10px #ef4444;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Antes</div>
+      <div class="cmp-num"><span>Antes</span><span class="title-sub">de Multipaquete</span></div>
+      <h3 class="cmp-h">El estado general de la orden se volvía una caja negra que ocultaba lo que pasaba con cada envío:</h3>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span>Te costaba saber con certeza qué paquete seguía en camino.</span>
+      </div>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span>No tenías claridad de cuál ya había sido entregado a tu comprador.</span>
+      </div>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span>Las guías y transportadoras se mezclaban sin diferenciarse por paquete.</span>
+      </div>
+      <div class="cmp-bullet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span>Reconstruir la ruta de cada envío te exigía un esfuerzo y seguimiento manual extra.</span>
+      </div>
+    </div>
+
+    <div class="cmp-arrow">
+      <div class="cmp-arrow-svg">
+        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 40h54" stroke-linecap="round"/>
+          <path d="m58 30 12 10-12 10" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="cmp-card after">
+      <div class="cmp-key" style="gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Ahora</div>
+      <div class="cmp-num"><span>Ahora</span><span class="title-sub">con Multipaquete</span></div>
+      <h3 class="cmp-h">Tomas el control y consultas cada paquete de forma independiente sin perder de vista la orden completa:</h3>
+      <div class="cmp-bullet">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
+        <span>Revisas el estado individual y en tiempo real de cada paquete.</span>
+      </div>
+      <div class="cmp-bullet">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
+        <span>Identificas al instante su guía y la transportadora asignada.</span>
+      </div>
+      <div class="cmp-bullet">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
+        <span>Consultas su propio historial cronológico, eventos e incidencias.</span>
+      </div>
+      <div class="cmp-bullet">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
+        <span>Entiendes el avance global de la orden de un solo vistazo.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============ 02 — ¿CÓMO FUNCIONA? ============ -->
+<section>
+  <div class="s-head">
+    <div>
+      <div class="s-eyebrow"><span class="num">02</span>¿Cómo funciona?</div>
+      <h2 class="s-title">Cuatro pasos para tener el control de cada paquete.</h2>
+      <p class="s-aside">Ingresa al detalle de tu orden y monitorea el avance de cada envío desde un mismo lugar, sin fricciones.</p>
+    </div>
+  </div>
+
+  <div class="flow-section">
+    <div class="flow">
+
+      <div class="flow-pill">
+        <span class="stat">01</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+        </div>
+        <span class="fp-tag">Paso 01</span>
+        <span class="fp-h">Abres la orden</span>
+        <span class="fp-p">Ingresa en Órbita al detalle de cualquier orden que contenga múltiples paquetes.</span>
+      </div>
+
+      <div class="flow-pill">
+        <span class="stat">02</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="7" width="9" height="10" rx="1.5"/><rect x="13" y="7" width="9" height="10" rx="1.5"/><path d="M2 7l5-4h10l5 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="fp-tag">Paso 02</span>
+        <span class="fp-h">Consultas cada paquete</span>
+        <span class="fp-p">Visualiza los paquetes asociados a esa venta y los productos específicos que incluye cada uno.</span>
+      </div>
+
+      <div class="flow-pill">
+        <span class="stat">03</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h7"/><circle cx="17" cy="17" r="4"/><path d="m15 17 1.5 1.5L19 15.5"/></svg>
+        </div>
+        <span class="fp-tag">Paso 03</span>
+        <span class="fp-h">Revisas su recorrido</span>
+        <span class="fp-p">Sigue el estado, guía, transportadora, eventos y novedades de cada envío de forma autónoma.</span>
+      </div>
+
+      <div class="flow-pill">
+        <span class="stat">04</span>
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 14l2 2 4-4"/></svg>
+        </div>
+        <span class="fp-tag">Paso 04</span>
+        <span class="fp-h">Entiendes la orden completa</span>
+        <span class="fp-p">Revisa el estado consolidado para conocer el avance general y el porcentaje de entrega de toda la orden.</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 03 — CARACTERÍSTICAS ============ -->
+<section>
+  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
+    <div>
+      <div class="s-eyebrow"><span class="num">03</span>Características</div>
+      <h2 class="s-title">Todo lo que puedes controlar a partir de hoy.</h2>
+    </div>
+    <p class="s-aside">La información precisa que necesitas para entender el viaje de cada paquete y el estado general de tu orden.</p>
   </div>
 
   <div class="cap-card">
     <div class="chars-grid">
       <div class="info-card">
         <p class="info-num">01</p>
-        <h3 class="info-h">El pulso de cada envío</h3>
-        <p class="info-p">Consulta el estado específico de cada paquete, sin importar cómo vaya el resto de la orden.</p>
+        <h3 class="info-h">Trazabilidad individual y consolidada</h3>
+        <p class="info-p">Monitorea el estado de cada paquete por separado mientras mantienes la foto completa del avance de la orden.</p>
       </div>
       <div class="info-card">
         <p class="info-num">02</p>
-        <h3 class="info-h">Identidad clara</h3>
-        <p class="info-p">Encuentra al instante la guía y la transportadora exacta de cada paquete para resolver dudas en segundos.</p>
+        <h3 class="info-h">Guía y transportadora por paquete</h3>
+        <p class="info-p">Descubre exactamente quién transporta cada envío y usa su guía correspondiente para rastrearlo sin confusiones.</p>
       </div>
       <div class="info-card">
         <p class="info-num">03</p>
-        <h3 class="info-h">Adiós a la confusión</h3>
-        <p class="info-p">Cuando una orden requiere varios envíos, entender el avance de cada uno deja de ser un dolor de cabeza.</p>
+        <h3 class="info-h">Historial detallado de punta a punta</h3>
+        <p class="info-p">Revisa intentos de entrega, eventos en ruta, incidencias, novedades y el estado actual de cada paquete.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ============ 02 — NUEVOS ESTADOS ============ -->
+<!-- ============ 04 — BENEFICIOS ============ -->
 <section>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">02</span>Nuevos estados para órdenes con varios paquetes</div>
-      <h2 class="s-title">La realidad de cada orden, <em>en tiempo real.</em></h2>
+      <div class="s-eyebrow"><span class="num">04</span>Beneficios</div>
+      <h2 class="s-title">Más claridad en cada envío. Menos seguimiento manual.</h2>
     </div>
-    <p class="s-aside">La realidad logística no siempre es unificada, y tu plataforma ahora lo entiende. A partir de hoy, verás estados dinámicos que reflejan el momento exacto de la operación; por ejemplo, cuando un paquete ya fue entregado con éxito mientras el otro sigue su curso en tránsito.</p>
+    <p class="s-aside">Multipaquete nace para ayudarte a entender qué ocurre con cada envío, eliminando la necesidad de adivinar el estado de la operación a partir de un solo dato general.</p>
   </div>
 
-  <div class="kpi-grid">
-
-    <div class="kpi-card">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div class="kpi-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <rect x="2" y="7" width="9" height="10" rx="1.5"/>
-            <rect x="13" y="7" width="9" height="10" rx="1.5"/>
-            <path d="M2 7l5-4h10l5 4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <span class="kpi-badge">Borrador</span>
-      </div>
-      <span class="kpi-label" style="color:var(--ink-2)">[Estado A]</span>
-      <span class="kpi-desc">Pendiente de nomenclatura definitiva. Un paquete fue entregado mientras otro continúa en tránsito dentro de la misma orden.</span>
-    </div>
-
-    <div class="kpi-card">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div class="kpi-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <polyline points="9 22 9 12 15 12 15 22"/>
-          </svg>
-        </div>
-        <span class="kpi-badge">Borrador</span>
-      </div>
-      <span class="kpi-label" style="color:var(--ink-2)">[Estado B]</span>
-      <span class="kpi-desc">Pendiente de nomenclatura definitiva. Todos los paquetes de la orden llegaron a su destino satisfactoriamente.</span>
-    </div>
-
-    <div class="kpi-card">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div class="kpi-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-            <line x1="12" y1="9" x2="12" y2="13" stroke-linecap="round"/>
-            <line x1="12" y1="17" x2="12.01" y2="17" stroke-linecap="round" stroke-width="2.4"/>
-          </svg>
-        </div>
-        <span class="kpi-badge">Borrador</span>
-      </div>
-      <span class="kpi-label" style="color:var(--ink-2)">[Estado C]</span>
-      <span class="kpi-desc">Pendiente de nomenclatura definitiva. Al menos un paquete de la orden registra una novedad o incidencia activa.</span>
-    </div>
-
-    <div class="kpi-card">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div class="kpi-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <polyline points="1 4 1 10 7 10"/>
-            <path d="M3.51 15a9 9 0 1 0 .49-3.51" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="kpi-badge">Borrador</span>
-      </div>
-      <span class="kpi-label" style="color:var(--ink-2)">[Estado D]</span>
-      <span class="kpi-desc">Pendiente de nomenclatura definitiva. Un paquete no pudo ser entregado en el intento más reciente y requiere acción.</span>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============ 03 — HISTORIAL INDEPENDIENTE ============ -->
-<section>
-  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
-    <div>
-      <div class="s-eyebrow"><span class="num">03</span>Historial independiente por paquete</div>
-      <h2 class="s-title">Un registro propio para cada <em>envío.</em></h2>
-    </div>
-    <p class="s-aside">El historial ya no es solo de la orden: es de cada paquete. Revisa cronológicamente qué ocurrió con cada envío, desde que salió de bodega hasta que llegó a la puerta de tu cliente.</p>
-  </div>
-
-  <div class="cap-card">
-    <div class="chars-grid">
-      <div class="info-card">
-        <p class="info-num">01</p>
-        <h3 class="info-h">Intentos de entrega</h3>
-        <p class="info-p">Revisa al detalle cada visita y movimiento realizado exclusivamente sobre ese paquete.</p>
-      </div>
-      <div class="info-card">
-        <p class="info-num">02</p>
-        <h3 class="info-h">Gestión de novedades</h3>
-        <p class="info-p">Visualiza incidencias o eventos específicos asociados a ese envío, sin mezclar información de otros paquetes.</p>
-      </div>
-      <div class="info-card">
-        <p class="info-num">03</p>
-        <h3 class="info-h">Trazabilidad de punta a punta</h3>
-        <p class="info-p">El minuto a minuto cronológico de cada paquete, desde que sale de bodega hasta que toca la puerta de tu cliente.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============ 04 — QUÉ MEJORA PARA TU OPERACIÓN ============ -->
-<section>
-  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
-    <div>
-      <div class="s-eyebrow"><span class="num">04</span>¿Qué mejora para tu operación?</div>
-      <h2 class="s-title">Toma el control de cada envío, <em>sin excepciones.</em></h2>
-    </div>
-    <p class="s-aside">Cuando la logística se fragmenta, la claridad no debería hacerlo.</p>
-  </div>
-
-  <div class="chars-grid">
+  <div class="bens-grid">
     <div class="info-card">
       <p class="info-num">01</p>
-      <h3 class="info-h">Visibilidad sin fricción</h3>
-      <p class="info-p">Control total y sin puntos ciegos cuando una orden se divide en varios envíos.</p>
+      <h3 class="info-h">Mayor visibilidad operativa</h3>
+      <p class="info-p">Identifica en segundos qué paquetes avanzaron con éxito, cuáles siguen en ruta y cuáles registran novedades que requieran tu atención.</p>
     </div>
     <div class="info-card">
       <p class="info-num">02</p>
-      <h3 class="info-h">Eficiencia en soporte</h3>
-      <p class="info-p">Menos tiempo buscando información y respuestas más rápidas para tus clientes.</p>
+      <h3 class="info-h">Cero confusión en tu día a día</h3>
+      <p class="info-p">Consulta información limpia y precisa de cada paquete sin que se te mezclen los recorridos ni las transportadoras.</p>
     </div>
     <div class="info-card">
       <p class="info-num">03</p>
-      <h3 class="info-h">Decisiones con precisión</h3>
-      <p class="info-p">Seguimiento exacto para reaccionar a tiempo ante cualquier imprevisto en tu operación.</p>
-    </div>
-    <div class="info-card">
-      <p class="info-num">04</p>
-      <h3 class="info-h">Control del proceso</h3>
-      <p class="info-p">Una comprensión absoluta de tu logística de última milla, paquete por paquete.</p>
+      <h3 class="info-h">Seguimiento sin esfuerzo</h3>
+      <p class="info-p">Encuentra estados, guías y el historial completo directamente en el detalle de la orden. Olvídate de buscar en plataformas externas.</p>
     </div>
   </div>
 </section>
@@ -835,13 +840,11 @@ footer .l{display:flex;align-items:center;gap:18px}
 <section>
   <div class="cierre">
     <div class="ring-deco"></div>
-    <p class="c-eyebrow">Multipaquete · Melonn Editions</p>
-    <h2 class="c-title">Toma el control de <em>cada envío.</em></h2>
-    <p class="c-sub">Explora esta mejora en tu plataforma y descubre el poder de controlar cada envío de forma individual.</p>
+    <p class="c-eyebrow">Multipaquete</p>
+    <h2 class="c-title">Cada paquete visible. Toda tu orden bajo control.</h2>
+    <p class="c-sub">Domina la logística de tus envíos revisando el recorrido individual de cada paquete y mantén una visión clara de tus órdenes desde un solo lugar.</p>
     <div class="c-actions">
-      <span class="btn btn-primary btn-disabled">
-        Documentación próximamente
-      </span>
+      <span class="btn btn-primary btn-disabled">Ver documentación →</span>
       <a class="btn btn-ghost" href="../">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>
         Volver a lanzamientos
