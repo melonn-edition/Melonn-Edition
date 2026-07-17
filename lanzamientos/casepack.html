@@ -492,6 +492,21 @@ footer .l{display:flex;align-items:center;gap:18px}
   .hero-content{padding-left:20px;padding-right:20px}
   .mobile-menu{padding-left:20px;padding-right:20px}
 }
+
+/* ——— cond-table ——— */
+.cond-table-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#4ade80;margin-top:20px;margin-bottom:10px;font-weight:500}
+.cond-table-wrap{overflow-x:auto;margin-top:8px;margin-bottom:4px;border-radius:10px;border:1px solid rgba(34,197,94,.2);background:rgba(10,22,14,.4)}
+.cond-table{width:100%;border-collapse:collapse;font-size:13px;min-width:360px}
+.cond-table th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:10px 14px;border-bottom:1px solid rgba(34,197,94,.18);text-align:left;white-space:nowrap;color:var(--ink-2)}
+.cond-table td{padding:12px 14px;border-bottom:1px solid rgba(34,197,94,.08);color:var(--ink-1);font-size:13px;font-weight:300;vertical-align:middle}
+.cond-table tr:last-child td{border-bottom:none}
+.cond-table th:nth-child(1),.cond-table td:nth-child(1){color:var(--ink-0);font-weight:400}
+.cond-table th:nth-child(2){color:#f97316;border-left:2px solid rgba(249,115,22,.35)}
+.cond-table td:nth-child(2){color:#fb923c;background:rgba(249,115,22,.06);border-left:2px solid rgba(249,115,22,.2)}
+.cond-table th:nth-child(3){color:#4ade80;border-left:2px solid rgba(74,222,128,.35)}
+.cond-table td:nth-child(3){color:#86efac;background:rgba(74,222,128,.06);border-left:2px solid rgba(74,222,128,.2)}
+.cond-table th:nth-child(4){color:#4ade80}
+.cond-table td:nth-child(4){color:#4ade80;font-weight:600}
 </style>
 <script src="/posthog.js"></script><script src="/ga4.js"></script>
 </head>
@@ -784,7 +799,7 @@ footer .l{display:flex;align-items:center;gap:18px}
       <div class="s-eyebrow"><span class="num">03</span>Características</div>
       <h2 class="s-title">Una promesa que se adapta a cómo llega tu inventario.</h2>
     </div>
-    <p class="s-aside">Órbita analiza el embalaje que declaraste y el que recibimos para calcular tus tiempos de procesamiento con precisión matemática.</p>
+    <p class="s-aside">Órbita analiza el embalaje que declaraste y el que recibimos para calcular tus tiempos de procesamiento con precisión.</p>
   </div>
 
   <div class="cap-card">
@@ -792,7 +807,7 @@ footer .l{display:flex;align-items:center;gap:18px}
       <div class="info-card">
         <p class="info-num">01</p>
         <h3 class="info-h">Promesa diferenciada por embalaje</h3>
-        <p class="info-p">Tus productos en casepack se procesan bajo una fila rápida, diferente a la de los ítems sueltos.</p>
+        <p class="info-p">Mientras los ítems sueltos se procesan en tiempos estándar, tus productos en casepack avanzan por una fila rápida si cumplen con los requisitos de empaque.</p>
       </div>
       <div class="info-card">
         <p class="info-num">02</p>
@@ -809,42 +824,12 @@ footer .l{display:flex;align-items:center;gap:18px}
 </section>
 
 
-<!-- ============ 04 — BENEFICIOS ============ -->
+<!-- ============ 04 — CONDICIONES DEL BENEFICIO ============ -->
 <section>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">04</span>Beneficios</div>
-      <h2 class="s-title">Empaca mejor. Ten tus productos listos para vender más rápido.</h2>
-    </div>
-    <p class="s-aside">El formato casepack acelera nuestra operación logística para que tú puedas planear tus ventas y estrategias comerciales con total precisión.</p>
-  </div>
-
-  <div class="bens-grid">
-    <div class="info-card">
-      <p class="info-num">01</p>
-      <h3 class="info-h">Hasta 1 día hábil menos</h3>
-      <p class="info-p">Al cumplir con las condiciones, tu stock se activa para la venta hasta un día antes de lo habitual.</p>
-    </div>
-    <div class="info-card">
-      <p class="info-num">02</p>
-      <h3 class="info-h">Tiempos de entrega precisos</h3>
-      <p class="info-p">Despídete de la incertidumbre; tus tiempos se alinean perfectamente con tu tipo de embalaje.</p>
-    </div>
-    <div class="info-card">
-      <p class="info-num">03</p>
-      <h3 class="info-h">Control estratégico de tu stock</h3>
-      <p class="info-p">Conoce de antemano el beneficio de enviar en casepack y toma mejores decisiones para tus próximos ingresos de mercancía.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============ 05 — CONDICIONES DEL BENEFICIO ============ -->
-<section>
-  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
-    <div>
-      <div class="s-eyebrow"><span class="num">05</span>Condiciones del beneficio</div>
-      <h2 class="s-title">¿Qué necesitas para activar tu promesa de 1 día hábil?</h2>
+      <div class="s-eyebrow"><span class="num">04</span>Condiciones del beneficio</div>
+      <h2 class="s-title">¿Cómo ahorrar hasta 1 día hábil en tu ingreso a Melonn?</h2>
     </div>
   </div>
 
@@ -865,7 +850,38 @@ footer .l{display:flex;align-items:center;gap:18px}
       </div>
       <div class="cond-item">
         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:5px"></span>
-        <span>Al menos el 30% del inventario total de tu orden debe llegar en formato casepack y cumplir el volumen mínimo definido para tu plan.</span>
+        <span>Al menos el 50% del inventario total de tu orden debe llegar en formato casepack y cumplir el volumen mínimo definido para tu plan.</span>
+      </div>
+      <p class="cond-table-title">Beneficio según tu plan</p>
+      <div class="cond-table-wrap">
+        <table class="cond-table">
+          <thead>
+            <tr>
+              <th>Plan</th>
+              <th>Sin casepack</th>
+              <th>Con casepack</th>
+              <th>Ahorro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Starter / Plus</td>
+              <td>2 días hábiles (desde 1.001 ítems)</td>
+              <td>1 día hábil</td>
+              <td>1 día hábil menos</td>
+            </tr>
+            <tr>
+              <td>Top / Enterprise</td>
+              <td>2 días hábiles (desde 3.001 ítems)</td>
+              <td>1 día hábil</td>
+              <td>1 día hábil menos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cond-item">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:5px"></span>
+        <span>Cada casepack debe llegar etiquetado con producto, nivel de empaque, variante y lote o fecha de vencimiento cuando aplique.</span>
       </div>
 
     </div>
@@ -876,6 +892,36 @@ footer .l{display:flex;align-items:center;gap:18px}
 
   <div class="cond-note">
     💡 Nota operativa: Si a la bodega llegan más ítems de los que declaraste en tu orden, estos excedentes recibirán una promesa extendida de 1 día hábil adicional.
+  </div>
+</section>
+
+
+<!-- ============ 05 — BENEFICIOS ============ -->
+<section>
+  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
+    <div>
+      <div class="s-eyebrow"><span class="num">05</span>Beneficios</div>
+      <h2 class="s-title">Empaca mejor. Ten tus productos listos para vender más rápido.</h2>
+    </div>
+    <p class="s-aside">El formato casepack acelera el ingreso para que tú puedas planear tus ventas y estrategias comerciales con total precisión.</p>
+  </div>
+
+  <div class="bens-grid">
+    <div class="info-card">
+      <p class="info-num">01</p>
+      <h3 class="info-h">Hasta 1 día hábil menos</h3>
+      <p class="info-p">Al cumplir con las condiciones, tu stock se activa para la venta hasta un día antes de lo habitual.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">02</p>
+      <h3 class="info-h">Control estratégico de tu stock</h3>
+      <p class="info-p">Conoce de antemano el beneficio de enviar en casepack y toma mejores decisiones para tus próximos ingresos de mercancía.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">03</p>
+      <h3 class="info-h">Tiempos de ingresos precisos</h3>
+      <p class="info-p">Despídete de la incertidumbre; tus tiempos se alinean perfectamente con tu tipo de embalaje.</p>
+    </div>
   </div>
 </section>
 
