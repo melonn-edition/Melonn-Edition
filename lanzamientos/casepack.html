@@ -1755,11 +1755,13 @@ header.hero .hero-foot{justify-content:flex-start}
     // Fallback visual gestionado por CSS.
   }
 
-  try {
-    const { initConveyor } = await import('./casepack-conveyor.js');
-    initConveyor();
-  } catch (error) {
-    // El Hero permanece funcional sin conveyor.
+  if (window.innerWidth > 768) {
+    try {
+      const { initConveyor } = await import('./casepack-conveyor.js');
+      initConveyor();
+    } catch (error) {
+      // El Hero permanece funcional sin conveyor.
+    }
   }
 })();
 </script>
