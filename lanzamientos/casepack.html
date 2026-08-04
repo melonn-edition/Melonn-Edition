@@ -774,7 +774,7 @@ section[data-launch-screen]:has(.cond-grid) .cond-item{color:#FFF}
 section[data-launch-screen]:has(.cond-grid) .cond-note{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.10);color:rgba(255,255,255,.70)}
 section[data-launch-screen]:has(.cond-grid) .cond-table-wrap{background:rgba(10,22,14,.40);border-color:rgba(34,197,94,.20)}
 .screen-closing[data-launch-screen]{background:#000!important}
-.screen-closing[data-launch-screen] .cierre{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.10);box-shadow:none;margin-top:clamp(60px,14vh,200px)}
+.screen-closing[data-launch-screen] .cierre{background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(0,220,214,.07) 0%,transparent 65%),rgba(20,9,91,.42);border-color:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 30px 80px -30px rgba(20,9,91,.35);margin-top:clamp(60px,14vh,200px)}
 .screen-closing[data-launch-screen] .cierre::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);box-shadow:none}
 .screen-closing[data-launch-screen] .cierre .ring-deco{border-color:rgba(255,255,255,.08)}
 .screen-closing[data-launch-screen] .cierre .ring-deco::before{border-color:rgba(255,255,255,.05)}
@@ -790,6 +790,9 @@ section[data-launch-screen]:has(.cond-grid) .cond-table-wrap{background:rgba(10,
 
 /* ═══ LAUNCH SCREEN SYSTEM — dual-disk prototype ═══ */
 html,body{overflow:hidden!important}
+/* overflow:hidden on body disables position:sticky — force nav above all screens */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200}
+.mobile-menu{position:fixed;top:var(--nav-h,64px);left:0;right:0;z-index:200}
 [data-launch-screen]{
   position:fixed!important;inset:0;
   overflow-y:auto;overflow-x:hidden;
