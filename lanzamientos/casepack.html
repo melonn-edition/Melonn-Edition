@@ -848,7 +848,12 @@ section[data-launch-screen]::after{content:'';flex:1 0 auto;min-height:52px}
 .hero-bg::before,.hero-bg::after,
 .hero-cosmos::before,.hero-cosmos::after { content:none!important }
 .hero-cosmos > span { display:none }
+header.hero[data-launch-screen]{background-color:#0d0b22!important}
 header.hero[data-launch-screen] .hero-bg{background-color:#0d0b22}
+@media(max-width:768px){
+  header.hero[data-launch-screen]{min-height:100dvh;height:100dvh}
+  .page-bg::before,.page-bg::after{display:none}
+}
 /* Custom cursor scoped to hero only, fine-pointer only */
 @media (pointer:fine) { header.hero { cursor:none } }
 
