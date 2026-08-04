@@ -1033,8 +1033,8 @@ header.hero .hero-foot{justify-content:flex-start}
       <div class="callout">
         <div class="callout-img-wrap">
           <picture>
-            <source srcset="../IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN.webp" type="image/webp">
-            <img class="callout-img" src="../IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN.png" alt="Cajas Melonn — Casepack" loading="lazy">
+            <source data-srcset="../IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN.webp" type="image/webp">
+            <img class="callout-img" data-src="../IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN.png" alt="Cajas Melonn — Casepack">
           </picture>
         </div>
         <div class="callout-inner" style="display:flex;flex-direction:row;align-items:center;gap:36px">
@@ -1766,5 +1766,30 @@ header.hero .hero-foot{justify-content:flex-start}
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script>
+(function(){
+  var panelStage = document.querySelector('.panel-stage[data-launch-screen]');
+  if (!panelStage) return;
+  var loaded = false;
+  function loadCalloutImg() {
+    if (loaded) return;
+    loaded = true;
+    var source = panelStage.querySelector('source[data-srcset]');
+    var img    = panelStage.querySelector('img[data-src]');
+    if (source) { source.srcset = source.dataset.srcset; }
+    if (img)    { img.src = img.dataset.src; }
+  }
+  if (panelStage.classList.contains('is-active')) {
+    loadCalloutImg();
+  } else {
+    new MutationObserver(function(_, obs) {
+      if (panelStage.classList.contains('is-active')) {
+        loadCalloutImg();
+        obs.disconnect();
+      }
+    }).observe(panelStage, { attributes: true, attributeFilter: ['class'] });
+  }
+})();
+</script>
 </body>
 </html>
