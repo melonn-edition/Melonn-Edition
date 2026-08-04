@@ -1,0 +1,21 @@
+# Reference/calibration assets
+experiments/melonn-wave-grid/Banda_Guia.png
+experiments/melonn-wave-grid/Linea_guia.svgz
+experiments/melonn-wave-grid/MONTACARGA_FLASH.svgz
+experiments/melonn-wave-grid/MONTACARGA_FLASH_animated.svg
+experiments/melonn-wave-grid/MONTACARGA_FLASH_static.svg
+experiments/melonn-wave-grid/MONTACARGA_test.html
+
+# Experiment / dev-only pages
+experiments/melonn-wave-grid/index.html
+experiments/melonn-wave-grid/index-experiment.html
+experiments/melonn-wave-grid/index-experiment-v2.html
+experiments/melonn-wave-grid/styles.css
+
+# Experiment conveyor variants (not used in production)
+experiments/melonn-wave-grid/conveyor.js
+experiments/melonn-wave-grid/conveyor-experiment.js
+experiments/melonn-wave-grid/conveyor-experiment-v2.js
+
+# Test / staging files
+lanzamientos/casepack-transition-test.html
