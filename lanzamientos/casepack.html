@@ -851,7 +851,8 @@ section[data-launch-screen]::after{content:'';flex:1 0 auto;min-height:52px}
 header.hero[data-launch-screen]{background-color:#0d0b22!important}
 header.hero[data-launch-screen] .hero-bg{background-color:#0d0b22}
 @media(max-width:768px){
-  header.hero[data-launch-screen]{min-height:100dvh;height:100dvh}
+  html,body{height:100dvh;min-height:100dvh}
+  [data-launch-screen]{min-height:100dvh;height:100dvh}
   .page-bg::before,.page-bg::after{display:none}
 }
 /* Custom cursor scoped to hero only, fine-pointer only */
