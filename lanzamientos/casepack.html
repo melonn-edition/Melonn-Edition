@@ -832,6 +832,15 @@ section[data-launch-screen]::after{content:'';flex:1 0 auto;min-height:52px}
   visibility:visible!important;pointer-events:none!important;z-index:44!important;
 }
 @media(prefers-reduced-motion:reduce){.page-transition{display:none!important}}
+/* ═══ SCROLL RELEASE — libera scroll del documento tras screens[1]→[2] ═══ */
+html.scroll-released,html.scroll-released body{overflow-x:hidden!important;overflow-y:auto!important;height:auto!important}
+html.scroll-released [data-launch-screen].screen-done{display:none!important}
+html.scroll-released [data-launch-screen]:not(.screen-done){position:relative!important;inset:auto!important;width:100%!important;height:auto!important;min-height:100dvh;visibility:visible!important;opacity:1!important;pointer-events:auto!important;overflow-x:hidden;overflow-y:visible}
+html.scroll-released [data-launch-screen]:not(.screen-done)::before,html.scroll-released [data-launch-screen]:not(.screen-done)::after{flex:none;min-height:0}
+html.scroll-released .hero-wrap{height:var(--nav-h,64px)!important;min-height:0!important;overflow:hidden!important}
+html.scroll-released [data-launch-prev]{display:none!important}
+html.scroll-released{scroll-padding-top:var(--nav-h,64px)}
+html.scroll-released [data-launch-screen]:not(.screen-done){box-sizing:border-box;padding-top:var(--nav-h,64px)!important}
 
 /* ──── panel-stage: fondo Azul Melonn ──── */
 .panel-stage[data-launch-screen]{background:#14095B}
@@ -1365,6 +1374,13 @@ header.hero .hero-foot{justify-content:flex-start}
 
   if (!screens.length || !currentMask || !nextMask) return;
 
+  if (nav) {
+    document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+    window.addEventListener('resize', () => {
+      document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+    }, { passive: true });
+  }
+
   const EASING        = 'cubic-bezier(.76,0,.24,1)';
   const DURATION      = 1100;
   const COOLDOWN      = 1500;
@@ -1376,6 +1392,7 @@ header.hero .hero-foot{justify-content:flex-start}
   let wheelAccum      = 0;
   let wheelTimer      = null;
   let touchStartY     = null;
+  let scrollReleased  = false;
 
   /* ─── geometry for a given direction ─── */
   function geoFor(dir) {
@@ -1436,6 +1453,7 @@ header.hero .hero-foot{justify-content:flex-start}
         nextScreen.style.opacity = '';
         activeIdx = nextIdx;
         updateUI();
+        if (nextIdx === 2) releaseScroll();
       } finally {
         isTransitioning = false;
         lastEnd = performance.now();
@@ -1518,6 +1536,7 @@ header.hero .hero-foot{justify-content:flex-start}
 
       activeIdx = nextIdx;
       updateUI();
+      if (nextIdx === 2) releaseScroll();
       succeeded = true;
 
     } finally {
@@ -1535,6 +1554,48 @@ header.hero .hero-foot{justify-content:flex-start}
       isTransitioning = false;
       lastEnd = performance.now();
       if (backBtn) backBtn.style.pointerEvents = '';
+    }
+  }
+
+  /* ─── release scroll — llamado tras transición screens[1]→[2] ─── */
+  function releaseScroll() {
+    if (scrollReleased) return;
+    scrollReleased = true;
+    window.removeEventListener('wheel',      onWheel);
+    window.removeEventListener('touchstart', onTouchStart);
+    window.removeEventListener('touchend',   onTouchEnd);
+    if (backBtn) backBtn.removeEventListener('click', onBackClick);
+    clearTimeout(wheelTimer); wheelAccum = 0; touchStartY = null;
+    document.querySelectorAll('.page-transition').forEach(mask => {
+      if (typeof mask.getAnimations === 'function') {
+        mask.getAnimations().forEach(a => a.cancel());
+      }
+      mask.style.visibility = 'hidden';
+      mask.classList.remove('is-animating', 'mask-new');
+      mask.style.clipPath = '';
+      mask.style.opacity  = '';
+    });
+    screens[0].classList.add('screen-done');
+    screens[1].classList.add('screen-done');
+    document.documentElement.classList.add('scroll-released');
+    requestAnimationFrame(() => { window.scrollTo(0, 0); });
+    const remainingScreens = screens.slice(3);
+    if (window.__animateSection) {
+      if ('IntersectionObserver' in window) {
+        let pendingSections = remainingScreens.length;
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            window.__animateSection(entry.target);
+            io.unobserve(entry.target);
+            pendingSections -= 1;
+            if (pendingSections <= 0) io.disconnect();
+          });
+        }, { threshold: 0.15 });
+        remainingScreens.forEach(section => io.observe(section));
+      } else {
+        remainingScreens.forEach(section => window.__animateSection(section));
+      }
     }
   }
 
@@ -1566,7 +1627,8 @@ header.hero .hero-foot{justify-content:flex-start}
   screens[0].classList.add('is-active');
   updateUI();
 
-  if (backBtn) backBtn.addEventListener('click', () => { if (!isTransitioning) go('prev'); });
+  function onBackClick() { if (!isTransitioning) go('prev'); }
+  if (backBtn) backBtn.addEventListener('click', onBackClick);
   window.addEventListener('wheel',             onWheel,      { passive: true });
   window.addEventListener('touchstart',        onTouchStart, { passive: true });
   window.addEventListener('touchend',          onTouchEnd,   { passive: true });
