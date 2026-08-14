@@ -603,27 +603,9 @@ footer .l{display:flex;align-items:center;gap:18px}
 html,body{background:#FCFCFE;color:#14095B}
 .bg-stage,.nebula,.nebula-left,.grid-overlay,.scanline{display:none}
 .noise{opacity:.02}
-/* white fixed base + nebulosas page-level */
+/* white fixed base — sin nebulosas */
 .page-bg{background-color:#FCFCFE}
-.page-bg::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 75% 65% at 6% 55%,rgba(94,234,212,.15) 0%,transparent 65%),
-    radial-gradient(ellipse 70% 55% at 90% 22%,rgba(94,234,212,.12) 0%,transparent 65%),
-    radial-gradient(ellipse 55% 45% at 86% 20%,rgba(20,9,91,.10) 0%,transparent 60%),
-    radial-gradient(ellipse 35% 28% at 50% 48%,rgba(94,234,212,.06) 0%,transparent 55%);
-}
-.page-bg::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:radial-gradient(circle,rgba(94,234,212,.42) 1px,transparent 1px);
-  background-size:28px 28px;
-  -webkit-mask-image:
-    radial-gradient(ellipse 38% 60% at 5% 52%,black 0%,transparent 60%),
-    radial-gradient(ellipse 34% 48% at 92% 16%,black 0%,transparent 58%);
-  mask-image:
-    radial-gradient(ellipse 38% 60% at 5% 52%,black 0%,transparent 60%),
-    radial-gradient(ellipse 34% 48% at 92% 16%,black 0%,transparent 58%);
-}
+.page-bg::before,.page-bg::after{content:none}
 /* .cosmos repurposed for arc curves — star spans ocultos */
 .cosmos>span{display:none}
 .cosmos::before{
