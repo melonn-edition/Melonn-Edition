@@ -859,13 +859,12 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 /* ══ scroll-driven section animations (Chrome/Edge/Firefox 115+) ══ */
 @supports(animation-timeline:view()){
   @keyframes sa-in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-  .s-eyebrow{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 0% entry 22%}
-  .s-title{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 6% entry 30%}
+  .s-eyebrow{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 0% contain 30%}
   .s-aside,.cmp-card,.cmp-arrow,.flow-pill,
-  .cond-block,.cond-note,.info-card{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 12% entry 38%}
-  .callout{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 5% entry 30%}
+  .cond-block,.cond-note,.info-card{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 0% contain 35%}
+  .callout{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 0% contain 30%}
   @media(prefers-reduced-motion:reduce){
-    .s-eyebrow,.s-title,.s-aside,.cmp-card,.cmp-arrow,
+    .s-eyebrow,.s-aside,.cmp-card,.cmp-arrow,
     .flow-pill,.cond-block,.cond-note,.info-card,.callout{animation:none}
   }
 }
@@ -1346,14 +1345,13 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   'use strict';
 
   const REDUCED    = matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const LINE_MS    = 720;   // ms per title line animation
-  const LINE_STAG  = 130;   // ms stagger between lines
   const STAGGER    = 110;   // ms between content element starts
   const INIT_DELAY = 100;   // ms before eyebrow
+  const CHAR_STAG  = 28;    // ms between characters in wave
+  const LINE_GAP   = 80;    // extra ms between lines
 
   const animated = new Set();
 
-  /* Content selectors (eyebrow and title handled separately) */
   const S_SELS = ['.s-aside','.cmp-card','.cmp-arrow','.flow-pill','.cond-block','.cond-note','.info-card'];
   const P_SELS = ['.callout'];
 
@@ -1376,7 +1374,6 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
   function prepareElem(el) {
     el.style.opacity = '0';
-    /* Only add translateY if no conflicting CSS animation (e.g. float-card on .cmp-card.after) */
     const anim = getComputedStyle(el).animationName;
     if (!anim || anim === 'none') {
       el.style.transform = 'translateY(14px)';
@@ -1389,42 +1386,84 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     if (REDUCED) { section.dataset.saReady = '1'; return; }
     const eyebrow = section.querySelector('.s-eyebrow');
     if (eyebrow) prepareElem(eyebrow);
-    const title = section.querySelector('.s-title');
-    if (title) title.style.opacity = '0';
     getContentElems(section).forEach(prepareElem);
     section.dataset.saReady = '1';
   }
 
-  function animateTitle(el) {
-    return new Promise(resolve => {
-      if (!el) { resolve(); return; }
+  /* ── character-wave title animation ── */
+  function splitTitleIntoChars(el) {
+    const chars = [];
 
-      /* Wrap el in overflow:hidden so translateY creates a floor-clip effect.
-         DOM restored to its original shape after the animation completes. */
-      const parent  = el.parentNode;
-      const next    = el.nextSibling;
-      const wrapper = document.createElement('div');
-      wrapper.style.cssText = 'display:block;overflow:hidden';
-      parent.insertBefore(wrapper, el);
-      wrapper.appendChild(el);
+    /* Wrap each non-space token in a nowrap word-span so the browser never
+       breaks a line mid-word. Only char spans go into the chars array. */
+    function makeWordSpan(token) {
+      const word = document.createElement('span');
+      word.style.cssText = 'display:inline-block;white-space:nowrap';
+      for (const ch of token) {
+        const s = document.createElement('span');
+        s.textContent = ch;
+        s.style.cssText = 'display:inline-block;opacity:0;transform:translateY(0.5em)';
+        word.appendChild(s);
+        chars.push(s);
+      }
+      return word;
+    }
 
-      el.style.opacity   = '1';
-      el.style.transform = 'translateY(1.15em)';
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          el.style.transition = `transform ${LINE_MS}ms cubic-bezier(.22,1,.36,1)`;
-          el.style.transform  = 'translateY(0)';
-
-          setTimeout(() => {
-            el.style.transition = '';
-            el.style.transform  = '';
-            if (next) parent.insertBefore(el, next);
-            else      parent.appendChild(el);
-            wrapper.remove();
-            resolve();
-          }, LINE_MS + 40);
+    function walkNode(node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.textContent.replace(/[\n\r]/g, '');
+        if (!text) return;
+        const frag = document.createDocumentFragment();
+        text.split(/(\s+)/).forEach(token => {
+          if (!token) return;
+          if (/^\s+$/.test(token)) {
+            frag.appendChild(document.createTextNode(' '));
+          } else {
+            frag.appendChild(makeWordSpan(token));
+          }
         });
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        Array.from(node.childNodes).forEach(walkNode);
+      }
+    }
+    Array.from(el.childNodes).forEach(walkNode);
+    return chars;
+  }
+
+  function waveTitle(el) {
+    if (REDUCED) return Promise.resolve();
+    const chars = el._waveChars;
+    if (!chars || !chars.length) return Promise.resolve();
+    return new Promise(resolve => {
+      requestAnimationFrame(() => {
+        /* Group chars by visual line with tolerance for sub-pixel differences */
+        const lines = [];
+        chars.forEach(span => {
+          const top = span.getBoundingClientRect().top;
+          const existing = lines.find(l => Math.abs(l.top - top) < 4);
+          if (existing) { existing.spans.push(span); }
+          else          { lines.push({ top, spans: [span] }); }
+        });
+        lines.sort((a, b) => a.top - b.top);
+        const lineGroups = lines.map(l => l.spans);
+
+        let t = 0;
+        lineGroups.forEach(line => {
+          line.forEach((span, ci) => {
+            setTimeout(() => {
+              span.style.transition = 'opacity 280ms ease, transform 380ms cubic-bezier(.22,1,.36,1)';
+              span.style.opacity = '1';
+              span.style.transform = 'translateY(0)';
+            }, t + ci * CHAR_STAG);
+          });
+          t += line.length * CHAR_STAG + LINE_GAP;
+        });
+
+        setTimeout(() => {
+          chars.forEach(s => { s.style.transition = ''; s.style.transform = ''; });
+          resolve();
+        }, t + 380);
       });
     });
   }
@@ -1456,36 +1495,42 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       return;
     }
 
-    /* panel-stage: no title, just animate callout */
     if (section.classList.contains('panel-stage')) {
       getContentElems(section).forEach((el, i) => animateElem(el, INIT_DELAY + i * STAGGER));
       return;
     }
 
-    /* 1 — eyebrow first */
     const eyebrow = section.querySelector('.s-eyebrow');
     if (eyebrow) animateElem(eyebrow, INIT_DELAY);
 
-    /* 2 — wait a beat, then title line-by-line (fully awaited) */
-    await wait(INIT_DELAY + STAGGER);
-    const titleEl = section.querySelector('.s-title');
-    if (titleEl) await animateTitle(titleEl);
-
-    /* 3 — content elements staggered only after title fully visible */
+    /* Title wave runs via its own IO — wait a beat then reveal content */
+    await wait(INIT_DELAY + STAGGER + 300);
     getContentElems(section).forEach((el, i) => animateElem(el, i * STAGGER));
   }
 
   const eligibles = Array.from(document.querySelectorAll('section,.panel-stage'))
     .filter(s => s.querySelector('.s-eyebrow,.callout'));
 
+  /* Pre-split all titles into char spans (hides them until wave fires) */
+  const titleEls = eligibles.map(s => s.querySelector('.s-title')).filter(Boolean);
+
+  if (!REDUCED) {
+    titleEls.forEach(el => { el._waveChars = splitTitleIntoChars(el); });
+
+    const titleIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { waveTitle(e.target); titleIO.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    titleEls.forEach(t => titleIO.observe(t));
+  }
+
   if (CSS.supports('animation-timeline', 'view()')) {
-    /* CSS scroll-driven handles animations + reduced-motion via @media — no JS needed */
+    /* CSS scroll-driven handles .s-eyebrow, content elements, .callout */
   } else {
     eligibles.forEach(prepareSection);
     if (!REDUCED) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { animateSection(e.target); io.unobserve(e.target); } });
-      }, { threshold: 0.15 });
+      }, { threshold: 0.08 });
       eligibles.forEach(s => io.observe(s));
     } else {
       eligibles.forEach(animateSection);
