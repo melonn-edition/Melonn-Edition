@@ -100,7 +100,7 @@ a{color:inherit;text-decoration:none}
 .nav-link.active{color:var(--violet-0);background:rgba(196,181,253,.10);border:1px solid var(--line-strong);box-shadow:0 0 24px -6px var(--violet-glow)}
 
 /* ——— hero ——— */
-.hero-wrap{position:relative;height:100vh}
+.hero-wrap{position:relative;min-height:100vh}
 .hero{
   position:sticky;top:0;z-index:2;
   max-width:none;
@@ -133,7 +133,7 @@ a{color:inherit;text-decoration:none}
   background-position:top center;
   background-repeat:no-repeat;
 }
-.panel-stage{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative}
+.panel-stage{padding-top:100px;padding-bottom:100px;display:flex;justify-content:center;position:relative}
 .back-btn{position:fixed;top:108px;right:20px;z-index:200;display:flex;align-items:center;gap:7px;padding:9px 16px 9px 12px;border-radius:999px;background:rgba(8,7,26,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--violet-0);color:var(--violet-0);font-size:13px;font-family:inherit;font-weight:600;letter-spacing:.02em;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s ease,box-shadow .2s ease;white-space:nowrap;}
 .back-btn.visible{opacity:1;pointer-events:auto}
 .back-btn:hover{box-shadow:0 0 20px -4px var(--violet-glow)}
@@ -208,7 +208,7 @@ a{color:inherit;text-decoration:none}
 .hf-val .pip{display:inline-block;width:6px;height:6px;border-radius:50%;background:#5EEAD4;box-shadow:0 0 10px #5EEAD4;margin-right:8px;vertical-align:middle}
 
 /* ——— sections ——— */
-section{position:relative;max-width:var(--maxw);margin:0 auto;padding:96px clamp(24px,4vw,56px)}
+section{position:relative;max-width:var(--maxw);margin:0 auto;padding:100px clamp(24px,4vw,56px)}
 .s-head{margin-bottom:48px;display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap}
 .s-eyebrow{font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:.22em;color:var(--ink-0);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px;text-shadow:0 0 16px var(--violet-glow)}
 .s-eyebrow .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:12px;border:1px solid var(--line-strong);font-size:13px;color:var(--ink-1);background:rgba(196,181,253,.08)}
@@ -754,6 +754,9 @@ footer{color:#14095B;border-top-color:rgba(20,9,91,.10)}
 section[data-launch-screen]:has(.cond-grid),
 section[data-launch-screen]:has(.bens-grid){
   background:#000!important;
+  max-width:none;
+  padding-left:max(clamp(24px,4vw,56px),calc((100vw - var(--maxw)) / 2));
+  padding-right:max(clamp(24px,4vw,56px),calc((100vw - var(--maxw)) / 2));
   --ink-0:#FFFFFF;
   --ink-1:rgba(255,255,255,.80);
   --ink-2:rgba(255,255,255,.55);
@@ -780,7 +783,7 @@ section[data-launch-screen]:has(.cond-grid) .cond-item{color:#FFF}
 section[data-launch-screen]:has(.cond-grid) .cond-note{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.10);color:rgba(255,255,255,.70)}
 section[data-launch-screen]:has(.cond-grid) .cond-table-wrap{background:rgba(10,22,14,.40);border-color:rgba(34,197,94,.20)}
 .screen-closing[data-launch-screen]{background:#000!important}
-.screen-closing[data-launch-screen] .cierre{background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(0,220,214,.07) 0%,transparent 65%),rgba(20,9,91,.42);border-color:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 30px 80px -30px rgba(20,9,91,.35);margin-top:clamp(60px,14vh,200px)}
+.screen-closing[data-launch-screen] .cierre{background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(0,220,214,.07) 0%,transparent 65%),rgba(20,9,91,.42);border-color:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 30px 80px -30px rgba(20,9,91,.35)}
 .screen-closing[data-launch-screen] .cierre::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);box-shadow:none}
 .screen-closing[data-launch-screen] .cierre .ring-deco{border-color:rgba(255,255,255,.12)}
 .screen-closing[data-launch-screen] .cierre .ring-deco::before{border-color:rgba(255,255,255,.07)}
@@ -794,53 +797,8 @@ section[data-launch-screen]:has(.cond-grid) .cond-table-wrap{background:rgba(10,
 .screen-closing[data-launch-screen] .btn-ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.35);box-shadow:none}
 .screen-closing[data-launch-screen] footer{color:rgba(255,255,255,.55);border-top-color:rgba(255,255,255,.10)}
 
-/* ═══ LAUNCH SCREEN SYSTEM — dual-disk prototype ═══ */
-html,body{overflow:hidden!important}
-/* overflow:hidden on body disables position:sticky — force nav above all screens */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200}
 .mobile-menu{position:fixed;top:var(--nav-h,64px);left:0;right:0;z-index:200}
-[data-launch-screen]{
-  position:fixed!important;inset:0;
-  overflow-y:auto;overflow-x:hidden;
-  visibility:hidden;pointer-events:none;
-  z-index:1;-webkit-overflow-scrolling:touch;
-}
-[data-launch-screen].is-active{visibility:visible;pointer-events:auto;z-index:2}
-header.hero[data-launch-screen]{position:fixed!important;min-height:100%}
-.panel-stage[data-launch-screen]{display:flex!important}
-section[data-launch-screen]{
-  max-width:none!important;margin:0!important;
-  padding-top:0!important;padding-bottom:0!important;
-  padding-left:max(clamp(24px,4vw,56px),calc((100% - var(--maxw)) / 2))!important;
-  padding-right:max(clamp(24px,4vw,56px),calc((100% - var(--maxw)) / 2))!important;
-  background:#FCFCFE;
-  display:flex!important;flex-direction:column!important;
-}
-section[data-launch-screen]::before{content:'';flex:1 0 auto;min-height:104px}
-section[data-launch-screen]::after{content:'';flex:1 0 auto;min-height:52px}
-.screen-closing[data-launch-screen]{background:#FCFCFE}
 .screen-closing footer{margin-top:0}
-.page-transition{
-  position:fixed;inset:0;background:#14095B;
-  pointer-events:none;will-change:clip-path;
-  z-index:41;visibility:hidden;
-  opacity:1;transition:none;
-}
-.page-transition.is-animating{visibility:visible;opacity:1!important}
-.page-transition.mask-new{z-index:43!important}
-[data-launch-screen].is-transitioning-in{
-  visibility:visible!important;pointer-events:none!important;z-index:44!important;
-}
-@media(prefers-reduced-motion:reduce){.page-transition{display:none!important}}
-/* ═══ SCROLL RELEASE — libera scroll del documento tras screens[1]→[2] ═══ */
-html.scroll-released,html.scroll-released body{overflow-x:hidden!important;overflow-y:auto!important;height:auto!important}
-html.scroll-released [data-launch-screen].screen-done{display:none!important}
-html.scroll-released [data-launch-screen]:not(.screen-done){position:relative!important;inset:auto!important;width:100%!important;height:auto!important;min-height:100dvh;visibility:visible!important;opacity:1!important;pointer-events:auto!important;overflow-x:hidden;overflow-y:visible}
-html.scroll-released [data-launch-screen]:not(.screen-done)::before,html.scroll-released [data-launch-screen]:not(.screen-done)::after{flex:none;min-height:0}
-html.scroll-released .hero-wrap{height:var(--nav-h,64px)!important;min-height:0!important;overflow:hidden!important}
-html.scroll-released [data-launch-prev]{display:none!important}
-html.scroll-released{scroll-padding-top:var(--nav-h,64px)}
-html.scroll-released [data-launch-screen]:not(.screen-done){box-sizing:border-box;padding-top:var(--nav-h,64px)!important}
 
 /* ──── panel-stage: fondo Azul Melonn ──── */
 .panel-stage[data-launch-screen]{background:#14095B}
@@ -865,8 +823,6 @@ html.scroll-released [data-launch-screen]:not(.screen-done){box-sizing:border-bo
 header.hero[data-launch-screen]{background-color:#0d0b22!important}
 header.hero[data-launch-screen] .hero-bg{background-color:#0d0b22}
 @media(max-width:768px){
-  html,body{height:100dvh;min-height:100dvh}
-  [data-launch-screen]{min-height:100dvh;height:100dvh}
   .page-bg::before,.page-bg::after{display:none}
 }
 /* Custom cursor scoped to hero only, fine-pointer only */
@@ -887,6 +843,31 @@ header.hero .hero-foot{justify-content:flex-start}
   header.hero .hero-copy{margin:0;text-align:left}
   header.hero .eyebrow{justify-content:flex-start}
   header.hero .hero-foot{justify-content:flex-start}
+}
+
+/* ══ hero entry animation ══ */
+@keyframes hero-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+header.hero .eyebrow {animation:hero-in 700ms cubic-bezier(.22,1,.36,1)  80ms both}
+header.hero .h-title {animation:hero-in 800ms cubic-bezier(.22,1,.36,1) 220ms both}
+header.hero .h-tagline{animation:hero-in 800ms cubic-bezier(.22,1,.36,1) 400ms both}
+header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms both}
+@media(prefers-reduced-motion:reduce){
+  header.hero .eyebrow,header.hero .h-title,
+  header.hero .h-tagline,header.hero .hero-foot{animation:none}
+}
+
+/* ══ scroll-driven section animations (Chrome/Edge/Firefox 115+) ══ */
+@supports(animation-timeline:view()){
+  @keyframes sa-in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  .s-eyebrow{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 0% entry 22%}
+  .s-title{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 6% entry 30%}
+  .s-aside,.cmp-card,.cmp-arrow,.flow-pill,
+  .cond-block,.cond-note,.info-card{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 12% entry 38%}
+  .callout{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 5% entry 30%}
+  @media(prefers-reduced-motion:reduce){
+    .s-eyebrow,.s-title,.s-aside,.cmp-card,.cmp-arrow,
+    .flow-pill,.cond-block,.cond-note,.info-card,.callout{animation:none}
+  }
 }
 
 /* ══ hero conveyor layer ══ */
@@ -1355,290 +1336,9 @@ header.hero .hero-foot{justify-content:flex-start}
 
 </div><!-- /hero-panel -->
 
-<div class="page-transition page-transition--a" aria-hidden="true"></div>
-<div class="page-transition page-transition--b" aria-hidden="true"></div>
-
 
 </div><!-- /shell -->
 
-<script>
-/* ═══ VERTICAL RING TRANSITION — dual-disk system ═══ */
-(()=>{
-  'use strict';
-
-  const screens     = Array.from(document.querySelectorAll('[data-launch-screen]'));
-  const nav         = document.querySelector('.nav');
-  const backBtn     = document.querySelector('[data-launch-prev]');
-  let   currentMask = document.querySelector('.page-transition--a');
-  let   nextMask    = document.querySelector('.page-transition--b');
-
-  if (!screens.length || !currentMask || !nextMask) return;
-
-  if (nav) {
-    document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
-    window.addEventListener('resize', () => {
-      document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
-    }, { passive: true });
-  }
-
-  const EASING        = 'cubic-bezier(.76,0,.24,1)';
-  const DURATION      = 1100;
-  const COOLDOWN      = 1500;
-  const reducedMotion = matchMedia('(prefers-reduced-motion:reduce)').matches;
-
-  let activeIdx       = 0;
-  let isTransitioning = false;
-  let lastEnd         = -Infinity;
-  let wheelAccum      = 0;
-  let wheelTimer      = null;
-  let touchStartY     = null;
-  let scrollReleased  = false;
-
-  /* ─── geometry for a given direction ─── */
-  function geoFor(dir) {
-    const w        = window.innerWidth;
-    const h        = window.innerHeight;
-    const cx       = w / 2;
-    // finalR must exceed center-to-corner distance so the circle arc exits ALL
-    // viewport edges before the animation ends — no arc ever visible at cleanup.
-    // 1.6× margin: arc exits viewport at ~63% of animation; remaining 37% grows past.
-    const diagonal = Math.hypot(w / 2, h / 2);
-    const finalR   = Math.ceil(diagonal * 1.6);
-    const ringW    = Math.max(52, Math.min(0.075 * Math.max(w, h), 112));
-    const innerR   = finalR - ringW;
-    const outerSR  = ringW + 1;
-    const startY   = dir === 'next' ? h + outerSR : -outerSR;
-    const endY     = h / 2;
-    return { w, h, cx, finalR, innerR, outerSR, startY, endY };
-  }
-
-  /* ─── UI state sync ─── */
-  function updateUI() {
-    if (nav)     nav.classList.toggle('nav--light', activeIdx === 0);
-    if (backBtn) backBtn.classList.toggle('visible', activeIdx > 0);
-  }
-
-  /* ─── scroll boundary helpers ─── */
-  function atBottom(el) { return el.scrollTop + el.clientHeight >= el.scrollHeight - 2; }
-  function atTop(el)    { return el.scrollTop <= 0; }
-
-  /* ─── main transition ─── */
-  async function go(dir) {
-    if (isTransitioning) return;
-    if (performance.now() - lastEnd < COOLDOWN) return;
-
-    const nextIdx = activeIdx + (dir === 'next' ? 1 : -1);
-    if (nextIdx < 0 || nextIdx >= screens.length) return;
-
-    const activeScreen = screens[activeIdx];
-    const nextScreen   = screens[nextIdx];
-
-    if (dir === 'next' && !atBottom(activeScreen)) return;
-    if (dir === 'prev' && !atTop(activeScreen))    return;
-
-    isTransitioning = true;
-    if (backBtn) backBtn.style.pointerEvents = 'none';
-
-    /* ── prefers-reduced-motion: 200ms fade, no circles ── */
-    if (reducedMotion) {
-      try {
-        activeScreen.classList.remove('is-active');
-        nextScreen.style.opacity = '0';
-        nextScreen.classList.add('is-active');
-        if (window.__animateSection) window.__animateSection(nextScreen);
-        nextScreen.scrollTop = 0;
-        const fa = nextScreen.animate([{opacity:0},{opacity:1}],{duration:200,easing:'ease',fill:'forwards'});
-        await fa.finished;
-        fa.cancel();
-        nextScreen.style.opacity = '';
-        activeIdx = nextIdx;
-        updateUI();
-        if (nextIdx === 2) releaseScroll();
-      } finally {
-        isTransitioning = false;
-        lastEnd = performance.now();
-        if (backBtn) backBtn.style.pointerEvents = '';
-      }
-      return;
-    }
-
-    /* ── geometry ── */
-    const { w, h, cx, finalR, innerR, outerSR, startY, endY } = geoFor(dir);
-
-    const outerStart = `circle(${outerSR}px at ${cx}px ${startY}px)`;
-    const outerEnd   = `circle(${finalR}px at ${cx}px ${endY}px)`;
-    const innerStart = `circle(1px at ${cx}px ${startY}px)`;
-    const innerEnd   = `circle(${innerR}px at ${cx}px ${endY}px)`;
-    const timing     = { duration: DURATION, easing: EASING, fill: 'forwards' };
-
-    /* ── set up NEW layers — current composition untouched ──
-       z stacking during animation:
-         41  currentMask (stable outer clip — current ring)
-         42  activeScreen (stable inner clip — current content)
-         43  nextMask    (growing new ball — mask-new)
-         44  nextScreen  (growing new content — is-transitioning-in)   */
-    nextScreen.scrollTop    = 0;
-    nextScreen.style.clipPath = innerStart;
-    nextScreen.classList.add('is-transitioning-in');    // z:44
-
-    nextMask.style.clipPath = outerStart;
-    nextMask.classList.add('is-animating', 'mask-new'); // z:43
-
-    // Bounce: overshoot only — never retract below finalR so corners stay covered.
-    // With finalR = 1.6× diagonal all values remain well above the viewport diagonal.
-    const overshootR = finalR * 1.008;
-    const BOUNCE_DUR = 220;
-    const TOTAL_DUR  = DURATION + BOUNCE_DUR;
-    const t0 = DURATION / TOTAL_DUR;
-    const t1 = (DURATION + 110) / TOTAL_DUR;
-
-    let outerAnim = null, innerAnim = null, contentTimer = null, succeeded = false;
-
-    try {
-      outerAnim = nextMask.animate([
-        { clipPath: outerStart,                                       offset: 0,  easing: EASING       },
-        { clipPath: outerEnd,                                         offset: t0, easing: 'ease-out'   },
-        { clipPath: `circle(${overshootR}px at ${cx}px ${endY}px)`, offset: t1, easing: 'ease-in-out' },
-        { clipPath: outerEnd,                                         offset: 1  }
-      ], { duration: TOTAL_DUR, fill: 'forwards' });
-      innerAnim = nextScreen.animate([{clipPath:innerStart},{clipPath:innerEnd}], timing);
-
-      // Kick off section entry at 48% of circle duration (≈ 528ms into 1100ms).
-      // animateSection is idempotent (animated Set) so the post-await call is a safe no-op.
-      contentTimer = setTimeout(() => {
-        if (window.__animateSection) window.__animateSection(nextScreen);
-      }, Math.round(DURATION * 0.48));
-
-      await Promise.all([outerAnim.finished, innerAnim.finished]);
-
-      clearTimeout(contentTimer); contentTimer = null;
-
-      // Hide mask BEFORE cancelling WAAPI fill — prevents the one-frame snap back
-      // to initial clip-path state that can look like an opacity flash.
-      nextMask.style.visibility = 'hidden';
-      outerAnim.cancel(); outerAnim = null;
-      innerAnim.cancel(); innerAnim = null;
-
-      /* retire old screen — fully covered by the new ball at this point */
-      activeScreen.classList.remove('is-active');
-
-      /* expose new screen full-width; clean up mask */
-      nextScreen.classList.remove('is-transitioning-in');
-      nextScreen.style.clipPath = '';
-      nextScreen.classList.add('is-active');
-      if (window.__animateSection) window.__animateSection(nextScreen); // no-op if early timer fired
-      nextMask.style.clipPath = '';
-      nextMask.style.visibility = '';
-      nextMask.classList.remove('is-animating', 'mask-new');
-
-      /* alternate disk roles for next transition */
-      [currentMask, nextMask] = [nextMask, currentMask];
-
-      activeIdx = nextIdx;
-      updateUI();
-      if (nextIdx === 2) releaseScroll();
-      succeeded = true;
-
-    } finally {
-      if (contentTimer) { clearTimeout(contentTimer); contentTimer = null; }
-      if (outerAnim) outerAnim.cancel();
-      if (innerAnim) innerAnim.cancel();
-      if (!succeeded) {
-        /* emergency rollback: undo in-progress new layers only */
-        nextMask.style.visibility = '';
-        nextMask.classList.remove('is-animating', 'mask-new');
-        nextMask.style.clipPath = '';
-        nextScreen.classList.remove('is-transitioning-in');
-        nextScreen.style.clipPath = '';
-      }
-      isTransitioning = false;
-      lastEnd = performance.now();
-      if (backBtn) backBtn.style.pointerEvents = '';
-    }
-  }
-
-  /* ─── release scroll — llamado tras transición screens[1]→[2] ─── */
-  function releaseScroll() {
-    if (scrollReleased) return;
-    scrollReleased = true;
-    window.removeEventListener('wheel',      onWheel);
-    window.removeEventListener('touchstart', onTouchStart);
-    window.removeEventListener('touchend',   onTouchEnd);
-    if (backBtn) backBtn.removeEventListener('click', onBackClick);
-    clearTimeout(wheelTimer); wheelAccum = 0; touchStartY = null;
-    document.querySelectorAll('.page-transition').forEach(mask => {
-      if (typeof mask.getAnimations === 'function') {
-        mask.getAnimations().forEach(a => a.cancel());
-      }
-      mask.style.visibility = 'hidden';
-      mask.classList.remove('is-animating', 'mask-new');
-      mask.style.clipPath = '';
-      mask.style.opacity  = '';
-    });
-    screens[0].classList.add('screen-done');
-    screens[1].classList.add('screen-done');
-    document.documentElement.classList.add('scroll-released');
-    requestAnimationFrame(() => { window.scrollTo(0, 0); });
-    const remainingScreens = screens.slice(3);
-    if (window.__animateSection) {
-      if ('IntersectionObserver' in window) {
-        let pendingSections = remainingScreens.length;
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            window.__animateSection(entry.target);
-            io.unobserve(entry.target);
-            pendingSections -= 1;
-            if (pendingSections <= 0) io.disconnect();
-          });
-        }, { threshold: 0.15 });
-        remainingScreens.forEach(section => io.observe(section));
-      } else {
-        remainingScreens.forEach(section => window.__animateSection(section));
-      }
-    }
-  }
-
-  /* ─── wheel with boundary-aware debounce ─── */
-  function onWheel(e) {
-    if (isTransitioning) return;
-    const active = screens[activeIdx];
-    if (e.deltaY > 0 && !atBottom(active)) return;
-    if (e.deltaY < 0 && !atTop(active))    return;
-    wheelAccum += e.deltaY;
-    clearTimeout(wheelTimer);
-    wheelTimer = setTimeout(() => {
-      if (Math.abs(wheelAccum) > 10) go(wheelAccum > 0 ? 'next' : 'prev');
-      wheelAccum = 0;
-    }, 60);
-  }
-
-  /* ─── touch ─── */
-  function onTouchStart(e) { touchStartY = e.touches[0].clientY; }
-  function onTouchEnd(e) {
-    if (touchStartY === null) return;
-    const dy = touchStartY - e.changedTouches[0].clientY;
-    touchStartY = null;
-    if (Math.abs(dy) < 40 || isTransitioning) return;
-    go(dy > 0 ? 'next' : 'prev');
-  }
-
-  /* ─── init ─── */
-  screens[0].classList.add('is-active');
-  updateUI();
-
-  function onBackClick() { if (!isTransitioning) go('prev'); }
-  if (backBtn) backBtn.addEventListener('click', onBackClick);
-  window.addEventListener('wheel',             onWheel,      { passive: true });
-  window.addEventListener('touchstart',        onTouchStart, { passive: true });
-  window.addEventListener('touchend',          onTouchEnd,   { passive: true });
-  // geoFor() reads window.innerWidth/Height fresh on every go() call, so geometry
-  // is always current at transition start. These listeners are a no-op hook for
-  // future use (e.g. aborting an in-progress animation on orientation flip).
-  window.addEventListener('resize',            () => {});
-  window.addEventListener('orientationchange', () => {});
-})();
-</script>
 
 <script>
 /* ═══ SECTION ENTRY ANIMATIONS ═══ */
@@ -1646,10 +1346,10 @@ header.hero .hero-foot{justify-content:flex-start}
   'use strict';
 
   const REDUCED    = matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const LINE_MS    = 580;   // ms per title line animation
+  const LINE_MS    = 720;   // ms per title line animation
   const LINE_STAG  = 130;   // ms stagger between lines
   const STAGGER    = 110;   // ms between content element starts
-  const INIT_DELAY = 80;    // ms before eyebrow
+  const INIT_DELAY = 100;   // ms before eyebrow
 
   const animated = new Set();
 
@@ -1733,8 +1433,8 @@ header.hero .hero-foot{justify-content:flex-start}
     setTimeout(() => {
       const useT = el.dataset.saTransform === '1';
       el.style.transition = useT
-        ? 'opacity 520ms ease, transform 520ms cubic-bezier(.25,.46,.45,.94)'
-        : 'opacity 520ms ease';
+        ? 'opacity 650ms ease, transform 650ms cubic-bezier(.25,.46,.45,.94)'
+        : 'opacity 650ms ease';
       el.style.opacity = '1';
       if (useT) el.style.transform = 'none';
       if (el.closest('.bens-grid')) setTimeout(() => {
@@ -1775,19 +1475,12 @@ header.hero .hero-foot{justify-content:flex-start}
     getContentElems(section).forEach((el, i) => animateElem(el, i * STAGGER));
   }
 
-  /* ── Trigger detection ── */
-  const launchSections = Array.from(
-    document.querySelectorAll('[data-launch-screen]:not(header.hero):not(.screen-closing)')
-  );
+  const eligibles = Array.from(document.querySelectorAll('section,.panel-stage'))
+    .filter(s => s.querySelector('.s-eyebrow,.callout'));
 
-  if (launchSections.length) {
-    /* Launch screen mode: prepare now, animate via go() hook */
-    launchSections.forEach(prepareSection);
-    window.__animateSection = animateSection;
+  if (CSS.supports('animation-timeline', 'view()')) {
+    /* CSS scroll-driven handles animations + reduced-motion via @media — no JS needed */
   } else {
-    /* Normal scroll mode: IntersectionObserver */
-    const eligibles = Array.from(document.querySelectorAll('section,.panel-stage'))
-      .filter(s => s.querySelector('.s-eyebrow,.callout'));
     eligibles.forEach(prepareSection);
     if (!REDUCED) {
       const io = new IntersectionObserver((entries) => {
