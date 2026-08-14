@@ -371,8 +371,7 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:100px clam
 .info-num{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin-bottom:14px}
 .info-h{font-size:17px;font-weight:500;letter-spacing:-.01em;color:var(--ink-0);margin-bottom:8px}
 .info-p{font-size:16px;color:var(--ink-1);line-height:1.55;font-weight:300}
-.chars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.cap-card .chars-grid{grid-template-columns:repeat(3,1fr)}
+.chars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @keyframes cap-card-vibe{
   0%,100%{
     box-shadow:
@@ -504,8 +503,6 @@ footer .l{display:flex;align-items:center;gap:18px}
   .hero-content{padding-left:40px;padding-right:40px}
   .cap-card{background:none;border:none;box-shadow:none;border-radius:0;padding:0;overflow:visible;animation:none}
   .cap-card::before{display:none}
-  .cap-card .chars-grid{grid-template-columns:1fr;gap:18px;width:100%;overflow:visible}
-  .cap-card .info-card{width:100%;max-width:none;height:auto;min-height:0}
   .flow-pill{flex:0 0 100%;min-width:0}
   .chars-grid,.bens-grid{grid-template-columns:1fr}
   .hero-foot{margin-top:24px;gap:20px;justify-content:flex-start}
@@ -778,6 +775,15 @@ section[data-launch-screen]:has(.bens-grid) .info-card::after{border-color:#BA80
 .bens-grid .info-card.is-levitating:nth-child(2){animation-delay:-1.6s}
 .bens-grid .info-card.is-levitating:nth-child(3){animation-delay:-3.2s}
 @media(prefers-reduced-motion:reduce){.bens-grid .info-card.is-levitating{animation:none}}
+.flow-pill.is-levitating{animation:float-card 4.8s ease-in-out infinite}
+.flow .flow-pill.is-levitating:nth-child(1){animation-delay:0s}
+.flow .flow-pill.is-levitating:nth-child(2){animation-delay:-1.6s}
+.flow .flow-pill.is-levitating:nth-child(3){animation-delay:-3.2s}
+.chars-grid .info-card.is-levitating{animation:float-card 4.8s ease-in-out infinite}
+.chars-grid .info-card.is-levitating:nth-child(1){animation-delay:0s}
+.chars-grid .info-card.is-levitating:nth-child(2){animation-delay:-1.6s}
+.chars-grid .info-card.is-levitating:nth-child(3){animation-delay:-3.2s}
+@media(prefers-reduced-motion:reduce){.flow-pill.is-levitating,.chars-grid .info-card.is-levitating{animation:none}}
 section[data-launch-screen]:has(.cond-grid) .cond-block.pos{background:rgba(17,40,24,.55);border-color:rgba(34,197,94,.30)}
 section[data-launch-screen]:has(.cond-grid) .cond-item{color:#FFF}
 section[data-launch-screen]:has(.cond-grid) .cond-note{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.10);color:rgba(255,255,255,.70)}
@@ -867,6 +873,8 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   .flow .flow-pill:nth-child(1),
   .flow .flow-pill:nth-child(2),
   .flow .flow-pill:nth-child(3){animation-delay:0s}
+  /* cards complete sa-in at entry 90% so levitation IO (threshold:0.95) always fires after fill:forward */
+  .flow-pill,.info-card{animation-range:entry 0% entry 90%}
   @media(prefers-reduced-motion:reduce){
     .s-eyebrow,.s-aside,.cmp-card,.cmp-arrow,
     .flow-pill,.cond-block,.cond-note,.info-card,.callout{animation:none}
@@ -1188,23 +1196,21 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <p class="s-aside">Órbita analiza el embalaje que declaraste y el que recibimos para calcular tus tiempos de procesamiento con precisión.</p>
   </div>
 
-  <div class="cap-card">
-    <div class="chars-grid">
-      <div class="info-card">
-        <p class="info-num">01</p>
-        <h3 class="info-h">Promesa diferenciada por embalaje</h3>
-        <p class="info-p">Mientras los ítems sueltos se procesan en tiempos estándar, tus productos en casepack avanzan por una fila rápida si cumplen con los requisitos de empaque.</p>
-      </div>
-      <div class="info-card">
-        <p class="info-num">02</p>
-        <h3 class="info-h">Recálculo automático</h3>
-        <p class="info-p">Si por alguna razón tu embalaje real no coincide con lo que declaraste, tu promesa se ajusta de inmediato en la plataforma.</p>
-      </div>
-      <div class="info-card">
-        <p class="info-num">03</p>
-        <h3 class="info-h">Visibilidad total en Órbita</h3>
-        <p class="info-p">Monitorea el tiempo estimado en que tu inventario estará disponible para la venta antes y durante el proceso de ingreso.</p>
-      </div>
+  <div class="chars-grid">
+    <div class="info-card">
+      <p class="info-num">01</p>
+      <h3 class="info-h">Promesa diferenciada por embalaje</h3>
+      <p class="info-p">Mientras los ítems sueltos se procesan en tiempos estándar, tus productos en casepack avanzan por una fila rápida si cumplen con los requisitos de empaque.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">02</p>
+      <h3 class="info-h">Recálculo automático</h3>
+      <p class="info-p">Si por alguna razón tu embalaje real no coincide con lo que declaraste, tu promesa se ajusta de inmediato en la plataforma.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">03</p>
+      <h3 class="info-h">Visibilidad total en Órbita</h3>
+      <p class="info-p">Monitorea el tiempo estimado en que tu inventario estará disponible para la venta antes y durante el proceso de ingreso.</p>
     </div>
   </div>
 </section>
@@ -1480,7 +1486,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
         : 'opacity 650ms ease';
       el.style.opacity = '1';
       if (useT) el.style.transform = 'none';
-      if (el.closest('.bens-grid')) setTimeout(() => {
+      if (el.closest('.bens-grid') || el.closest('.chars-grid')) setTimeout(() => {
         el.style.transform = '';
         el.style.transition = '';
         el.classList.add('is-levitating');
@@ -1529,6 +1535,19 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
   if (CSS.supports('animation-timeline', 'view()')) {
     /* CSS scroll-driven handles .s-eyebrow, content elements, .callout */
+    /* levitation: add is-levitating after sa-in completes (threshold 0.95 fires after entry 90%) */
+    if (!REDUCED) {
+      const levEls = document.querySelectorAll('.flow-pill, .chars-grid .info-card, .bens-grid .info-card');
+      const levIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('is-levitating'), 150);
+            levIO.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.95 });
+      levEls.forEach(el => levIO.observe(el));
+    }
   } else {
     eligibles.forEach(prepareSection);
     if (!REDUCED) {
