@@ -863,6 +863,10 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   .s-aside,.cmp-card,.cmp-arrow,.flow-pill,
   .cond-block,.cond-note,.info-card{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 0% contain 35%}
   .callout{animation:sa-in 1ms linear both;animation-timeline:view();animation-range:entry 0% contain 30%}
+  /* reset float-card stagger delays — they'd delay the scroll-driven sa-in on PASO 02/03 */
+  .flow .flow-pill:nth-child(1),
+  .flow .flow-pill:nth-child(2),
+  .flow .flow-pill:nth-child(3){animation-delay:0s}
   @media(prefers-reduced-motion:reduce){
     .s-eyebrow,.s-aside,.cmp-card,.cmp-arrow,
     .flow-pill,.cond-block,.cond-note,.info-card,.callout{animation:none}
