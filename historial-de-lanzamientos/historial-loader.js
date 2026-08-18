@@ -32,6 +32,7 @@
   }
 
   var STATIC_SLUGS = new Set([
+    'chat-soporte', 'casepack',
     'buyer-portal', 'estados-orden-ingreso',
     'vista-ordenes-d2c', 'crea-material-empaque', 'api-melonn-v2',
     'empaque-b2b', 'checkout-inteligente', 'visualizador-cargos',
@@ -43,6 +44,8 @@
   ]);
 
   var SLUG_IMAGES = {
+    'chat-soporte':                                    '../IMAGE/LANZAMIENTOS/CHAT_SOPORTE/Banner_Soporte_Orbita_1-1.png',
+    'casepack':                                        '../IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN_1-1.png',
     'buyer-portal':                                    '../IMAGE/LANZAMIENTOS/BUYER_PORTAL/Card_Buyer_Portal.png',
     'estados-orden-ingreso':                           '../IMAGE/LANZAMIENTOS/ESTADO_ORDEN_INGRESO/Estado_Orden_Ingreso_1-1.png',
     'vista-ordenes-d2c':                              '../IMAGE/LANZAMIENTOS/CAMBIOS_ORDENES_ORBITA/banner 3.png',
@@ -64,6 +67,22 @@
   };
 
   var PINNED_CARDS = [
+    {
+      slug: 'chat-soporte',
+      title: 'Llegó tu nuevo Soporte en Órbita: menos caos de WhatsApp, más control de tu logística.',
+      category: 'Experiencia · Soporte · 2026',
+      description: 'Escribes desde Órbita y cada caso queda con su propio hilo, su estado y su historial. Siempre sabes en qué va lo tuyo.',
+      banner_url: null, country: 'both', launch_type: 'operaciones',
+      index_order: -3, is_featured: true
+    },
+    {
+      slug: 'casepack',
+      title: 'Ahora tu mercancía ingresa más rápido cuando llega en Casepack.',
+      category: 'Operación · Inbound · 2026',
+      description: 'Si la mayor parte de tu mercancía llega en casepack, el ingreso a bodega pasa de 2 a 1 día hábil.',
+      banner_url: null, country: 'both', launch_type: 'operaciones',
+      index_order: -2, is_featured: true
+    },
     {
       slug: 'buyer-portal',
       title: 'Ahora tus compradores tienen respuestas. Y tu operación, menos interrupciones.',
