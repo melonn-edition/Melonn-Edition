@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
+<link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
+<title>Guía de estados – Multipaquete – Melonn Editions</title>
+<meta name="description" content="Cómo leer el estado de tus órdenes, de cada paquete y de su transporte en Multipaquete. Explicado paso a paso, con ejemplos." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script async src="/posthog.js"></script><script async src="/ga4.js"></script>
+<style>
+:root{
+  --line:rgba(20,9,91,.10);
+  --r-sm:10px;--r-md:16px;--r-lg:24px;--r-xl:28px;
+  --maxw:1320px;--pad-x:clamp(24px,4vw,56px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#FCFCFE;color:#14095B;font-family:'Sora',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv11";line-height:1.45}
+body{overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* ——— nav ——— */
+.nav{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:22px var(--pad-x);
+  border-bottom:1px solid rgba(20,9,91,.12);
+  backdrop-filter:blur(18px);
+  background:rgba(252,252,254,.88);
+  position:sticky;top:0;z-index:50;
+}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:-.01em;font-size:15px;color:#14095B}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-link{font-size:13px;color:#14095B;padding:8px 14px;border-radius:999px;transition:color .2s,background .2s}
+.nav-link:hover{background:rgba(20,9,91,.05)}
+.nav-link.active{color:#14095B;background:rgba(20,9,91,.08);border:1px solid rgba(20,9,91,.20)}
+.hamburger{display:none}
+.mobile-menu{
+  position:fixed;top:var(--nav-h,64px);left:0;right:0;z-index:200;
+  display:none;flex-direction:column;gap:4px;
+  padding:12px var(--pad-x) 20px;
+  border-bottom:1px solid rgba(20,9,91,.10);
+  background:rgba(252,252,254,.96);backdrop-filter:blur(20px);
+}
+.mobile-menu.open{display:flex}
+.mobile-menu .nav-link{font-size:15px;padding:12px 16px;border-radius:12px}
+
+/* ——— layout ——— */
+.guide-wrap{max-width:var(--maxw);margin:0 auto}
+
+/* ——— header ——— */
+.guide-header{padding:60px var(--pad-x) 48px;border-bottom:1px solid var(--line)}
+.guide-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#00C77C;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.guide-h1{font-size:clamp(28px,3.5vw,48px);font-weight:800;color:#14095B;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px;max-width:20ch;text-wrap:balance}
+.guide-tagline{font-size:18px;color:#2D2B5C;line-height:1.55;max-width:54ch;margin-bottom:28px}
+.guide-meta-line{font-size:13px;color:#8080A8;font-style:italic;margin-bottom:24px}
+.guide-back{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#14095B;font-weight:500;padding:8px 0;border-bottom:1px solid rgba(20,9,91,.18);transition:border-color .2s}
+.guide-back:hover{border-color:rgba(20,9,91,.45)}
+.guide-back svg{width:14px;height:14px;flex-shrink:0}
+
+/* ——— sections ——— */
+.guide-section{padding:72px var(--pad-x);border-bottom:1px solid var(--line)}
+.s-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#00C77C;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.s-eyebrow .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:12px;border:1px solid rgba(20,9,91,.18);font-size:13px;color:#00C77C;background:rgba(20,9,91,.04)}
+.guide-section-title{font-size:clamp(24px,3vw,40px);font-weight:800;color:#14095B;letter-spacing:-.03em;line-height:1.1;margin-bottom:32px;max-width:24ch;text-wrap:balance}
+.guide-h3{font-size:18px;font-weight:700;color:#14095B;margin:36px 0 12px;letter-spacing:-.01em}
+.guide-p{font-size:16px;color:#2D2B5C;line-height:1.6;margin-bottom:16px;max-width:70ch}
+.guide-bold{font-weight:600;color:#14095B}
+
+/* ——— callout ——— */
+.guide-callout{margin:20px 0 28px;padding:18px 20px;border-left:3px solid #00C77C;background:rgba(0,199,124,.06);border-radius:0 8px 8px 0;font-size:15px;color:#14095B;line-height:1.6}
+
+/* ——— tables ——— */
+.guide-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid rgba(20,9,91,.12);margin:12px 0 28px}
+.guide-table{width:100%;border-collapse:collapse;font-size:14px;min-width:380px}
+.guide-table th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:#5C5A80;background:rgba(20,9,91,.04);padding:10px 16px;border-bottom:1px solid rgba(20,9,91,.10);text-align:left;white-space:nowrap}
+.guide-table td{padding:12px 16px;border-bottom:1px solid rgba(20,9,91,.07);color:#14095B;line-height:1.5;vertical-align:top}
+.guide-table tr:last-child td{border-bottom:none}
+.guide-table td:first-child{font-weight:500}
+.badge-final{font-size:12px;color:#00C77C;font-weight:600}
+.badge-live{font-size:12px;color:#5C5A80}
+
+/* ——— lists ——— */
+.guide-list{list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px}
+.guide-list li{padding:12px 16px;background:rgba(20,9,91,.03);border:1px solid rgba(20,9,91,.08);border-radius:8px;font-size:15px;color:#14095B;line-height:1.5}
+.guide-list-ol{margin:0 0 24px;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.guide-list-ol li{font-size:15px;color:#14095B;line-height:1.5;padding-left:4px}
+
+/* ——— buttons ——— */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-family:inherit;font-size:14px;font-weight:500;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-primary{background:linear-gradient(180deg,#5EEAD4 0%,#14095B 100%);color:#FCFCFE;border-color:rgba(20,9,91,.35);box-shadow:0 12px 40px -10px rgba(20,9,91,.35),inset 0 1px 0 rgba(255,255,255,.3)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 18px 60px -10px rgba(20,9,91,.55)}
+
+/* ——— footer ——— */
+footer{max-width:var(--maxw);margin:0 auto;padding:40px var(--pad-x) 56px;border-top:1px solid rgba(20,9,91,.10);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;font-size:12px;letter-spacing:.04em;color:#14095B}
+footer .l{display:flex;align-items:center;gap:18px}
+
+/* ——— keyframes ——— */
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.4)}}
+
+/* ——— entry animation ——— */
+.sa-hidden{opacity:0;transform:translateY(16px);transition:opacity 550ms ease,transform 550ms cubic-bezier(.25,.46,.45,.94)}
+.sa-visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.sa-hidden{opacity:1;transform:none;transition:none}}
+
+/* ——— responsive ——— */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:grid;place-items:center;width:34px;height:34px;border-radius:999px;border:1px solid rgba(20,9,91,.18);background:transparent;color:#14095B;cursor:pointer;flex-shrink:0}
+  .hb-bar{display:block;width:14px;height:1.5px;background:currentColor;border-radius:2px;transition:.25s}
+  .hb-bar+.hb-bar{margin-top:4px}
+  .nav.open .hb-bar:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+  .nav.open .hb-bar:nth-child(2){opacity:0;transform:scaleX(0)}
+  .nav.open .hb-bar:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+  .guide-header,.guide-section{padding-left:24px;padding-right:24px}
+  footer{padding-left:24px;padding-right:24px}
+  .guide-table td:first-child{white-space:normal}
+}
+@media(max-width:400px){
+  .guide-header,.guide-section,footer{padding-left:20px;padding-right:20px}
+  .nav{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="brand">
+    <span style="font-size:18px;animation:twinkle 2.4s ease-in-out infinite;display:inline-block;line-height:1;flex-shrink:0;color:#14095B">✶</span>
+    <span>Melonn Editions</span>
+    <span style="color:#8080A8;margin:0 8px;font-weight:400">·</span>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="../">Home</a>
+    <a class="nav-link active" href="../historial-de-lanzamientos/">Historial de lanzamientos</a>
+  </div>
+  <div style="display:flex;justify-content:flex-end">
+    <button class="hamburger" aria-label="Menú" onclick="this.closest('nav').classList.toggle('open');document.querySelector('.mobile-menu').classList.toggle('open')">
+      <span class="hb-bar"></span><span class="hb-bar"></span><span class="hb-bar"></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a class="nav-link" href="../">Inicio</a>
+  <a class="nav-link active" href="../historial-de-lanzamientos/">Lanzamientos</a>
+</div>
+
+<div class="guide-wrap">
+
+<!-- ============ HEADER ============ -->
+<div class="guide-header sa-hidden">
+  <a class="guide-back" href="multipaquete">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>
+    Volver a Multipaquete
+  </a>
+  <div style="margin-top:28px">
+    <div class="guide-eyebrow">
+      <span style="width:32px;height:1px;background:#00C77C;display:inline-block;flex-shrink:0"></span>
+      Multipaquete · Guía de estados
+    </div>
+    <h1 class="guide-h1">Cada paquete tiene su propia historia</h1>
+    <p style="font-size:14px;font-weight:600;color:#2D2B5C;margin-bottom:16px">Guía para sellers y equipo Melonn</p>
+    <p class="guide-tagline">Cómo leer el estado de tus órdenes, de cada paquete y de su transporte. Explicado paso a paso, con ejemplos, para sellers y para el equipo interno.</p>
+    <p class="guide-meta-line">Melonn · Aprende con Melonn · Agosto 2026</p>
+  </div>
+</div>
+
+<!-- ============ 01 QUÉ CAMBIÓ ============ -->
+<section class="guide-section sa-hidden">
+  <div class="s-eyebrow"><span class="num">01</span>Qué cambió</div>
+  <h2 class="guide-section-title">Ahora ves el avance de cada paquete, no solo de la orden</h2>
+  <p class="guide-p">Antes veías un solo estado por orden. Ahora, si tu orden tiene más de un paquete, cada uno avanza con su propio estado, su propia guía y su propia transportadora. El estado de la orden siempre refleja el conjunto de todos sus paquetes.</p>
+  <h3 class="guide-h3">El recorrido de una orden, de un vistazo</h3>
+  <ol class="guide-list-ol">
+    <li><span class="guide-bold">Alistamiento</span> — Se recibe, se reserva inventario y se empaca en el CEDIS.</li>
+    <li><span class="guide-bold">En camino</span> — Cada paquete sale con su transportadora hacia el comprador.</li>
+    <li><span class="guide-bold">Entrega</span> — El comprador recibe el paquete, o lo recoge en punto.</li>
+    <li><span class="guide-bold">Cierre</span> — La orden queda en un estado final: entregada, perdida o cancelada.</li>
+  </ol>
+</section>
+
+<!-- ============ 02 LA ORDEN ============ -->
+<section class="guide-section sa-hidden">
+  <div class="s-eyebrow"><span class="num">02</span>La orden</div>
+  <h2 class="guide-section-title">Entiende qué significa cada estado de tu orden</h2>
+
+  <h3 class="guide-h3">Estados de la orden en alistamiento</h3>
+  <p class="guide-p">Antes de salir hacia el comprador, tu orden pasa por estos momentos:</p>
+  <div class="guide-table-wrap">
+    <table class="guide-table">
+      <thead><tr><th>Estado</th><th>Qué significa</th></tr></thead>
+      <tbody>
+        <tr><td>Recibida – válida</td><td>La orden llegó a Melonn y está pendiente de comenzar su procesamiento.</td></tr>
+        <tr><td>Alistamiento en espera</td><td>Está pausada: porque tú lo configuraste (pago, VAS, reserva) o porque Melonn encontró un dato por validar, como una dirección incompleta.</td></tr>
+        <tr><td>Ítems reservados / con agotado</td><td>Los productos quedan reservados del inventario. Si falta stock, la orden queda en agotado hasta que llegue nuevo inventario.</td></tr>
+        <tr><td>Picking y empacando</td><td>El equipo de Melonn recoge los productos y los empaca según tus instrucciones.</td></tr>
+        <tr><td>Empacada en bodega</td><td>Todos los paquetes de tu orden están listos en el CEDIS, a la espera de ser despachados o recogidos.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="guide-h3">Estados de la orden en transporte: los seis estados principales</h3>
+  <div class="guide-table-wrap">
+    <table class="guide-table">
+      <thead><tr><th>Estado</th><th>Qué significa</th></tr></thead>
+      <tbody>
+        <tr><td>Recogido por el comprador</td><td>Solo si el método de envío es recogida en tienda: el comprador retiró la orden en el CEDIS.</td></tr>
+        <tr><td>En tránsito</td><td>La orden ya se entregó a la transportadora y va en camino a la dirección de entrega.</td></tr>
+        <tr><td>Entregada</td><td>La orden llegó al comprador. Queda cerrada; desde aquí solo cabe un proceso de devolución.</td></tr>
+        <tr><td>Perdida</td><td>Todos los paquetes de la orden se perdieron durante el tránsito. Es un cierre no exitoso.</td></tr>
+        <tr><td>En flujo no esperado</td><td>Uno o más paquetes tuvo una entrega fallida o está en proceso de cancelación. La orden puede retomar su curso o terminar cancelada.</td></tr>
+        <tr><td>Cancelada</td><td>La orden se canceló y los productos volvieron al inventario disponible. No se puede reactivar.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="guide-h3">Cuando tu orden tiene varios paquetes</h3>
+  <p class="guide-p">Estos cuatro estados aparecen mientras los paquetes de una misma orden van a ritmos distintos:</p>
+  <ul class="guide-list">
+    <li><span class="guide-bold">Parcialmente en tránsito</span> — Al menos un paquete ya salió; los demás siguen en el CEDIS.</li>
+    <li><span class="guide-bold">Parcialmente entregado</span> — Al menos un paquete ya llegó al comprador; los demás siguen su curso.</li>
+    <li><span class="guide-bold">Con novedad — en gestión</span> — Un paquete está perdido, con entrega fallida o en cancelación, y el resto aún no cierra.</li>
+    <li><span class="guide-bold">Con novedad — resuelta</span> — Un paquete quedó perdido o cancelado, y todos los demás ya cerraron. Es un estado final.</li>
+  </ul>
+  <div class="guide-callout">Estos cuatro estados solo existen si tu orden tiene más de un paquete. Si tu orden viaja en un solo paquete, nunca la vas a ver en ninguno de ellos.</div>
+
+  <h3 class="guide-h3">Resumen: ¿cuáles estados son finales?</h3>
+  <p class="guide-p">Un estado es final cuando, al llegar a él, la orden ya no vuelve a cambiar.</p>
+  <div class="guide-table-wrap">
+    <table class="guide-table">
+      <thead><tr><th>Estado</th><th>¿Qué tan definitivo es?</th></tr></thead>
+      <tbody>
+        <tr><td>Recogido por comprador</td><td><span class="badge-final">Estado final</span></td></tr>
+        <tr><td>En tránsito</td><td><span class="badge-live">Sigue cambiando</span></td></tr>
+        <tr><td>Entregada</td><td><span class="badge-final">Estado final</span></td></tr>
+        <tr><td>Perdida</td><td><span class="badge-final">Estado final</span></td></tr>
+        <tr><td>En flujo no esperado</td><td><span class="badge-live">Sigue cambiando</span></td></tr>
+        <tr><td>Cancelada</td><td><span class="badge-final">Estado final</span></td></tr>
+        <tr><td>Parcialmente en tránsito</td><td><span class="badge-live">Sigue cambiando</span></td></tr>
+        <tr><td>Parcialmente entregado</td><td><span class="badge-live">Sigue cambiando</span></td></tr>
+        <tr><td>Con novedad – en gestión</td><td><span class="badge-live">Sigue cambiando</span></td></tr>
+        <tr><td>Con novedad – resuelta</td><td><span class="badge-final">Estado final</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 03 EL PAQUETE ============ -->
+<section class="guide-section sa-hidden">
+  <div class="s-eyebrow"><span class="num">03</span>El paquete</div>
+  <h2 class="guide-section-title">Cada paquete avanza con su propio estado</h2>
+  <p class="guide-p">El paquete es la unidad que realmente se mueve. Su estado es la fuente de la que nace el estado de toda la orden.</p>
+
+  <h3 class="guide-h3">Antes de salir: el paso a paso en el CEDIS</h3>
+  <ol class="guide-list-ol">
+    <li><span class="guide-bold">Empacado</span> — El paquete se crea durante el proceso de empaque.</li>
+    <li><span class="guide-bold">Pendiente de sortear</span> — Está pendiente de ser enrutado dentro del CEDIS.</li>
+    <li><span class="guide-bold">Listo para recogida</span> — Ya puede ser recogido por la transportadora, o por el comprador si aplica.</li>
+    <li><span class="guide-bold">En preparación y despacho</span> — Se selecciona, se prepara y queda listo para el despacho.</li>
+  </ol>
+
+  <h3 class="guide-h3">Cómo se cierra un paquete</h3>
+  <ul class="guide-list">
+    <li><span class="guide-bold">Recogido por el comprador</span> — El comprador retiró el paquete en un punto de recogida.</li>
+    <li><span class="guide-bold">Entregado al comprador</span> — El paquete se entregó exitosamente en la dirección del comprador.</li>
+    <li><span class="guide-bold">Perdido</span> — El paquete se reportó como perdido, de forma definitiva.</li>
+    <li><span class="guide-bold">Cancelado</span> — El paquete se canceló, de forma definitiva.</li>
+  </ul>
+
+  <h3 class="guide-h3">Intento de entrega vs. ofrecimiento de entrega</h3>
+  <p class="guide-p">Dos formas distintas en las que un paquete puede intentar llegar al comprador:</p>
+  <ul class="guide-list">
+    <li><span class="guide-bold">Intento</span> — El paquete sale del CEDIS Melonn y regresa al mismo CEDIS sin quedar en poder del servicio de transporte, por una entrega fallida.</li>
+    <li><span class="guide-bold">Ofrecimiento</span> — El paquete sale del CEDIS y queda en poder del servicio de transporte. Si falla, puede reintentarse sin devolverlo a Melonn: un nuevo ofrecimiento dentro del mismo intento.</li>
+  </ul>
+  <div class="guide-callout">Cada paquete puede tener varios intentos, y dentro de cada intento, uno o más ofrecimientos. Todo queda registrado en el detalle del paquete para que puedas hacerle seguimiento.</div>
+</section>
+
+<!-- ============ 04 EJEMPLOS ============ -->
+<section class="guide-section sa-hidden">
+  <div class="s-eyebrow"><span class="num">04</span>Ejemplos</div>
+  <h2 class="guide-section-title">El estado de tu orden nace del de tus paquetes</h2>
+  <p class="guide-p">El estado de la orden no se asigna aparte: se calcula siempre a partir de todos sus paquetes.</p>
+
+  <h3 class="guide-h3">Un ejemplo para verlo completo</h3>
+  <p class="guide-p">Tu orden #12345 se empacó en 3 paquetes. Así se vería su avance día a día:</p>
+  <div class="guide-table-wrap">
+    <table class="guide-table">
+      <thead><tr><th>Día</th><th>Qué pasó</th><th>Estado de tu orden</th></tr></thead>
+      <tbody>
+        <tr><td>Lunes</td><td>Los 3 paquetes quedan empacados en el CEDIS</td><td>Empacada en bodega</td></tr>
+        <tr><td>Martes</td><td>Sale el primer paquete con la transportadora</td><td>Parcialmente en tránsito</td></tr>
+        <tr><td>Miércoles</td><td>Salen los otros 2 paquetes</td><td>En tránsito</td></tr>
+        <tr><td>Jueves</td><td>Se entrega el primer paquete al comprador</td><td>Parcialmente entregado</td></tr>
+        <tr><td>Viernes</td><td>Se entregan los 2 paquetes restantes</td><td>Entregada</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="guide-callout">El martes y el jueves la orden muestra estados parciales: no es una alerta, solo refleja que tus paquetes avanzan a ritmos distintos. Llega a Entregada solo cuando todos sus paquetes fueron entregados.</div>
+
+  <h3 class="guide-h3">Ejemplos de combinación</h3>
+  <div class="guide-table-wrap">
+    <table class="guide-table">
+      <thead><tr><th>Si un paquete está…</th><th>Y el otro está…</th><th>Tu orden se ve como</th></tr></thead>
+      <tbody>
+        <tr><td>Entregado al comprador</td><td>Entregado al comprador</td><td>Entregada</td></tr>
+        <tr><td>Entregado al comprador</td><td>En tránsito</td><td>Parcialmente entregado</td></tr>
+        <tr><td>En tránsito</td><td>Preparado para despacho</td><td>Parcialmente en tránsito</td></tr>
+        <tr><td>Preparado para despacho</td><td>Listo para recogida</td><td>Empacada en bodega</td></tr>
+        <tr><td>Entrega fallida</td><td>En tránsito</td><td>En flujo no esperado</td></tr>
+        <tr><td>Perdido</td><td>Cancelado</td><td>Con novedad – resuelta</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="guide-callout">Si tu orden tiene más de dos paquetes, aplica la misma lógica: la orden siempre refleja la situación del conjunto, nunca la de un solo paquete.</div>
+</section>
+
+<!-- ============ 05 EL TRANSPORTE ============ -->
+<section class="guide-section sa-hidden">
+  <div class="s-eyebrow"><span class="num">05</span>El transporte</div>
+  <h2 class="guide-section-title">Transportadora o mensajería: cada una con sus estados</h2>
+  <p class="guide-p">Cada paquete tiene su propio servicio de transporte, con su guía y sus ofrecimientos de entrega.</p>
+
+  <h3 class="guide-h3">Transportadora</h3>
+  <ul class="guide-list">
+    <li><span class="guide-bold">Creado:</span> se generó el servicio y se asignó la guía.</li>
+    <li><span class="guide-bold">En ciudad de origen, en ruta nacional y en ciudad de destino:</span> el paquete avanza bajo custodia de la transportadora.</li>
+    <li><span class="guide-bold">En reparto:</span> va camino a la dirección del comprador.</li>
+    <li><span class="guide-bold">Entrega exitosa, retorno o perdido:</span> los tres cierres posibles.</li>
+  </ul>
+
+  <h3 class="guide-h3">Mensajería</h3>
+  <ul class="guide-list">
+    <li><span class="guide-bold">En camino:</span> el mensajero salió del CEDIS hacia el comprador.</li>
+    <li><span class="guide-bold">Arribo exitoso:</span> el mensajero entregó el paquete en la dirección.</li>
+    <li><span class="guide-bold">Fallido:</span> no pudo entregar y regresa con el paquete al CEDIS.</li>
+  </ul>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<div class="guide-section sa-hidden" style="text-align:center;border-bottom:none;padding-bottom:0">
+  <p class="guide-p" style="margin:0 auto 28px;text-align:center">Ya conoces el significado de cada estado, de tu orden, de cada paquete y de su transporte.</p>
+  <a class="guide-back" href="multipaquete">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>
+    Volver a Multipaquete
+  </a>
+  <p style="margin-top:16px;font-size:13px;color:#8080A8;font-style:italic">Melonn · Aprende con Melonn · Agosto 2026</p>
+</div>
+
+</div><!-- /guide-wrap -->
+
+<footer>
+  <div class="l">
+    <span style="font-size:18px;animation:twinkle 2.4s ease-in-out infinite;display:inline-block;line-height:1;flex-shrink:0;color:#14095B">✶</span>
+    <span>© 2026 Melonn Edition by Melonn · Plataforma para sellers</span>
+  </div>
+  <div>Última actualización AGO/2026 · Todos los derechos reservados</div>
+</footer>
+
+<script>
+(()=>{
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){
+    document.querySelectorAll('.sa-hidden').forEach(el=>el.classList.remove('sa-hidden'));
+    return;
+  }
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.remove('sa-hidden');
+        e.target.classList.add('sa-visible');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.08});
+  document.querySelectorAll('.sa-hidden').forEach(el=>io.observe(el));
+})();
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

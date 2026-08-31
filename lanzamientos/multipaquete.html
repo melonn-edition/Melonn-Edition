@@ -866,6 +866,11 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   }
 }
 
+/* ——— Guide CTA (S02) ——— */
+.s-guide-cta{margin-top:48px;padding:40px clamp(24px,4vw,56px);text-align:center;background:rgba(196,181,253,.06);border:1px solid rgba(196,181,253,.18);border-radius:var(--r-xl)}
+.s-guide-cta__title{font-size:20px;font-weight:800;color:var(--ink-0);margin-bottom:12px;letter-spacing:-.01em}
+.s-guide-cta__desc{font-size:16px;color:var(--ink-1);max-width:44ch;margin:0 auto 28px;line-height:1.55}
+
 /* ══ hero conveyor layer ══ */
 #conveyor-layer{
   position:absolute;
@@ -1167,6 +1172,12 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
     </div>
   </div>
+
+  <div class="s-guide-cta">
+    <h3 class="s-guide-cta__title">¿Quieres dominar cada estado?</h3>
+    <p class="s-guide-cta__desc">Conoce qué significa cada estado de tu orden, de tus paquetes y de su transporte, explicado paso a paso y con ejemplos.</p>
+    <a class="btn btn-primary" href="multipaquete-estados">Ver la guía de estados →</a>
+  </div>
 </section>
 
 
@@ -1276,7 +1287,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
   const animated = new Set();
 
-  const S_SELS = ['.s-aside','.cmp-card','.cmp-arrow','.flow-pill','.cond-block','.cond-note','.info-card'];
+  const S_SELS = ['.s-aside','.cmp-card','.cmp-arrow','.flow-pill','.cond-block','.cond-note','.info-card','.s-guide-cta'];
   const P_SELS = ['.callout'];
 
   function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
