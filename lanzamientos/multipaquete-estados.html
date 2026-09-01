@@ -890,7 +890,14 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 .g-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C5CFF;font-weight:500;min-width:24px;flex-shrink:0;padding-top:3px}
 .g-dot{width:6px;height:6px;border-radius:50%;background:#00C77C;flex-shrink:0;margin-top:8px}
 .g-2col{grid-template-columns:repeat(2,1fr)}
-@media(max-width:768px){.g-h3{font-size:17px}.g-table{min-width:520px}.g-2col{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .g-h3{font-size:17px}
+  .g-table{min-width:0;font-size:13px}
+  .g-table th{padding:10px 12px}
+  .g-table td{padding:11px 12px;overflow-wrap:anywhere}
+  .g-table td:first-child{white-space:normal;min-width:7ch}
+  .g-2col{grid-template-columns:1fr}
+}
 </style>
 <script async src="/posthog.js"></script><script async src="/ga4.js"></script>
 </head>
