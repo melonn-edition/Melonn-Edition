@@ -1,7 +1,7 @@
 # Cada paquete tiene su propia historia
 
 **Guía para sellers y equipo Melonn**
-Cómo leer el estado de tus órdenes, de cada paquete y de su transporte. Explicado paso a paso, con ejemplos, para sellers y para el equipo interno.
+Cómo leer el estado de tus órdenes, de cada paquete y del transporte. Explicado paso a paso, con ejemplos, para sellers y para el equipo interno.
 
 *Melonn · Aprende con Melonn · Agosto 2026*
 
@@ -164,6 +164,6 @@ Cada paquete tiene su propio servicio de transporte, con su guía y sus ofrecimi
 
 ---
 
-Ya conoces el significado de cada estado, de tu orden, de cada paquete y de su transporte.
+Ya conoces el significado de cada estado, de tu orden, de cada paquete y del transporte.
 
 *Melonn · Aprende con Melonn · Agosto 2026*
