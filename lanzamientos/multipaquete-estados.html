@@ -657,7 +657,7 @@ html,body{background:#FCFCFE;color:#14095B}
 .callout{background:rgba(255,255,255,.90);border-color:rgba(20,9,91,.12);box-shadow:0 0 0 1px rgba(20,9,91,.05),0 60px 120px -40px rgba(20,9,91,.12)}
 .callout::before{background:linear-gradient(90deg,transparent,rgba(20,9,91,.25),transparent);box-shadow:0 0 12px rgba(20,9,91,.14)}
 .callout::after{background:radial-gradient(circle,rgba(20,9,91,.06) 0%,transparent 60%);filter:none}
-.callout-mark{background:#14095B;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.callout-mark{background:#14095B;box-shadow:0 0 0 1px rgba(255,255,255,.12);color:#FFF}
 .callout-mark::before{content:none}
 .callout-text{color:#14095B}
 .callout-text strong{color:#0e7490;filter:drop-shadow(0 0 8px rgba(20,9,91,.18))}
@@ -957,7 +957,6 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 <header class="hero is-active" data-launch-screen="hero">
   <div class="hero-bg">
     <canvas id="hero-wave-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
-    <div id="conveyor-layer"></div>
   </div>
 
   <div class="hero-cosmos">
@@ -1014,7 +1013,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <div class="s-eyebrow"><span class="num">00</span>Qué cambió</div>
     </div>
   </div>
-  <div class="panel-preview">
+  <div class="g-block" style="margin-bottom:0">
     <div class="callout">
         <div class="callout-inner" style="display:flex;flex-direction:row;align-items:center;gap:36px">
           <div class="callout-mark">
@@ -1535,15 +1534,6 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     }
   } catch (error) {
     // Fallback visual gestionado por CSS.
-  }
-
-  if (window.innerWidth > 768) {
-    try {
-      const { initConveyor } = await import('./casepack-conveyor.js');
-      initConveyor();
-    } catch (error) {
-      // El Hero permanece funcional sin conveyor.
-    }
   }
 })();
 </script>
