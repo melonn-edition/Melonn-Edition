@@ -890,6 +890,9 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 .g-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:#7C5CFF;font-weight:500;min-width:24px;flex-shrink:0;padding-top:3px}
 .g-dot{width:6px;height:6px;border-radius:50%;background:#00C77C;flex-shrink:0;margin-top:8px}
 .g-2col{grid-template-columns:repeat(2,1fr)}
+.g-ex{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:13px;color:var(--ink-2);line-height:1.55}
+.g-ex b{color:var(--ink-0);font-weight:600}
+.g-callout.warn{border-color:rgba(232,162,0,.30);border-left-color:#E8A200;background:rgba(255,200,0,.07)}
 @media(max-width:768px){
   .g-h3{font-size:17px}
   .g-table{min-width:0;font-size:13px}
@@ -1120,27 +1123,47 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
     <div class="g-block">
     <h3 class="g-h3">Con afectación y Perdida: cuando todos los paquetes tienen novedad</h3>
-    <p class="g-lead">Estos dos estados aplican a cualquier orden, tenga uno o varios paquetes:</p>
+    <p class="g-lead">Estos dos estados aplican a <strong>todas las órdenes</strong>, tengan uno o varios paquetes:</p>
     <div class="chars-grid g-2col">
       <div class="info-card">
         <h3 class="info-h">Con afectación</h3>
-        <p class="info-p">Todos los paquetes de la orden tienen una novedad: una entrega fallida o un proceso de cancelación. La orden puede retomar su curso o terminar cancelada. Si solo una parte de los paquetes tiene novedad, el estado es <strong>Con afectación - Parcial - En curso</strong>.</p>
+        <p class="info-p">La orden se salió de su recorrido normal: ningún paquete está avanzando hacia el comprador. Se activa cuando <strong>todos</strong> los paquetes están en <strong>Entrega fallida</strong>, <strong>Empacado - a la espera</strong> o <strong>En proceso de cancelación</strong>. No es un estado final: la orden puede retomar su curso o terminar cancelada.</p>
+        <p class="g-ex">En una orden de <b>un solo paquete</b>, Con afectación simplemente significa que ese paquete se salió del camino.</p>
       </div>
       <div class="info-card">
         <h3 class="info-h">Perdida</h3>
-        <p class="info-p">Todos los paquetes de la orden se perdieron durante el tránsito. Es un cierre no exitoso.</p>
+        <p class="info-p">Todos los paquetes de la orden se perdieron durante el tránsito. <strong>Es un estado final</strong>, de cierre no exitoso.</p>
       </div>
     </div>
+    <div class="g-callout warn">⚠️ Presta especial atención a los paquetes en <strong>Empacado - a la espera</strong>: ya regresaron a bodega tras un intento fallido y esperan tu decisión. Revisa esas órdenes y decide si reintentar la entrega o cancelarlas — si no tomas acción, se cancelan automáticamente en 15 días.</div>
+    <p class="g-lead" style="margin-top:22px">Si solo <em>algunos</em> paquetes están afectados mientras otros avanzan con normalidad, la orden no es Con afectación: es <strong>Con afectación - Parcial - En curso</strong> (la ves abajo).</p>
   </div>
 
   <div class="g-block">
-    <h3 class="g-h3">Cuando tu orden tiene varios paquetes</h3>
-    <div class="g-callout" style="margin:0 0 18px">Estos cuatro estados solo existen si tu orden tiene más de un paquete — y solo ~2% de las órdenes son multipaquete. Si tu orden viaja en un solo paquete, nunca la vas a ver en ninguno de ellos.</div>
-    <p class="g-lead">Aparecen mientras los paquetes de una misma orden van a ritmos distintos:</p>
-    <div class="g-item"><span class="g-dot"></span><span><strong>En tránsito - Parcial</strong> — Al menos un paquete ya salió; los demás siguen en el CEDI.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Entregada - Parcial</strong> — Al menos un paquete ya llegó al comprador; los demás siguen su curso.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Con afectación - Parcial - En curso</strong> — Un paquete está perdido, con entrega fallida o en cancelación, y el resto aún no cierra.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Con afectación - Parcial - Cerrada</strong> — Un paquete quedó perdido o cancelado, y todos los demás ya cerraron. Es un estado final.</span></div>
+    <h3 class="g-h3">Solo en órdenes de varios paquetes</h3>
+    <div class="g-callout" style="margin:0 0 18px">Estos cuatro estados <strong>nunca aparecen en una orden de un solo paquete</strong> — y solo ~2% de las órdenes son multipaquete.</div>
+    <div class="chars-grid g-2col">
+      <div class="info-card">
+        <h3 class="info-h">En tránsito - Parcial</h3>
+        <p class="info-p">Al menos un paquete ya salió a tránsito; el resto sigue en el CEDI. No es un estado final.</p>
+        <p class="g-ex"><b>Ejemplo:</b> Paquete 1 <em>En tránsito</em>, Paquete 2 <em>Empacada en bodega</em>.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="info-h">Entregada - Parcial</h3>
+        <p class="info-p">Al menos un paquete ya se entregó; los demás siguen su curso. No es un estado final: al entregarse el último, la orden pasa a <strong>Entregada</strong>.</p>
+        <p class="g-ex"><b>Ejemplo:</b> Paquete 1 <em>Entregado</em>, Paquete 2 <em>En tránsito</em>.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="info-h">Con afectación - Parcial - En curso</h3>
+        <p class="info-p">Parte de la orden avanza con normalidad y al menos un paquete se salió del camino, mientras la orden sigue abierta. <strong>No es un estado final</strong>: se resuelve cuando el paquete afectado retoma su curso, o se cierra cuando todos lleguen a un desenlace.</p>
+        <p class="g-ex"><b>Ejemplo:</b> 2 paquetes <em>En tránsito</em> y 1 con <em>Entrega fallida</em> → la orden queda Con afectación - Parcial - En curso.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="info-h">Con afectación - Parcial - Cerrada</h3>
+        <p class="info-p"><strong>Es un estado final</strong>: todos los paquetes ya cerraron, pero con desenlaces distintos — una mezcla de <strong>Entregados</strong>, <strong>Perdidos</strong> y/o <strong>Cancelados</strong>. Si todos terminan igual, la orden usa el estado completo: <strong>Entregada</strong>, <strong>Perdida</strong> o <strong>Cancelada</strong>.</p>
+        <p class="g-ex"><b>Ejemplo:</b> 3 paquetes: 1 <em>Perdido</em> y 2 <em>Entregados</em> → Con afectación - Parcial - Cerrada, y se genera el flujo de reposición del perdido.</p>
+      </div>
+    </div>
   </div>
 
   <div class="g-block">

@@ -36,16 +36,25 @@ Antes de salir hacia el comprador, tu orden pasa por estos momentos:
 | Picking y empacando | El equipo de Melonn recoge los productos y los empaca según tus instrucciones. |
 | Empacada en bodega | Todos los paquetes de tu orden están listos en el CEDI, a la espera de ser despachados o recogidos. |
 
-### Cuando tu orden tiene varios paquetes
+### Con afectación y Perdida: cuando todos los paquetes tienen novedad
 
-Estos cuatro estados aparecen mientras los paquetes de una misma orden van a ritmos distintos:
+Aplican a **todas las órdenes**, tengan uno o varios paquetes.
 
-- **En tránsito - Parcial** — Al menos un paquete ya salió; los demás siguen en el CEDI.
-- **Entregada - Parcial** — Al menos un paquete ya llegó al comprador; los demás siguen su curso.
-- **Con afectación - Parcial - En curso** — Un paquete está perdido, con entrega fallida o en cancelación, y el resto aún no cierra.
-- **Con afectación - Parcial - Cerrada** — Un paquete quedó perdido o cancelado, y todos los demás ya cerraron. Es un estado final.
+- **Con afectación** — La orden se salió de su recorrido normal: ningún paquete está avanzando hacia el comprador. Se activa cuando **todos** los paquetes están en Entrega fallida, Empacado - a la espera o En proceso de cancelación. No es un estado final. En una orden de un solo paquete, significa que ese paquete se salió del camino.
+- **Perdida** — Todos los paquetes de la orden se perdieron durante el tránsito. Es un estado final, de cierre no exitoso.
 
-> Estos cuatro estados solo existen si tu orden tiene más de un paquete — y solo ~2% de las órdenes son multipaquete. Si tu orden viaja en un solo paquete, nunca la vas a ver en ninguno de ellos.
+> ⚠️ Paquetes en Empacado - a la espera: regresaron a bodega tras un intento fallido y esperan tu decisión (reintentar o cancelar). Sin acción, se cancelan automáticamente en 15 días.
+
+Si solo algunos paquetes están afectados, la orden no es Con afectación: es Con afectación - Parcial - En curso.
+
+### Solo en órdenes de varios paquetes
+
+> Estos cuatro estados nunca aparecen en una orden de un solo paquete — y solo ~2% de las órdenes son multipaquete.
+
+- **En tránsito - Parcial** — Al menos un paquete ya salió a tránsito; el resto sigue en el CEDI. No es final. Ejemplo: Paquete 1 En tránsito, Paquete 2 Empacada en bodega.
+- **Entregada - Parcial** — Al menos un paquete ya se entregó; al entregarse el último, la orden pasa a Entregada. Ejemplo: Paquete 1 Entregado, Paquete 2 En tránsito.
+- **Con afectación - Parcial - En curso** — Parte avanza con normalidad y al menos un paquete se salió del camino; la orden sigue abierta. Ejemplo: 2 En tránsito y 1 Entrega fallida.
+- **Con afectación - Parcial - Cerrada** — Estado final: todos cerraron con desenlaces distintos (mezcla de Entregados, Perdidos y/o Cancelados). Si todos terminan igual, la orden usa el estado completo. Ejemplo: 1 Perdido y 2 Entregados.
 
 ### Resumen: ¿cuáles estados son finales?
 
