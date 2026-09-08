@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <title>Guía de estados – Multipaquete – Melonn Editions</title>
-<meta name="description" content="Cómo leer el estado de tus órdenes y de cada paquete en Multipaquete. Explicado paso a paso, con ejemplos." />
+<meta name="description" content="Cómo leer los nuevos estados de tus órdenes multipaquete. Explicado paso a paso, con ejemplos." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -986,7 +986,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="hero-copy">
       <div class="eyebrow"><span class="line"></span>Aprende con Melonn · Guía de estados</div>
       <h1 class="h-title">Cada paquete tiene su propia <span style="color:#BA80FF">historia.</span></h1>
-      <p class="h-tagline">Cómo leer el estado de tus órdenes y de cada paquete. Explicado paso a paso, con ejemplos, para sellers y para el equipo interno.</p>
+      <p class="h-tagline">Cómo leer los nuevos estados de tus órdenes multipaquete. Explicado paso a paso, con ejemplos, para sellers y para el equipo interno.</p>
       <a class="btn btn-ghost" href="multipaquete" style="margin-top:26px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>
         Volver a Multipaquete
@@ -1106,22 +1106,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     </div>
   </div>
 
-  <div class="g-block">
-    <h3 class="g-h3">Estados de la orden en alistamiento</h3>
-    <p class="g-lead">Antes de salir hacia el comprador, tu orden pasa por estos momentos:</p>
-    <div class="g-twrap"><table class="g-table">
-      <thead><tr><th>Estado</th><th>Qué significa</th></tr></thead>
-      <tbody>
-      <tr><td>Recibida – válida</td><td>La orden llegó a Melonn y está pendiente de comenzar su procesamiento.</td></tr>
-      <tr><td>Alistamiento en espera</td><td>Está pausada: porque tú lo configuraste (pago, VAS, reserva) o porque Melonn encontró un dato por validar, como una dirección incompleta.</td></tr>
-      <tr><td>Ítems reservados / con agotado</td><td>Los productos quedan reservados del inventario. Si falta stock, la orden queda en agotado hasta que llegue nuevo inventario.</td></tr>
-      <tr><td>Picking y empacando</td><td>El equipo de Melonn recoge los productos y los empaca según tus instrucciones.</td></tr>
-      <tr><td>Empacada en bodega</td><td>Todos los paquetes de tu orden están listos en el CEDI, a la espera de ser despachados o recogidos.</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-    <div class="g-block">
+      <div class="g-block">
     <h3 class="g-h3">Con afectación y Perdida: cuando todos los paquetes tienen novedad</h3>
     <p class="g-lead">Estos dos estados aplican a <strong>todas las órdenes</strong>, tengan uno o varios paquetes:</p>
     <div class="chars-grid g-2col">
@@ -1172,12 +1157,8 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="g-twrap"><table class="g-table">
       <thead><tr><th>Estado</th><th>¿Qué tan definitivo es?</th></tr></thead>
       <tbody>
-      <tr><td>Recogido por comprador</td><td><span class="g-final">Estado final</span></td></tr>
-      <tr><td>En tránsito</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
-      <tr><td>Entregada</td><td><span class="g-final">Estado final</span></td></tr>
       <tr><td>Perdida</td><td><span class="g-final">Estado final</span></td></tr>
       <tr><td>Con afectación</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
-      <tr><td>Cancelada</td><td><span class="g-final">Estado final</span></td></tr>
       <tr><td>En tránsito - Parcial</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
       <tr><td>Entregada - Parcial</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
       <tr><td>Con afectación - Parcial - En curso</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
@@ -1188,40 +1169,11 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 </section>
 
 
-<!-- ============ 03 — EL PAQUETE ============ -->
+<!-- ============ 03 — EJEMPLOS ============ -->
 <section data-launch-screen>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">03</span>El paquete</div>
-      <h2 class="s-title">Cada paquete avanza <span style="color:#00DCD6">con su propio estado.</span></h2>
-    </div>
-    <p class="s-aside">El paquete es la unidad que realmente se mueve. Su estado es la fuente de la que nace el estado de toda la orden.</p>
-  </div>
-
-  <div class="g-block">
-    <h3 class="g-h3">Antes de salir: el paso a paso en el CEDI</h3>
-    <div class="g-item"><span class="g-num">01</span><span><strong>Empacado</strong> — El paquete se crea durante el proceso de empaque.</span></div>
-    <div class="g-item"><span class="g-num">02</span><span><strong>Pendiente de sortear</strong> — Está pendiente de ser enrutado dentro del CEDI.</span></div>
-    <div class="g-item"><span class="g-num">03</span><span><strong>Listo para recogida</strong> — Ya puede ser recogido por la transportadora, o por el comprador si aplica.</span></div>
-    <div class="g-item"><span class="g-num">04</span><span><strong>En preparación y despacho</strong> — Se selecciona, se prepara y queda listo para el despacho.</span></div>
-  </div>
-
-  <div class="g-block">
-    <h3 class="g-h3">Cómo se cierra un paquete</h3>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Recogido por el comprador</strong> — El comprador retiró el paquete en un punto de recogida.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Entregado al comprador</strong> — El paquete se entregó exitosamente en la dirección del comprador.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Perdido</strong> — El paquete se reportó como perdido, de forma definitiva.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Cancelado</strong> — El paquete se canceló, de forma definitiva.</span></div>
-  </div>
-
-  </section>
-
-
-<!-- ============ 04 — EJEMPLOS ============ -->
-<section data-launch-screen>
-  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
-    <div>
-      <div class="s-eyebrow"><span class="num">04</span>Ejemplos</div>
+      <div class="s-eyebrow"><span class="num">03</span>Ejemplos</div>
       <h2 class="s-title">El estado de tu orden <span style="color:#BA80FF">nace del de tus paquetes.</span></h2>
     </div>
     <p class="s-aside">El estado de la orden no se asigna aparte: se calcula siempre a partir de todos sus paquetes.</p>
@@ -1267,7 +1219,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="ring-deco"></div>
     <p class="c-eyebrow">Guía de estados</p>
     <h2 class="c-title"><span style="color:#00DCD6">Cada paquete</span> tiene su propia historia.</h2>
-    <p class="c-sub">Ya conoces el significado de cada estado, de tu orden y de cada paquete.</p>
+    <p class="c-sub">Ya conoces el significado de cada uno de los nuevos estados de tus órdenes con varios paquetes.</p>
     <div class="c-actions">
       <a class="btn btn-primary" href="https://melonn.notion.site/Gu-a-Nuevos-Estados-de-rdenes-Multipaquete-3d53bfd6145d804e8f97df3b749dc8f5?pvs=74" target="_blank" rel="noopener">Ver documentación →</a>
       <a class="btn btn-ghost" href="multipaquete">

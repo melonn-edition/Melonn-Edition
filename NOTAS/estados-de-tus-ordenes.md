@@ -1,7 +1,7 @@
 # Cada paquete tiene su propia historia
 
 **Guía para sellers y equipo Melonn**
-Cómo leer el estado de tus órdenes y de cada paquete. Explicado paso a paso, con ejemplos, para sellers y para el equipo interno.
+Cómo leer los nuevos estados de tus órdenes multipaquete. Explicado paso a paso, con ejemplos, para sellers y para el equipo interno.
 
 *Melonn · Aprende con Melonn · Agosto 2026*
 
@@ -23,18 +23,6 @@ Antes veías un solo estado por orden. Ahora, si tu orden tiene más de un paque
 ---
 
 ## La orden
-
-### Estados de la orden en alistamiento
-
-Antes de salir hacia el comprador, tu orden pasa por estos momentos:
-
-| Estado | Qué significa |
-| --- | --- |
-| Recibida – válida | La orden llegó a Melonn y está pendiente de comenzar su procesamiento. |
-| Alistamiento en espera | Está pausada: porque tú lo configuraste (pago, VAS, reserva) o porque Melonn encontró un dato por validar, como una dirección incompleta. |
-| Ítems reservados / con agotado | Los productos quedan reservados del inventario. Si falta stock, la orden queda en agotado hasta que llegue nuevo inventario. |
-| Picking y empacando | El equipo de Melonn recoge los productos y los empaca según tus instrucciones. |
-| Empacada en bodega | Todos los paquetes de tu orden están listos en el CEDI, a la espera de ser despachados o recogidos. |
 
 ### Con afectación y Perdida: cuando todos los paquetes tienen novedad
 
@@ -62,38 +50,12 @@ Un estado es final cuando, al llegar a él, la orden ya no vuelve a cambiar.
 
 | Estado | ¿Qué tan definitivo es? |
 | --- | --- |
-| Recogido por comprador | Estado final |
-| En tránsito | Sigue cambiando |
-| Entregada | Estado final |
 | Perdida | Estado final |
 | Con afectación | Sigue cambiando |
-| Cancelada | Estado final |
 | En tránsito - Parcial | Sigue cambiando |
 | Entregada - Parcial | Sigue cambiando |
 | Con afectación - Parcial - En curso | Sigue cambiando |
 | Con afectación - Parcial - Cerrada | Estado final |
-
----
-
-## El paquete
-
-### Cada paquete avanza con su propio estado
-
-El paquete es la unidad que realmente se mueve. Su estado es la fuente de la que nace el estado de toda la orden.
-
-**Antes de salir: el paso a paso en el CEDI**
-
-1. **Empacado** — El paquete se crea durante el proceso de empaque.
-2. **Pendiente de sortear** — Está pendiente de ser enrutado dentro del CEDI.
-3. **Listo para recogida** — Ya puede ser recogido por la transportadora, o por el comprador si aplica.
-4. **En preparación y despacho** — Se selecciona, se prepara y queda listo para el despacho.
-
-### Cómo se cierra un paquete
-
-- **Recogido por el comprador** — El comprador retiró el paquete en un punto de recogida.
-- **Entregado al comprador** — El paquete se entregó exitosamente en la dirección del comprador.
-- **Perdido** — El paquete se reportó como perdido, de forma definitiva.
-- **Cancelado** — El paquete se canceló, de forma definitiva.
 
 ---
 
@@ -134,6 +96,6 @@ Tu orden #12345 se empacó en 3 paquetes. Así se vería su avance día a día:
 
 ---
 
-Ya conoces el significado de cada estado, de tu orden y de cada paquete.
+Ya conoces el significado de cada uno de los nuevos estados de tus órdenes con varios paquetes.
 
 *Melonn · Aprende con Melonn · Agosto 2026*
