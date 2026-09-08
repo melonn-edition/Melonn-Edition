@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <title>Guía de estados – Multipaquete – Melonn Editions</title>
-<meta name="description" content="Cómo leer el estado de tus órdenes, de cada paquete y del transporte en Multipaquete. Explicado paso a paso, con ejemplos." />
+<meta name="description" content="Cómo leer el estado de tus órdenes y de cada paquete en Multipaquete. Explicado paso a paso, con ejemplos." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -983,7 +983,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="hero-copy">
       <div class="eyebrow"><span class="line"></span>Aprende con Melonn · Guía de estados</div>
       <h1 class="h-title">Cada paquete tiene su propia <span style="color:#BA80FF">historia.</span></h1>
-      <p class="h-tagline">Cómo leer el estado de tus órdenes, de cada paquete y del transporte. Explicado paso a paso, con ejemplos, para sellers y para el equipo interno.</p>
+      <p class="h-tagline">Cómo leer el estado de tus órdenes y de cada paquete. Explicado paso a paso, con ejemplos, para sellers y para el equipo interno.</p>
       <a class="btn btn-ghost" href="multipaquete" style="margin-top:26px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>
         Volver a Multipaquete
@@ -1059,7 +1059,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
         </div>
         <span class="fp-tag">Etapa 01</span>
         <span class="fp-h">Alistamiento</span>
-        <span class="fp-p">Se recibe, se reserva inventario y se empaca en el CEDIS.</span>
+        <span class="fp-p">Se recibe, se reserva inventario y se empaca en el CEDI.</span>
       </div>
       <div class="flow-pill">
         <span class="stat">02</span>
@@ -1113,7 +1113,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <tr><td>Alistamiento en espera</td><td>Está pausada: porque tú lo configuraste (pago, VAS, reserva) o porque Melonn encontró un dato por validar, como una dirección incompleta.</td></tr>
       <tr><td>Ítems reservados / con agotado</td><td>Los productos quedan reservados del inventario. Si falta stock, la orden queda en agotado hasta que llegue nuevo inventario.</td></tr>
       <tr><td>Picking y empacando</td><td>El equipo de Melonn recoge los productos y los empaca según tus instrucciones.</td></tr>
-      <tr><td>Empacada en bodega</td><td>Todos los paquetes de tu orden están listos en el CEDIS, a la espera de ser despachados o recogidos.</td></tr>
+      <tr><td>Empacada en bodega</td><td>Todos los paquetes de tu orden están listos en el CEDI, a la espera de ser despachados o recogidos.</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -1123,24 +1123,39 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="g-twrap"><table class="g-table">
       <thead><tr><th>Estado</th><th>Qué significa</th></tr></thead>
       <tbody>
-      <tr><td>Recogido por el comprador</td><td>Solo si el método de envío es recogida en tienda: el comprador retiró la orden en el CEDIS.</td></tr>
+      <tr><td>Recogido por el comprador</td><td>Solo si el método de envío es recogida en tienda: el comprador retiró la orden en el CEDI.</td></tr>
       <tr><td>En tránsito</td><td>La orden ya se entregó a la transportadora y va en camino a la dirección de entrega.</td></tr>
       <tr><td>Entregada</td><td>La orden llegó al comprador. Queda cerrada; desde aquí solo cabe un proceso de devolución.</td></tr>
       <tr><td>Perdida</td><td>Todos los paquetes de la orden se perdieron durante el tránsito. Es un cierre no exitoso.</td></tr>
-      <tr><td>En flujo no esperado</td><td>Uno o más paquetes tuvo una entrega fallida o está en proceso de cancelación. La orden puede retomar su curso o terminar cancelada.</td></tr>
+      <tr><td>Con afectación</td><td>Todos los paquetes de la orden tienen una novedad: una entrega fallida o un proceso de cancelación. La orden puede retomar su curso o terminar cancelada.</td></tr>
       <tr><td>Cancelada</td><td>La orden se canceló y los productos volvieron al inventario disponible. No se puede reactivar.</td></tr>
       </tbody>
     </table></div>
   </div>
 
   <div class="g-block">
+    <h3 class="g-h3">Con afectación y Perdida: cuando todos los paquetes tienen novedad</h3>
+    <p class="g-lead">Estos dos estados aplican a cualquier orden, tenga uno o varios paquetes:</p>
+    <div class="chars-grid g-2col">
+      <div class="info-card">
+        <h3 class="info-h">Con afectación</h3>
+        <p class="info-p">Todos los paquetes de la orden tienen una novedad: una entrega fallida o un proceso de cancelación. La orden puede retomar su curso o terminar cancelada. Si solo una parte de los paquetes tiene novedad, el estado es <strong>Con afectación - Parcial - En curso</strong>.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="info-h">Perdida</h3>
+        <p class="info-p">Todos los paquetes de la orden se perdieron durante el tránsito. Es un cierre no exitoso.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="g-block">
     <h3 class="g-h3">Cuando tu orden tiene varios paquetes</h3>
-    <p class="g-lead">Estos cuatro estados aparecen mientras los paquetes de una misma orden van a ritmos distintos:</p>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Parcialmente en tránsito</strong> — Al menos un paquete ya salió; los demás siguen en el CEDIS.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Parcialmente entregado</strong> — Al menos un paquete ya llegó al comprador; los demás siguen su curso.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Con novedad — en gestión</strong> — Un paquete está perdido, con entrega fallida o en cancelación, y el resto aún no cierra.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Con novedad — resuelta</strong> — Un paquete quedó perdido o cancelado, y todos los demás ya cerraron. Es un estado final.</span></div>
-    <div class="g-callout">Estos cuatro estados solo existen si tu orden tiene más de un paquete. Si tu orden viaja en un solo paquete, nunca la vas a ver en ninguno de ellos.</div>
+    <div class="g-callout" style="margin:0 0 18px">Estos cuatro estados solo existen si tu orden tiene más de un paquete — y solo ~2% de las órdenes son multipaquete. Si tu orden viaja en un solo paquete, nunca la vas a ver en ninguno de ellos.</div>
+    <p class="g-lead">Aparecen mientras los paquetes de una misma orden van a ritmos distintos:</p>
+    <div class="g-item"><span class="g-dot"></span><span><strong>En tránsito - Parcial</strong> — Al menos un paquete ya salió; los demás siguen en el CEDI.</span></div>
+    <div class="g-item"><span class="g-dot"></span><span><strong>Entregada - Parcial</strong> — Al menos un paquete ya llegó al comprador; los demás siguen su curso.</span></div>
+    <div class="g-item"><span class="g-dot"></span><span><strong>Con afectación - Parcial - En curso</strong> — Un paquete está perdido, con entrega fallida o en cancelación, y el resto aún no cierra.</span></div>
+    <div class="g-item"><span class="g-dot"></span><span><strong>Con afectación - Parcial - Cerrada</strong> — Un paquete quedó perdido o cancelado, y todos los demás ya cerraron. Es un estado final.</span></div>
   </div>
 
   <div class="g-block">
@@ -1153,12 +1168,12 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <tr><td>En tránsito</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
       <tr><td>Entregada</td><td><span class="g-final">Estado final</span></td></tr>
       <tr><td>Perdida</td><td><span class="g-final">Estado final</span></td></tr>
-      <tr><td>En flujo no esperado</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
+      <tr><td>Con afectación</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
       <tr><td>Cancelada</td><td><span class="g-final">Estado final</span></td></tr>
-      <tr><td>Parcialmente en tránsito</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
-      <tr><td>Parcialmente entregado</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
-      <tr><td>Con novedad – en gestión</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
-      <tr><td>Con novedad – resuelta</td><td><span class="g-final">Estado final</span></td></tr>
+      <tr><td>En tránsito - Parcial</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
+      <tr><td>Entregada - Parcial</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
+      <tr><td>Con afectación - Parcial - En curso</td><td><span class="g-flux">Sigue cambiando</span></td></tr>
+      <tr><td>Con afectación - Parcial - Cerrada</td><td><span class="g-final">Estado final</span></td></tr>
       </tbody>
     </table></div>
   </div>
@@ -1176,9 +1191,9 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   </div>
 
   <div class="g-block">
-    <h3 class="g-h3">Antes de salir: el paso a paso en el CEDIS</h3>
+    <h3 class="g-h3">Antes de salir: el paso a paso en el CEDI</h3>
     <div class="g-item"><span class="g-num">01</span><span><strong>Empacado</strong> — El paquete se crea durante el proceso de empaque.</span></div>
-    <div class="g-item"><span class="g-num">02</span><span><strong>Pendiente de sortear</strong> — Está pendiente de ser enrutado dentro del CEDIS.</span></div>
+    <div class="g-item"><span class="g-num">02</span><span><strong>Pendiente de sortear</strong> — Está pendiente de ser enrutado dentro del CEDI.</span></div>
     <div class="g-item"><span class="g-num">03</span><span><strong>Listo para recogida</strong> — Ya puede ser recogido por la transportadora, o por el comprador si aplica.</span></div>
     <div class="g-item"><span class="g-num">04</span><span><strong>En preparación y despacho</strong> — Se selecciona, se prepara y queda listo para el despacho.</span></div>
   </div>
@@ -1194,8 +1209,8 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   <div class="g-block">
     <h3 class="g-h3">Intento de entrega vs. ofrecimiento de entrega</h3>
     <p class="g-lead">Dos formas distintas en las que un paquete puede intentar llegar al comprador:</p>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Intento</strong> — El paquete sale del CEDIS Melonn y regresa al mismo CEDIS sin quedar en poder del servicio de transporte, por una entrega fallida.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Ofrecimiento</strong> — El paquete sale del CEDIS y queda en poder del servicio de transporte. Si falla, puede reintentarse sin devolverlo a Melonn: un nuevo ofrecimiento dentro del mismo intento.</span></div>
+    <div class="g-item"><span class="g-dot"></span><span><strong>Intento</strong> — El paquete sale del CEDI Melonn y regresa al mismo CEDI sin quedar en poder del servicio de transporte, por una entrega fallida.</span></div>
+    <div class="g-item"><span class="g-dot"></span><span><strong>Ofrecimiento</strong> — El paquete sale del CEDI y queda en poder del servicio de transporte. Si falla, puede reintentarse sin devolverlo a Melonn: un nuevo ofrecimiento dentro del mismo intento.</span></div>
     <div class="g-callout">Cada paquete puede tener varios intentos, y dentro de cada intento, uno o más ofrecimientos. Todo queda registrado en el detalle del paquete para que puedas hacerle seguimiento.</div>
   </div>
 </section>
@@ -1217,10 +1232,10 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="g-twrap"><table class="g-table">
       <thead><tr><th>Día</th><th>Qué pasó</th><th>Estado de tu orden</th></tr></thead>
       <tbody>
-      <tr><td>Lunes</td><td>Los 3 paquetes quedan empacados en el CEDIS</td><td>Empacada en bodega</td></tr>
-      <tr><td>Martes</td><td>Sale el primer paquete con la transportadora</td><td>Parcialmente en tránsito</td></tr>
+      <tr><td>Lunes</td><td>Los 3 paquetes quedan empacados en el CEDI</td><td>Empacada en bodega</td></tr>
+      <tr><td>Martes</td><td>Sale el primer paquete con la transportadora</td><td>En tránsito - Parcial</td></tr>
       <tr><td>Miércoles</td><td>Salen los otros 2 paquetes</td><td>En tránsito</td></tr>
-      <tr><td>Jueves</td><td>Se entrega el primer paquete al comprador</td><td>Parcialmente entregado</td></tr>
+      <tr><td>Jueves</td><td>Se entrega el primer paquete al comprador</td><td>Entregada - Parcial</td></tr>
       <tr><td>Viernes</td><td>Se entregan los 2 paquetes restantes</td><td>Entregada</td></tr>
       </tbody>
     </table></div>
@@ -1233,44 +1248,14 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <thead><tr><th>Si un paquete está…</th><th>Y el otro está…</th><th>Tu orden se ve como</th></tr></thead>
       <tbody>
       <tr><td>Entregado al comprador</td><td>Entregado al comprador</td><td>Entregada</td></tr>
-      <tr><td>Entregado al comprador</td><td>En tránsito</td><td>Parcialmente entregado</td></tr>
-      <tr><td>En tránsito</td><td>Preparado para despacho</td><td>Parcialmente en tránsito</td></tr>
+      <tr><td>Entregado al comprador</td><td>En tránsito</td><td>Entregada - Parcial</td></tr>
+      <tr><td>En tránsito</td><td>Preparado para despacho</td><td>En tránsito - Parcial</td></tr>
       <tr><td>Preparado para despacho</td><td>Listo para recogida</td><td>Empacada en bodega</td></tr>
-      <tr><td>Entrega fallida</td><td>En tránsito</td><td>En flujo no esperado</td></tr>
-      <tr><td>Perdido</td><td>Cancelado</td><td>Con novedad – resuelta</td></tr>
+      <tr><td>Entrega fallida</td><td>En tránsito</td><td>Con afectación - Parcial - En curso</td></tr>
+      <tr><td>Perdido</td><td>Cancelado</td><td>Con afectación - Parcial - Cerrada</td></tr>
       </tbody>
     </table></div>
     <div class="g-callout">Si tu orden tiene más de dos paquetes, aplica la misma lógica: la orden siempre refleja la situación del conjunto, nunca la de un solo paquete.</div>
-  </div>
-</section>
-
-
-<!-- ============ 05 — EL TRANSPORTE ============ -->
-<section data-launch-screen>
-  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
-    <div>
-      <div class="s-eyebrow"><span class="num">05</span>El transporte</div>
-      <h2 class="s-title">Transportadora o mensajería: <span style="color:#FFC800">cada una con sus estados.</span></h2>
-    </div>
-    <p class="s-aside">Cada paquete tiene su propio servicio de transporte, con su guía y sus ofrecimientos de entrega.</p>
-  </div>
-
-  <div class="chars-grid g-2col">
-    <div class="info-card">
-      <p class="info-num">A</p>
-      <h3 class="info-h">Transportadora</h3>
-      <div class="g-item"><span class="g-dot"></span><span><strong>Creado:</strong> se generó el servicio y se asignó la guía.</span></div>
-      <div class="g-item"><span class="g-dot"></span><span><strong>En ciudad de origen, en ruta nacional y en ciudad de destino:</strong> el paquete avanza bajo custodia de la transportadora.</span></div>
-      <div class="g-item"><span class="g-dot"></span><span><strong>En reparto:</strong> va camino a la dirección del comprador.</span></div>
-      <div class="g-item"><span class="g-dot"></span><span><strong>Entrega exitosa, retorno o perdido:</strong> los tres cierres posibles.</span></div>
-    </div>
-    <div class="info-card">
-      <p class="info-num">B</p>
-      <h3 class="info-h">Mensajería</h3>
-      <div class="g-item"><span class="g-dot"></span><span><strong>En camino:</strong> el mensajero salió del CEDIS hacia el comprador.</span></div>
-      <div class="g-item"><span class="g-dot"></span><span><strong>Arribo exitoso:</strong> el mensajero entregó el paquete en la dirección.</span></div>
-      <div class="g-item"><span class="g-dot"></span><span><strong>Fallido:</strong> no pudo entregar y regresa con el paquete al CEDIS.</span></div>
-    </div>
   </div>
 </section>
 
@@ -1281,7 +1266,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="ring-deco"></div>
     <p class="c-eyebrow">Guía de estados</p>
     <h2 class="c-title"><span style="color:#00DCD6">Cada paquete</span> tiene su propia historia.</h2>
-    <p class="c-sub">Ya conoces el significado de cada estado, de tu orden, de cada paquete y del transporte.</p>
+    <p class="c-sub">Ya conoces el significado de cada estado, de tu orden y de cada paquete.</p>
     <div class="c-actions">
       <a class="btn btn-primary" href="multipaquete">Volver a Multipaquete →</a>
       <a class="btn btn-ghost" href="../">
