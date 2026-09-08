@@ -36,17 +36,6 @@ Antes de salir hacia el comprador, tu orden pasa por estos momentos:
 | Picking y empacando | El equipo de Melonn recoge los productos y los empaca según tus instrucciones. |
 | Empacada en bodega | Todos los paquetes de tu orden están listos en el CEDI, a la espera de ser despachados o recogidos. |
 
-### Estados de la orden en transporte: los seis estados principales
-
-| Estado | Qué significa |
-| --- | --- |
-| Recogido por el comprador | Solo si el método de envío es recogida en tienda: el comprador retiró la orden en el CEDI. |
-| En tránsito | La orden ya se entregó a la transportadora y va en camino a la dirección de entrega. |
-| Entregada | La orden llegó al comprador. Queda cerrada; desde aquí solo cabe un proceso de devolución. |
-| Perdida | Todos los paquetes de la orden se perdieron durante el tránsito. Es un cierre no exitoso. |
-| Con afectación | Todos los paquetes de la orden tienen una novedad: una entrega fallida o un proceso de cancelación. La orden puede retomar su curso o terminar cancelada. |
-| Cancelada | La orden se canceló y los productos volvieron al inventario disponible. No se puede reactivar. |
-
 ### Cuando tu orden tiene varios paquetes
 
 Estos cuatro estados aparecen mientras los paquetes de una misma orden van a ritmos distintos:
@@ -96,15 +85,6 @@ El paquete es la unidad que realmente se mueve. Su estado es la fuente de la que
 - **Entregado al comprador** — El paquete se entregó exitosamente en la dirección del comprador.
 - **Perdido** — El paquete se reportó como perdido, de forma definitiva.
 - **Cancelado** — El paquete se canceló, de forma definitiva.
-
-### Intento de entrega vs. ofrecimiento de entrega
-
-Dos formas distintas en las que un paquete puede intentar llegar al comprador:
-
-- **Intento** — El paquete sale del CEDI Melonn y regresa al mismo CEDI sin quedar en poder del servicio de transporte, por una entrega fallida.
-- **Ofrecimiento** — El paquete sale del CEDI y queda en poder del servicio de transporte. Si falla, puede reintentarse sin devolverlo a Melonn: un nuevo ofrecimiento dentro del mismo intento.
-
-> Cada paquete puede tener varios intentos, y dentro de cada intento, uno o más ofrecimientos. Todo queda registrado en el detalle del paquete para que puedas hacerle seguimiento.
 
 ---
 

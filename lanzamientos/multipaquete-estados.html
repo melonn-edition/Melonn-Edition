@@ -1118,22 +1118,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     </table></div>
   </div>
 
-  <div class="g-block">
-    <h3 class="g-h3">Estados de la orden en transporte: los seis estados principales</h3>
-    <div class="g-twrap"><table class="g-table">
-      <thead><tr><th>Estado</th><th>Qué significa</th></tr></thead>
-      <tbody>
-      <tr><td>Recogido por el comprador</td><td>Solo si el método de envío es recogida en tienda: el comprador retiró la orden en el CEDI.</td></tr>
-      <tr><td>En tránsito</td><td>La orden ya se entregó a la transportadora y va en camino a la dirección de entrega.</td></tr>
-      <tr><td>Entregada</td><td>La orden llegó al comprador. Queda cerrada; desde aquí solo cabe un proceso de devolución.</td></tr>
-      <tr><td>Perdida</td><td>Todos los paquetes de la orden se perdieron durante el tránsito. Es un cierre no exitoso.</td></tr>
-      <tr><td>Con afectación</td><td>Todos los paquetes de la orden tienen una novedad: una entrega fallida o un proceso de cancelación. La orden puede retomar su curso o terminar cancelada.</td></tr>
-      <tr><td>Cancelada</td><td>La orden se canceló y los productos volvieron al inventario disponible. No se puede reactivar.</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-  <div class="g-block">
+    <div class="g-block">
     <h3 class="g-h3">Con afectación y Perdida: cuando todos los paquetes tienen novedad</h3>
     <p class="g-lead">Estos dos estados aplican a cualquier orden, tenga uno o varios paquetes:</p>
     <div class="chars-grid g-2col">
@@ -1206,14 +1191,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="g-item"><span class="g-dot"></span><span><strong>Cancelado</strong> — El paquete se canceló, de forma definitiva.</span></div>
   </div>
 
-  <div class="g-block">
-    <h3 class="g-h3">Intento de entrega vs. ofrecimiento de entrega</h3>
-    <p class="g-lead">Dos formas distintas en las que un paquete puede intentar llegar al comprador:</p>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Intento</strong> — El paquete sale del CEDI Melonn y regresa al mismo CEDI sin quedar en poder del servicio de transporte, por una entrega fallida.</span></div>
-    <div class="g-item"><span class="g-dot"></span><span><strong>Ofrecimiento</strong> — El paquete sale del CEDI y queda en poder del servicio de transporte. Si falla, puede reintentarse sin devolverlo a Melonn: un nuevo ofrecimiento dentro del mismo intento.</span></div>
-    <div class="g-callout">Cada paquete puede tener varios intentos, y dentro de cada intento, uno o más ofrecimientos. Todo queda registrado en el detalle del paquete para que puedas hacerle seguimiento.</div>
-  </div>
-</section>
+  </section>
 
 
 <!-- ============ 04 — EJEMPLOS ============ -->
