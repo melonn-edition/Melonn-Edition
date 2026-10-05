@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<link rel="icon" type="image/png" href="IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
+<title>Melonn Edition · Home v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet" />
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+} }
+</script>
+<style>
+:root{
+  --navy:#14095B; --violet:#4D2AAD; --lav:#C4B5FD; --turq:#00DCD6; --amarillo:#FFC800;
+  --bg:#FCFCFE; --line:#D3D8E9; --ink:#14095B; --ink2:#4A4870; --ink3:#7C7A9C;
+  --curva:cubic-bezier(.2,.75,.25,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Sora',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:min(1180px,100% - 2*clamp(24px,6vw,96px));margin:0 auto}
+
+/* ── barra de navegación web (componente oficial Melonn, prefijo wnav) ── */
+.wnav{position:fixed;top:18px;left:18px;right:18px;max-width:1180px;margin:0 auto;z-index:50}
+.wnav-in{display:flex;align-items:center;gap:28px;height:64px;padding:0 14px 0 24px;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:100px;box-shadow:0 2px 20px rgba(0,0,0,.10),0 0 0 1px rgba(255,255,255,.15);transition:box-shadow .2s ease,background .2s ease}
+.wnav.scrolled .wnav-in{box-shadow:0 4px 32px rgba(0,0,0,.10)}
+.wnav .logo{display:flex;align-items:center;margin-right:auto;color:#14095B;text-decoration:none;gap:10px}
+.wnav .logo small{font-size:12px;font-weight:300;color:var(--ink3);letter-spacing:.02em}
+.wnav ul{display:flex;gap:26px;list-style:none;margin:0 0 0 auto;padding:0}
+.wnav li a{font-size:14px;font-weight:400;color:#14095B;text-decoration:none;transition:color .2s ease}
+.wnav li a:hover{color:#4D2AAD}
+.wnav .der{display:flex;align-items:center;gap:10px;margin-left:22px}
+.wnav .ham{display:none;width:40px;height:40px;border-radius:999px;border:1.5px solid #D3D8E9;background:#fff;place-items:center;cursor:pointer}
+.wnav .ham i{display:block;width:16px;height:2px;background:#14095B;position:relative;transition:transform .2s ease}
+.wnav .ham i::before,.wnav .ham i::after{content:"";position:absolute;left:0;width:16px;height:2px;background:#14095B;transition:transform .2s ease}
+.wnav .ham i::before{top:-5px}.wnav .ham i::after{top:5px}
+.wnav.abierta .ham i{background:transparent}.wnav.abierta .ham i::before{transform:translateY(5px) rotate(45deg)}.wnav.abierta .ham i::after{transform:translateY(-5px) rotate(-45deg)}
+.wnav .cajon{display:none}
+@media (max-width:900px){
+  .wnav ul{display:none}.wnav .ham{display:grid}.wnav .der{margin-left:0}
+  .wnav .cajon{display:block;position:fixed;top:0;right:0;bottom:0;width:min(320px,84%);background:#14095B;color:#fff;padding:96px 28px 28px;transform:translateX(100%);transition:transform .4s ease}
+  .wnav.abierta .cajon{transform:none}
+  .wnav .cajon a{display:block;padding:14px 0;font-size:18px;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.08)}
+}
+
+/* ── escena 3D fija ── */
+#caja3d{position:fixed;inset:0;width:100vw;height:100vh;z-index:5;pointer-events:none}
+.caja-fallback{display:none}
+.no-3d #caja3d{display:none}
+.no-3d .caja-fallback{display:block;position:absolute;right:4%;top:50%;width:min(42vw,520px);transform:translateY(-40%) rotate(-8deg);filter:drop-shadow(0 30px 40px rgba(20,9,91,.18))}
+
+/* ── tipografía ── */
+.eyebrow{font-size:12px;font-weight:300;letter-spacing:.24em;text-transform:uppercase;color:var(--violet)}
+h2.titulo{font-size:clamp(34px,4.4vw,56px);font-weight:600;letter-spacing:-.035em;line-height:1.02;margin:16px 0 0;max-width:15ch}
+.bajada{font-size:clamp(16px,1.3vw,18px);color:var(--ink2);max-width:46ch;margin-top:24px;font-weight:300}
+section{position:relative;z-index:2;padding:clamp(96px,14vh,160px) 0}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 96px}
+.hero h1{font-size:clamp(54px,8.6vw,156px);font-weight:800;letter-spacing:-.055em;line-height:.9;max-width:9ch;margin-top:22px}
+.hero h1 .acento{color:var(--violet)}
+.hero .bajada{margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--violet);color:#fff;font-size:15px;font-weight:600;padding:15px 26px;border-radius:999px;text-decoration:none;margin-top:36px;transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(77,42,173,.28)}
+.hero-pie{position:absolute;left:0;right:0;bottom:32px}
+.hero-pie .wrap{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:300;color:var(--ink3);letter-spacing:.06em}
+.hero-pie a{text-decoration:none;border-bottom:1px solid var(--line)}
+.scroll-hint{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.2em}
+.scroll-hint i{display:block;width:1px;height:34px;background:var(--ink3);transform-origin:top;animation:hint 2s ease-out infinite}
+@keyframes hint{0%{transform:scaleY(0)}60%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ── LANZAMIENTOS ── */
+.lan-head{max-width:52%}
+.lan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:72px}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;box-shadow:0 10px 30px -18px rgba(20,9,91,.18);transition:transform .2s ease,box-shadow .2s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 22px 44px -20px rgba(20,9,91,.28)}
+.card figure{aspect-ratio:1/1;overflow:hidden;background:#EEF0F7}
+.card figure img{width:100%;height:100%;object-fit:cover}
+.card .c-body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card .c-meta{font-size:12px;font-weight:300;color:var(--ink3);letter-spacing:.04em}
+.card h3{font-size:18px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+.card p{font-size:14px;color:var(--ink2);font-weight:300}
+.lan-all{margin-top:48px;display:flex;justify-content:center}
+.btn-sec{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--violet);color:var(--violet);font-size:15px;font-weight:600;padding:13px 24px;border-radius:999px;text-decoration:none;transition:background .2s ease,color .2s ease}
+.btn-sec:hover{background:var(--violet);color:#fff}
+
+/* ── ECOSISTEMA (navy: los logos son blancos) ── */
+.eco{background:var(--navy);color:#fff}
+.eco .eyebrow{color:var(--lav)}
+.eco .bajada{color:rgba(255,255,255,.7)}
+.eco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:64px;max-width:56%}
+.eco-grid div{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:24px;height:104px;display:grid;place-items:center;padding:18px 26px}
+.eco-grid img{max-height:44px;width:auto;object-fit:contain}
+
+/* ── GRANDES LOGROS ── */
+.logro{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.logro img{border-radius:24px;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(20,9,91,.25)}
+
+/* ── DESTACADOS ── */
+.dest{display:grid;grid-template-columns:minmax(0,58%) 1fr;gap:48px}
+.dest-list{margin-top:56px;border-top:1px solid var(--line)}
+.dest-item{display:grid;grid-template-columns:56px 112px 1fr auto;gap:24px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:background .2s ease}
+.dest-item:hover{background:rgba(77,42,173,.04)}
+.dest-item .n{font-size:13px;font-weight:300;color:var(--ink3)}
+.dest-item img{width:112px;height:72px;object-fit:cover;border-radius:12px}
+.dest-item h3{font-size:18px;font-weight:600;letter-spacing:-.015em}
+.dest-item span.go{color:var(--violet);font-size:18px;transition:transform .2s ease}
+.dest-item:hover span.go{transform:translateX(4px)}
+
+/* ── PRÓXIMAMENTE ── */
+.prox-list{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:58%}
+.prox{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px 26px 28px;box-shadow:0 10px 30px -18px rgba(20,9,91,.18)}
+.prox .n{font-size:12px;font-weight:300;color:var(--violet);letter-spacing:.2em}
+.prox h3{font-size:18px;font-weight:600;margin-top:14px;letter-spacing:-.015em;line-height:1.3}
+.prox p{font-size:14px;color:var(--ink2);margin-top:8px;font-weight:300}
+
+/* ── FOOTER ── */
+footer{position:relative;z-index:2;background:var(--navy);color:#fff;padding:96px 0 40px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}
+.f-grid img{width:150px}
+.f-grid p.tag{color:rgba(255,255,255,.7);margin-top:18px;font-weight:300}
+.f-grid h4{font-size:12px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--lav);margin-bottom:18px}
+.f-grid ul{list-style:none;display:grid;gap:10px}
+.f-grid a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;font-weight:300}
+.f-grid a:hover{color:#fff}
+.f-bottom{margin-top:72px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;font-weight:300;color:rgba(255,255,255,.55)}
+
+/* ── movimiento de marca ── */
+.js [data-up]{opacity:0;transform:translateY(28px)}
+.js [data-up].in{opacity:1;transform:none;transition:opacity .8s var(--curva),transform .8s var(--curva);transition-delay:var(--d,0s)}
+.js .ola .w{display:inline-block;opacity:0;transform:translateY(.6em) rotateX(-40deg);transform-origin:50% 100%}
+.js .ola.in .w{animation:ola .6s var(--curva) both;animation-delay:calc(var(--i) * 62ms)}
+@keyframes ola{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js [data-up],.js .ola .w{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+  .scroll-hint i{animation:none}
+}
+
+/* ── móvil ── */
+@media (max-width:900px){
+  .lan-head,.eco-grid,.prox-list{max-width:100%}
+  .lan-grid{grid-template-columns:1fr 1fr}
+  .logro,.dest{grid-template-columns:1fr}
+  .dest-item{grid-template-columns:40px 80px 1fr auto;gap:14px}
+  .dest-item img{width:80px;height:56px}
+  .f-grid{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  .hero{justify-content:flex-end;padding-top:300px}
+}
+@media (max-width:600px){
+  .lan-grid,.prox-list{grid-template-columns:1fr}
+  .eco-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-pie .wrap span:first-child{display:none}
+}
+</style>
+<script async src="/posthog.js"></script><script async src="/ga4.js"></script>
+</head>
+<body>
+
+<nav class="wnav" id="wnav"><div class="wnav-in">
+  <a class="logo" href="#inicio"><img src="IMAGE/HOME_V2/Logotipo_MELONN-01.svg" alt="Melonn" width="118" height="34"><small>Edition</small></a>
+  <ul>
+    <li><a href="#lanzamientos">Lanzamientos</a></li>
+    <li><a href="#ecosistema">Ecosistema</a></li>
+    <li><a href="#destacados">Destacados</a></li>
+    <li><a href="#proximamente">Próximamente</a></li>
+    <li><a href="./historial-de-lanzamientos/">Historial</a></li>
+  </ul>
+  <div class="der"><button class="ham" aria-label="Menú" aria-expanded="false" aria-controls="wnav-cajon"><i></i></button></div>
+</div>
+<div class="cajon" id="wnav-cajon"><a href="#lanzamientos">Lanzamientos</a><a href="#ecosistema">Ecosistema</a><a href="#destacados">Destacados</a><a href="#proximamente">Próximamente</a><a href="./historial-de-lanzamientos/">Historial</a></div>
+</nav>
+
+<canvas id="caja3d" aria-hidden="true"></canvas>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="inicio" data-k="0">
+  <div class="wrap">
+    <p class="eyebrow" data-up style="--d:0s">Edición Q2 · 2026</p>
+    <h1 class="ola" data-hero-ola>Tecnología para construir <span class="acento">el futuro</span> contigo.</h1>
+    <p class="bajada" data-up style="--d:.6s">Descubre las integraciones, herramientas y mejoras que definen esta edición.</p>
+    <a class="btn" href="#lanzamientos" data-up style="--d:.9s">Ver novedades →</a>
+  </div>
+  <img class="caja-fallback" src="IMAGE/HOME_V2/caja-fallback.webp" alt="">
+  <div class="hero-pie"><div class="wrap">
+    <span>melonn edition 2.0 · by melonn · <a href="https://e-di-lab-admin.vercel.app" target="_blank" rel="noopener">EDi-Lab Admin</a></span>
+    <span class="scroll-hint">Desliza para abrir la caja <i></i></span>
+  </div></div>
+</section>
+
+<!-- =============== LANZAMIENTOS =============== -->
+<section id="lanzamientos">
+  <div class="wrap">
+    <div class="lan-head" data-k="1">
+      <p class="eyebrow" data-up>Edición Q2 · 2026</p>
+      <h2 class="titulo ola">Nuevos lanzamientos</h2>
+    </div>
+    <div class="lan-grid" data-k="2">
+      <a class="card" data-up href="./lanzamientos/chat-soporte"><figure><img src="./IMAGE/LANZAMIENTOS/CHAT_SOPORTE/Banner_Soporte_Orbita_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">01 · Experiencia · Soporte</span><h3>Llegó tu nuevo Soporte en Órbita: menos caos de WhatsApp, más control de tu logística.</h3><p>Escribes desde Órbita y cada caso queda con su propio hilo, su estado y su historial. Siempre sabes en qué va lo tuyo.</p></div></a>
+      <a class="card" data-up href="./lanzamientos/casepack"><figure><img src="./IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">02 · Operación · Inbound</span><h3>Ahora tu mercancía ingresa más rápido cuando llega en Casepack.</h3><p>Si la mayor parte de tu mercancía llega en casepack, el ingreso a bodega pasa de 2 a 1 día hábil.</p></div></a>
+      <a class="card" data-up href="./lanzamientos/solicitudes-reposicion"><figure><img src="./IMAGE/LANZAMIENTOS/SOLICITUDES_REPOSICION/1-1_Banner_seccion.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">03 · Operación · Órdenes</span><h3>Desde ahora, resuelve todo el ciclo de tus reposiciones en un solo lugar.</h3><p>Revisa solicitudes, toma decisiones y genera nuevas órdenes sin salir de tu flujo de trabajo.</p></div></a>
+      <a class="card" data-up href="./lanzamientos/dashboard-kpis-orbita"><figure><img src="./IMAGE/LANZAMIENTOS/DASHBOARD_KPIS_ORBITA/1-1_Banner_Transicion.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">04 · Operación · KPIs</span><h3>Tu operación bajo control, con métricas claras y siempre actualizadas.</h3><p>Monitorea órdenes, inventario, incidencias, siniestros y on-time desde un tablero centralizado, sin intermediarios.</p></div></a>
+      <a class="card" data-up href="./lanzamientos/buyer-portal"><figure><img src="./IMAGE/LANZAMIENTOS/BUYER_PORTAL/Card_Buyer_Portal.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">05 · Canales de venta · D2C</span><h3>Ahora tus compradores tienen respuestas. Y tu operación, menos interrupciones.</h3><p>Seguimiento en tiempo real, promesa de entrega, modificación de dirección y gestión de novedades — sin escribirte.</p></div></a>
+      <a class="card" data-up href="./lanzamientos/estados-orden-ingreso"><figure><img src="./IMAGE/LANZAMIENTOS/ESTADO_ORDEN_INGRESO/Estado_Orden_Ingreso_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">06 · Operación · Inventario</span><h3>Entiende cada estado de tu orden de ingreso sin perder trazabilidad</h3><p>Identifica en qué etapa está tu orden, qué acciones tienes disponibles y cómo gestionar diferencias antes del cierre.</p></div></a>
+    </div>
+    <div class="lan-all"><a class="btn-sec" href="./historial-de-lanzamientos/">Consultar historial de lanzamientos →</a></div>
+  </div>
+</section>
+
+<!-- =============== ECOSISTEMA =============== -->
+<section class="eco" id="ecosistema" data-k="3">
+  <div class="wrap">
+    <p class="eyebrow" data-up>Ecosistema</p>
+    <h2 class="titulo ola">Plataformas e integraciones activas dentro del ecosistema Melonn.</h2>
+    <div class="eco-grid">
+      <div data-up><img src="IMAGE/ECOSISTEMA/LOGOS/SHOPIFY.png" alt="Shopify"></div>
+      <div data-up><img src="IMAGE/ECOSISTEMA/LOGOS/WOO.png" alt="WooCommerce"></div>
+      <div data-up><img src="IMAGE/ECOSISTEMA/LOGOS/MERCADOLIBRE.png" alt="Mercado Libre"></div>
+      <div data-up><img src="IMAGE/ECOSISTEMA/LOGOS/VTEX.png" alt="VTEX"></div>
+      <div data-up><img src="IMAGE/ECOSISTEMA/LOGOS/LIVERPOOL.png" alt="Liverpool"></div>
+      <div data-up><img src="IMAGE/ECOSISTEMA/LOGOS/WALMART.png" alt="Walmart"></div>
+      <div data-up><img src="IMAGE/ECOSISTEMA/LOGOS/AMAZON.png" alt="Amazon"></div>
+      <div data-up><img src="IMAGE/ECOSISTEMA/LOGOS/RAPPI.png" alt="Rappi"></div>
+      <div data-up><img src="IMAGE/ECOSISTEMA/LOGOS/TIKTOK.png" alt="TikTok"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== GRANDES LOGROS =============== -->
+<section id="grandes-logros" data-k="4">
+  <div class="wrap logro">
+    <div>
+      <p class="eyebrow" data-up>Grandes logros</p>
+      <h2 class="titulo ola">Checkout inteligente Shopify + melonn</h2>
+      <p class="bajada" data-up>Melonn profundiza la integración con Shopify permitiendo que ahora en tu tienda se muestren únicamente los métodos de envío que realmente están disponibles para cada cliente, teniendo en cuenta el lugar de destino del pedido, la hora de corte de cada uno y el inventario disponible en nuestros CEDIS.</p>
+      <a class="btn-sec" href="./lanzamientos/checkout-inteligente" data-up style="margin-top:32px">Leer más →</a>
+    </div>
+    <img src="./IMAGE/LANZAMIENTOS/CHECKOUT_INTELIGENTE/Checkout-shopify-slides.png" alt="Checkout inteligente de Shopify con Melonn" loading="lazy" data-up>
+  </div>
+</section>
+
+<!-- =============== DESTACADOS =============== -->
+<section id="destacados" data-k="5">
+  <div class="wrap dest">
+    <div>
+      <p class="eyebrow" data-up>Resultados que marcan</p>
+      <h2 class="titulo ola">Lanzamientos destacados</h2>
+      <div class="dest-list">
+        <a class="dest-item" data-up href="./lanzamientos/liverpool-melonn"><span class="n">01</span><img src="./IMAGE/LANZAMIENTOS/LIVERPOOL/Portada-Liverpool.jpg" alt="" loading="lazy"><h3>Liverpool + Melonn</h3><span class="go">→</span></a>
+        <a class="dest-item" data-up href="./lanzamientos/sistema-notificaciones-whatsapp"><span class="n">02</span><img src="./IMAGE/LANZAMIENTOS/SISTEMA_NOTIFICACIONES_WHATSAPP/banner-sistema-notificaciones_banner-landing-sistema-de-notificaciones.jpg" alt="" loading="lazy"><h3>Sistema de notificaciones por WhatsApp</h3><span class="go">→</span></a>
+        <a class="dest-item" data-up href="./lanzamientos/checkout-inteligente"><span class="n">03</span><img src="./IMAGE/LANZAMIENTOS/CHECKOUT_INTELIGENTE/news-BANNER-LANDING-CHECKOUT-INTERNOcuadro.jpg" alt="" loading="lazy"><h3>Checkout inteligente</h3><span class="go">→</span></a>
+        <a class="dest-item" data-up href="./lanzamientos/orbi-ai"><span class="n">04</span><img src="./IMAGE/LANZAMIENTOS/ORBI.AI/Portada-Agente-Orbi.jpg" alt="" loading="lazy"><h3>Orbi.AI · El nuevo asistente IA a tu servicio</h3><span class="go">→</span></a>
+        <a class="dest-item" data-up href="./lanzamientos/trazabilidad-avanzada-b2b"><span class="n">05</span><img src="./IMAGE/LANZAMIENTOS/TRAZABILIDAD_AVANZADA_B2B/banner-92ss.jpg" alt="" loading="lazy"><h3>Trazabilidad avanzada B2B</h3><span class="go">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== PRÓXIMAMENTE =============== -->
+<section id="proximamente" data-k="6">
+  <div class="wrap">
+    <p class="eyebrow" data-up>Próximamente · Melonn Edition</p>
+    <h2 class="titulo ola">Lo que sigue también está pensado para ayudarte a crecer</h2>
+    <p class="bajada" data-up>Seguimos construyendo nuevas capacidades para impulsar la operación, la escalabilidad y la experiencia de nuestros sellers.</p>
+    <div class="prox-list">
+      <div class="prox" data-up><span class="n">01</span><h3>Nuevas funcionalidades de API Melonn</h3><p>Más posibilidades de integración para una operación más conectada.</p></div>
+      <div class="prox" data-up><span class="n">02</span><h3>Envíos cargo · B2B</h3><p>Nuevas capacidades para responder a flujos logísticos de mayor volumen.</p></div>
+      <div class="prox" data-up><span class="n">03</span><h3>Nueva experiencia de empaque B2B</h3><p>Mejoras pensadas para una preparación de pedidos más eficiente.</p></div>
+      <div class="prox" data-up><span class="n">04</span><h3>Alistamiento multi órdenes</h3><p>Un flujo más ágil para sellers con mayor ritmo operativo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer data-k="7">
+  <div class="wrap">
+    <div class="f-grid">
+      <div><img src="IMAGE/HOME_V2/Logo_MELONN-03.svg" alt="Melonn"><p class="tag">Tecnología para construir el futuro contigo.</p></div>
+      <div><h4>Edición</h4><ul><li><a href="#lanzamientos">Nuevos lanzamientos</a></li><li><a href="#ecosistema">Ecosistema</a></li><li><a href="#grandes-logros">Grandes logros</a></li><li><a href="#destacados">Lanzamientos destacados</a></li><li><a href="#proximamente">Próximamente</a></li></ul></div>
+      <div><h4>Melonn</h4><ul><li><a href="https://www.melonn.com/" target="_blank" rel="noopener">www.melonn.com</a></li><li><a href="https://www.melonn.com/colombia/solicitar-asesoria/" target="_blank" rel="noopener">Asesoría Colombia</a></li><li><a href="https://www.melonn.com/mexico/solicitar-asesoria/" target="_blank" rel="noopener">Asesoría México</a></li></ul></div>
+    </div>
+    <p class="f-bottom">© 2026 Melonn Edition by Melonn - Todos los derechos reservados</p>
+  </div>
+</footer>
+
+<!-- barra + entradas de marca -->
+<script>
+(function(){
+  var d=document.documentElement; d.classList.add('js');
+  var n=document.getElementById('wnav');
+  addEventListener('scroll',function(){n.classList.toggle('scrolled',scrollY>24)},{passive:true});
+  var h=n.querySelector('.ham'); h.addEventListener('click',function(){h.setAttribute('aria-expanded',n.classList.toggle('abierta'))});
+  n.querySelectorAll('.cajon a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('abierta')})});
+
+  // ola: palabra por palabra, conservando los <span> de color
+  document.querySelectorAll('.ola').forEach(function(el){
+    var i=0;
+    (function partir(nodo){
+      Array.from(nodo.childNodes).forEach(function(c){
+        if(c.nodeType===3){
+          var frag=document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach(function(t){
+            if(!t) return;
+            if(/^\s+$/.test(t)){frag.appendChild(document.createTextNode(' '));return;}
+            var s=document.createElement('span'); s.className='w'; s.style.setProperty('--i',i++); s.textContent=t; frag.appendChild(s);
+          });
+          nodo.replaceChild(frag,c);
+        } else if(c.nodeType===1 && c.tagName!=='BR'){ partir(c); }
+      });
+    })(el);
+  });
+
+  // escalonado de tarjetas: 80 ms
+  document.querySelectorAll('.lan-grid,.eco-grid,.dest-list,.prox-list').forEach(function(g){
+    Array.from(g.querySelectorAll('[data-up]')).forEach(function(e,k){e.style.setProperty('--d',(k*0.08)+'s')});
+  });
+
+  // hero al cargar
+  requestAnimationFrame(function(){
+    document.querySelectorAll('.hero [data-up]').forEach(function(e){e.classList.add('in')});
+    setTimeout(function(){document.querySelector('[data-hero-ola]').classList.add('in')},300);
+  });
+
+  // el resto al asomar
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('section:not(.hero) [data-up], section:not(.hero) .ola').forEach(function(e){io.observe(e)});
+})();
+</script>
+
+<!-- caja 3D atada al scroll -->
+<script type="module">
+const raiz=document.documentElement;
+const reducido=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function sin3d(){ raiz.classList.add('no-3d'); }
+if(reducido){ sin3d(); } else {
+try{
+  const THREE=await import('three');
+  const canvas=document.getElementById('caja3d');
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.05;
+
+  const escena=new THREE.Scene();
+  const camara=new THREE.PerspectiveCamera(28,1,.1,100); camara.position.set(0,0,10);
+  escena.add(new THREE.HemisphereLight(0xffffff,0xd8c4a8,1.15));
+  const clave=new THREE.DirectionalLight(0xffffff,2.3); clave.position.set(-3,5,6); escena.add(clave);
+  const relleno=new THREE.DirectionalLight(0xe9e2ff,.55); relleno.position.set(5,-1,3); escena.add(relleno);
+
+  // ── activos oficiales: logos SVG → imagen ──
+  async function svg(url,w,h){
+    const txt=(await (await fetch(url)).text()).replace('<svg ',`<svg width="${w}" height="${h}" `);
+    const img=new Image(); img.src=URL.createObjectURL(new Blob([txt],{type:'image/svg+xml'}));
+    await img.decode(); return img;
+  }
+  const [logoNegro,wordBlanco]=await Promise.all([
+    svg('IMAGE/HOME_V2/Logotipo_MELONN-02.svg',1760,504),
+    svg('IMAGE/HOME_V2/Logo_MELONN-03.svg',1760,504)
+  ]);
+
+  // ── texturas de cartón ──
+  const KRAFT='#D3A57A', KRAFT_IN='#B88A5F', CINTA='#4D2AAD';
+  function lienzo(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return [c,c.getContext('2d')];}
+  function carton(g,w,h,base){
+    g.fillStyle=base; g.fillRect(0,0,w,h);
+    const d=g.getImageData(0,0,w,h),p=d.data;
+    for(let i=0;i<p.length;i+=4){const r=(Math.random()-.5)*14;p[i]+=r;p[i+1]+=r*.9;p[i+2]+=r*.7;}
+    g.putImageData(d,0,0);
+    for(let k=0;k<(w*h)/900;k++){
+      g.strokeStyle=Math.random()<.5?'rgba(90,55,25,.07)':'rgba(255,240,220,.08)'; g.lineWidth=Math.random()*1.4+.3;
+      const x=Math.random()*w,y=Math.random()*h,a=(Math.random()-.5)*.5,l=Math.random()*40+10;
+      g.beginPath();g.moveTo(x,y);g.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);g.stroke();
+    }
+    const v=g.createRadialGradient(w/2,h/2,Math.min(w,h)*.2,w/2,h/2,Math.max(w,h)*.75);
+    v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(70,40,15,.18)'); g.fillStyle=v; g.fillRect(0,0,w,h);
+  }
+  function cintaH(g,x,y,w,h){ // cinta violeta horizontal con "melonn" blanco
+    g.fillStyle=CINTA; g.fillRect(x,y,w,h);
+    g.fillStyle='rgba(255,255,255,.08)'; g.fillRect(x,y,w,h*.18);
+    const lh=h*.5, lw=lh*(1760/504), paso=lw*1.45;
+    for(let cx=x+paso*.25; cx<x+w; cx+=paso) g.drawImage(wordBlanco,cx,y+(h-lh)/2,lw,lh);
+  }
+  function tex(c){const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=renderer.capabilities.getMaxAnisotropy();return t;}
+  const PX=512; // px por unidad
+  const W=1.5,H=1,D=1.05,T=.014,CW=.34; // caja, grosor de solapa, ancho de cinta
+
+  function caraFrontal(){const [c,g]=lienzo(W*PX,H*PX);carton(g,c.width,c.height,KRAFT);
+    const lw=c.width*.5,lh=lw*504/1760; g.globalAlpha=.88; g.drawImage(logoNegro,(c.width-lw)/2,(c.height-lh)/2,lw,lh); g.globalAlpha=1; return tex(c);}
+  function caraLateral(){const [c,g]=lienzo(D*PX,H*PX);carton(g,c.width,c.height,KRAFT);
+    const cw=CW*PX, ch=c.height*.42; g.save(); g.translate(c.width/2,0); g.rotate(Math.PI/2); cintaH(g,0,-cw/2,ch,cw); g.restore(); return tex(c);}
+  function caraInferior(){const [c,g]=lienzo(W*PX,D*PX);carton(g,c.width,c.height,KRAFT);cintaH(g,0,(c.height-CW*PX)/2,c.width,CW*PX);return tex(c);}
+  function interior(w,h){const [c,g]=lienzo(w*PX,h*PX);carton(g,c.width,c.height,KRAFT_IN);return tex(c);}
+  // solapas largas: media cinta en el borde libre (centro de la tapa)
+  function solapaLarga(mitad){const L=D/2;const [c,g]=lienzo(W*PX,L*PX);carton(g,c.width,c.height,KRAFT);
+    const [tc,tg]=lienzo(W*PX,CW*PX); cintaH(tg,0,0,tc.width,tc.height);
+    const hh=tc.height/2;
+    if(mitad==='delantera') g.drawImage(tc,0,hh,tc.width,hh,0,0,c.width,hh);           // borde libre arriba
+    else g.drawImage(tc,0,0,tc.width,hh,0,c.height-hh,c.width,hh);                         // borde libre abajo
+    return tex(c);}
+  function canto(){const [c,g]=lienzo(64,64);carton(g,64,64,'#B98A5E');return tex(c);}
+
+  const m=t=>new THREE.MeshStandardMaterial({map:t,roughness:.92,metalness:0});
+  const mCanto=m(canto()), mOculto=new THREE.MeshBasicMaterial({visible:false});
+
+  const caja=new THREE.Group();
+  // cuerpo sin tapa: +x,-x,+y,-y,+z,-z
+  const fF=caraFrontal(), fL=caraLateral();
+  const cuerpo=new THREE.Mesh(new THREE.BoxGeometry(W,H,D),[m(fL),m(fL),mOculto,m(caraInferior()),m(fF),m(fF)]);
+  caja.add(cuerpo);
+  const dentro=new THREE.Mesh(new THREE.BoxGeometry(W*.985,H*.99,D*.985),
+    new THREE.MeshStandardMaterial({map:interior(W,D),roughness:1,side:THREE.BackSide}));
+  dentro.material=[dentro.material,dentro.material,mOculto,dentro.material,dentro.material,dentro.material];
+  caja.add(dentro);
+
+  // solapas con bisagra
+  const mIn=m(interior(W,D/2));
+  function solapa(ancho,largo,matArriba,bisagra,offset,yOff){
+    const piv=new THREE.Group(); piv.position.copy(bisagra);
+    const geo=new THREE.BoxGeometry(ancho.x,T,ancho.z);
+    const mesh=new THREE.Mesh(geo,[mCanto,mCanto,matArriba,mIn,mCanto,mCanto]);
+    mesh.position.set(offset.x,T/2+yOff,offset.z); piv.add(mesh); caja.add(piv); return piv;
+  }
+  const L=D/2, Ls=D/2*.92;
+  const sD=solapa({x:W,z:L},L,m(solapaLarga('delantera')),new THREE.Vector3(0,H/2,D/2),{x:0,z:-L/2},0);
+  const sT=solapa({x:W,z:L},L,m(solapaLarga('trasera')),new THREE.Vector3(0,H/2,-D/2),{x:0,z:L/2},0);
+  const sR=solapa({x:Ls,z:D},Ls,m(interior(Ls,D)),new THREE.Vector3(W/2,H/2,0),{x:-Ls/2,z:0},-T*1.05);
+  const sI=solapa({x:Ls,z:D},Ls,m(interior(Ls,D)),new THREE.Vector3(-W/2,H/2,0),{x:Ls/2,z:0},-T*1.05);
+  sR.children[0].material[2]=m((()=>{const [c,g]=lienzo(Ls*PX,D*PX);carton(g,c.width,c.height,KRAFT);return tex(c)})());
+  sI.children[0].material[2]=sR.children[0].material[2];
+  function abrir(a){ // 0 cerrada · 1 abierta
+    const ang=a*2.15, angS=Math.min(1,a*1.25)*2.0;
+    sD.rotation.x= ang; sT.rotation.x=-ang;
+    sR.rotation.z=-angS; sI.rotation.z= angS;
+  }
+
+  // sombra suave
+  const [sc,sg]=lienzo(256,256); const rg=sg.createRadialGradient(128,128,0,128,128,128);
+  rg.addColorStop(0,'rgba(20,9,91,.22)'); rg.addColorStop(1,'rgba(20,9,91,0)'); sg.fillStyle=rg; sg.fillRect(0,0,256,256);
+  const sombra=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({map:tex(sc),transparent:true,depthWrite:false}));
+  sombra.rotation.x=-Math.PI/2; escena.add(sombra);
+  escena.add(caja);
+
+  // ── coreografía: un fotograma clave por ancla [data-k] ──
+  // fx, fy: -1..1 del ancho/alto visible (fy positivo = abajo) · s: alto de la caja en fracción del alto visible
+  const TAU=Math.PI*2;
+  const K=[
+    {fx:.62, fy:.08, s:.28, rx:.38, ry:-.55,        rz:.26,  a:0},   // hero: cerrada, inclinada junto al título
+    {fx:.62, fy:-.26,s:.24, rx:.62, ry:-.55+TAU,    rz:-.06, a:1},   // nuevos lanzamientos: gira y se abre
+    {fx:1.9, fy:.1,  s:.24, rx:.35, ry:TAU+.9,      rz:.22,  a:1},   // tarjetas: sale por la derecha
+    {fx:.56, fy:.04, s:.28, rx:.34, ry:TAU+2.5,     rz:-.10, a:.55}, // ecosistema: vuelve, entreabierta
+    {fx:1.24,fy:.74, s:.2,  rx:.45, ry:TAU*2-.4,    rz:.18,  a:0},   // grandes logros: a un lado, pequeña
+    {fx:.60, fy:.06, s:.28, rx:.38, ry:TAU*2+.7,    rz:-.14, a:.25}, // destacados: muestra otra cara
+    {fx:.60, fy:.04, s:.30, rx:.42, ry:TAU*2+2.2,   rz:.10,  a:0},   // próximamente: se cierra con cinta
+    {fx:.10, fy:-1.6,s:.22, rx:.60, ry:TAU*3,       rz:.30,  a:0},   // footer: se va
+  ];
+  // móvil: la caja vive arriba en el hero, gira con el scroll y sale por arriba (no tapa contenido)
+  const SALE={fx:.05,fy:-1.9,s:.16,rx:.6,ry:TAU*1.5,rz:.2,a:1};
+  const KM=[{fx:.05,fy:-.56,s:.2,rx:.38,ry:-.55,rz:.2,a:0},{fx:.05,fy:-1.9,s:.17,rx:.6,ry:-.55+TAU,rz:-.1,a:1},...K.slice(2).map(()=>SALE)];
+  const anclas=[...document.querySelectorAll('[data-k]')].sort((x,y)=>x.dataset.k-y.dataset.k);
+  let tops=[];
+  // cada ancla dispara su fotograma cuando su borde superior llega al 40% de la pantalla
+  function medir(){ tops=anclas.map((e,i)=>i===0?0:Math.max(0,e.getBoundingClientRect().top+scrollY-innerHeight*.4)); }
+  const suave=t=>t*t*(3-2*t);
+  function objetivo(){
+    const linea=scrollY;
+    const K_=movil?KM:K;
+    if(linea<=tops[0]) return K_[0];
+    for(let i=0;i<tops.length-1;i++){
+      if(linea<tops[i+1]){
+        let t=(linea-tops[i])/Math.max(1,tops[i+1]-tops[i]);
+        t=suave(Math.min(1,Math.max(0,(t-.12)/.76)));
+        const A=K_[i],B=K_[i+1],o={}; for(const k in A) o[k]=A[k]+(B[k]-A[k])*t; return o;
+      }
+    }
+    return K_[K_.length-1];
+  }
+
+  let vw=1,vh=1,movil=false;
+  function redimensionar(){
+    const w=innerWidth,h=innerHeight; renderer.setSize(w,h,false); camara.aspect=w/h; camara.updateProjectionMatrix();
+    vh=2*camara.position.z*Math.tan(THREE.MathUtils.degToRad(camara.fov/2)); vw=vh*camara.aspect; movil=w<900; medir();
+  }
+  addEventListener('resize',redimensionar); addEventListener('load',medir); redimensionar();
+  new ResizeObserver(medir).observe(document.body);
+
+  const cur={...K[0]}; let previo=performance.now();
+  function cuadro(ahora){
+    const dt=Math.min(.05,(ahora-previo)/1000); previo=ahora;
+    const o=objetivo(), f=1-Math.exp(-dt*7);
+    for(const k in cur) cur[k]+=(o[k]-cur[k])*f;
+    const fx=cur.fx, s=cur.s*vh/H;
+    const flota=Math.sin(ahora/1000*TAU/8)*.04;      // ambiente: 8 s
+    caja.position.set(fx*vw/2, -cur.fy*vh/2+flota*s, 0);
+    caja.scale.setScalar(s);
+    caja.rotation.set(cur.rx, cur.ry+Math.sin(ahora/1000*TAU/9)*.03, cur.rz);
+    abrir(cur.a);
+    sombra.position.set(caja.position.x, caja.position.y-H*s*.95, -.4);
+    sombra.scale.set(W*s*1.3, D*s*1.1, 1);
+    sombra.material.opacity=Math.max(0,1-Math.abs(cur.rz)*1.2)*.9;
+    renderer.render(escena,camara);
+    requestAnimationFrame(cuadro);
+  }
+  requestAnimationFrame(cuadro);
+}catch(e){ console.warn('Caja 3D no disponible:',e); sin3d(); }
+}
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
