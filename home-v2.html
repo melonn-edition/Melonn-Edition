@@ -137,8 +137,10 @@ footer{position:relative;z-index:2;background:#000;color:#fff;padding:96px 0 40p
 /* ── paneles apilados (de Ecosistema al cierre): cada sección sube y se monta sobre la anterior ── */
 .apila{position:sticky;top:0;box-shadow:0 -28px 60px -24px rgba(20,9,91,.28)}
 #ecosistema.apila{z-index:3} #grandes-logros.apila{z-index:4;background:var(--superficie)}
-#destacados.apila{z-index:5;background:var(--bg)} #proximamente.apila{z-index:6;background:var(--superficie)}
-footer.apila{z-index:7}
+#destacados.apila{z-index:5;background:var(--bg)}
+/* la última sección sube sobre Destacados pero no se queda quieta: el cierre va pegado a ella */
+.sube{position:relative;z-index:6;background:var(--superficie);box-shadow:0 -28px 60px -24px rgba(20,9,91,.28)}
+footer{z-index:7}
 .marca{height:0}
 
 /* ── movimiento de marca ── */
@@ -279,7 +281,7 @@ footer.apila{z-index:7}
 
 <!-- =============== PRÓXIMAMENTE =============== -->
 <div class="marca" data-k="6"></div>
-<section class="apila" id="proximamente">
+<section class="sube" id="proximamente">
   <div class="wrap">
     <p class="eyebrow" data-up>Próximamente · Melonn Edition</p>
     <h2 class="titulo ola">Lo que sigue también está pensado para ayudarte a crecer</h2>
@@ -295,7 +297,7 @@ footer.apila{z-index:7}
 
 <!-- =============== FOOTER =============== -->
 <div class="marca" data-k="7"></div>
-<footer class="apila">
+<footer>
   <div class="wrap">
     <div class="f-grid">
       <div><img src="IMAGE/HOME_V2/Logo_MELONN-03.svg" alt="Melonn"><p class="tag">Tecnología para construir el futuro contigo.</p></div>
