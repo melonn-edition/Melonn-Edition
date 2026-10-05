@@ -18,7 +18,7 @@
 <style>
 :root{
   --navy:#14095B; --violet:#4D2AAD; --lav:#C4B5FD; --turq:#00DCD6; --amarillo:#FFC800;
-  --bg:#FCFCFE; --line:#D3D8E9; --ink:#14095B; --ink2:#4A4870; --ink3:#7C7A9C;
+  --bg:#FFFFFF; --plano:#E8ECF7; --superficie:#F7F9FC; --line:#D3D8E9; --ink:#14095B; --ink2:#4A4870; --ink3:#7C7A9C;
   --curva:cubic-bezier(.2,.75,.25,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -64,7 +64,7 @@ h2.titulo{font-size:clamp(34px,4.4vw,56px);font-weight:600;letter-spacing:-.035e
 section{position:relative;z-index:2;padding:clamp(96px,14vh,160px) 0}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 96px}
+.hero{background:var(--plano);min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 96px}
 .hero h1{font-size:clamp(54px,8.6vw,156px);font-weight:800;letter-spacing:-.055em;line-height:.9;max-width:9ch;margin-top:22px}
 .hero h1 .acento{color:var(--violet)}
 .hero .bajada{margin-top:32px}
@@ -101,6 +101,7 @@ section{position:relative;z-index:2;padding:clamp(96px,14vh,160px) 0}
 .eco-grid img{max-height:44px;width:auto;object-fit:contain}
 
 /* ── GRANDES LOGROS ── */
+#grandes-logros,#proximamente{background:var(--superficie)}
 .logro{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
 .logro img{border-radius:24px;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(20,9,91,.25)}
 
@@ -123,7 +124,7 @@ section{position:relative;z-index:2;padding:clamp(96px,14vh,160px) 0}
 .prox p{font-size:14px;color:var(--ink2);margin-top:8px;font-weight:300}
 
 /* ── FOOTER ── */
-footer{position:relative;z-index:2;background:var(--navy);color:#fff;padding:96px 0 40px}
+footer{position:relative;z-index:2;background:#000;color:#fff;padding:96px 0 40px}
 .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}
 .f-grid img{width:150px}
 .f-grid p.tag{color:rgba(255,255,255,.7);margin-top:18px;font-weight:300}
