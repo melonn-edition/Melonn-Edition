@@ -437,10 +437,13 @@ try{
   const sI=solapa({x:Ls,z:D},Ls,m(interior(Ls,D)),new THREE.Vector3(-W/2,H/2,0),{x:Ls/2,z:0},-T*1.05);
   sR.children[0].material[2]=m((()=>{const [c,g]=lienzo(Ls*PX,D*PX);carton(g,c.width,c.height,KRAFT);return tex(c)})());
   sI.children[0].material[2]=sR.children[0].material[2];
+  // como una caja real: primero se abren las aletas largas (las de la cinta) y después las cortas;
+  // al cerrar ocurre al revés, así nunca se atraviesan
+  const tramo=(a,i,f)=>{const t=Math.min(1,Math.max(0,(a-i)/(f-i)));return t*t*(3-2*t);};
   function abrir(a){ // 0 cerrada · 1 abierta
-    const ang=a*2.15, angS=Math.min(1,a*1.25)*2.0;
-    sD.rotation.x= ang; sT.rotation.x=-ang;
-    sR.rotation.z=-angS; sI.rotation.z= angS;
+    const largas=tramo(a,0,.55)*2.2, cortas=tramo(a,.5,1)*1.95;
+    sD.rotation.x= largas; sT.rotation.x=-largas;
+    sR.rotation.z=-cortas; sI.rotation.z= cortas;
   }
 
   // sombra suave
