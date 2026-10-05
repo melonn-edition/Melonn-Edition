@@ -84,6 +84,9 @@ section{position:relative;z-index:2;padding:clamp(96px,14vh,160px) 0}
 .card:hover{transform:translateY(-4px);box-shadow:0 22px 44px -20px rgba(20,9,91,.28)}
 .card figure{aspect-ratio:1/1;overflow:hidden;background:#EEF0F7}
 .card figure img{width:100%;height:100%;object-fit:cover}
+@keyframes levitar{0%,100%{translate:0 0}50%{translate:0 -10px}}
+#lanzamientos .card.in{animation:levitar 6s ease-in-out infinite;animation-delay:calc(var(--i,0) * -1s)}
+#lanzamientos .card.in:hover{animation-play-state:paused}
 .card .c-body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
 .card .c-meta{font-size:12px;font-weight:300;color:var(--ink3);letter-spacing:.04em}
 .card h3{font-size:18px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
@@ -151,6 +154,7 @@ footer{z-index:7}
 @keyframes ola{to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  #lanzamientos .card{animation:none!important}
   .js [data-up],.js .ola .w{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
   .scroll-hint i{animation:none}
 }
@@ -216,12 +220,12 @@ footer{z-index:7}
       <h2 class="titulo ola">Nuevos lanzamientos</h2>
     </div>
     <div class="lan-grid" data-k="2">
-      <a class="card" data-up href="./lanzamientos/chat-soporte"><figure><img src="./IMAGE/LANZAMIENTOS/CHAT_SOPORTE/Banner_Soporte_Orbita_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">01 · Experiencia · Soporte</span><h3>Llegó tu nuevo Soporte en Órbita: menos caos de WhatsApp, más control de tu logística.</h3><p>Escribes desde Órbita y cada caso queda con su propio hilo, su estado y su historial. Siempre sabes en qué va lo tuyo.</p></div></a>
-      <a class="card" data-up href="./lanzamientos/casepack"><figure><img src="./IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">02 · Operación · Inbound</span><h3>Ahora tu mercancía ingresa más rápido cuando llega en Casepack.</h3><p>Si la mayor parte de tu mercancía llega en casepack, el ingreso a bodega pasa de 2 a 1 día hábil.</p></div></a>
-      <a class="card" data-up href="./lanzamientos/solicitudes-reposicion"><figure><img src="./IMAGE/LANZAMIENTOS/SOLICITUDES_REPOSICION/1-1_Banner_seccion.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">03 · Operación · Órdenes</span><h3>Desde ahora, resuelve todo el ciclo de tus reposiciones en un solo lugar.</h3><p>Revisa solicitudes, toma decisiones y genera nuevas órdenes sin salir de tu flujo de trabajo.</p></div></a>
-      <a class="card" data-up href="./lanzamientos/dashboard-kpis-orbita"><figure><img src="./IMAGE/LANZAMIENTOS/DASHBOARD_KPIS_ORBITA/1-1_Banner_Transicion.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">04 · Operación · KPIs</span><h3>Tu operación bajo control, con métricas claras y siempre actualizadas.</h3><p>Monitorea órdenes, inventario, incidencias, siniestros y on-time desde un tablero centralizado, sin intermediarios.</p></div></a>
-      <a class="card" data-up href="./lanzamientos/buyer-portal"><figure><img src="./IMAGE/LANZAMIENTOS/BUYER_PORTAL/Card_Buyer_Portal.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">05 · Canales de venta · D2C</span><h3>Ahora tus compradores tienen respuestas. Y tu operación, menos interrupciones.</h3><p>Seguimiento en tiempo real, promesa de entrega, modificación de dirección y gestión de novedades — sin escribirte.</p></div></a>
-      <a class="card" data-up href="./lanzamientos/estados-orden-ingreso"><figure><img src="./IMAGE/LANZAMIENTOS/ESTADO_ORDEN_INGRESO/Estado_Orden_Ingreso_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">06 · Operación · Inventario</span><h3>Entiende cada estado de tu orden de ingreso sin perder trazabilidad</h3><p>Identifica en qué etapa está tu orden, qué acciones tienes disponibles y cómo gestionar diferencias antes del cierre.</p></div></a>
+      <a class="card" data-up style="--i:1" href="./lanzamientos/chat-soporte"><figure><img src="./IMAGE/LANZAMIENTOS/CHAT_SOPORTE/Banner_Soporte_Orbita_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">01 · Experiencia · Soporte</span><h3>Llegó tu nuevo Soporte en Órbita: menos caos de WhatsApp, más control de tu logística.</h3><p>Escribes desde Órbita y cada caso queda con su propio hilo, su estado y su historial. Siempre sabes en qué va lo tuyo.</p></div></a>
+      <a class="card" data-up style="--i:2" href="./lanzamientos/casepack"><figure><img src="./IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">02 · Operación · Inbound</span><h3>Ahora tu mercancía ingresa más rápido cuando llega en Casepack.</h3><p>Si la mayor parte de tu mercancía llega en casepack, el ingreso a bodega pasa de 2 a 1 día hábil.</p></div></a>
+      <a class="card" data-up style="--i:3" href="./lanzamientos/solicitudes-reposicion"><figure><img src="./IMAGE/LANZAMIENTOS/SOLICITUDES_REPOSICION/1-1_Banner_seccion.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">03 · Operación · Órdenes</span><h3>Desde ahora, resuelve todo el ciclo de tus reposiciones en un solo lugar.</h3><p>Revisa solicitudes, toma decisiones y genera nuevas órdenes sin salir de tu flujo de trabajo.</p></div></a>
+      <a class="card" data-up style="--i:4" href="./lanzamientos/dashboard-kpis-orbita"><figure><img src="./IMAGE/LANZAMIENTOS/DASHBOARD_KPIS_ORBITA/1-1_Banner_Transicion.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">04 · Operación · KPIs</span><h3>Tu operación bajo control, con métricas claras y siempre actualizadas.</h3><p>Monitorea órdenes, inventario, incidencias, siniestros y on-time desde un tablero centralizado, sin intermediarios.</p></div></a>
+      <a class="card" data-up style="--i:5" href="./lanzamientos/buyer-portal"><figure><img src="./IMAGE/LANZAMIENTOS/BUYER_PORTAL/Card_Buyer_Portal.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">05 · Canales de venta · D2C</span><h3>Ahora tus compradores tienen respuestas. Y tu operación, menos interrupciones.</h3><p>Seguimiento en tiempo real, promesa de entrega, modificación de dirección y gestión de novedades — sin escribirte.</p></div></a>
+      <a class="card" data-up style="--i:6" href="./lanzamientos/estados-orden-ingreso"><figure><img src="./IMAGE/LANZAMIENTOS/ESTADO_ORDEN_INGRESO/Estado_Orden_Ingreso_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">06 · Operación · Inventario</span><h3>Entiende cada estado de tu orden de ingreso sin perder trazabilidad</h3><p>Identifica en qué etapa está tu orden, qué acciones tienes disponibles y cómo gestionar diferencias antes del cierre.</p></div></a>
     </div>
     <div class="lan-all"><a class="btn-sec" href="./historial-de-lanzamientos/">Consultar historial de lanzamientos →</a></div>
   </div>
