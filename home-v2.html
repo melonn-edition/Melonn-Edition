@@ -396,17 +396,28 @@ try{
 
   function caraFrontal(){const [c,g]=lienzo(W*PX,H*PX);carton(g,c.width,c.height,KRAFT);
     const lw=c.width*.5,lh=lw*504/1760; g.globalAlpha=.88; g.drawImage(logoNegro,(c.width-lw)/2,(c.height-lh)/2,lw,lh); g.globalAlpha=1; return tex(c);}
-  function caraLateral(){const [c,g]=lienzo(D*PX,H*PX);carton(g,c.width,c.height,KRAFT);
-    const cw=CW*PX, ch=c.height*.42; g.save(); g.translate(c.width/2,0); g.rotate(Math.PI/2); cintaH(g,0,-cw/2,ch,cw); g.restore(); return tex(c);}
+  // una sola tira de cinta: sube por el lado izquierdo, cruza la tapa y baja por el derecho.
+  // u = recorrido a lo largo de la tira · v = ancho (v=0 hacia atrás, v=CW hacia el frente)
+  const BAJA=.42*H; const U=BAJA*2+W;
+  const tira=(()=>{const [c,g]=lienzo(U*PX,CW*PX); g.fillStyle=CINTA; g.fillRect(0,0,c.width,c.height);
+    g.fillStyle='rgba(255,255,255,.08)'; g.fillRect(0,0,c.width,c.height*.18);
+    const lh=c.height*.5, lw=lh*(1760/504), paso=lw*1.5, centro=(BAJA+W/2)*PX;
+    for(let k=-12;k<=12;k++){const cx=centro+k*paso-lw/2; if(cx>-lw&&cx<c.width) g.drawImage(wordBlanco,cx,(c.height-lh)/2,lw,lh);}
+    return c;})();
+  function caraLateral(lado){const [c,g]=lienzo(D*PX,H*PX);carton(g,c.width,c.height,KRAFT);
+    const dpx=c.width, cwp=CW*PX, bpx=BAJA*PX, upx=(BAJA+W)*PX;
+    g.save();
+    if(lado==='der') g.setTransform(0,1,-1,0,dpx/2+cwp/2,-upx);   // baja desde el borde superior
+    else             g.setTransform(0,-1,1,0,dpx/2-cwp/2,bpx);     // sube hasta el borde superior
+    g.drawImage(tira,0,0); g.restore(); return tex(c);}
   function caraInferior(){const [c,g]=lienzo(W*PX,D*PX);carton(g,c.width,c.height,KRAFT);cintaH(g,0,(c.height-CW*PX)/2,c.width,CW*PX);return tex(c);}
   function interior(w,h){const [c,g]=lienzo(w*PX,h*PX);carton(g,c.width,c.height,KRAFT_IN);return tex(c);}
   // solapas largas: media cinta en el borde libre (centro de la tapa)
   function solapaLarga(mitad){const L=D/2;const [c,g]=lienzo(W*PX,L*PX);carton(g,c.width,c.height,KRAFT);
-    const [tc,tg]=lienzo(W*PX,CW*PX); cintaH(tg,0,0,tc.width,tc.height);
-    const hh=tc.height/2;
-    if(mitad==='delantera') g.drawImage(tc,0,hh,tc.width,hh,0,0,c.width,hh);           // borde libre arriba
-    else g.drawImage(tc,0,0,tc.width,hh,0,c.height-hh,c.width,hh);                         // borde libre abajo
-    return tex(c);}
+    const cwp=CW*PX, bpx=BAJA*PX; g.save();
+    if(mitad==='delantera') g.setTransform(1,0,0,1,-bpx,-cwp/2);            // mitad frontal de la cinta, junto al borde libre
+    else g.setTransform(1,0,0,1,-bpx,c.height-cwp/2);                        // mitad trasera
+    g.drawImage(tira,0,0); g.restore(); return tex(c);}
   function canto(){const [c,g]=lienzo(64,64);carton(g,64,64,'#B98A5E');return tex(c);}
 
   const m=t=>new THREE.MeshStandardMaterial({map:t,roughness:.92,metalness:0});
@@ -414,8 +425,8 @@ try{
 
   const caja=new THREE.Group();
   // cuerpo sin tapa: +x,-x,+y,-y,+z,-z
-  const fF=caraFrontal(), fL=caraLateral();
-  const cuerpo=new THREE.Mesh(new THREE.BoxGeometry(W,H,D),[m(fL),m(fL),mOculto,m(caraInferior()),m(fF),m(fF)]);
+  const fF=caraFrontal();
+  const cuerpo=new THREE.Mesh(new THREE.BoxGeometry(W,H,D),[m(caraLateral('der')),m(caraLateral('izq')),mOculto,m(caraInferior()),m(fF),m(fF)]);
   caja.add(cuerpo);
   const dentro=new THREE.Mesh(new THREE.BoxGeometry(W*.985,H*.99,D*.985),
     new THREE.MeshStandardMaterial({map:interior(W,D),roughness:1,side:THREE.BackSide}));
