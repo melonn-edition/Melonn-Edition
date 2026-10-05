@@ -6,8 +6,8 @@
 <meta name="robots" content="noindex, nofollow, noarchive" />
 <link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
-<title>Multipaquete · v2 – Melonn Editions</title>
-<meta name="description" content="Consulta el estado, la guía, la transportadora y el historial de cada paquete de forma independiente dentro de una misma orden." />
+<title>Log de la orden · v2 – Melonn Editions</title>
+<meta name="description" content="El nuevo log de la orden en Órbita te muestra qué pasó con cada paquete, paso a paso: cada intento, cada ofrecimiento y su motivo." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -881,6 +881,30 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 }
 .cbox{pointer-events:none;will-change:offset-distance}
 @media(max-width:768px){#conveyor-layer{display:none}}
+
+/* ——— ejemplo del log de la orden ——— */
+.lg-wrap{display:block!important;padding-top:0!important}
+.lg-cap{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5C5A80;margin:0 0 18px;text-align:center}
+.lg{background:#fff;border:1px solid #D3D8E9;border-radius:20px;padding:22px 24px;text-align:left;box-shadow:0 18px 40px -24px rgba(20,9,91,.25)}
+.lg-head{display:flex;align-items:center;gap:10px;padding-bottom:16px;margin-bottom:18px;border-bottom:1px solid rgba(20,9,91,.10)}
+.lg-pkg{font-size:16px;font-weight:600;color:#14095B}
+.lg-chip{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;line-height:1.2}
+.lg-chip.ok{background:rgba(0,199,124,.12);color:#00875A}
+.lg-ej{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8080A8}
+.lg-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.lg-int-t{font-size:13px;font-weight:600;color:#4D2AAD;margin:0 0 10px}
+.lg-of{border:1px solid rgba(20,9,91,.10);border-radius:14px;padding:12px 14px;margin-bottom:10px;background:#FAFAFD}
+.lg-of-t{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5C5A80;margin:0 0 8px}
+.lg-ev{list-style:none;margin:0;padding:0 0 0 14px;border-left:2px solid rgba(20,9,91,.12)}
+.lg-ev li{position:relative;font-size:14px;color:#2D2B5C;line-height:1.4;padding:3px 0}
+.lg-ev li::before{content:"";position:absolute;left:-19px;top:9px;width:8px;height:8px;border-radius:50%;background:#C9C7E0}
+.lg-ev li.warn{color:#14095B;font-weight:600}.lg-ev li.warn::before{background:#FFC800}
+.lg-ev li.ok{color:#00875A;font-weight:600}.lg-ev li.ok::before{background:#00C77C}
+.lg-ev li span{display:block;font-weight:400;font-size:12px;color:#5C5A80}
+.lg-nota{margin-top:28px}
+@media(max-width:768px){.lg{padding:18px 16px}.lg-cols{grid-template-columns:1fr;gap:6px}
+  .panel-stage[data-launch-screen]{display:flex!important;padding:48px 20px}
+  .panel-preview .callout{padding:28px 18px}}
 </style>
 <script async src="/posthog.js"></script><script async src="/ga4.js"></script>
 </head>
@@ -965,9 +989,9 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
   <div class="hero-content">
     <div class="hero-copy">
-      <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Multipaquete</div>
-      <h1 class="h-title">Sigue cada paquete de tu orden, <span style="color:#BA80FF">por separado.</span></h1>
-      <p class="h-tagline">Cuando tu orden tiene más de un paquete, ahora ves el avance de cada uno por separado, sin perder la visión de la orden completa.</p>
+      <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Log de la orden</div>
+      <h1 class="h-title">Toda la historia de tu orden, <span style="color:#BA80FF">en un solo lugar.</span></h1>
+      <p class="h-tagline">El nuevo log de la orden en Órbita te muestra qué pasó con cada paquete, paso a paso.</p>
     </div>
 
     <div class="hero-foot">
@@ -985,7 +1009,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       </div>
       <div class="hf-item">
         <span class="hf-key" style="color:#BA80FF">Fecha</span>
-        <span class="hf-val">JUN · 2026</span>
+        <span class="hf-val">OCT · 2026</span>
       </div>
       <span class="tag live"><span class="dot"></span>Activo</span>
     </div>
@@ -1033,99 +1057,77 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
     <div class="panel-preview">
       <div class="callout">
-        <div class="callout-img-wrap">
-          <img class="callout-img" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/Banner_Multipaquete_con_texto.png?v=2" alt="Multipaquete – sigue cada paquete de tu orden por separado" loading="eager" />
-        </div>
-        <div class="callout-inner" style="display:flex;flex-direction:row;align-items:center;gap:36px">
-          <div class="callout-mark">
-            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2">
-              <rect x="4" y="16" width="13" height="13" rx="2.5"/>
-              <rect x="23" y="16" width="13" height="13" rx="2.5"/>
-              <path d="M4 16l6-8h20l6 8" stroke-linecap="round" stroke-linejoin="round"/>
-              <line x1="10" y1="8" x2="10" y2="16" stroke-linecap="round"/>
-              <line x1="30" y1="8" x2="30" y2="16" stroke-linecap="round"/>
-            </svg>
+        <div class="callout-inner lg-wrap">
+          <p class="lg-cap">Así se ve un paquete en el log</p>
+          <div class="lg" role="img" aria-label="Ejemplo del log de la orden: el paquete 1 tuvo dos intentos. En el intento 1, dos ofrecimientos con entrega fallida y devolución. En el intento 2, se entregó.">
+            <div class="lg-head">
+              <span class="lg-pkg">Paquete 1</span>
+              <span class="lg-chip ok">Entregado</span>
+              <span class="lg-ej">Ejemplo</span>
+            </div>
+            <div class="lg-cols">
+              <div class="lg-int">
+                <p class="lg-int-t">Intento 1</p>
+                <div class="lg-of">
+                  <p class="lg-of-t">Ofrecimiento 1</p>
+                  <ol class="lg-ev"><li>En ruta nacional</li><li>En reparto</li><li class="warn">Entrega fallida<span>Destinatario no localizado</span></li></ol>
+                </div>
+                <div class="lg-of">
+                  <p class="lg-of-t">Ofrecimiento 2</p>
+                  <ol class="lg-ev"><li>En reparto</li><li class="warn">Entrega fallida</li><li>Devuelto</li></ol>
+                </div>
+              </div>
+              <div class="lg-int">
+                <p class="lg-int-t">Intento 2</p>
+                <div class="lg-of">
+                  <p class="lg-of-t">Ofrecimiento 1</p>
+                  <ol class="lg-ev"><li>En ruta nacional</li><li class="ok">Entregado</li></ol>
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="callout-text">Multipaquete trae <strong>cuatro estados nuevos</strong> para tu orden: En tránsito - Parcial, Entregada - Parcial, Con afectación - Parcial - En curso y Con afectación - Parcial - Cerrada.</p>
         </div>
       </div>
     </div>
 </div><!-- /panel-stage -->
 
 
-<!-- ============ 01 — ANTES VS AHORA ============ -->
+<!-- ============ 01 — QUÉ GANAS ============ -->
 <section data-launch-screen>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">01</span>Antes vs Ahora</div>
-      <h2 class="s-title">De un solo estado por orden, a <span style="color:#FFC800">un estado por cada paquete.</span></h2>
+      <div class="s-eyebrow"><span class="num">01</span>Qué ganas</div>
+      <h2 class="s-title">Entiendes tu orden <span style="color:#BA80FF">en segundos.</span></h2>
     </div>
-    <p class="s-aside">Así cambia el seguimiento cuando los paquetes de una misma orden avanzan a ritmos distintos.</p>
   </div>
 
-  <div class="compare">
-
-    <div class="cmp-card before">
-      <div class="cmp-key" style="gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ef4444;box-shadow:0 0 10px #ef4444;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Antes</div>
-      <div class="cmp-num"><span>Antes</span><span class="title-sub">de Multipaquete</span></div>
-      <h3 class="cmp-h">La orden mostraba un solo estado general para todos los paquetes:</h3>
-      <div class="cmp-bullet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        <span>Los paquetes se seguían como un conjunto, no uno por uno.</span>
-      </div>
-      <div class="cmp-bullet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        <span>El estado de la orden no siempre reflejaba en qué punto iba cada paquete.</span>
-      </div>
-      <div class="cmp-bullet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        <span>El historial de entrega se consultaba por orden.</span>
-      </div>
+  <div class="chars-grid">
+    <div class="info-card">
+      <p class="info-num">01</p>
+      <h3 class="info-h">Claridad</h3>
+      <p class="info-p">Sabes de un vistazo en qué punto va cada entrega.</p>
     </div>
-
-    <div class="cmp-arrow">
-      <div class="cmp-arrow-svg">
-        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10 40h54"/>
-          <path d="m58 30 12 10-12 10"/>
-        </svg>
-      </div>
+    <div class="info-card">
+      <p class="info-num">02</p>
+      <h3 class="info-h">Tiempo</h3>
+      <p class="info-p">Resuelves tus dudas desde el log, sin escribir a soporte.</p>
     </div>
-
-    <div class="cmp-card after">
-      <div class="cmp-key" style="gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Ahora</div>
-      <div class="cmp-num"><span>Ahora</span><span class="title-sub">con Multipaquete</span></div>
-      <h3 class="cmp-h">Cada paquete avanza con un estado propio y la orden refleja el conjunto:</h3>
-      <div class="cmp-bullet">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Ves el estado individual de cada paquete en tiempo real.</span>
-      </div>
-      <div class="cmp-bullet">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Identificas la guía y la transportadora de cada paquete.</span>
-      </div>
-      <div class="cmp-bullet">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Consultas el historial de cada paquete: intentos de entrega, incidencias y estado actual.</span>
-      </div>
-      <div class="cmp-bullet">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Nuevos estados de orden muestran las situaciones parciales, como un paquete entregado y otro en camino.</span>
-      </div>
+    <div class="info-card">
+      <p class="info-num">03</p>
+      <h3 class="info-h">Historia completa</h3>
+      <p class="info-p">Conoces el motivo de cada entrega fallida y el siguiente paso, de principio a fin.</p>
     </div>
-
   </div>
-
 </section>
 
 
-<!-- ============ 02 — ¿CÓMO FUNCIONA? ============ -->
+<!-- ============ 02 — CÓMO SE LEE EL LOG ============ -->
 <section data-launch-screen>
   <div class="s-head">
     <div>
-      <div class="s-eyebrow"><span class="num">02</span>¿Cómo funciona?</div>
-      <h2 class="s-title">Tres pasos para seguir <span style="color:#BA80FF">cada paquete de tu orden.</span></h2>
-      <p class="s-aside">Tres pasos, dentro del detalle de la orden en Órbita.</p>
+      <div class="s-eyebrow"><span class="num">02</span>Cómo se lee el log</div>
+      <h2 class="s-title">Paquete, intento y ofrecimiento: <span style="color:#00DCD6">así se cuenta cada entrega.</span></h2>
+      <p class="s-aside">Funciona igual en todas tus órdenes. Si tu orden tiene varios paquetes, ves la historia de cada uno.</p>
     </div>
   </div>
 
@@ -1135,89 +1137,39 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <div class="flow-pill">
         <span class="stat">01</span>
         <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 8.2 12 3 3 8.2l9 5.2 9-5.2Z" stroke-linejoin="round"/><path d="M3 8.2v8l9 5.2 9-5.2v-8" stroke-linejoin="round"/><path d="M12 13.4v8" stroke-linecap="round"/></svg>
         </div>
-        <span class="fp-tag">Paso 01</span>
-        <span class="fp-h">Abres la orden</span>
-        <span class="fp-p">Entra en Órbita al detalle de cualquier orden con más de un paquete.</span>
+        <span class="fp-tag">Nivel 1</span>
+        <span class="fp-h">Paquete</span>
+        <span class="fp-p">Arriba, el último estado del paquete; debajo, todo lo que le pasó.</span>
       </div>
 
       <div class="flow-pill">
         <span class="stat">02</span>
         <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="m21 21-4.35-4.35"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 6h13v11H1z" stroke-linejoin="round"/><path d="M14 10h4l3 3v4h-7" stroke-linejoin="round"/><circle cx="6" cy="19" r="2"/><circle cx="17.5" cy="19" r="2"/></svg>
         </div>
-        <span class="fp-tag">Paso 02</span>
-        <span class="fp-h">Revisas cada paquete</span>
-        <span class="fp-p">Entras a cada paquete y revisas su avance.</span>
+        <span class="fp-tag">Nivel 2</span>
+        <span class="fp-h">Intento</span>
+        <span class="fp-p">Cada salida del paquete hacia tu comprador.</span>
       </div>
 
       <div class="flow-pill">
         <span class="stat">03</span>
         <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M12 3v6" stroke-linecap="round"/>
-            <path d="M7 9l-4 12" stroke-linecap="round"/>
-            <path d="M17 9l4 12" stroke-linecap="round"/>
-            <path d="M3 17h6M15 17h6" stroke-linecap="round"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 11 9-8 9 8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v10h14V10" stroke-linejoin="round"/><path d="M10 20v-5h4v5" stroke-linejoin="round"/></svg>
         </div>
-        <span class="fp-tag">Paso 03</span>
-        <span class="fp-h">Lees el estado de la orden</span>
-        <span class="fp-p">Confirmas el estado general: si los paquetes van en momentos distintos, verás uno de los estados parciales.</span>
+        <span class="fp-tag">Nivel 3</span>
+        <span class="fp-h">Ofrecimiento</span>
+        <span class="fp-p">Cada visita para entregar dentro de ese intento.</span>
       </div>
 
     </div>
   </div>
 
-  <div class="s-guide-cta">
-    <h3 class="s-guide-cta__title">¿Quieres dominar cada estado?</h3>
-    <p class="s-guide-cta__desc">Conoce qué significa cada uno de los nuevos estados de tu orden, explicado paso a paso y con ejemplos.</p>
-    <a href="https://youtu.be/WN576HH8fdg" target="_blank" rel="noopener" style="display:block;width:100%;max-width:720px;margin:0 auto;border-radius:16px;overflow:hidden;position:relative;aspect-ratio:16/9;background:#000">
-      <img src="https://img.youtube.com/vi/WN576HH8fdg/0.jpg" alt="Guía de estados de Multipaquete" style="width:100%;height:100%;object-fit:cover;display:block">
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35)">
-        <div style="width:64px;height:64px;background:#FF0000;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,.5)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-      </div>
-    </a>
-  </div>
-</section>
+  <div class="cond-note lg-nota">Lo que antes veías como incidencias ahora aparece como eventos dentro del log, más claro.</div>
 
-
-<!-- ============ 03 — BENEFICIOS ============ -->
-<section data-launch-screen>
-  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
-    <div>
-      <div class="s-eyebrow"><span class="num">03</span>Beneficios</div>
-      <h2 class="s-title">Más claridad en cada paquete. <span style="color:#BA80FF">Menos seguimiento manual.</span></h2>
-    </div>
-    <p class="s-aside">Multipaquete muestra lo que pasa con cada paquete y lo que eso significa para la orden completa.</p>
-  </div>
-
-  <div class="bens-grid">
-    <div class="info-card">
-      <p class="info-num">01</p>
-      <h3 class="info-h">Más claridad operativa</h3>
-      <p class="info-p">Identificas en segundos qué paquete avanzó, cuál sigue en ruta y cuál tiene una novedad.</p>
-    </div>
-    <div class="info-card">
-      <p class="info-num">02</p>
-      <h3 class="info-h">Decides con el dato real</h3>
-      <p class="info-p">Sabes qué paquete necesita atención y cuál sigue su curso, sin interpretar un estado general.</p>
-    </div>
-    <div class="info-card">
-      <p class="info-num">03</p>
-      <h3 class="info-h">Menos seguimiento manual</h3>
-      <p class="info-p">Estados, guías e historial viven en el detalle de la orden en Órbita, sin consultar otros canales.</p>
-    </div>
-  </div>
+  <!-- VIDEO: aquí va el video de Mariana (vista principal de la orden + log, menos de 1 min). Se agrega cuando esté listo. -->
 </section>
 
 
@@ -1226,9 +1178,9 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 <section>
   <div class="cierre">
     <div class="ring-deco"></div>
-    <p class="c-eyebrow">Multipaquete</p>
-    <h2 class="c-title"><span style="color:#00DCD6">Cada paquete visible.</span> Toda tu orden bajo control.</h2>
-    <p class="c-sub">Sigue el recorrido de cada paquete y mantén una visión clara de tus órdenes desde Órbita.</p>
+    <p class="c-eyebrow">Log de la orden</p>
+    <h2 class="c-title"><span style="color:#00DCD6">Cada entrega,</span> contada paso a paso.</h2>
+    <p class="c-sub">La próxima vez que tengas una duda sobre una entrega, empieza por el log.</p>
     <div class="c-actions">
       <a class="btn btn-primary" href="https://melonn.notion.site/Detalle-de-paquetes-y-visualizaci-n-de-eventos-3cd3bfd6145d8073b580d4d1c6fc00c0" target="_blank" rel="noopener">Ver documentación →</a>
       <a class="btn btn-ghost" href="../">
@@ -1244,7 +1196,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <span style="font-size:18px;color:var(--violet-0);animation:twinkle 2.4s ease-in-out infinite;display:inline-block;line-height:1;flex-shrink:0">✶</span>
     <span>© 2026 Melonn Edition by Melonn · Plataforma para sellers</span>
   </div>
-  <div>Última actualización JUN/2026 · Todos los derechos reservados</div>
+  <div>Última actualización OCT/2026 · Todos los derechos reservados</div>
 </footer>
 </div><!-- /screen-closing -->
 
