@@ -52,7 +52,7 @@ a{color:inherit}
 }
 
 /* ── escena 3D fija ── */
-#caja3d{position:fixed;inset:0;width:100vw;height:100vh;z-index:5;pointer-events:none}
+#caja3d{position:fixed;inset:0;width:100vw;height:100vh;z-index:20;pointer-events:none}
 .caja-fallback{display:none}
 .no-3d #caja3d{display:none}
 .no-3d .caja-fallback{display:block;position:absolute;right:4%;top:50%;width:min(42vw,520px);transform:translateY(-40%) rotate(-8deg);filter:drop-shadow(0 30px 40px rgba(20,9,91,.18))}
@@ -133,6 +133,13 @@ footer{position:relative;z-index:2;background:#000;color:#fff;padding:96px 0 40p
 .f-grid a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;font-weight:300}
 .f-grid a:hover{color:#fff}
 .f-bottom{margin-top:72px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;font-weight:300;color:rgba(255,255,255,.55)}
+
+/* ── paneles apilados (de Ecosistema al cierre): cada sección sube y se monta sobre la anterior ── */
+.apila{position:sticky;top:0;box-shadow:0 -28px 60px -24px rgba(20,9,91,.28)}
+#ecosistema.apila{z-index:3} #grandes-logros.apila{z-index:4;background:var(--superficie)}
+#destacados.apila{z-index:5;background:var(--bg)} #proximamente.apila{z-index:6;background:var(--superficie)}
+footer.apila{z-index:7}
+.marca{height:0}
 
 /* ── movimiento de marca ── */
 .js [data-up]{opacity:0;transform:translateY(28px)}
@@ -219,7 +226,8 @@ footer{position:relative;z-index:2;background:#000;color:#fff;padding:96px 0 40p
 </section>
 
 <!-- =============== ECOSISTEMA =============== -->
-<section class="eco" id="ecosistema" data-k="3">
+<div class="marca" data-k="3"></div>
+<section class="eco apila" id="ecosistema">
   <div class="wrap">
     <p class="eyebrow" data-up>Ecosistema</p>
     <h2 class="titulo ola">Plataformas e integraciones activas dentro del ecosistema Melonn.</h2>
@@ -238,7 +246,8 @@ footer{position:relative;z-index:2;background:#000;color:#fff;padding:96px 0 40p
 </section>
 
 <!-- =============== GRANDES LOGROS =============== -->
-<section id="grandes-logros" data-k="4">
+<div class="marca" data-k="4"></div>
+<section class="apila" id="grandes-logros">
   <div class="wrap logro">
     <div>
       <p class="eyebrow" data-up>Grandes logros</p>
@@ -251,7 +260,8 @@ footer{position:relative;z-index:2;background:#000;color:#fff;padding:96px 0 40p
 </section>
 
 <!-- =============== DESTACADOS =============== -->
-<section id="destacados" data-k="5">
+<div class="marca" data-k="5"></div>
+<section class="apila" id="destacados">
   <div class="wrap dest">
     <div>
       <p class="eyebrow" data-up>Resultados que marcan</p>
@@ -268,7 +278,8 @@ footer{position:relative;z-index:2;background:#000;color:#fff;padding:96px 0 40p
 </section>
 
 <!-- =============== PRÓXIMAMENTE =============== -->
-<section id="proximamente" data-k="6">
+<div class="marca" data-k="6"></div>
+<section class="apila" id="proximamente">
   <div class="wrap">
     <p class="eyebrow" data-up>Próximamente · Melonn Edition</p>
     <h2 class="titulo ola">Lo que sigue también está pensado para ayudarte a crecer</h2>
@@ -283,7 +294,8 @@ footer{position:relative;z-index:2;background:#000;color:#fff;padding:96px 0 40p
 </section>
 
 <!-- =============== FOOTER =============== -->
-<footer data-k="7">
+<div class="marca" data-k="7"></div>
+<footer class="apila">
   <div class="wrap">
     <div class="f-grid">
       <div><img src="IMAGE/HOME_V2/Logo_MELONN-03.svg" alt="Melonn"><p class="tag">Tecnología para construir el futuro contigo.</p></div>
@@ -320,6 +332,11 @@ footer{position:relative;z-index:2;background:#000;color:#fff;padding:96px 0 40p
       });
     })(el);
   });
+
+  // apilado: los paneles más altos que la pantalla se pegan por abajo para que todo su contenido se lea
+  function apilar(){document.querySelectorAll('.apila').forEach(function(el){el.style.top=Math.min(0,innerHeight-el.offsetHeight)+'px'})}
+  addEventListener('resize',apilar); addEventListener('load',apilar); apilar();
+  if(window.ResizeObserver) new ResizeObserver(apilar).observe(document.body);
 
   // escalonado de tarjetas: 80 ms
   document.querySelectorAll('.lan-grid,.eco-grid,.dest-list,.prox-list').forEach(function(g){
