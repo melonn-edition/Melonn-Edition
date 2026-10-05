@@ -43,11 +43,17 @@ a{color:inherit}
 .wnav .ham i::before,.wnav .ham i::after{content:"";position:absolute;left:0;width:16px;height:2px;background:#14095B;transition:transform .2s ease}
 .wnav .ham i::before{top:-5px}.wnav .ham i::after{top:5px}
 .wnav.abierta .ham i{background:transparent}.wnav.abierta .ham i::before{transform:translateY(5px) rotate(45deg)}.wnav.abierta .ham i::after{transform:translateY(-5px) rotate(-45deg)}
-.wnav .cajon{display:none}
+.wnav .cajon,.wnav .velo{display:none}
 @media (max-width:900px){
   .wnav ul{display:none}.wnav .ham{display:grid}.wnav .der{margin-left:0}
   .wnav .cajon{display:block;position:fixed;top:0;right:0;bottom:0;width:min(320px,84%);background:#14095B;color:#fff;padding:96px 28px 28px;transform:translateX(100%);transition:transform .4s ease}
   .wnav.abierta .cajon{transform:none}
+  .wnav .velo{display:block;position:fixed;inset:0;background:rgba(20,9,91,.35);opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .wnav.abierta .velo{opacity:1;pointer-events:auto}
+  .wnav .cajon .cerrar{position:absolute;top:22px;right:22px;width:44px;height:44px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);background:transparent;display:grid;place-items:center;cursor:pointer;padding:0}
+  .wnav .cajon .cerrar i{position:relative;display:block;width:18px;height:18px}
+  .wnav .cajon .cerrar i::before,.wnav .cajon .cerrar i::after{content:"";position:absolute;left:0;top:8px;width:18px;height:2px;border-radius:2px;background:#fff}
+  .wnav .cajon .cerrar i::before{transform:rotate(45deg)}.wnav .cajon .cerrar i::after{transform:rotate(-45deg)}
   .wnav .cajon a{display:block;padding:14px 0;font-size:18px;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.08)}
 }
 
@@ -192,7 +198,8 @@ footer{z-index:7}
   </ul>
   <div class="der"><button class="ham" aria-label="Menú" aria-expanded="false" aria-controls="wnav-cajon"><i></i></button></div>
 </div>
-<div class="cajon" id="wnav-cajon"><a href="#lanzamientos">Lanzamientos</a><a href="#ecosistema">Ecosistema</a><a href="#destacados">Destacados</a><a href="#proximamente">Próximamente</a><a href="./historial-de-lanzamientos/">Historial</a></div>
+<div class="velo"></div>
+<div class="cajon" id="wnav-cajon"><button class="cerrar" type="button" aria-label="Cerrar menú"><i></i></button><a href="#lanzamientos">Lanzamientos</a><a href="#ecosistema">Ecosistema</a><a href="#destacados">Destacados</a><a href="#proximamente">Próximamente</a><a href="./historial-de-lanzamientos/">Historial</a></div>
 </nav>
 
 <canvas id="caja3d" aria-hidden="true"></canvas>
@@ -318,7 +325,9 @@ footer{z-index:7}
   var n=document.getElementById('wnav');
   addEventListener('scroll',function(){n.classList.toggle('scrolled',scrollY>24)},{passive:true});
   var h=n.querySelector('.ham'); h.addEventListener('click',function(){h.setAttribute('aria-expanded',n.classList.toggle('abierta'))});
-  n.querySelectorAll('.cajon a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('abierta')})});
+  function cerrar(){n.classList.remove('abierta');h.setAttribute('aria-expanded','false')}
+  n.querySelectorAll('.cajon a, .cajon .cerrar, .velo').forEach(function(el){el.addEventListener('click',cerrar)});
+  addEventListener('keydown',function(e){if(e.key==='Escape')cerrar()});
 
   // ola: palabra por palabra, conservando los <span> de color
   document.querySelectorAll('.ola').forEach(function(el){
