@@ -6,11 +6,12 @@
 <meta name="robots" content="noindex, nofollow, noarchive" />
 <link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
-<title>Multipaquete – Melonn Editions</title>
-<meta name="description" content="Consulta el estado, la guía, la transportadora y el historial de cada paquete de forma independiente dentro de una misma orden." />
+<title>Historial de la orden – Melonn Editions</title>
+<meta name="description" content="Toda la historia de tu orden en un solo lugar: acciones de la orden, intentos de entrega, ofrecimientos y el detalle de cada paquete en Órbita." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://unpkg.com" crossorigin />
 <script type="importmap">
 {
   "imports": {
@@ -19,6 +20,7 @@
   }
 }
 </script>
+<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/build/three.module.js" crossorigin />
 <style>
 :root{
   --bg-0:#050410;
@@ -373,6 +375,15 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:100px clam
 .info-h{font-size:17px;font-weight:500;letter-spacing:-.01em;color:var(--ink-0);margin-bottom:8px}
 .info-p{font-size:16px;color:var(--ink-1);line-height:1.55;font-weight:300}
 .chars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.chars-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.bens-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.info-card .shot{display:block;width:100%;height:auto;margin-top:24px;border-radius:14px;background:#fff;box-shadow:0 0 0 1px rgba(196,181,253,.25),0 20px 50px -20px rgba(0,0,0,.6)}
+.shot-frame{position:relative;margin:0 auto;padding:14px;border-radius:var(--r-xl);background:linear-gradient(180deg,rgba(28,24,60,.95),rgba(10,8,28,.97));border:1px solid rgba(124,92,255,.35);box-shadow:inset 0 1px 0 rgba(196,181,253,.18),0 40px 100px -20px rgba(124,92,255,.45)}
+.shot-frame img{display:block;width:100%;height:auto;border-radius:calc(var(--r-xl) - 6px);background:#fff}
+.demo-block .s-eyebrow .line{display:inline-block;width:48px;height:1px;background:linear-gradient(90deg,#00C77C,transparent)}
+.chars-grid .info-card:nth-child(4)::after,.bens-grid .info-card:nth-child(4)::after{animation-delay:2.25s}
+.bens-grid .info-card:nth-child(5)::after{animation-delay:3s}
+.bens-grid .info-card:nth-child(6)::after{animation-delay:3.75s}
 @keyframes cap-card-vibe{
   0%,100%{
     box-shadow:
@@ -505,7 +516,7 @@ footer .l{display:flex;align-items:center;gap:18px}
   .cap-card{background:none;border:none;box-shadow:none;border-radius:0;padding:0;overflow:visible;animation:none}
   .cap-card::before{display:none}
   .flow-pill{flex:0 0 100%;min-width:0}
-  .chars-grid,.bens-grid{grid-template-columns:1fr}
+  .chars-grid,.bens-grid,.chars-grid.cols-2,.bens-grid.cols-2{grid-template-columns:1fr}
   .hero-foot{margin-top:24px;gap:20px;justify-content:flex-start}
   .cond-grid{grid-template-columns:1fr}
 }
@@ -810,8 +821,8 @@ section[data-launch-screen]:has(.cond-grid) .cond-table-wrap{background:rgba(10,
 .hero-bg::before,.hero-bg::after,
 .hero-cosmos::before,.hero-cosmos::after { content:none!important }
 .hero-cosmos > span { display:none }
-header.hero[data-launch-screen]{background-color:#0d0b22!important}
-header.hero[data-launch-screen] .hero-bg{background-color:#0d0b22}
+header.hero[data-launch-screen]{background-color:#F8F8FC!important}
+header.hero[data-launch-screen] .hero-bg{background-color:#F8F8FC}
 @media(max-width:768px){
   .page-bg::before,.page-bg::after{display:none}
 }
@@ -965,27 +976,27 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
   <div class="hero-content">
     <div class="hero-copy">
-      <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Multipaquete</div>
-      <h1 class="h-title">Cada paquete cuenta su propia <span style="color:#BA80FF">historia.</span></h1>
-      <p class="h-tagline">Ahora es más fácil seguir cada paquete de tu orden por separado, con su propia guía, transportadora e historial, sin perder la visión general desde Órbita.</p>
+      <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Historial de la orden</div>
+      <h1 class="h-title">Toda la historia de tu orden, <span style="color:#BA80FF">en un solo&nbsp;lugar.</span></h1>
+      <p class="h-tagline">Con el nuevo historial de la orden en Órbita ves todo lo que pasa, desde que tu orden llega a Melonn hasta que la recibe tu comprador. Y si tiene varios paquetes, la historia de cada&nbsp;uno.</p>
     </div>
 
     <div class="hero-foot">
       <div class="hf-item">
         <span class="hf-key" style="color:#BA80FF">Categoría</span>
-        <span class="hf-val">Operación · Transporte</span>
+        <span class="hf-val">Órbita</span>
       </div>
       <div class="hf-item">
         <span class="hf-key" style="color:#BA80FF">Disponibilidad</span>
-        <span class="hf-val">México · Colombia · Chile</span>
+        <span class="hf-val">Colombia · México · Chile</span>
       </div>
       <div class="hf-item">
         <span class="hf-key" style="color:#BA80FF">Impacta a</span>
-        <span class="hf-val">Sellers</span>
+        <span class="hf-val">Sellers D2C y B2B</span>
       </div>
       <div class="hf-item">
         <span class="hf-key" style="color:#BA80FF">Fecha</span>
-        <span class="hf-val">JUL · 2026</span>
+        <span class="hf-val">OCT · 2026</span>
       </div>
       <span class="tag live"><span class="dot"></span>Activo</span>
     </div>
@@ -1034,98 +1045,87 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="panel-preview">
       <div class="callout">
         <div class="callout-img-wrap">
-          <img class="callout-img" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/Banner_Multipaquete_con_texto.png?v=2" alt="Multipaquete – cada paquete con su propia historia" loading="eager" />
+          <img class="callout-img" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/Banner_Multipaquete_con_texto.png?v=2" alt="Historial de la orden en Órbita" loading="eager" />
         </div>
         <div class="callout-inner" style="display:flex;flex-direction:row;align-items:center;gap:36px">
           <div class="callout-mark">
-            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2">
-              <rect x="4" y="16" width="13" height="13" rx="2.5"/>
-              <rect x="23" y="16" width="13" height="13" rx="2.5"/>
-              <path d="M4 16l6-8h20l6 8" stroke-linecap="round" stroke-linejoin="round"/>
-              <line x1="10" y1="8" x2="10" y2="16" stroke-linecap="round"/>
-              <line x1="30" y1="8" x2="30" y2="16" stroke-linecap="round"/>
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6.5 20a13.5 13.5 0 1 0 4-9.6"/>
+              <path d="M6 6v6.5h6.5"/>
+              <path d="M20 12.5V20l5 3"/>
             </svg>
           </div>
-          <p class="callout-text">Cuando tu orden contiene varios paquetes, ahora puedes ver qué pasa con cada uno. Consulta cada envío de forma independiente: revisa su estado, guía, transportadora e historial detallado, mientras mantienes el <strong>control consolidado de toda la orden</strong> en un mismo lugar.</p>
+          <p class="callout-text">Abre tu orden y entra a <strong>Historial</strong>, en la barra inferior. Cada cosa que pasa es una acción, con su fecha, su hora y un nombre fácil de entender: primero lo que pasa en toda tu orden y después cada intento de entrega con sus&nbsp;ofrecimientos.</p>
         </div>
       </div>
     </div>
 </div><!-- /panel-stage -->
 
 
-<!-- ============ 01 — ANTES VS AHORA ============ -->
+<!-- ============ 01 — LO QUE GANAS ============ -->
 <section data-launch-screen>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">01</span>Antes vs Ahora</div>
-      <h2 class="s-title">De ver un solo estado por orden, a entender <span style="color:#FFC800">el recorrido exacto de cada paquete.</span></h2>
+      <div class="s-eyebrow"><span class="num">01</span>Lo que ganas</div>
+      <h2 class="s-title">Respondes a tu comprador <span style="color:#00DCD6">sin buscar en varias&nbsp;partes.</span></h2>
     </div>
-    <p class="s-aside">Obtén una visibilidad total cuando los paquetes de una misma orden avanzan en momentos, rutas o condiciones diferentes.</p>
+    <p class="s-aside">Desde que tu orden llega a Melonn hasta que la recibe tu comprador, todo queda en tu historial.</p>
   </div>
 
-  <div class="compare">
-
-    <div class="cmp-card before">
-      <div class="cmp-key" style="gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ef4444;box-shadow:0 0 10px #ef4444;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Antes</div>
-      <div class="cmp-num"><span>Antes</span><span class="title-sub">de Multipaquete</span></div>
-      <h3 class="cmp-h">La orden mostraba un solo estado general para todos sus envíos:</h3>
-      <div class="cmp-bullet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        <span>Los paquetes se seguían como un conjunto, no uno por uno.</span>
-      </div>
-      <div class="cmp-bullet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        <span>El estado entregado se veía a nivel de orden, no por paquete.</span>
-      </div>
-      <div class="cmp-bullet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        <span>El detalle de cada ruta se consultaba por otros canales.</span>
-      </div>
+  <div class="chars-grid">
+    <div class="info-card">
+      <p class="info-num">01</p>
+      <h3 class="info-h">Ganas tiempo</h3>
+      <p class="info-p">¿En qué intento va? ¿Qué pasó en la última visita? ¿Con qué guía salió? Lo ves en tu historial y le respondes a tu comprador de inmediato.</p>
     </div>
-
-    <div class="cmp-arrow">
-      <div class="cmp-arrow-svg">
-        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10 40h54"/>
-          <path d="m58 30 12 10-12 10"/>
-        </svg>
-      </div>
+    <div class="info-card">
+      <p class="info-num">02</p>
+      <h3 class="info-h">Ganas claridad</h3>
+      <p class="info-p">Cada acción tiene un nombre fácil de entender. Sabes qué pasó de un vistazo, y si quieres más, pasas el mouse y ves su definición.</p>
     </div>
-
-    <div class="cmp-card after">
-      <div class="cmp-key" style="gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0"></span>Ahora</div>
-      <div class="cmp-num"><span>Ahora</span><span class="title-sub">con Multipaquete</span></div>
-      <h3 class="cmp-h">Tomas el control y consultas cada paquete de forma independiente sin perder de vista la orden completa:</h3>
-      <div class="cmp-bullet">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Revisas el estado individual y en tiempo real de cada paquete.</span>
-      </div>
-      <div class="cmp-bullet">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Identificas al instante su guía y la transportadora asignada.</span>
-      </div>
-      <div class="cmp-bullet">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Consultas su propio historial cronológico, eventos e incidencias.</span>
-      </div>
-      <div class="cmp-bullet">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:4px"></span>
-        <span>Entiendes el avance global de la orden de un solo vistazo.</span>
-      </div>
+    <div class="info-card">
+      <p class="info-num">03</p>
+      <h3 class="info-h">Tus compradores, al día</h3>
+      <p class="info-p">Guías, evidencias, retornos e incidencias a la vista, en el mismo idioma de tu comprador: Paquete 1, Paquete&nbsp;2.</p>
     </div>
-
   </div>
-
 </section>
 
 
-<!-- ============ 02 — ¿CÓMO FUNCIONA? ============ -->
+<!-- ============ 02 — EL HISTORIAL ============ -->
+<section data-launch-screen>
+  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
+    <div>
+      <div class="s-eyebrow"><span class="num">02</span>El historial</div>
+      <h2 class="s-title">De lo general <span style="color:#BA80FF">a cada&nbsp;entrega.</span></h2>
+    </div>
+    <p class="s-aside">Primero ves lo que pasa en toda tu orden y después cada intento de entrega. Lo más reciente siempre está&nbsp;arriba.</p>
+  </div>
+
+  <div class="bens-grid cols-2">
+    <div class="info-card">
+      <p class="info-num">01</p>
+      <h3 class="info-h">Acciones de la orden</h3>
+      <p class="info-p">Lo que pasa en el CEDI hasta que queda empacada, un cambio de dirección, de monto a recaudar o de método de envío, y las incidencias.</p>
+      <img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/acciones-de-la-orden.webp" alt="Acciones de la orden en el historial: cambio de dirección, cambio de monto a recaudar, empaque, picking y recepción, cada una con fecha y hora" loading="lazy" width="671" height="856" />
+    </div>
+    <div class="info-card">
+      <p class="info-num">02</p>
+      <h3 class="info-h">Intentos de entrega</h3>
+      <p class="info-p">Cada salida hacia tu comprador, con su transportadora y su guía. Adentro, sus ofrecimientos: cada visita para entregarlo, con evidencias y comentarios.</p>
+      <img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/intento-de-entrega.webp" alt="Un intento de entrega con su ofrecimiento: entrega fallida con evidencias y comentarios, guía de retorno e incidencia reportada" loading="lazy" width="666" height="890" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 03 — VARIOS PAQUETES ============ -->
 <section data-launch-screen>
   <div class="s-head">
     <div>
-      <div class="s-eyebrow"><span class="num">02</span>¿Cómo funciona?</div>
-      <h2 class="s-title">Tres pasos para tener <span style="color:#BA80FF">el control de cada paquete.</span></h2>
-      <p class="s-aside">Ingresa al detalle de tu orden y monitorea el avance de cada envío desde un mismo lugar, sin fricciones.</p>
+      <div class="s-eyebrow"><span class="num">03</span>Varios paquetes</div>
+      <h2 class="s-title">¿Tu orden tiene varios paquetes? <span style="color:#BA80FF">Ves la historia de cada&nbsp;uno.</span></h2>
+      <p class="s-aside">Tu historial te muestra la lista de paquetes. Abres el que quieras para ver sus intentos de entrega, y su detalle si necesitas más.</p>
     </div>
   </div>
 
@@ -1135,119 +1135,139 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <div class="flow-pill">
         <span class="stat">01</span>
         <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3.5 2.5 20h19z"/>
+            <path d="M12 10v4.5"/>
+            <circle cx="12" cy="17.2" r=".4"/>
           </svg>
         </div>
-        <span class="fp-tag">Paso 01</span>
-        <span class="fp-h">Abres la orden</span>
-        <span class="fp-p">Ingresa en Órbita al detalle de cualquier orden que contenga múltiples paquetes.</span>
+        <span class="fp-tag">Orden</span>
+        <span class="fp-h">Lo que necesita tu atención, primero</span>
+        <span class="fp-p">Los paquetes con algo fuera de lo normal aparecen arriba, y los entregados al final.</span>
       </div>
 
       <div class="flow-pill">
         <span class="stat">02</span>
         <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="m21 21-4.35-4.35"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/>
+            <path d="M3 7.5 12 12l9-4.5M12 12v9"/>
           </svg>
         </div>
-        <span class="fp-tag">Paso 02</span>
-        <span class="fp-h">Revisas su recorrido</span>
-        <span class="fp-p">Sigue el estado, guía, transportadora, eventos y novedades de cada envío de forma autónoma.</span>
+        <span class="fp-tag">Resumen</span>
+        <span class="fp-h">Cada paquete, con su resumen</span>
+        <span class="fp-p">Su última acción y cuántos intentos de entrega lleva, sin abrirlo.</span>
       </div>
 
       <div class="flow-pill">
         <span class="stat">03</span>
         <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M12 3v6" stroke-linecap="round"/>
-            <path d="M7 9l-4 12" stroke-linecap="round"/>
-            <path d="M17 9l4 12" stroke-linecap="round"/>
-            <path d="M3 17h6M15 17h6" stroke-linecap="round"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 5h16v11H9l-5 4z"/>
+            <path d="M8 9.5h8M8 12.5h5"/>
           </svg>
         </div>
-        <span class="fp-tag">Paso 03</span>
-        <span class="fp-h">Entiendes la orden completa</span>
-        <span class="fp-p">Sigue el recorrido de cada paquete por separado o consulta el estado general que agrupa toda la orden en un solo lugar.</span>
+        <span class="fp-tag">Idioma</span>
+        <span class="fp-h">Hablas el idioma de tu comprador</span>
+        <span class="fp-p">Paquete 1, Paquete 2, igual que en su seguimiento. Si te dice "no me ha llegado el paquete 2", sabes cuál es.</span>
       </div>
 
     </div>
   </div>
 
-  <div class="s-guide-cta">
-    <h3 class="s-guide-cta__title">¿Quieres dominar cada estado?</h3>
-    <p class="s-guide-cta__desc">Conoce qué significa cada estado de tu orden, de tus paquetes y del transporte, explicado paso a paso y con ejemplos.</p>
-    <a class="btn btn-ghost" href="multipaquete-estados">Ver la guía de estados →</a>
-    <a href="https://youtu.be/WN576HH8fdg" target="_blank" rel="noopener" style="display:block;width:100%;max-width:720px;margin:28px auto 0;border-radius:16px;overflow:hidden;position:relative;aspect-ratio:16/9;background:#000">
-      <img src="https://img.youtube.com/vi/WN576HH8fdg/0.jpg" alt="Guía de estados de Multipaquete" style="width:100%;height:100%;object-fit:cover;display:block">
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35)">
-        <div style="width:64px;height:64px;background:#FF0000;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,.5)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-      </div>
-    </a>
-  </div>
-</section>
-
-
-<!-- ============ 03 — CARACTERÍSTICAS ============ -->
-<section data-launch-screen>
-  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
-    <div>
-      <div class="s-eyebrow"><span class="num">03</span>Características</div>
-      <h2 class="s-title">Todo lo que puedes controlar <span style="color:#00DCD6">a partir de hoy.</span></h2>
+  <div class="demo-block" style="margin-top:72px">
+    <div style="text-align:center;margin-bottom:32px">
+      <div class="s-eyebrow" style="justify-content:center;margin-bottom:12px"><span class="line"></span>Así se ve<span class="line" style="transform:scaleX(-1)"></span></div>
+      <h3 style="font-size:clamp(24px,3vw,38px);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-bottom:12px;color:#14095B">Una orden con cinco paquetes, <span style="color:#BA80FF">en un solo&nbsp;historial.</span></h3>
+      <p style="font-size:16px;color:#2D2B5C;max-width:52ch;margin:0 auto;line-height:1.6;font-weight:300">Lo que afecta a toda la orden queda en su propio bloque, al&nbsp;final.</p>
     </div>
-    <p class="s-aside">La información precisa que necesitas para entender el viaje de cada paquete y el estado general de tu orden.</p>
-  </div>
-
-  <div class="chars-grid">
-    <div class="info-card">
-      <p class="info-num">01</p>
-      <h3 class="info-h">Trazabilidad individual y consolidada</h3>
-      <p class="info-p">Monitorea el estado de cada paquete por separado mientras mantienes la foto completa del avance de la orden.</p>
-    </div>
-    <div class="info-card">
-      <p class="info-num">02</p>
-      <h3 class="info-h">Guía y transportadora por paquete</h3>
-      <p class="info-p">Tu comprador también sigue cada paquete en tiempo real. Desde el Buyer Portal o por WhatsApp, tu cliente tiene visibilidad total del avance de su compra.</p>
-    </div>
-    <div class="info-card">
-      <p class="info-num">03</p>
-      <h3 class="info-h">Historial detallado de punta a punta</h3>
-      <p class="info-p">Revisa intentos de entrega, eventos en ruta, incidencias, novedades y el estado actual de cada paquete.</p>
+    <div class="shot-frame" style="max-width:560px">
+      <img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/orden-varios-paquetes.webp" alt="Historial de una orden con cinco paquetes: el Paquete 1 abierto con su intento y ofrecimiento, los demás con su estado, y al final las acciones de la orden" loading="lazy" width="671" height="980" />
     </div>
   </div>
 </section>
 
 
-<!-- ============ 04 — BENEFICIOS ============ -->
+<!-- ============ 04 — A UN CLIC ============ -->
 <section data-launch-screen>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">04</span>Beneficios</div>
-      <h2 class="s-title">Más claridad en cada envío. <span style="color:#BA80FF">Menos seguimiento manual.</span></h2>
+      <div class="s-eyebrow"><span class="num">04</span>A un clic</div>
+      <h2 class="s-title">Todo el detalle, <span style="color:#00DCD6">sin salir del&nbsp;historial.</span></h2>
     </div>
-    <p class="s-aside">Multipaquete le da claridad a tu operación y a tu comprador: muestra el estado exacto de cada envío con más detalle que un dato general.</p>
+    <p class="s-aside">Cada detalle de la entrega vive dentro de su ofrecimiento, listo cuando lo necesites.</p>
   </div>
 
   <div class="bens-grid">
     <div class="info-card">
       <p class="info-num">01</p>
-      <h3 class="info-h">Mayor visibilidad operativa</h3>
-      <p class="info-p">Identifica en segundos qué paquetes avanzaron, cuáles siguen en ruta y cuáles tienen novedades. Además, tu comprador sigue el avance de su paquete en tiempo real sin tener que preguntarte.</p>
+      <h3 class="info-h">Evidencias a la vista</h3>
+      <p class="info-p">Las evidencias de entrega y los comentarios de la transportadora, en cada ofrecimiento.</p>
     </div>
     <div class="info-card">
       <p class="info-num">02</p>
-      <h3 class="info-h">Cero confusión en tu día a día</h3>
-      <p class="info-p">Consulta la información exacta de cada envío sin mezclar recorridos ni transportadoras. Tu cliente también ve el estado claro de su paquete, evitando malentendidos y dudas.</p>
+      <h3 class="info-h">Retornos con su guía</h3>
+      <p class="info-p">Si tu paquete vuelve al CEDI, ves el retorno con su propia guía, junto a la guía con la que salió.</p>
     </div>
     <div class="info-card">
       <p class="info-num">03</p>
-      <h3 class="info-h">Seguimiento sin esfuerzo</h3>
-      <p class="info-p">Encuentra estados, guías e historial en el detalle de la orden sin usar plataformas externas. Lo mejor: tu comprador accede a ese mismo rastreo de forma directa y transparente.</p>
+      <h3 class="info-h">Filtra por intento</h3>
+      <p class="info-p">Si tu orden tuvo varios intentos de entrega, ves solo el que te interesa.</p>
     </div>
+    <div class="info-card">
+      <p class="info-num">04</p>
+      <h3 class="info-h">Tu guía, a un clic</h3>
+      <p class="info-p">Copias el número de guía y descargas sus documentos sin salir del historial.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">05</p>
+      <h3 class="info-h">Incidencias a un clic</h3>
+      <p class="info-p">Si tu orden tiene una incidencia, la ves en el historial y vas a su detalle con un clic.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">06</p>
+      <h3 class="info-h">Cada paso, explicado</h3>
+      <p class="info-p">Pasa el mouse sobre una acción y ves qué significa, en palabras simples.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 05 — EXPLORADOR ============ -->
+<section data-launch-screen>
+  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
+    <div>
+      <div class="s-eyebrow"><span class="num">05</span>Explorador de órdenes</div>
+      <h2 class="s-title">Encuentra tus pedidos D2C y B2B <span style="color:#00DCD6">más&nbsp;rápido.</span></h2>
+    </div>
+    <p class="s-aside">Actualizamos las búsquedas y los filtros del explorador de órdenes para que llegues a la orden que necesitas.</p>
+  </div>
+
+  <div class="chars-grid cols-2">
+    <div class="info-card">
+      <p class="info-num">01</p>
+      <h3 class="info-h">Tus paquetes, agrupados por estado</h3>
+      <p class="info-p">En la columna Estado, cada orden muestra sus paquetes agrupados y cuántos hay en cada uno. Por ejemplo: 9 entregados al comprador y 1 en tránsito.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">02</p>
+      <h3 class="info-h">Busca como prefieras</h3>
+      <p class="info-p">Por identificador externo, identificador Melonn o comprador (en B2B, destinatario).</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">03</p>
+      <h3 class="info-h">Filtra por lo que necesita tu orden</h3>
+      <p class="info-p">El filtro de estado agrupa tus órdenes en tres opciones: Necesita tu atención, En curso y Cerradas. Y puedes combinar los filtros que quieras.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">04</p>
+      <h3 class="info-h">Nuevo filtro multipaquete</h3>
+      <p class="info-p">Ve de una vez todas tus órdenes con más de un paquete.</p>
+    </div>
+  </div>
+
+  <div class="shot-frame" style="max-width:1100px;margin-top:56px">
+    <img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/explorador-de-ordenes.webp" alt="Explorador de órdenes D2C con buscadores arriba, filtros abajo y, en la columna Estado, los paquetes de cada orden agrupados" loading="lazy" width="1884" height="892" />
   </div>
 </section>
 
@@ -1257,11 +1277,10 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 <section>
   <div class="cierre">
     <div class="ring-deco"></div>
-    <p class="c-eyebrow">Multipaquete</p>
-    <h2 class="c-title"><span style="color:#00DCD6">Cada paquete visible.</span> Toda tu orden bajo control.</h2>
-    <p class="c-sub">Domina la logística de tus envíos revisando el recorrido individual de cada paquete y mantén una visión clara de tus órdenes desde un solo lugar.</p>
+    <p class="c-eyebrow">Historial de la orden</p>
+    <h2 class="c-title"><span style="color:#00DCD6">Tu orden te cuenta qué pasó,</span> paso a&nbsp;paso.</h2>
+    <p class="c-sub">Abre cualquier orden en Órbita, entra a Historial y responde a tu comprador con información precisa.</p>
     <div class="c-actions">
-      <a class="btn btn-primary" href="https://melonn.notion.site/Detalle-de-paquetes-y-visualizaci-n-de-eventos-3cd3bfd6145d8073b580d4d1c6fc00c0" target="_blank" rel="noopener">Ver documentación →</a>
       <a class="btn btn-ghost" href="../">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>
         Volver a lanzamientos
@@ -1275,7 +1294,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <span style="font-size:18px;color:var(--violet-0);animation:twinkle 2.4s ease-in-out infinite;display:inline-block;line-height:1;flex-shrink:0">✶</span>
     <span>© 2026 Melonn Edition by Melonn · Plataforma para sellers</span>
   </div>
-  <div>Última actualización JUN/2026 · Todos los derechos reservados</div>
+  <div>Última actualización OCT/2026 · Todos los derechos reservados</div>
 </footer>
 </div><!-- /screen-closing -->
 
@@ -1500,6 +1519,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
 <script type="module">
 (async () => {
+  const conveyorReady = window.innerWidth > 768 ? import('./casepack-conveyor.js') : null;
   try {
     const { createWaveGrid } = await import('../experiments/melonn-wave-grid/main.js');
     const heroEl = document.querySelector('header.hero[data-launch-screen]');
@@ -1525,9 +1545,9 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     // Fallback visual gestionado por CSS.
   }
 
-  if (window.innerWidth > 768) {
+  if (conveyorReady) {
     try {
-      const { initConveyor } = await import('./casepack-conveyor.js');
+      const { initConveyor } = await conveyorReady;
       initConveyor();
     } catch (error) {
       // El Hero permanece funcional sin conveyor.
