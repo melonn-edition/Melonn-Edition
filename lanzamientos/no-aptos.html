@@ -376,6 +376,7 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:100px clam
 .info-p{font-size:16px;color:var(--ink-1);line-height:1.55;font-weight:300}
 .chars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .chars-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.demo-block .s-eyebrow .line{display:inline-block;width:48px;height:1px;background:linear-gradient(90deg,#00C77C,transparent)}
 .chars-grid .info-card:nth-child(4)::after{animation-delay:2.25s}
 @keyframes cap-card-vibe{
   0%,100%{
@@ -1175,17 +1176,51 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     </div>
   </div>
 
-  <div class="s-guide-cta">
-    <h3 class="s-guide-cta__title">¿Prefieres verlo paso a paso?</h3>
-    <a class="btn btn-ghost" href="https://melonn.notion.site/Gesti-n-de-Productos-No-Aptos-3cf3bfd6145d805db0e0dcf6f02dd963" target="_blank" rel="noopener">Ver la guía de configuración →</a>
-    <a href="https://youtu.be/eGSZ6BQEZm4" target="_blank" rel="noopener" style="display:block;width:100%;max-width:720px;margin:28px auto 0;border-radius:16px;overflow:hidden;position:relative;aspect-ratio:16/9;background:#000">
-      <img src="https://img.youtube.com/vi/eGSZ6BQEZm4/maxresdefault.jpg" alt="Video: cómo crear el destinatario para el envío de tus productos no aptos" style="width:100%;height:100%;object-fit:cover;display:block">
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35)">
-        <div style="width:64px;height:64px;background:#FF0000;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,.5)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-        </div>
+  <!-- ── Demo: video de configuración en marco de monitor ── -->
+  <div class="demo-block" style="margin-top:72px">
+    <div style="text-align:center;margin-bottom:32px">
+      <div class="s-eyebrow" style="justify-content:center;margin-bottom:12px"><span class="line"></span>Demo<span class="line" style="transform:scaleX(-1)"></span></div>
+      <h3 style="font-size:clamp(24px,3vw,38px);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-bottom:12px;color:#14095B">Te lo mostramos en Órbita, <span style="color:#BA80FF">paso a&nbsp;paso.</span></h3>
+      <p style="font-size:16px;color:#2D2B5C;max-width:52ch;margin:0 auto;line-height:1.6;font-weight:300">Mira cómo crear tu destinatario para no aptos y dejar activo el punto de entrega&nbsp;correcto.</p>
+    </div>
+
+    <div style="
+      position:relative;
+      border-radius:var(--r-xl);
+      padding:18px;
+      background:linear-gradient(180deg,rgba(28,24,60,.95),rgba(10,8,28,.97));
+      border:1px solid rgba(124,92,255,.35);
+      box-shadow:
+        0 0 0 1px rgba(196,181,253,.08),
+        inset 0 1px 0 rgba(196,181,253,.18),
+        inset 0 0 80px -20px rgba(124,92,255,.25),
+        0 40px 100px -20px rgba(124,92,255,.45),
+        0 0 120px -30px rgba(196,181,253,.35);
+      max-width:960px;
+      margin:0 auto;
+    ">
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:70%;height:1px;background:linear-gradient(90deg,transparent,#BA80FF,transparent);box-shadow:0 0 24px rgba(186,128,255,.5)"></div>
+      <div style="position:absolute;top:10px;left:10px;width:18px;height:18px;border-top:1px solid #BA80FF;border-left:1px solid #BA80FF;border-radius:4px 0 0 0;opacity:.6"></div>
+      <div style="position:absolute;top:10px;right:10px;width:18px;height:18px;border-top:1px solid #BA80FF;border-right:1px solid #BA80FF;border-radius:0 4px 0 0;opacity:.6"></div>
+      <div style="position:absolute;bottom:10px;left:10px;width:18px;height:18px;border-bottom:1px solid #BA80FF;border-left:1px solid #BA80FF;border-radius:0 0 0 4px;opacity:.6"></div>
+      <div style="position:absolute;bottom:10px;right:10px;width:18px;height:18px;border-bottom:1px solid #BA80FF;border-right:1px solid #BA80FF;border-radius:0 0 4px 0;opacity:.6"></div>
+      <div style="aspect-ratio:16/9;border-radius:calc(var(--r-xl) - 8px);overflow:hidden;position:relative;z-index:2;box-shadow:inset 0 0 0 1px rgba(196,181,253,.12)">
+        <iframe
+          width="100%" height="100%"
+          src="https://www.youtube.com/embed/eGSZ6BQEZm4"
+          title="Cómo crear el destinatario para el envío de tus productos no aptos"
+          frameborder="0"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          style="display:block;width:100%;height:100%">
+        </iframe>
       </div>
-    </a>
+    </div>
+
+    <div style="text-align:center;margin-top:32px">
+      <a class="btn btn-ghost" href="https://melonn.notion.site/Gesti-n-de-Productos-No-Aptos-3cf3bfd6145d805db0e0dcf6f02dd963" target="_blank" rel="noopener">Ver la guía de configuración →</a>
+    </div>
   </div>
 </section>
 
