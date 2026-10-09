@@ -6,11 +6,13 @@
 <meta name="robots" content="noindex, nofollow, noarchive" />
 <link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
-<title>Log de la orden · v2 – Melonn Editions</title>
-<meta name="description" content="El nuevo log de la orden en Órbita te muestra qué pasó con cada paquete, paso a paso: cada intento, cada ofrecimiento y su motivo." />
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<title>Historial de la orden · v2 – Melonn Editions</title>
+<meta name="description" content="Toda la historia de tu orden en un solo lugar: acciones de la orden, intentos de entrega, ofrecimientos y el detalle de cada paquete en Órbita." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://unpkg.com" crossorigin />
 <script type="importmap">
 {
   "imports": {
@@ -19,6 +21,7 @@
   }
 }
 </script>
+<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/build/three.module.js" crossorigin />
 <style>
 :root{
   --bg-0:#050410;
@@ -373,6 +376,15 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:100px clam
 .info-h{font-size:17px;font-weight:500;letter-spacing:-.01em;color:var(--ink-0);margin-bottom:8px}
 .info-p{font-size:16px;color:var(--ink-1);line-height:1.55;font-weight:300}
 .chars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.chars-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.bens-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.info-card .shot{display:block;width:100%;height:auto;margin-top:24px;border-radius:14px;background:#fff;box-shadow:0 0 0 1px rgba(196,181,253,.25),0 20px 50px -20px rgba(0,0,0,.6)}
+.shot-frame{position:relative;margin:0 auto;padding:14px;border-radius:var(--r-xl);background:linear-gradient(180deg,rgba(28,24,60,.95),rgba(10,8,28,.97));border:1px solid rgba(124,92,255,.35);box-shadow:inset 0 1px 0 rgba(196,181,253,.18),0 40px 100px -20px rgba(124,92,255,.45)}
+.shot-frame img{display:block;width:100%;height:auto;border-radius:calc(var(--r-xl) - 6px);background:#fff}
+.demo-block .s-eyebrow .line{display:inline-block;width:48px;height:1px;background:linear-gradient(90deg,#00C77C,transparent)}
+.chars-grid .info-card:nth-child(4)::after,.bens-grid .info-card:nth-child(4)::after{animation-delay:2.25s}
+.bens-grid .info-card:nth-child(5)::after{animation-delay:3s}
+.bens-grid .info-card:nth-child(6)::after{animation-delay:3.75s}
 @keyframes cap-card-vibe{
   0%,100%{
     box-shadow:
@@ -505,7 +517,7 @@ footer .l{display:flex;align-items:center;gap:18px}
   .cap-card{background:none;border:none;box-shadow:none;border-radius:0;padding:0;overflow:visible;animation:none}
   .cap-card::before{display:none}
   .flow-pill{flex:0 0 100%;min-width:0}
-  .chars-grid,.bens-grid{grid-template-columns:1fr}
+  .chars-grid,.bens-grid,.chars-grid.cols-2,.bens-grid.cols-2{grid-template-columns:1fr}
   .hero-foot{margin-top:24px;gap:20px;justify-content:flex-start}
   .cond-grid{grid-template-columns:1fr}
 }
@@ -810,8 +822,8 @@ section[data-launch-screen]:has(.cond-grid) .cond-table-wrap{background:rgba(10,
 .hero-bg::before,.hero-bg::after,
 .hero-cosmos::before,.hero-cosmos::after { content:none!important }
 .hero-cosmos > span { display:none }
-header.hero[data-launch-screen]{background-color:#0d0b22!important}
-header.hero[data-launch-screen] .hero-bg{background-color:#0d0b22}
+header.hero[data-launch-screen]{background-color:#F8F8FC!important}
+header.hero[data-launch-screen] .hero-bg{background-color:#F8F8FC}
 @media(max-width:768px){
   .page-bg::before,.page-bg::after{display:none}
 }
@@ -881,30 +893,6 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 }
 .cbox{pointer-events:none;will-change:offset-distance}
 @media(max-width:768px){#conveyor-layer{display:none}}
-
-/* ——— ejemplo del log de la orden ——— */
-.lg-wrap{display:block!important;padding-top:0!important}
-.lg-cap{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5C5A80;margin:0 0 18px;text-align:center}
-.lg{background:#fff;border:1px solid #D3D8E9;border-radius:20px;padding:22px 24px;text-align:left;box-shadow:0 18px 40px -24px rgba(20,9,91,.25)}
-.lg-head{display:flex;align-items:center;gap:10px;padding-bottom:16px;margin-bottom:18px;border-bottom:1px solid rgba(20,9,91,.10)}
-.lg-pkg{font-size:16px;font-weight:600;color:#14095B}
-.lg-chip{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;line-height:1.2}
-.lg-chip.ok{background:rgba(0,199,124,.12);color:#00875A}
-.lg-ej{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8080A8}
-.lg-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.lg-int-t{font-size:13px;font-weight:600;color:#4D2AAD;margin:0 0 10px}
-.lg-of{border:1px solid rgba(20,9,91,.10);border-radius:14px;padding:12px 14px;margin-bottom:10px;background:#FAFAFD}
-.lg-of-t{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5C5A80;margin:0 0 8px}
-.lg-ev{list-style:none;margin:0;padding:0 0 0 14px;border-left:2px solid rgba(20,9,91,.12)}
-.lg-ev li{position:relative;font-size:14px;color:#2D2B5C;line-height:1.4;padding:3px 0}
-.lg-ev li::before{content:"";position:absolute;left:-19px;top:9px;width:8px;height:8px;border-radius:50%;background:#C9C7E0}
-.lg-ev li.warn{color:#14095B;font-weight:600}.lg-ev li.warn::before{background:#FFC800}
-.lg-ev li.ok{color:#00875A;font-weight:600}.lg-ev li.ok::before{background:#00C77C}
-.lg-ev li span{display:block;font-weight:400;font-size:12px;color:#5C5A80}
-.lg-nota{margin-top:28px}
-@media(max-width:768px){.lg{padding:18px 16px}.lg-cols{grid-template-columns:1fr;gap:6px}
-  .panel-stage[data-launch-screen]{display:flex!important;padding:48px 20px}
-  .panel-preview .callout{padding:28px 18px}}
 </style>
 <script async src="/posthog.js"></script><script async src="/ga4.js"></script>
 </head>
@@ -989,23 +977,23 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
   <div class="hero-content">
     <div class="hero-copy">
-      <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Log de la orden</div>
-      <h1 class="h-title">Toda la historia de tu orden, <span style="color:#BA80FF">en un solo lugar.</span></h1>
-      <p class="h-tagline">El nuevo log de la orden en Órbita te muestra qué pasó con cada paquete, paso a paso.</p>
+      <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Historial de la orden</div>
+      <h1 class="h-title">Toda la historia de tu orden, <span style="color:#BA80FF">en un solo&nbsp;lugar.</span></h1>
+      <p class="h-tagline">Con el nuevo historial de la orden en Órbita ves todo lo que pasa, desde que tu orden llega a Melonn hasta que la recibe tu comprador. Y si tiene varios paquetes, la historia de cada&nbsp;uno.</p>
     </div>
 
     <div class="hero-foot">
       <div class="hf-item">
         <span class="hf-key" style="color:#BA80FF">Categoría</span>
-        <span class="hf-val">Operación · Transporte</span>
+        <span class="hf-val">Órbita</span>
       </div>
       <div class="hf-item">
         <span class="hf-key" style="color:#BA80FF">Disponibilidad</span>
-        <span class="hf-val">México · Colombia · Chile</span>
+        <span class="hf-val">Colombia · México · Chile</span>
       </div>
       <div class="hf-item">
         <span class="hf-key" style="color:#BA80FF">Impacta a</span>
-        <span class="hf-val">Sellers</span>
+        <span class="hf-val">Sellers D2C y B2B</span>
       </div>
       <div class="hf-item">
         <span class="hf-key" style="color:#BA80FF">Fecha</span>
@@ -1057,77 +1045,88 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
     <div class="panel-preview">
       <div class="callout">
-        <div class="callout-inner lg-wrap">
-          <p class="lg-cap">Así se ve un paquete en el log</p>
-          <div class="lg" role="img" aria-label="Ejemplo del log de la orden: el paquete 1 tuvo dos intentos. En el intento 1, dos ofrecimientos con entrega fallida y devolución. En el intento 2, se entregó.">
-            <div class="lg-head">
-              <span class="lg-pkg">Paquete 1</span>
-              <span class="lg-chip ok">Entregado</span>
-              <span class="lg-ej">Ejemplo</span>
-            </div>
-            <div class="lg-cols">
-              <div class="lg-int">
-                <p class="lg-int-t">Intento 1</p>
-                <div class="lg-of">
-                  <p class="lg-of-t">Ofrecimiento 1</p>
-                  <ol class="lg-ev"><li>En ruta nacional</li><li>En reparto</li><li class="warn">Entrega fallida<span>Destinatario no localizado</span></li></ol>
-                </div>
-                <div class="lg-of">
-                  <p class="lg-of-t">Ofrecimiento 2</p>
-                  <ol class="lg-ev"><li>En reparto</li><li class="warn">Entrega fallida</li><li>Devuelto</li></ol>
-                </div>
-              </div>
-              <div class="lg-int">
-                <p class="lg-int-t">Intento 2</p>
-                <div class="lg-of">
-                  <p class="lg-of-t">Ofrecimiento 1</p>
-                  <ol class="lg-ev"><li>En ruta nacional</li><li class="ok">Entregado</li></ol>
-                </div>
-              </div>
-            </div>
+        <div class="callout-img-wrap">
+          <img class="callout-img" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/Banner_Historial_Orden.webp?v=1" alt="Toda la historia de tu orden en un solo lugar: abre tu orden en Órbita, entra a Historial y revisa cada intento de entrega" loading="eager" />
+        </div>
+        <div class="callout-inner" style="display:flex;flex-direction:row;align-items:center;gap:36px">
+          <div class="callout-mark">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6.5 20a13.5 13.5 0 1 0 4-9.6"/>
+              <path d="M6 6v6.5h6.5"/>
+              <path d="M20 12.5V20l5 3"/>
+            </svg>
           </div>
+          <p class="callout-text">Funciona en <strong>todas tus órdenes</strong>, de uno o de varios paquetes. Si tu orden tiene un solo paquete, ves toda su historia abierta de una vez, sin dar un clic&nbsp;más.</p>
         </div>
       </div>
     </div>
 </div><!-- /panel-stage -->
 
 
-<!-- ============ 01 — QUÉ GANAS ============ -->
+<!-- ============ 01 — LO QUE GANAS ============ -->
 <section data-launch-screen>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">01</span>Qué ganas</div>
-      <h2 class="s-title">Entiendes tu orden <span style="color:#BA80FF">en segundos.</span></h2>
+      <div class="s-eyebrow"><span class="num">01</span>Lo que ganas</div>
+      <h2 class="s-title">Respondes a tu comprador <span style="color:#00DCD6">sin buscar en varias&nbsp;partes.</span></h2>
     </div>
+    <p class="s-aside">Desde que tu orden llega a Melonn hasta que la recibe tu comprador, todo queda en tu historial.</p>
   </div>
 
   <div class="chars-grid">
     <div class="info-card">
       <p class="info-num">01</p>
-      <h3 class="info-h">Claridad</h3>
-      <p class="info-p">Sabes de un vistazo en qué punto va cada entrega.</p>
+      <h3 class="info-h">Ganas tiempo</h3>
+      <p class="info-p">¿En qué intento va? ¿Qué pasó en la última visita? ¿Con qué guía salió? Lo ves en tu historial y le respondes a tu comprador de inmediato.</p>
     </div>
     <div class="info-card">
       <p class="info-num">02</p>
-      <h3 class="info-h">Tiempo</h3>
-      <p class="info-p">Resuelves tus dudas desde el log, sin escribir a soporte.</p>
+      <h3 class="info-h">Ganas claridad</h3>
+      <p class="info-p">Cada acción tiene un nombre fácil de entender. Sabes qué pasó de un vistazo, y si quieres más, pasas el mouse y ves su definición.</p>
     </div>
     <div class="info-card">
       <p class="info-num">03</p>
-      <h3 class="info-h">Historia completa</h3>
-      <p class="info-p">Conoces el motivo de cada entrega fallida y el siguiente paso, de principio a fin.</p>
+      <h3 class="info-h">Ganas control</h3>
+      <p class="info-p">Guías, evidencias, retornos e incidencias a la vista, en el mismo idioma de tu comprador: Paquete 1, Paquete&nbsp;2.</p>
     </div>
   </div>
 </section>
 
 
-<!-- ============ 02 — CÓMO SE LEE EL LOG ============ -->
+<!-- ============ 02 — EL HISTORIAL ============ -->
+<section data-launch-screen>
+  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
+    <div>
+      <div class="s-eyebrow"><span class="num">02</span>El historial</div>
+      <h2 class="s-title">De lo general <span style="color:#BA80FF">a cada&nbsp;entrega.</span></h2>
+    </div>
+    <p class="s-aside">Primero ves lo que pasa en toda tu orden y después cada intento de entrega. Lo más reciente siempre está&nbsp;arriba.</p>
+  </div>
+
+  <div class="bens-grid cols-2">
+    <div class="info-card">
+      <p class="info-num">01</p>
+      <h3 class="info-h">Acciones de la orden</h3>
+      <p class="info-p">Lo que pasa en el CEDI hasta que queda empacada, un cambio de dirección, de monto a recaudar o de método de envío, y las incidencias.</p>
+      <img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/acciones-de-la-orden.webp" alt="Acciones de la orden en el historial: cambio de dirección, cambio de monto a recaudar, empaque, picking y recepción, cada una con fecha y hora" loading="lazy" width="671" height="856" />
+    </div>
+    <div class="info-card">
+      <p class="info-num">02</p>
+      <h3 class="info-h">Intentos de entrega</h3>
+      <p class="info-p">Cada salida hacia tu comprador, con su transportadora y su guía. Adentro, sus ofrecimientos: cada visita para entregarlo, con evidencias y comentarios.</p>
+      <img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/intento-de-entrega.webp" alt="Un intento de entrega con su ofrecimiento: entrega fallida con evidencias y comentarios, guía de retorno e incidencia reportada" loading="lazy" width="666" height="890" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 03 — VARIOS PAQUETES ============ -->
 <section data-launch-screen>
   <div class="s-head">
     <div>
-      <div class="s-eyebrow"><span class="num">02</span>Cómo se lee el log</div>
-      <h2 class="s-title">Paquete, intento y ofrecimiento: <span style="color:#00DCD6">así se cuenta cada entrega.</span></h2>
-      <p class="s-aside">Funciona igual en todas tus órdenes. Si tu orden tiene varios paquetes, ves la historia de cada uno.</p>
+      <div class="s-eyebrow"><span class="num">03</span>Varios paquetes</div>
+      <h2 class="s-title">¿Tu orden tiene varios paquetes? <span style="color:#BA80FF">Ves la historia de cada&nbsp;uno.</span></h2>
+      <p class="s-aside">Tu historial te muestra la lista de paquetes. Abres el que quieras para ver sus intentos de entrega, y su detalle si necesitas más.</p>
     </div>
   </div>
 
@@ -1137,39 +1136,140 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <div class="flow-pill">
         <span class="stat">01</span>
         <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 8.2 12 3 3 8.2l9 5.2 9-5.2Z" stroke-linejoin="round"/><path d="M3 8.2v8l9 5.2 9-5.2v-8" stroke-linejoin="round"/><path d="M12 13.4v8" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3.5 2.5 20h19z"/>
+            <path d="M12 10v4.5"/>
+            <circle cx="12" cy="17.2" r=".4"/>
+          </svg>
         </div>
-        <span class="fp-tag">Nivel 1</span>
-        <span class="fp-h">Paquete</span>
-        <span class="fp-p">Arriba, el último estado del paquete; debajo, todo lo que le pasó.</span>
+        <span class="fp-tag">Orden</span>
+        <span class="fp-h">Lo que necesita tu atención, primero</span>
+        <span class="fp-p">Los paquetes con algo fuera de lo normal aparecen arriba, y los entregados al final.</span>
       </div>
 
       <div class="flow-pill">
         <span class="stat">02</span>
         <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 6h13v11H1z" stroke-linejoin="round"/><path d="M14 10h4l3 3v4h-7" stroke-linejoin="round"/><circle cx="6" cy="19" r="2"/><circle cx="17.5" cy="19" r="2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/>
+            <path d="M3 7.5 12 12l9-4.5M12 12v9"/>
+          </svg>
         </div>
-        <span class="fp-tag">Nivel 2</span>
-        <span class="fp-h">Intento</span>
-        <span class="fp-p">Cada salida del paquete hacia tu comprador.</span>
+        <span class="fp-tag">Resumen</span>
+        <span class="fp-h">Cada paquete, con su resumen</span>
+        <span class="fp-p">Su última acción y cuántos intentos de entrega lleva, sin abrirlo.</span>
       </div>
 
       <div class="flow-pill">
         <span class="stat">03</span>
         <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 11 9-8 9 8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v10h14V10" stroke-linejoin="round"/><path d="M10 20v-5h4v5" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 5h16v11H9l-5 4z"/>
+            <path d="M8 9.5h8M8 12.5h5"/>
+          </svg>
         </div>
-        <span class="fp-tag">Nivel 3</span>
-        <span class="fp-h">Ofrecimiento</span>
-        <span class="fp-p">Cada visita para entregar dentro de ese intento.</span>
+        <span class="fp-tag">Idioma</span>
+        <span class="fp-h">Hablas el idioma de tu comprador</span>
+        <span class="fp-p">Paquete 1, Paquete 2, igual que en su seguimiento. Si te dice "no me ha llegado el paquete 2", sabes cuál es.</span>
       </div>
 
     </div>
   </div>
 
-  <div class="cond-note lg-nota">Lo que antes veías como incidencias ahora aparece como eventos dentro del log, más claro.</div>
+  <div class="demo-block" style="margin-top:72px">
+    <div style="text-align:center;margin-bottom:32px">
+      <div class="s-eyebrow" style="justify-content:center;margin-bottom:12px"><span class="line"></span>Así se ve<span class="line" style="transform:scaleX(-1)"></span></div>
+      <h3 style="font-size:clamp(24px,3vw,38px);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-bottom:12px;color:#14095B">Una orden con cinco paquetes, <span style="color:#BA80FF">en un solo&nbsp;historial.</span></h3>
+      <p style="font-size:16px;color:#2D2B5C;max-width:52ch;margin:0 auto;line-height:1.6;font-weight:300">Lo que afecta a toda la orden queda en su propio bloque, al&nbsp;final.</p>
+    </div>
+    <div class="shot-frame" style="max-width:560px">
+      <img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/orden-varios-paquetes.webp" alt="Historial de una orden con cinco paquetes: el Paquete 1 abierto con su intento y ofrecimiento, los demás con su estado, y al final las acciones de la orden" loading="lazy" width="671" height="980" />
+    </div>
+  </div>
+</section>
 
-  <!-- VIDEO: aquí va el video de Mariana (vista principal de la orden + log, menos de 1 min). Se agrega cuando esté listo. -->
+
+<!-- ============ 04 — A UN CLIC ============ -->
+<section data-launch-screen>
+  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
+    <div>
+      <div class="s-eyebrow"><span class="num">04</span>A un clic</div>
+      <h2 class="s-title">Todo el detalle, <span style="color:#00DCD6">sin salir del&nbsp;historial.</span></h2>
+    </div>
+    <p class="s-aside">Cada detalle de la entrega vive dentro de su ofrecimiento, listo cuando lo necesites.</p>
+  </div>
+
+  <div class="bens-grid">
+    <div class="info-card">
+      <p class="info-num">01</p>
+      <h3 class="info-h">Evidencias a la vista</h3>
+      <p class="info-p">Las evidencias de entrega y los comentarios de la transportadora, en cada ofrecimiento.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">02</p>
+      <h3 class="info-h">Retornos con su guía</h3>
+      <p class="info-p">Si tu paquete vuelve al CEDI, ves el retorno con su propia guía, junto a la guía con la que salió.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">03</p>
+      <h3 class="info-h">Filtra por intento</h3>
+      <p class="info-p">Si tu orden tuvo varios intentos de entrega, ves solo el que te interesa.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">04</p>
+      <h3 class="info-h">Tu guía, a un clic</h3>
+      <p class="info-p">Copias el número de guía y descargas sus documentos sin salir del historial.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">05</p>
+      <h3 class="info-h">Incidencias a un clic</h3>
+      <p class="info-p">Si tu orden tiene una incidencia, la ves en el historial y vas a su detalle con un clic.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">06</p>
+      <h3 class="info-h">Cada paso, explicado</h3>
+      <p class="info-p">Pasa el mouse sobre una acción y ves qué significa, en palabras simples.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 05 — EXPLORADOR ============ -->
+<section data-launch-screen>
+  <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
+    <div>
+      <div class="s-eyebrow"><span class="num">05</span>Explorador de órdenes</div>
+      <h2 class="s-title">Encuentra tus pedidos D2C y B2B <span style="color:#00DCD6">más&nbsp;rápido.</span></h2>
+    </div>
+    <p class="s-aside">Actualizamos las búsquedas y los filtros del explorador de órdenes para que llegues a la orden que necesitas.</p>
+  </div>
+
+  <div class="chars-grid cols-2">
+    <div class="info-card">
+      <p class="info-num">01</p>
+      <h3 class="info-h">Tus paquetes, agrupados por estado</h3>
+      <p class="info-p">En la columna Estado, cada orden muestra sus paquetes agrupados y cuántos hay en cada uno. Por ejemplo: 9 entregados al comprador y 1 en tránsito.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">02</p>
+      <h3 class="info-h">Busca como prefieras</h3>
+      <p class="info-p">Por identificador externo, identificador Melonn o comprador (en B2B, destinatario).</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">03</p>
+      <h3 class="info-h">Filtra por lo que necesita tu orden</h3>
+      <p class="info-p">El filtro de estado agrupa tus órdenes en tres opciones: Necesita tu atención, En curso y Cerradas. Y puedes combinar los filtros que quieras.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">04</p>
+      <h3 class="info-h">Nuevo filtro multipaquete</h3>
+      <p class="info-p">Ve de una vez todas tus órdenes con más de un paquete.</p>
+    </div>
+  </div>
+
+  <div class="shot-frame" style="max-width:1100px;margin-top:56px">
+    <img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/explorador-de-ordenes.webp" alt="Explorador de órdenes D2C con buscadores arriba, filtros abajo y, en la columna Estado, los paquetes de cada orden agrupados" loading="lazy" width="1884" height="892" />
+  </div>
 </section>
 
 
@@ -1178,11 +1278,10 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 <section>
   <div class="cierre">
     <div class="ring-deco"></div>
-    <p class="c-eyebrow">Log de la orden</p>
-    <h2 class="c-title"><span style="color:#00DCD6">Cada entrega,</span> contada paso a paso.</h2>
-    <p class="c-sub">La próxima vez que tengas una duda sobre una entrega, empieza por el log.</p>
+    <p class="c-eyebrow">Historial de la orden</p>
+    <h2 class="c-title"><span style="color:#00DCD6">Tu orden te cuenta qué pasó,</span> paso a&nbsp;paso.</h2>
+    <p class="c-sub">Abre cualquier orden en Órbita, entra a Historial y responde a tu comprador con información precisa.</p>
     <div class="c-actions">
-      <a class="btn btn-primary" href="https://melonn.notion.site/Detalle-de-paquetes-y-visualizaci-n-de-eventos-3cd3bfd6145d8073b580d4d1c6fc00c0" target="_blank" rel="noopener">Ver documentación →</a>
       <a class="btn btn-ghost" href="../">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>
         Volver a lanzamientos
@@ -1421,6 +1520,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
 <script type="module">
 (async () => {
+  const conveyorReady = window.innerWidth > 768 ? import('./casepack-conveyor.js') : null;
   try {
     const { createWaveGrid } = await import('../experiments/melonn-wave-grid/main.js');
     const heroEl = document.querySelector('header.hero[data-launch-screen]');
@@ -1446,9 +1546,9 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     // Fallback visual gestionado por CSS.
   }
 
-  if (window.innerWidth > 768) {
+  if (conveyorReady) {
     try {
-      const { initConveyor } = await import('./casepack-conveyor.js');
+      const { initConveyor } = await conveyorReady;
       initConveyor();
     } catch (error) {
       // El Hero permanece funcional sin conveyor.
