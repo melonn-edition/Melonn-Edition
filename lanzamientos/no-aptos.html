@@ -375,6 +375,8 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:100px clam
 .info-h{font-size:17px;font-weight:500;letter-spacing:-.01em;color:var(--ink-0);margin-bottom:8px}
 .info-p{font-size:16px;color:var(--ink-1);line-height:1.55;font-weight:300}
 .chars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.chars-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.chars-grid .info-card:nth-child(4)::after{animation-delay:2.25s}
 @keyframes cap-card-vibe{
   0%,100%{
     box-shadow:
@@ -507,7 +509,7 @@ footer .l{display:flex;align-items:center;gap:18px}
   .cap-card{background:none;border:none;box-shadow:none;border-radius:0;padding:0;overflow:visible;animation:none}
   .cap-card::before{display:none}
   .flow-pill{flex:0 0 100%;min-width:0}
-  .chars-grid,.bens-grid{grid-template-columns:1fr}
+  .chars-grid,.bens-grid,.chars-grid.cols-2{grid-template-columns:1fr}
   .hero-foot{margin-top:24px;gap:20px;justify-content:flex-start}
   .cond-grid{grid-template-columns:1fr}
 }
@@ -1063,7 +1065,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <p class="s-aside">En cada reporte encuentras lo necesario para entender qué pasó y decidir qué hacer.</p>
   </div>
 
-  <div class="chars-grid">
+  <div class="chars-grid cols-2">
     <div class="info-card">
       <p class="info-num">01</p>
       <h3 class="info-h">Qué le pasó</h3>
@@ -1077,7 +1079,12 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="info-card">
       <p class="info-num">03</p>
       <h3 class="info-h">Cuándo puedes retirarlo</h3>
-      <p class="info-p">La fecha de marcación te dice desde cuándo está listo para tu orden, y los días del reporte cuánto lleva. Si dice Pendiente por gestionar, aún lo estamos verificando.</p>
+      <p class="info-p">Cuando el producto tiene fecha de marcación, ya puedes incluirlo en tu orden. Si dice Pendiente por gestionar, nuestro equipo todavía lo está verificando.</p>
+    </div>
+    <div class="info-card">
+      <p class="info-num">04</p>
+      <h3 class="info-h">30 días para retirarlo</h3>
+      <p class="info-p">Desde la fecha de marcación tienes 30 días para crear tu orden. Si se cumple el plazo, Melonn la crea y te envía los productos.</p>
     </div>
   </div>
 </section>
@@ -1090,7 +1097,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <div class="s-eyebrow"><span class="num">02</span>Lo que ganas</div>
       <h2 class="s-title">Más control sobre tu inventario. <span style="color:#BA80FF">Menos tiempo&nbsp;coordinando.</span></h2>
     </div>
-    <p class="s-aside">Y no solo en Órbita: también lo ves en tu correo de resumen diario, en el reporte de inventario y por&nbsp;API.</p>
+    <p class="s-aside">Y no solo en Órbita: también lo ves en tu correo de resumen diario y en el reporte de&nbsp;inventario.</p>
   </div>
 
   <div class="bens-grid">
@@ -1169,8 +1176,16 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   </div>
 
   <div class="s-guide-cta">
-    <h3 class="s-guide-cta__title">¿Prefieres verlo con imágenes?</h3>
+    <h3 class="s-guide-cta__title">¿Prefieres verlo paso a paso?</h3>
     <a class="btn btn-ghost" href="https://melonn.notion.site/Gesti-n-de-Productos-No-Aptos-3cf3bfd6145d805db0e0dcf6f02dd963" target="_blank" rel="noopener">Ver la guía de configuración →</a>
+    <a href="https://youtu.be/eGSZ6BQEZm4" target="_blank" rel="noopener" style="display:block;width:100%;max-width:720px;margin:28px auto 0;border-radius:16px;overflow:hidden;position:relative;aspect-ratio:16/9;background:#000">
+      <img src="https://img.youtube.com/vi/eGSZ6BQEZm4/maxresdefault.jpg" alt="Video: cómo crear el destinatario para el envío de tus productos no aptos" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35)">
+        <div style="width:64px;height:64px;background:#FF0000;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,.5)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -1191,10 +1206,6 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <div class="cond-label" style="color:#BA80FF">
         <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;flex-shrink:0"></span>
         Para crear y recibir tu orden B2B de no aptos:
-      </div>
-      <div class="cond-item">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:5px"></span>
-        <span><strong>30 días para crear tu orden,</strong> contados desde la fecha de marcación. Si no la creas, Melonn la crea y te envía los productos.</span>
       </div>
       <div class="cond-item">
         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:5px"></span>
