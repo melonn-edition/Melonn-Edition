@@ -1276,6 +1276,29 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     </span>
     <span><strong style="color:#FFC800;font-weight:600">Importante:</strong> si no recoges tus productos en 15 días, o si la entrega no se logra después de 3 intentos, los productos se destruyen y se te cobra la destrucción.</span>
   </div>
+
+  <div class="tyc-link">
+    <p class="tyc-link__txt">Este cobro hace parte de los nuevos términos y condiciones de&nbsp;Melonn.</p>
+    <a class="tyc-link__btn" href="https://melonn-tyc.app.getghosty.dev/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 2.5h8.5L19 7v14.5H6z"/><path d="M14.5 2.5V7H19z"/><path d="M9 12h7M9 15.5h7M9 8.5h3"/>
+      </svg>
+      Conoce los nuevos términos y condiciones
+      <svg class="tyc-link__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg>
+    </a>
+  </div>
+  <style>
+    .tyc-link{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+    .tyc-link__txt{margin:0;font-size:15px;line-height:1.55;font-weight:300;color:rgba(255,255,255,.70)}
+    .tyc-link__btn{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:999px;border:1px solid rgba(186,128,255,.55);background:rgba(186,128,255,.10);color:#BA80FF;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;transition:background .2s ease,border-color .2s ease,transform .2s ease,color .2s ease}
+    .tyc-link__btn svg{width:18px;height:18px;flex-shrink:0}
+    .tyc-link__btn .tyc-link__arrow{width:16px;height:16px;transition:transform .2s ease}
+    .tyc-link__btn:hover{background:#BA80FF;border-color:#BA80FF;color:#14095B;transform:translateY(-2px)}
+    .tyc-link__btn:hover .tyc-link__arrow{transform:translate(2px,-2px)}
+    .tyc-link__btn:focus-visible{outline:2px solid #BA80FF;outline-offset:3px}
+    @media(max-width:480px){.tyc-link__btn{white-space:normal;text-align:left}}
+    @media(prefers-reduced-motion:reduce){.tyc-link__btn,.tyc-link__btn .tyc-link__arrow{transition:none}}
+  </style>
 </section>
 
 
