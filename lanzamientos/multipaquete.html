@@ -891,6 +891,12 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 }
 .cbox{pointer-events:none;will-change:offset-distance}
 @media(max-width:768px){#conveyor-layer{display:none}}
+
+/* ——— dos vistas de la orden lado a lado ——— */
+.vista-par{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;margin-bottom:8px}
+.vista-par figure{margin:0}
+.vista-par figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#4D2AAD;margin:0 0 12px;text-align:center}
+@media(max-width:768px){.vista-par{grid-template-columns:1fr}}
 </style>
 <script async src="/posthog.js"></script><script async src="/ga4.js"></script>
 </head>
@@ -1014,11 +1020,18 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <div class="s-eyebrow"><span class="num">01</span>Historial de la orden</div>
       <h2 class="s-title">Al abrir tu orden, <span style="color:#00DCD6">sabes en qué&nbsp;va.</span></h2>
     </div>
-    <p class="s-aside">Ves la etapa de tu orden y la fecha estimada de entrega. Desde ahí abres el historial o el detalle de cada&nbsp;paquete.</p>
+    <p class="s-aside">En Órbita, abre el detalle de cualquier orden de venta. Ves su etapa y la fecha estimada de entrega, y desde ahí abres el historial o el detalle de cada&nbsp;paquete.</p>
   </div>
 
-  <div class="shot-frame" style="max-width:960px;margin-bottom:48px">
-    <img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/vista-de-la-orden.webp" alt="Vista de una orden de un paquete: etapa en tránsito, fecha estimada de entrega, transportadora, botón Detalle del paquete y botón para ver el historial" loading="lazy" width="1166" height="714" />
+  <div class="vista-par">
+    <figure>
+      <figcaption>Así se ve una orden de un solo&nbsp;paquete</figcaption>
+      <div class="shot-frame"><img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/vista-de-la-orden.webp" alt="Vista de una orden de un paquete: etapa, fecha estimada de entrega, transportadora, botón Detalle del paquete y botón para ver el historial" loading="lazy"></div>
+    </figure>
+    <figure>
+      <figcaption>Así verás una orden con varios&nbsp;paquetes</figcaption>
+      <div class="shot-frame"><img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/vista-orden-varios-paquetes.webp" alt="Vista de una orden con dos paquetes: cada paquete con su etapa, su transportadora y su botón Detalle del paquete" loading="lazy"></div>
+    </figure>
   </div>
 
   
@@ -1032,7 +1045,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
       <div class="s-eyebrow">El historial</div>
       <h2 class="s-title">De lo general <span style="color:#BA80FF">a cada&nbsp;entrega.</span></h2>
     </div>
-    <p class="s-aside">Cada acción tiene su fecha, su hora y un nombre simple, con su definición al pasar el mouse. Si hubo varios intentos, filtras el que te interesa, y si hay una incidencia, vas a su detalle con un&nbsp;clic.</p>
+    <p class="s-aside">Cada acción tiene su fecha, su hora y un nombre simple, con su definición al pasar el mouse. Si hay una incidencia, vas a su detalle con un&nbsp;clic.</p>
   </div>
 
   <div class="bens-grid cols-2">
@@ -1057,7 +1070,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   <div class="s-head">
     <div>
       <div class="s-eyebrow">Varios paquetes</div>
-      <h2 class="s-title">¿Tu orden tiene varios paquetes? <span style="color:#BA80FF">Ves la historia de cada&nbsp;uno.</span></h2>
+      <h2 class="s-title">¿Tu orden tiene varios paquetes? <span style="color:#BA80FF">Puedes ver la historia de cada&nbsp;uno.</span></h2>
       <p class="s-aside">Ves la lista de paquetes y abres el que quieras para seguir sus intentos de entrega. Lo que afecta a toda la orden queda en su propio bloque, al&nbsp;final.</p>
     </div>
   </div>
@@ -1076,7 +1089,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
 
 <!-- ============ 02 — EXPLORADOR ============ -->
-<!-- PENDIENTE (Experiencia): cambiar el pantallazo por uno donde se vea el filtro multipaquete; ideal un GIF que resalte la columna Estado. -->
+<!-- PENDIENTE: imagen del detalle de un paquete individual para la parte de Varios paquetes (pedida a Mariana). -->
 <section data-launch-screen>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
@@ -1095,12 +1108,12 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="info-card">
       <p class="info-num">02</p>
       <h3 class="info-h">Filtro multipaquete</h3>
-      <p class="info-p">Actívalo en los filtros del explorador y ves solo tus órdenes con más de un&nbsp;paquete.</p>
+      <p class="info-p">Marca la casilla Órdenes multipaquete en los filtros y ves solo tus órdenes con más de un&nbsp;paquete.</p>
     </div>
   </div>
 
   <div class="shot-frame" style="max-width:1100px;margin-top:56px">
-    <img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/explorador-de-ordenes.webp" alt="Explorador de órdenes D2C con buscadores arriba, filtros abajo y, en la columna Estado, los paquetes de cada orden agrupados" loading="lazy" width="1884" height="892" />
+    <img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/explorador-filtro-multipaquete.webp" alt="Explorador de órdenes D2C con la casilla Órdenes multipaquete marcada en los filtros y, en la columna Estado, los paquetes de cada orden agrupados por estado" loading="lazy" width="1901" height="906" />
   </div>
 </section>
 
