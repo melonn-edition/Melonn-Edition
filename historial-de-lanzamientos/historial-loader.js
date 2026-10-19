@@ -32,6 +32,7 @@
   }
 
   var STATIC_SLUGS = new Set([
+    'multipaquete', 'no-aptos',
     'chat-soporte', 'casepack',
     'buyer-portal', 'estados-orden-ingreso',
     'vista-ordenes-d2c', 'crea-material-empaque', 'api-melonn-v2',
@@ -44,6 +45,8 @@
   ]);
 
   var SLUG_IMAGES = {
+    'multipaquete':                                    '../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/Banner_Historial_Orden_1-1.png',
+    'no-aptos':                                        '../IMAGE/LANZAMIENTOS/NO_APTOS/Banner_No_Aptos_1-1.png',
     'chat-soporte':                                    '../IMAGE/LANZAMIENTOS/CHAT_SOPORTE/Banner_Soporte_Orbita_1-1.png',
     'casepack':                                        '../IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN_1-1.png',
     'buyer-portal':                                    '../IMAGE/LANZAMIENTOS/BUYER_PORTAL/Card_Buyer_Portal.png',
@@ -67,6 +70,22 @@
   };
 
   var PINNED_CARDS = [
+    {
+      slug: 'multipaquete',
+      title: 'Toda la historia de tu orden, en un solo lugar.',
+      category: 'Órbita · Órdenes de venta · 2026',
+      description: 'Con el nuevo historial de la orden en Órbita ves todo lo que pasa, desde que tu orden llega a Melonn hasta que la recibe tu comprador.',
+      banner_url: null, country: 'both', launch_type: 'operaciones',
+      index_order: -5, is_featured: true
+    },
+    {
+      slug: 'no-aptos',
+      title: 'Tus productos no aptos, bajo tu control.',
+      category: 'Inventario · Operación · 2026',
+      description: 'Un módulo nuevo en Órbita reúne todo tu inventario que ya no se puede vender, listo para que decidas qué hacer con él.',
+      banner_url: null, country: 'both', launch_type: 'operaciones',
+      index_order: -4, is_featured: true
+    },
     {
       slug: 'chat-soporte',
       title: 'Llegó tu nuevo Soporte en Órbita: menos caos de WhatsApp, más control de tu logística.',
