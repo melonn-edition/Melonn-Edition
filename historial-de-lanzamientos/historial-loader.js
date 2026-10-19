@@ -72,9 +72,9 @@
   var PINNED_CARDS = [
     {
       slug: 'multipaquete',
-      title: 'Toda la historia de tu orden, en un solo lugar.',
+      title: 'Tu orden de venta, clara de punta a punta.',
       category: 'Órbita · Órdenes de venta · 2026',
-      description: 'Con el nuevo historial de la orden en Órbita ves todo lo que pasa, desde que tu orden llega a Melonn hasta que la recibe tu comprador.',
+      description: 'Renovamos la orden de venta en Órbita: la vista, el historial, los paquetes, los tickets y el explorador, para que encuentres lo que necesitas sin perder tiempo.',
       banner_url: null, country: 'both', launch_type: 'operaciones',
       index_order: -5, is_featured: true
     },
