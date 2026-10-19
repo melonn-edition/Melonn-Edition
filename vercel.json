@@ -1,3 +1,10 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/lanzamientos/multipaquete-v2",
+      "destination": "/lanzamientos/multipaquete",
+      "permanent": false
+    }
+  ]
 }
