@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/png" href="IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
@@ -149,6 +150,7 @@ footer{position:relative;z-index:2;background:#000;color:#fff;padding:96px 0 40p
 /* la última sección sube sobre Destacados pero no se queda quieta: el cierre va pegado a ella */
 .sube{position:relative;z-index:6;background:var(--superficie);box-shadow:0 -28px 60px -24px rgba(20,9,91,.28)}
 footer{z-index:7}
+#destacados.sube{background:var(--bg)}
 .marca{height:0}
 
 /* ── movimiento de marca ── */
@@ -181,6 +183,63 @@ footer{z-index:7}
   .eco-grid{grid-template-columns:repeat(2,1fr)}
   .hero-pie .wrap span:first-child{display:none}
 }
+
+/* ===== Nuevos lanzamientos: carrusel coverflow ===== */
+#lanzamientos{background:radial-gradient(120% 70% at 50% 0%,#1E1460 0%,#0A0722 55%,#05030F 100%);color:#fff;position:relative;overflow:hidden}
+#lanzamientos::before{content:"";position:absolute;inset:0;background-image:linear-gradient(115deg,rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(245deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:120px 120px;pointer-events:none;-webkit-mask-image:radial-gradient(80% 60% at 50% 40%,#000,transparent);mask-image:radial-gradient(80% 60% at 50% 40%,#000,transparent)}
+#lanzamientos .eyebrow{color:#C4B5FD}
+#lanzamientos .titulo{color:#fff}
+#lanzamientos .btn-sec{border-color:#C4B5FD;color:#fff}
+#lanzamientos .btn-sec:hover{background:#C4B5FD;color:#14095B}
+.cf{position:relative;margin:24px auto 0;--w:clamp(250px,24vw,330px)}
+.cf-stage{position:relative;height:calc(var(--w) * 1.52);perspective:1600px;perspective-origin:50% 40%;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.cf-stage.drag{cursor:grabbing}
+.cf-card{position:absolute;left:50%;top:0;width:var(--w);margin-left:calc(var(--w) / -2);border-radius:24px;overflow:hidden;text-decoration:none;color:#fff;background:linear-gradient(180deg,rgba(40,32,90,.35),rgba(12,9,32,.78));border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 30px 80px -24px rgba(0,0,0,.75);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);transform-style:preserve-3d;will-change:transform,opacity;-webkit-user-drag:none}
+.cf-card figure{margin:0;aspect-ratio:1/1;overflow:hidden;-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
+.cf-card figure img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.cf-body{padding:4px 22px 22px;margin-top:-34px;position:relative;display:flex;flex-direction:column;gap:8px}
+.cf-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cf-meta{font-size:11px;font-weight:300;letter-spacing:.06em;color:rgba(255,255,255,.62)}
+.cf-count{font-size:12px;color:rgba(255,255,255,.55);font-variant-numeric:tabular-nums;flex:none}
+.cf-card h3{font-size:17px;font-weight:600;letter-spacing:-.015em;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cf-card p{font-size:13px;font-weight:300;color:rgba(255,255,255,.72);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cf-card .cf-body>*{transition:opacity .35s}
+.cf-card:not(.is-on) .cf-body p,.cf-card:not(.is-on) .cf-count{opacity:0}
+.cf-card.is-on{border-color:rgba(196,181,253,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 40px 100px -24px rgba(77,42,173,.6)}
+.cf-bar{position:relative;z-index:50;display:flex;align-items:center;gap:14px;width:max-content;max-width:calc(100% - 24px);margin:8px auto 0;padding:8px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.cf-btn{width:40px;height:40px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s}
+.cf-btn:hover{background:#00DCD6;border-color:#00DCD6;color:#14095B}
+.cf-btn svg{width:18px;height:18px}
+.cf-now{display:flex;align-items:center;gap:10px;min-width:0;width:300px}
+.cf-now img{width:36px;height:36px;border-radius:10px;object-fit:cover;flex:none}
+.cf-now div{display:flex;flex-direction:column;min-width:0}
+.cf-now span{font-size:10px;color:rgba(255,255,255,.55);letter-spacing:.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cf-now b{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cf-dots{display:flex;gap:6px;padding:0 4px}
+.cf-dots i{width:6px;height:6px;border-radius:999px;background:rgba(255,255,255,.3);transition:width .3s,background .3s}
+.cf-dots i.on{width:18px;background:#00DCD6}
+.cf-new{position:absolute;top:14px;left:14px;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#00DCD6;color:#14095B;font-size:12px;font-weight:700;letter-spacing:.02em;box-shadow:0 0 18px rgba(0,220,214,.55)}
+.cf-new::before{content:"";width:6px;height:6px;border-radius:50%;background:#14095B;animation:cfPulse 1.6s ease-in-out infinite}
+@keyframes cfPulse{0%,100%{opacity:1}50%{opacity:.25}}
+.cf-tl{display:flex;align-items:center;gap:10px;padding:0 6px}
+.cf-tl span{font-size:11px;color:rgba(255,255,255,.6);white-space:nowrap}
+.cf-tl span:first-child{color:#00DCD6;font-weight:600}
+.cf-track{position:relative;width:160px;height:4px;border-radius:4px;background:rgba(255,255,255,.18)}
+.cf-track i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:linear-gradient(90deg,#00DCD6,#BA80FF)}
+.cf-track b{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#fff;box-shadow:0 0 10px rgba(0,220,214,.8)}
+@media(max-width:720px){.cf-tl{display:flex;position:absolute;left:50%;top:calc(100% + 10px);transform:translateX(-50%)}.cf-track{width:120px}.cf-bar{margin-bottom:34px}}
+.cf{padding-top:58px;margin-top:56px}
+.cf-flag{position:absolute;top:0;left:50%;z-index:120;width:var(--w);transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:999px;border:0;background:#00DCD6;color:#14095B;font:700 15px/1 'Sora',sans-serif;letter-spacing:.01em;cursor:pointer;box-shadow:0 0 0 1px rgba(255,255,255,.35) inset,0 0 26px rgba(0,220,214,.6),0 12px 30px -10px rgba(0,220,214,.7);transition:opacity .35s,transform .35s}
+.cf-flag .dot{width:8px;height:8px;border-radius:50%;background:#14095B;animation:cfPulse 1.6s ease-in-out infinite}
+.cf-flag svg{width:18px;height:18px;margin-left:auto;animation:cfNudge 1.4s ease-in-out infinite}
+.cf-flag:hover{box-shadow:0 0 0 1px rgba(255,255,255,.5) inset,0 0 36px rgba(0,220,214,.85),0 12px 30px -10px rgba(0,220,214,.8)}
+.cf-flag.off{opacity:0;transform:translate(-50%,8px);pointer-events:none}
+@keyframes cfNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+.cf-track{cursor:pointer;touch-action:none}
+.cf-track::before{content:"";position:absolute;inset:-12px 0}
+.cf-track b{width:16px;height:16px;margin:-8px 0 0 -8px;cursor:grab;border:3px solid #00DCD6;background:#fff}
+.cf-track.drag b{cursor:grabbing;transform:scale(1.15)}
+@media(max-width:720px){.cf{--w:min(74vw,320px)}.cf-now{width:150px}.cf-stage{perspective:1000px}}
 </style>
 <script async src="/posthog.js"></script><script async src="/ga4.js"></script>
 </head>
@@ -192,13 +251,13 @@ footer{z-index:7}
     <li><a href="#lanzamientos">Lanzamientos</a></li>
     <li><a href="#ecosistema">Ecosistema</a></li>
     <li><a href="#destacados">Destacados</a></li>
-    <li><a href="#proximamente">Próximamente</a></li>
+    <li hidden><a href="#proximamente" hidden>Próximamente</a></li>
     <li><a href="./historial-de-lanzamientos/">Historial</a></li>
   </ul>
   <div class="der"><button class="ham" aria-label="Menú" aria-expanded="false" aria-controls="wnav-cajon"><i></i></button></div>
 </div>
 <div class="velo"></div>
-<div class="cajon" id="wnav-cajon"><button class="cerrar" type="button" aria-label="Cerrar menú"><i></i></button><a href="#lanzamientos">Lanzamientos</a><a href="#ecosistema">Ecosistema</a><a href="#destacados">Destacados</a><a href="#proximamente">Próximamente</a><a href="./historial-de-lanzamientos/">Historial</a></div>
+<div class="cajon" id="wnav-cajon"><button class="cerrar" type="button" aria-label="Cerrar menú"><i></i></button><a href="#lanzamientos">Lanzamientos</a><a href="#ecosistema">Ecosistema</a><a href="#destacados">Destacados</a><a href="#proximamente" hidden>Próximamente</a><a href="./historial-de-lanzamientos/">Historial</a></div>
 </nav>
 
 <canvas id="caja3d" aria-hidden="true"></canvas>
@@ -225,13 +284,28 @@ footer{z-index:7}
       <p class="eyebrow" data-up>Edición Q3 · 2026</p>
       <h2 class="titulo ola">Nuevos lanzamientos</h2>
     </div>
-    <div class="lan-grid" data-k="2">
-      <a class="card" data-up style="--i:1" href="./lanzamientos/multipaquete"><figure><img src="./IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/Banner_Historial_Orden_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">01 · Órbita · Órdenes de venta</span><h3>Tu orden de venta, clara de punta a punta.</h3><p>Renovamos la orden de venta en Órbita: la vista, el historial, los paquetes, los tickets y el explorador, para que encuentres lo que necesitas sin perder tiempo.</p></div></a>
-      <a class="card" data-up style="--i:2" href="./lanzamientos/no-aptos"><figure><img src="./IMAGE/LANZAMIENTOS/NO_APTOS/Banner_No_Aptos_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">02 · Inventario · Operación</span><h3>Tus productos no aptos, bajo tu control.</h3><p>Un módulo nuevo en Órbita reúne todo tu inventario que ya no se puede vender, listo para que decidas qué hacer con él.</p></div></a>
-      <a class="card" data-up style="--i:3" href="./lanzamientos/chat-soporte"><figure><img src="./IMAGE/LANZAMIENTOS/CHAT_SOPORTE/Banner_Soporte_Orbita_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">03 · Experiencia · Soporte</span><h3>Llegó tu nuevo Soporte en Órbita: menos caos de WhatsApp, más control de tu logística.</h3><p>Escribes desde Órbita y cada caso queda con su propio hilo, su estado y su historial. Siempre sabes en qué va lo tuyo.</p></div></a>
-      <a class="card" data-up style="--i:4" href="./lanzamientos/casepack"><figure><img src="./IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN_1-1.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">04 · Operación · Inbound</span><h3>Ahora tu mercancía ingresa más rápido cuando llega en Casepack.</h3><p>Si la mayor parte de tu mercancía llega en casepack, el ingreso a bodega pasa de 2 a 1 día hábil.</p></div></a>
-      <a class="card" data-up style="--i:5" href="./lanzamientos/solicitudes-reposicion"><figure><img src="./IMAGE/LANZAMIENTOS/SOLICITUDES_REPOSICION/1-1_Banner_seccion.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">05 · Operación · Órdenes</span><h3>Desde ahora, resuelve todo el ciclo de tus reposiciones en un solo lugar.</h3><p>Revisa solicitudes, toma decisiones y genera nuevas órdenes sin salir de tu flujo de trabajo.</p></div></a>
-      <a class="card" data-up style="--i:6" href="./lanzamientos/dashboard-kpis-orbita"><figure><img src="./IMAGE/LANZAMIENTOS/DASHBOARD_KPIS_ORBITA/1-1_Banner_Transicion.png" alt="" loading="lazy"></figure><div class="c-body"><span class="c-meta">06 · Operación · KPIs</span><h3>Tu operación bajo control, con métricas claras y siempre actualizadas.</h3><p>Monitorea órdenes, inventario, incidencias, siniestros y on-time desde un tablero centralizado, sin intermediarios.</p></div></a>
+    <div class="cf" id="cf" data-k="2" aria-roledescription="carrusel" aria-label="Nuevos lanzamientos">
+      <button type="button" class="cf-flag" id="cfFlag" aria-label="Ver lanzamientos anteriores"><span class="dot"></span>Nuevo lanzamiento<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <div class="cf-stage" id="cfStage">
+        <a class="cf-card" href="./lanzamientos/multipaquete" data-i="0" data-latest data-new draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/Banner_Historial_Orden_1-1.png" alt="" draggable="false" loading="eager"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">01 · Órbita · Órdenes de venta</span><span class="cf-count">1 / 12</span></div><h3>Más claridad sobre tus órdenes y un solo camino para pedirnos ayuda.</h3><p>Ahora ves con detalle qué pasa con cada orden y cada paquete, desde que llega a Melonn hasta que lo recibe tu comprador. Cuando necesites algo, nos escribes por Órbita Soporte y ves en qué va tu solicitud dentro de la misma orden.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/no-aptos" data-i="1" data-new draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/NO_APTOS/Banner_No_Aptos_1-1.png" alt="" draggable="false" loading="eager"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">02 · Inventario · Operación</span><span class="cf-count">2 / 12</span></div><h3>Tus productos no aptos, bajo tu control.</h3><p>Un módulo nuevo en Órbita reúne todo tu inventario que ya no se puede vender, listo para que decidas qué hacer con él.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/chat-soporte" data-i="2" draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/CHAT_SOPORTE/Banner_Soporte_Orbita_1-1.png" alt="" draggable="false" loading="eager"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">03 · Experiencia · Soporte</span><span class="cf-count">3 / 12</span></div><h3>Llegó tu nuevo Soporte en Órbita: menos caos de WhatsApp, más control de tu logística.</h3><p>Escribes desde Órbita y cada caso queda con su propio hilo, su estado y su historial. Siempre sabes en qué va lo tuyo.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/casepack" data-i="3" draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/CASEPACK/CAJAS_MELONN_1-1.png" alt="" draggable="false" loading="lazy"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">04 · Operación · Inbound</span><span class="cf-count">4 / 12</span></div><h3>Ahora tu mercancía ingresa más rápido cuando llega en Casepack.</h3><p>Si la mayor parte de tu mercancía llega en casepack, el ingreso a bodega pasa de 2 a 1 día hábil.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/solicitudes-reposicion" data-i="4" draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/SOLICITUDES_REPOSICION/1-1_Banner_seccion.png" alt="" draggable="false" loading="lazy"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">05 · Operación · Órdenes</span><span class="cf-count">5 / 12</span></div><h3>Desde ahora, resuelve todo el ciclo de tus reposiciones en un solo lugar.</h3><p>Revisa solicitudes, toma decisiones y genera nuevas órdenes sin salir de tu flujo de trabajo.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/dashboard-kpis-orbita" data-i="5" draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/DASHBOARD_KPIS_ORBITA/1-1_Banner_Transicion.png" alt="" draggable="false" loading="lazy"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">06 · Operación · KPIs</span><span class="cf-count">6 / 12</span></div><h3>Tu operación bajo control, con métricas claras y siempre actualizadas.</h3><p>Monitorea órdenes, inventario, incidencias, siniestros y on-time desde un tablero centralizado, sin intermediarios.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/buyer-portal" data-i="6" draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/BUYER_PORTAL/Card_Buyer_Portal.png" alt="" draggable="false" loading="lazy"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">07 · Canales de venta</span><span class="cf-count">7 / 12</span></div><h3>Buyer Portal</h3><p>Tu comprador resuelve solo. Tu operación respira.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/estados-orden-ingreso" data-i="7" draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/ESTADO_ORDEN_INGRESO/Estado_Orden_Ingreso_1-1.png" alt="" draggable="false" loading="lazy"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">08 · Operaciones</span><span class="cf-count">8 / 12</span></div><h3>Estados de una orden de ingreso</h3><p>Identifica en qué etapa está tu orden, qué acciones tienes disponibles y cuándo debes gestionar diferencias.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/reporte-cargos-orbita" data-i="8" draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/REPORTE_CARGOS_ORBITA/reporte-cargos-orbita-hero-Melonn-Editions-1-1.png" alt="" draggable="false" loading="lazy"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">09 · Operaciones</span><span class="cf-count">9 / 12</span></div><h3>Reporte de Cargos en Órbita</h3><p>El reporte de facturación evoluciona: consulta, filtra y descarga el detalle de tu operación desde el módulo de Cargos en Órbita antes de facturar.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/comprobante-entrega-orbita" data-i="9" draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/COMPROBANTE_ENTREGA_DESDE_ORBITA/Evidencia_Entrega_Orbita_1-1.png" alt="" draggable="false" loading="lazy"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">10 · Operaciones</span><span class="cf-count">10 / 12</span></div><h3>Evidencia de entrega en Órbita</h3><p>Consulta o solicita la evidencia de una entrega sin salir del detalle de la orden. Disponible para Coordinadora y TCC en Colombia, y FedEx e iMile en México.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/vista-ordenes-d2c" data-i="10" draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/CAMBIOS_ORDENES_ORBITA/banner%203.png" alt="" draggable="false" loading="lazy"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">11 · B2C</span><span class="cf-count">11 / 12</span></div><h3>Nueva vista para las órdenes de venta D2C</h3><p>Identifica el estado de cada orden, incidencias y acciones pendientes desde una vista más clara y accionable.</p></div></a>
+        <a class="cf-card" href="./lanzamientos/crea-material-empaque" data-i="11" draggable="false"><figure><img src="./IMAGE/LANZAMIENTOS/CREA_MATERIAL_EMPAQUE/banner%203.png" alt="" draggable="false" loading="lazy"></figure><div class="cf-body"><div class="cf-top"><span class="cf-meta">12 · B2C</span><span class="cf-count">12 / 12</span></div><h3>Simplificamos la gestión de tu material de empaque</h3><p>Registra en Órbita las distintas presentaciones de tu material de empaque para que Melonn lo reciba correctamente desde el inicio.</p></div></a>
+      </div>
+      <div class="cf-bar">
+        <button type="button" class="cf-btn" id="cfPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="cf-now"><img id="cfThumb" alt=""><div><span id="cfMeta"></span><b id="cfTitle"></b></div></div>
+        <div class="cf-tl" aria-hidden="true"><span>Más reciente</span><div class="cf-track"><i id="cfFill"></i><b id="cfKnob"></b></div><span>Anteriores</span></div>
+        <button type="button" class="cf-btn" id="cfNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
     </div>
     <div class="lan-all"><a class="btn-sec" href="./historial-de-lanzamientos/">Consultar historial de lanzamientos →</a></div>
   </div>
@@ -273,7 +347,8 @@ footer{z-index:7}
 
 <!-- =============== DESTACADOS =============== -->
 <div class="marca" data-k="5"></div>
-<section class="apila" id="destacados">
+<!-- Mientras Próximamente esté oculta, Destacados es la última sección: "sube" (no sticky) para que el footer quede pegado a ella. Si se vuelve a mostrar Próximamente, regresar a class="apila". -->
+<section class="sube" id="destacados">
   <div class="wrap dest">
     <div>
       <p class="eyebrow" data-up>Resultados que marcan</p>
@@ -289,8 +364,8 @@ footer{z-index:7}
 </section>
 
 <!-- =============== PRÓXIMAMENTE =============== -->
-<div class="marca" data-k="6"></div>
-<section class="sube" id="proximamente">
+<!-- OCULTA (19-oct-2026, pedido de Lucho): quitar "hidden" para volver a mostrarla -->
+<section class="sube" id="proximamente" hidden>
   <div class="wrap">
     <p class="eyebrow" data-up>Próximamente · Melonn Edition</p>
     <h2 class="titulo ola">Lo que sigue también está pensado para ayudarte a crecer</h2>
@@ -305,13 +380,15 @@ footer{z-index:7}
 </section>
 
 <!-- =============== FOOTER =============== -->
-<div class="marca" data-k="7"></div>
+<!-- k6 (pose de Próximamente: centro-derecha) se usa como "pausa" de la caja al final de Destacados; mientras Próximamente esté oculta vive aquí -->
+<div class="marca" data-k="6" data-at=".9"></div>
+<div class="marca" data-k="7" data-at=".45"></div>
 <footer>
   <div class="wrap">
     <div class="f-grid">
       <div><img src="IMAGE/HOME_V2/Logo_MELONN-03.svg" alt="Melonn"><p class="tag">Tecnología para construir el futuro contigo.</p></div>
-      <div><h4>Edición</h4><ul><li><a href="#lanzamientos">Nuevos lanzamientos</a></li><li><a href="#ecosistema">Ecosistema</a></li><li><a href="#grandes-logros">Grandes logros</a></li><li><a href="#destacados">Lanzamientos destacados</a></li><li><a href="#proximamente">Próximamente</a></li></ul></div>
-      <div><h4>Melonn</h4><ul><li><a href="https://www.melonn.com/" target="_blank" rel="noopener">www.melonn.com</a></li><li><a href="https://www.melonn.com/colombia/solicitar-asesoria/" target="_blank" rel="noopener">Asesoría Colombia</a></li><li><a href="https://www.melonn.com/mexico/solicitar-asesoria/" target="_blank" rel="noopener">Asesoría México</a></li></ul></div>
+      <div><h4>Edición</h4><ul><li><a href="#lanzamientos">Nuevos lanzamientos</a></li><li><a href="#ecosistema">Ecosistema</a></li><li><a href="#grandes-logros">Grandes logros</a></li><li><a href="#destacados">Lanzamientos destacados</a></li><li hidden><a href="#proximamente" hidden>Próximamente</a></li></ul></div>
+      <div><h4>Melonn</h4><ul><li><a href="https://www.melonn.com/" target="_blank" rel="noopener">www.melonn.com</a></li><li><a href="https://www.melonn.com/colombia/solicitar-asesoria/" target="_blank" rel="noopener">Asesoría Colombia</a></li><li><a href="https://www.melonn.com/mexico/solicitar-asesoria/" target="_blank" rel="noopener">Asesoría México</a></li><li><a href="https://www.melonn.com/chile/solicitar-asesoria/" target="_blank" rel="noopener">Asesoría Chile</a></li></ul></div>
     </div>
     <p class="f-bottom">© 2026 Melonn Edition by Melonn - Todos los derechos reservados</p>
   </div>
@@ -506,25 +583,26 @@ try{
     {fx:1.32,fy:.86, s:.2,  rx:.45, ry:TAU*2-.4,    rz:.18,  a:0},   // grandes logros: a un lado, pequeña
     {fx:.60, fy:.06, s:.28, rx:.38, ry:TAU*2+.7,    rz:-.14, a:.25}, // destacados: muestra otra cara
     {fx:.60, fy:.04, s:.30, rx:.42, ry:TAU*2+2.2,   rz:.10,  a:0},   // próximamente: se cierra con cinta
-    {fx:.10, fy:-1.6,s:.22, rx:.60, ry:TAU*3,       rz:.30,  a:0},   // footer: se va
+    {fx:1.9, fy:.06, s:.26, rx:.45, ry:TAU*3,       rz:.20,  a:0},   // footer: sale por la derecha, a la misma altura
   ];
   // móvil: la caja vive arriba en el hero, gira con el scroll y sale por arriba (no tapa contenido)
   const SALE={fx:.05,fy:-1.9,s:.16,rx:.6,ry:TAU*1.5,rz:.2,a:1};
   const KM=[{fx:.05,fy:-.56,s:.2,rx:.38,ry:-.55,rz:.2,a:0},{fx:.05,fy:-1.9,s:.17,rx:.6,ry:-.55+TAU,rz:-.1,a:1},...K.slice(2).map(()=>SALE)];
-  const anclas=[...document.querySelectorAll('[data-k]')].sort((x,y)=>x.dataset.k-y.dataset.k);
+  const anclas=[...document.querySelectorAll('[data-k]')].filter(e=>!e.closest('[hidden]')).sort((x,y)=>x.dataset.k-y.dataset.k);
+  const ks=anclas.map(e=>+e.dataset.k); // fotograma de cada ancla visible (saltan las ocultas)
   let tops=[];
   // cada ancla dispara su fotograma cuando su borde superior llega al 40% de la pantalla
-  function medir(){ tops=anclas.map((e,i)=>i===0?0:Math.max(0,e.getBoundingClientRect().top+scrollY-innerHeight*.4)); }
+  function medir(){ tops=anclas.map((e,i)=>i===0?0:Math.max(0,e.getBoundingClientRect().top+scrollY-innerHeight*(e.dataset.at?+e.dataset.at:.4))); }
   const suave=t=>t*t*(3-2*t);
   function objetivo(){
     const linea=scrollY;
     const K_=movil?KM:K;
-    if(linea<=tops[0]) return K_[0];
+    if(linea<=tops[0]) return K_[ks[0]];
     for(let i=0;i<tops.length-1;i++){
       if(linea<tops[i+1]){
         let t=(linea-tops[i])/Math.max(1,tops[i+1]-tops[i]);
         t=suave(Math.min(1,Math.max(0,(t-.12)/.76)));
-        const A=K_[i],B=K_[i+1],o={}; for(const k in A) o[k]=A[k]+(B[k]-A[k])*t; return o;
+        const A=K_[ks[i]],B=K_[ks[i+1]],o={}; for(const k in A) o[k]=A[k]+(B[k]-A[k])*t; return o;
       }
     }
     return K_[K_.length-1];
@@ -560,5 +638,57 @@ try{
 }
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script>
+(()=>{const st=document.getElementById('cfStage');if(!st)return;const cards=[...st.querySelectorAll('.cf-card')],n=cards.length;
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const START=Math.max(0,cards.findIndex(c=>c.hasAttribute('data-latest')));
+let pos=START,target=START,drag=null,moved=false,raf=null;
+const fill=document.getElementById('cfFill'),knob=document.getElementById('cfKnob');
+const thumb=document.getElementById('cfThumb'),tMeta=document.getElementById('cfMeta'),tTitle=document.getElementById('cfTitle');
+function W(){return cards[0].offsetWidth}
+function wrap(d){d=((d%n)+n)%n;return d>n/2?d-n:d}
+let lastOn=-1;
+function render(){const w=W(),mob=innerWidth<720,gap=w*(mob?.82:.8);
+ cards.forEach((c,i)=>{const d=wrap(i-pos),a=Math.abs(d),sgn=Math.sign(d);
+  const x=sgn*(Math.min(a,1)*gap+Math.max(a-1,0)*gap*.5);
+  const rot=RM?0:-sgn*Math.min(a,1.6)*(mob?24:30);
+  const z=-Math.min(a,3)*(mob?120:150);
+  const sc=1-Math.min(a,3)*.04;
+  c.style.transform=`translateX(${x}px) translateZ(${z}px) rotateY(${rot}deg) scale(${sc})`;
+  c.style.opacity=a>2.6?Math.max(0,1-(a-2.6)*2.5):1;
+  c.style.zIndex=String(100-Math.round(a*10));
+  c.style.filter=`brightness(${1-Math.min(a,2)*.18})`;
+  c.style.pointerEvents=a>2.4?'none':'auto';
+ });
+ const pr=((pos%n)+n)%n, pct=Math.min(1,pr/(n-1))*100; fill.style.width=pct+'%'; knob.style.left=pct+'%';
+ const on=((Math.round(pos)%n)+n)%n;
+ if(on!==lastOn){lastOn=on;document.getElementById('cfFlag').classList.toggle('off',!cards[on].hasAttribute('data-new'));cards.forEach((c,i)=>c.classList.toggle('is-on',i===on));
+  const c=cards[on];thumb.src=c.querySelector('img').currentSrc||c.querySelector('img').src;tMeta.textContent=c.querySelector('.cf-meta').textContent;tTitle.textContent=c.querySelector('h3').textContent;
+  }
+}
+function loop(){if(!drag){const k=RM?1:.12;pos+=(target-pos)*k;if(Math.abs(target-pos)<.0005)pos=target}render();if(drag||pos!==target)raf=requestAnimationFrame(loop);else raf=null}
+function go(t){target=t;if(!raf)raf=requestAnimationFrame(loop)}
+document.getElementById('cfFlag').onclick=()=>go(Math.round(target)+1);
+document.getElementById('cfPrev').onclick=()=>go(Math.round(target)-1);
+document.getElementById('cfNext').onclick=()=>go(Math.round(target)+1);
+st.addEventListener('pointerdown',e=>{drag={x:e.clientX,p:pos,t:performance.now(),lx:e.clientX,v:0};moved=false;st.classList.add('drag');st.setPointerCapture(e.pointerId);if(!raf)raf=requestAnimationFrame(loop)});
+st.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x;if(Math.abs(dx)>6)moved=true;const now=performance.now();drag.v=(e.clientX-drag.lx)/Math.max(1,now-drag.t);drag.lx=e.clientX;drag.t=now;pos=drag.p-dx/(W()*.8);target=pos});
+function end(){if(!drag)return;const v=drag.v;drag=null;st.classList.remove('drag');go(Math.round(pos-v*0.9))}
+st.addEventListener('pointerup',end);st.addEventListener('pointercancel',end);
+cards.forEach((c,i)=>c.addEventListener('click',e=>{if(moved){e.preventDefault();return}const d=wrap(i-Math.round(pos));if(d!==0){e.preventDefault();go(Math.round(target)+d)}}));
+
+const track=document.querySelector('.cf-track');let tdrag=false;
+function fromX(x){const r=track.getBoundingClientRect();return Math.min(1,Math.max(0,(x-r.left)/r.width))*(n-1)}
+function base(){return Math.floor(target/n)*n}
+track.addEventListener('pointerdown',e=>{tdrag=true;track.classList.add('drag');track.setPointerCapture(e.pointerId);const b=Math.round(pos/n)*n;track._b=((pos%n)+n)%n>n-1?b:Math.floor(pos/n)*n;target=track._b+fromX(e.clientX);if(!raf)raf=requestAnimationFrame(loop)});
+track.addEventListener('pointermove',e=>{if(!tdrag)return;target=track._b+fromX(e.clientX);if(!raf)raf=requestAnimationFrame(loop)});
+function tend(){if(!tdrag)return;tdrag=false;track.classList.remove('drag');go(Math.round(target))}
+track.addEventListener('pointerup',tend);track.addEventListener('pointercancel',tend);
+document.getElementById('cf').addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(Math.round(target)-1);if(e.key==='ArrowRight')go(Math.round(target)+1)});
+document.getElementById('cf').tabIndex=0;
+addEventListener('resize',render);render();
+addEventListener('pageshow',e=>{if(e.persisted){pos=target=START;lastOn=-1;render()}});
+})();
+</script>
 </body>
 </html>
