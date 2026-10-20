@@ -1012,6 +1012,13 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
 .zz .casos li{display:flex;align-items:center;gap:12px;padding:16px 20px;border-radius:16px;background:#fff;border:1px solid rgba(20,9,91,.10);box-shadow:0 10px 30px -18px rgba(20,9,91,.25);font-size:16px;color:#14095B}
 .zz .casos li::before{content:"✓";display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:50%;background:rgba(0,220,214,.15);color:#0A8F8B;font-weight:800;font-size:13px}
 .route{display:inline-block;margin-top:18px;font-weight:700;font-size:16px;color:#4D2AAD}
+.camino-zz{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:center}
+.camino-zz::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.10) 1px,transparent 1.4px);background-size:22px 22px;-webkit-mask-image:linear-gradient(115deg,#000 0%,transparent 70%);mask-image:linear-gradient(115deg,#000 0%,transparent 70%);pointer-events:none}
+.camino-zz .chips{flex-direction:column;align-items:flex-start;margin:0}
+.camino-zz .chips li{border-radius:999px}
+.camino-zz .camino-txt{position:relative;z-index:1}
+.camino-zz .btn-camino{margin-top:24px}
+@media(max-width:860px){.camino-zz{grid-template-columns:1fr;gap:28px}.camino-zz .camino-txt{order:-1}}
 </style>
 <script async src="/posthog.js"></script><script async src="/ga4.js"></script>
 </head>
@@ -1196,15 +1203,20 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
     </div>
   </div>
 
-  <div class="zz rev">
-    <div class="zz-txt"><p class="paso-num">04</p><h3 class="paso-h">Un solo camino para pedirnos&nbsp;ayuda</h3><p class="paso-p">Estos casos <b>ya no se reportan como incidencia</b>. Escríbenos y nosotros lo&nbsp;gestionamos.</p><span class="route">→ Escríbenos por Órbita Soporte</span></div>
-    <ul class="casos">
+  <div class="camino camino-zz">
+    <ul class="chips">
       <li>Necesitas el comprobante de&nbsp;entrega.</li>
       <li>Tu comprador dice que no recibió el&nbsp;pedido.</li>
       <li>La orden figura en tránsito, pero tu comprador ya lo&nbsp;recibió.</li>
       <li>La orden se canceló y está demorada en volver a tu&nbsp;inventario.</li>
       <li>La orden está demorada en alistamiento o&nbsp;despacho.</li>
     </ul>
+    <div class="camino-txt">
+      <p class="paso-num">04</p>
+      <h3>Un solo camino para pedirnos&nbsp;ayuda</h3>
+      <p>Estos casos <b>ya no se reportan como incidencia</b>. Escríbenos y nosotros lo&nbsp;gestionamos.</p>
+      <span class="btn-camino">→ Escríbenos por Órbita Soporte</span>
+    </div>
   </div>
 </section>
 
