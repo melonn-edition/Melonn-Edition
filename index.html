@@ -34,9 +34,13 @@ a{color:inherit}
 .wnav.scrolled .wnav-in{box-shadow:0 4px 32px rgba(0,0,0,.10)}
 .wnav .logo{display:flex;align-items:center;margin-right:auto;color:#14095B;text-decoration:none;gap:10px}
 .wnav .logo small{font-size:12px;font-weight:300;color:var(--ink3);letter-spacing:.02em}
-.wnav ul{display:flex;gap:26px;list-style:none;margin:0 0 0 auto;padding:0}
+.wnav ul{display:flex;gap:6px;list-style:none;margin:0 0 0 auto;padding:0}
 .wnav li a{font-size:14px;font-weight:400;color:#14095B;text-decoration:none;transition:color .2s ease}
 .wnav li a:hover{color:#4D2AAD}
+.wnav li a{display:inline-block;padding:9px 16px;border-radius:999px;transition:color .25s ease,background .25s ease,box-shadow .25s ease}
+.wnav li a.on{background:#14095B;color:#fff;box-shadow:0 6px 18px -8px rgba(20,9,91,.55)}
+.wnav li a.on:hover{color:#fff}
+.wnav .cajon a.on{color:#00DCD6}
 .wnav .der{display:flex;align-items:center;gap:10px;margin-left:22px}
 .wnav .ham{display:none;width:40px;height:40px;border-radius:999px;border:1.5px solid #D3D8E9;background:#fff;place-items:center;cursor:pointer}
 .wnav .ham i{display:block;width:16px;height:2px;background:#14095B;position:relative;transition:transform .2s ease}
@@ -688,6 +692,21 @@ document.getElementById('cf').addEventListener('keydown',e=>{if(e.key==='ArrowLe
 document.getElementById('cf').tabIndex=0;
 addEventListener('resize',render);render();
 addEventListener('pageshow',e=>{if(e.persisted){pos=target=START;lastOn=-1;render()}});
+})();
+</script>
+<script>
+/* menú: marca con cápsula el botón de la sección en pantalla */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.wnav a[href^="#"]'));
+  var ids=[];links.forEach(function(a){var id=a.getAttribute('href').slice(1);if(id&&ids.indexOf(id)<0&&document.getElementById(id))ids.push(id)});
+  var secs=[].slice.call(document.querySelectorAll('section[id]')).filter(function(e){return !e.hidden}); /* todas, en orden: la última que cubre la línea es la que se ve (paneles apilados) */
+  var cur=null,tick=false;
+  function upd(){tick=false;var y=innerHeight*.35,on=null;
+    secs.forEach(function(sec){var r=sec.getBoundingClientRect();if(r.top<=y&&r.bottom>y)on=sec.id});
+    if(ids.indexOf(on)<0)on=null;if(on===cur)return;cur=on;
+    links.forEach(function(a){a.classList.toggle('on',!!on&&a.getAttribute('href')==='#'+on)});}
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+  addEventListener('resize',upd);addEventListener('load',upd);upd();
 })();
 </script>
 </body>
