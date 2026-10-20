@@ -986,6 +986,7 @@ section.is-dark .video .play::before{border-left-color:#fff}
 section.is-dark .video:hover{box-shadow:0 0 0 2px #00DCD6,0 0 18px rgba(0,220,214,.9),0 0 40px rgba(0,220,214,.6),0 0 70px rgba(0,220,214,.3)}
 section.is-dark .video:hover .play{background:#00DCD6}
 section.is-dark .video:hover .play::before{border-left-color:#14095B}
+.video[hidden]{display:none!important}
 .paso-p b,.zs p b{font-weight:700;color:#14095B}
 .camino p b{color:#fff;font-weight:700}
 .tl-item .info-p b{color:#fff;font-weight:600}
@@ -1181,13 +1182,12 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
 </section>
 
 <!-- ============ 02 — LA ORDEN DE VENTA ============ -->
-<!-- PENDIENTE: link del video (lo produce mercadeo). -->
 <section data-launch-screen id="orden">
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
       <div class="s-eyebrow"><span class="num">02</span>La orden de venta</div>
       <h2 class="s-title">Abres la orden: <span style="color:#00DCD6">ves en qué va, promesa de entrega y tickets de&nbsp;soporte.</span></h2>
-      <a class="video" href="#" data-video><span class="play"></span>Ver video explicativo</a>
+      <a class="video" href="https://youtu.be/6IFbIxFGBUU" target="_blank" rel="noopener" data-video><span class="play"></span>Ver video explicativo</a>
     </div>
   </div>
 
@@ -1225,7 +1225,6 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
 </section>
 
 <!-- ============ 03 — EL HISTORIAL ============ -->
-<!-- PENDIENTE: link del video (lo produce mercadeo). -->
 <section data-launch-screen id="historial" class="is-dark">
   <div class="s-head" style="flex-direction:column;align-items:center;text-align:center;gap:16px">
     <div>
@@ -1233,7 +1232,8 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
       <h2 class="s-title" style="max-width:20ch;margin:0 auto">Revisas el historial: <span style="color:#BA80FF">ves en qué va en un solo&nbsp;lugar.</span></h2>
     </div>
     <p class="s-aside" style="margin:0 auto">Desde que la orden llega a Melonn hasta que la recibe tu comprador. Cada paso con su fecha y su&nbsp;hora.</p>
-    <a class="video" href="#" data-video><span class="play"></span>Ver video explicativo</a>
+    <!-- Botón de video oculto (20-oct, pedido de Lucho): quitar "hidden" y poner el link cuando haya video del historial -->
+    <a class="video" href="#" data-video hidden><span class="play"></span>Ver video explicativo</a>
   </div>
   <div class="tl">
     <div class="tl-item"><p class="info-num">A</p><h3 class="info-h">Lo que pasa en bodega y en tu orden</h3><p class="info-p">Cuándo se alistó y se empacó tu orden, y cualquier cambio a nivel de la orden como <b>dirección o monto a&nbsp;recaudar</b>.</p><img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/acciones-de-la-orden.webp" alt="Acciones de la orden en el historial, cada una con fecha y hora" loading="lazy" /></div>
