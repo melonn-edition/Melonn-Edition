@@ -1019,6 +1019,11 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
 .camino-zz .camino-txt{position:relative;z-index:1}
 .camino-zz .btn-camino{margin-top:24px}
 @media(max-width:860px){.camino-zz{grid-template-columns:1fr;gap:28px}.camino-zz .camino-txt{order:-1}}
+/* letras de los bloques internos (A, B, C…) en círculo */
+.paso-num,.tl-item .info-num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;letter-spacing:0;margin-bottom:14px}
+.paso-num{background:rgba(77,42,173,.10);color:#4D2AAD;border:1px solid rgba(77,42,173,.25)}
+.camino .paso-num{background:rgba(255,255,255,.10);color:#BA80FF;border-color:rgba(186,128,255,.45)}
+.tl-item .info-num{background:rgba(186,128,255,.12);color:#BA80FF;border:1px solid rgba(186,128,255,.4)}
 </style>
 <script async src="/posthog.js"></script><script async src="/ga4.js"></script>
 </head>
@@ -1105,7 +1110,7 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
     <div class="hero-copy">
       <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Orden de venta</div>
       <h1 class="h-title">Más claridad sobre tus órdenes <span style="color:#BA80FF">y un solo camino para pedirnos&nbsp;ayuda.</span></h1>
-      <p class="h-tagline">Ahora ves con detalle qué pasa con cada orden y cada paquete, desde que llega a Melonn hasta que lo recibe tu comprador. Cuando necesites algo, nos escribes por <b>Órbita Soporte</b> y ves en qué va tu solicitud dentro de la misma&nbsp;orden.</p>
+      <p class="h-tagline">Todo lo que pasa con tu orden, ahora contado en un solo lugar. Antes lo veías por partes. Ahora sigues cada orden y cada paquete de principio a fin, desde que llega a Melonn hasta que lo recibe tu comprador. Y cuando necesites algo, nos escribes por <b>Órbita Soporte</b> y ves en qué va tu solicitud dentro de la misma&nbsp;orden.</p>
     </div>
 
     <div class="hero-foot">
@@ -1147,9 +1152,9 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
     <div class="s-eyebrow" style="justify-content:center">Tu recorrido · busca → abre → revisa</div>
   </div>
   <div class="bens-grid rc-grid">
-    <a class="info-card rc-card" href="#explorador"><span class="rc-num">01</span><p class="info-num">Explorador de órdenes</p><h3 class="info-h">Buscas la orden: ves de una cómo&nbsp;va.</h3><p class="info-p">La columna Estado te muestra cómo va cada&nbsp;paquete.</p></a>
-    <a class="info-card rc-card" href="#orden"><span class="rc-num">02</span><p class="info-num">La orden de venta</p><h3 class="info-h">Abres la orden: ves exactamente en qué&nbsp;va.</h3><p class="info-p">Su etapa, la fecha de entrega, cada paquete y tus solicitudes a&nbsp;soporte.</p></a>
-    <a class="info-card rc-card" href="#historial"><span class="rc-num">03</span><p class="info-num">El historial</p><h3 class="info-h">Revisas el historial: sabes qué pasó, paso a&nbsp;paso.</h3><p class="info-p">Cada paso con su fecha y su hora, hasta tu&nbsp;comprador.</p></a>
+    <a class="info-card rc-card" href="#explorador"><span class="rc-num">01</span><p class="info-num">Explorador de órdenes</p><h3 class="info-h">Buscas la orden: ves el estado del&nbsp;paquete.</h3><p class="info-p">La columna Estado te muestra cómo va cada&nbsp;paquete.</p></a>
+    <a class="info-card rc-card" href="#orden"><span class="rc-num">02</span><p class="info-num">La orden de venta</p><h3 class="info-h">Abres la orden: ves en qué va, promesa de entrega y tickets de&nbsp;soporte.</h3><p class="info-p">Su etapa, la fecha de entrega, cada paquete y tus solicitudes a&nbsp;soporte.</p></a>
+    <a class="info-card rc-card" href="#historial"><span class="rc-num">03</span><p class="info-num">El historial</p><h3 class="info-h">Revisas el historial: ves en qué va en un solo&nbsp;lugar.</h3><p class="info-p">Cada paso con su fecha y su hora, hasta tu&nbsp;comprador.</p></a>
   </div>
 </section>
 
@@ -1159,15 +1164,15 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
       <div class="s-eyebrow"><span class="num">01</span>Explorador de órdenes</div>
-      <h2 class="s-title">Buscas la orden: <span style="color:#00DCD6">ves de una cómo&nbsp;va.</span></h2>
+      <h2 class="s-title">Buscas la orden: <span style="color:#00DCD6">ves el estado del&nbsp;paquete.</span></h2>
       <a class="video" href="#" data-video><span class="play"></span>Ver video explicativo</a>
     </div>
   </div>
   <div class="paso-head" style="max-width:1280px;margin:0 auto 32px">
-    <p class="paso-num">1.1</p>
+    <p class="paso-num">A</p>
     <h3 class="paso-h">La columna Estado, por&nbsp;paquete</h3>
     <p class="paso-p">Ya no ves un estado general de la orden: ves <b>cómo va cada&nbsp;paquete</b>.</p>
-    <p class="paso-p" style="margin-top:12px">Si tu orden tiene varios paquetes, los ves juntos en la misma fila, <b>agrupados por estado</b>. Por ejemplo: 9 entregados · 1 en&nbsp;tránsito.</p>
+    <p class="paso-p" style="margin-top:12px">Si tu orden tiene varios paquetes, los ves juntos en la misma fila, <b>agrupados por estado</b>. Por ejemplo: 9 entregados al comprador · 1 en&nbsp;tránsito.</p>
   </div>
   <div class="wide">
     <div class="shot-frame"><img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/explorador-filtro-multipaquete.webp" alt="Explorador de órdenes con los paquetes agrupados por estado en la columna Estado" width="1901" height="906" /></div>
@@ -1182,21 +1187,21 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
       <div class="s-eyebrow"><span class="num">02</span>La orden de venta</div>
-      <h2 class="s-title">Abres la orden: <span style="color:#00DCD6">ves exactamente en qué&nbsp;va.</span></h2>
+      <h2 class="s-title">Abres la orden: <span style="color:#00DCD6">ves en qué va, promesa de entrega y tickets de&nbsp;soporte.</span></h2>
       <a class="video" href="#" data-video><span class="play"></span>Ver video explicativo</a>
     </div>
   </div>
 
   <div class="zz">
-    <div class="zz-txt"><p class="paso-num">2.1</p><h3 class="paso-h">Su etapa y la fecha estimada de&nbsp;entrega</h3><p class="paso-p">Al abrir cualquier orden ves <b>en qué etapa va</b> y <b>cuándo llega</b> a tu&nbsp;comprador.</p></div>
+    <div class="zz-txt"><p class="paso-num">A</p><h3 class="paso-h">Su etapa y la fecha estimada de&nbsp;entrega</h3><p class="paso-p">Al abrir cualquier orden ves <b>en qué etapa va</b> y <b>cuándo llega</b> a tu&nbsp;comprador.</p></div>
     <div class="shot-frame"><img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/vista-de-la-orden.webp" alt="Vista de una orden de un paquete con su etapa y la fecha estimada de entrega" loading="lazy" /></div>
   </div>
   <div class="zz rev">
-    <div class="zz-txt"><p class="paso-num">2.2</p><h3 class="paso-h">Si tiene varios&nbsp;paquetes</h3><p class="paso-p">Ves la lista con <b>el estado de cada paquete</b>. Abres el que quieras y ves su&nbsp;recorrido.</p></div>
+    <div class="zz-txt"><p class="paso-num">B</p><h3 class="paso-h">Si tiene varios&nbsp;paquetes</h3><p class="paso-p">Ves la lista con <b>el estado de cada paquete</b>. Abres el que quieras y ves su&nbsp;recorrido.</p></div>
     <div class="shot-frame"><img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/vista-orden-varios-paquetes.webp" alt="Vista de una orden con dos paquetes, cada uno con su estado" loading="lazy" /></div>
   </div>
   <div class="zz">
-    <div class="zz-txt"><p class="paso-num">2.3</p><h3 class="paso-h">Tus solicitudes a soporte, dentro de la&nbsp;orden</h3><p class="paso-p">Ves <b>en qué va cada solicitud</b> sobre esa orden y <b>la fecha en que te damos solución</b>, sin buscarla en otro&nbsp;lado.</p></div>
+    <div class="zz-txt"><p class="paso-num">C</p><h3 class="paso-h">Tus tickets de soporte dentro de la&nbsp;orden</h3><p class="paso-p">Ves <b>en qué va cada ticket</b> sobre la&nbsp;orden.</p></div>
     <div class="overlap">
       <div class="a shot-frame"><img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/tickets-dentro-de-la-orden.webp" alt="Orden de venta con la pestaña Tickets de soporte abierta: cada ticket con su estado, subcategoría, fecha de creación y promesa de solución" loading="lazy" /></div>
       <div class="b"><img src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/hilo-del-ticket.webp" alt="Hilo de un ticket abierto desde la orden, con los mensajes de Soporte Melonn y del seller" loading="lazy" /></div>
@@ -1212,9 +1217,9 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
       <li>La orden está demorada en alistamiento o&nbsp;despacho.</li>
     </ul>
     <div class="camino-txt">
-      <p class="paso-num">2.4</p>
+      <p class="paso-num">D</p>
       <h3>Un solo camino para pedirnos&nbsp;ayuda</h3>
-      <p>Estos casos <b>ya no se reportan como incidencia</b>. Escríbenos y nosotros lo&nbsp;gestionamos.</p>
+      <p>Estos casos ahora se gestionan con un <b>ticket de soporte en lugar de una incidencia</b>: ahí vive la gestión y la solución, y le haces seguimiento más&nbsp;fácil.</p>
       <span class="btn-camino">→ Escríbenos por Órbita Soporte</span>
     </div>
   </div>
@@ -1226,15 +1231,15 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
   <div class="s-head" style="flex-direction:column;align-items:center;text-align:center;gap:16px">
     <div>
       <div class="s-eyebrow" style="justify-content:center"><span class="num">03</span>El historial</div>
-      <h2 class="s-title" style="max-width:20ch;margin:0 auto">Revisas el historial: <span style="color:#BA80FF">sabes qué pasó, paso a&nbsp;paso.</span></h2>
+      <h2 class="s-title" style="max-width:20ch;margin:0 auto">Revisas el historial: <span style="color:#BA80FF">ves en qué va en un solo&nbsp;lugar.</span></h2>
     </div>
     <p class="s-aside" style="margin:0 auto">Desde que la orden llega a Melonn hasta que la recibe tu comprador. Cada paso con su fecha y su&nbsp;hora.</p>
     <a class="video" href="#" data-video><span class="play"></span>Ver video explicativo</a>
   </div>
   <div class="tl">
-    <div class="tl-item"><p class="info-num">3.1</p><h3 class="info-h">Lo que pasa en bodega</h3><p class="info-p">Cuándo se alistó y se empacó tu orden, y cualquier cambio: <b>dirección, monto a recaudar o método de&nbsp;envío</b>.</p><img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/acciones-de-la-orden.webp" alt="Acciones de la orden en el historial, cada una con fecha y hora" loading="lazy" /></div>
-    <div class="tl-item"><p class="info-num">3.2</p><h3 class="info-h">Cada visita de la transportadora</h3><p class="info-p">Con sus <b>fotos y comentarios</b>. Y si el pedido vuelve a bodega, lo ves&nbsp;también.</p><img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/intento-de-entrega.webp" alt="Una visita de la transportadora con evidencias y comentarios" loading="lazy" /></div>
-    <div class="tl-item"><p class="info-num">3.3</p><h3 class="info-h">Si tiene varios paquetes</h3><p class="info-p">Abres <b>el que quieras</b> y ves su&nbsp;recorrido.</p><img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/orden-varios-paquetes.webp" alt="Historial de una orden con varios paquetes" loading="lazy" /></div>
+    <div class="tl-item"><p class="info-num">A</p><h3 class="info-h">Lo que pasa en bodega y en tu orden</h3><p class="info-p">Cuándo se alistó y se empacó tu orden, y cualquier cambio a nivel de la orden como <b>dirección o monto a&nbsp;recaudar</b>.</p><img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/acciones-de-la-orden.webp" alt="Acciones de la orden en el historial, cada una con fecha y hora" loading="lazy" /></div>
+    <div class="tl-item"><p class="info-num">B</p><h3 class="info-h">Cada visita de la transportadora</h3><p class="info-p">Con sus <b>fotos y comentarios</b>. Y si el pedido vuelve a bodega, lo ves&nbsp;también.</p><img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/intento-de-entrega.webp" alt="Una visita de la transportadora con evidencias y comentarios" loading="lazy" /></div>
+    <div class="tl-item"><p class="info-num">C</p><h3 class="info-h">Si tiene varios paquetes</h3><p class="info-p">Abres <b>el que quieras</b> y ves su&nbsp;recorrido.</p><img class="shot" src="../IMAGE/LANZAMIENTOS/MULTIPAQUETE/HISTORIAL/orden-varios-paquetes.webp" alt="Historial de una orden con varios paquetes" loading="lazy" /></div>
   </div>
 </section>
 
@@ -1246,7 +1251,7 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
   <div class="cierre">
     <div class="ring-deco"></div>
     <p class="c-eyebrow">Orden de venta</p>
-    <h2 class="c-title">La próxima vez que tu comprador te pregunte, <span style="color:#00DCD6">ya tienes la&nbsp;respuesta.</span></h2>
+    <h2 class="c-title">Una orden, toda su historia: <span style="color:#00DCD6">cada paquete, cada paso y cada&nbsp;solicitud.</span></h2>
     <div class="c-actions">
       <a class="btn btn-ghost" href="../">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>

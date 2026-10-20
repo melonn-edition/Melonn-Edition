@@ -74,7 +74,7 @@
       slug: 'multipaquete',
       title: 'Más claridad sobre tus órdenes y un solo camino para pedirnos ayuda.',
       category: 'Órbita · Órdenes de venta · 2026',
-      description: 'Ahora ves con detalle qué pasa con cada orden y cada paquete, desde que llega a Melonn hasta que lo recibe tu comprador. Cuando necesites algo, nos escribes por Órbita Soporte y ves en qué va tu solicitud dentro de la misma orden.',
+      description: 'Todo lo que pasa con tu orden, ahora contado en un solo lugar. Antes lo veías por partes. Ahora sigues cada orden y cada paquete de principio a fin, desde que llega a Melonn hasta que lo recibe tu comprador. Y cuando necesites algo, nos escribes por Órbita Soporte y ves en qué va tu solicitud dentro de la misma orden.',
       banner_url: null, country: 'both', launch_type: 'operaciones',
       index_order: -5, is_featured: true
     },
