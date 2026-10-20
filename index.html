@@ -671,9 +671,9 @@ function go(t){target=t;if(!raf)raf=requestAnimationFrame(loop)}
 document.getElementById('cfFlag').onclick=()=>go(Math.round(target)+1);
 document.getElementById('cfPrev').onclick=()=>go(Math.round(target)-1);
 document.getElementById('cfNext').onclick=()=>go(Math.round(target)+1);
-st.addEventListener('pointerdown',e=>{drag={x:e.clientX,p:pos,t:performance.now(),lx:e.clientX,v:0};moved=false;st.classList.add('drag');st.setPointerCapture(e.pointerId);if(!raf)raf=requestAnimationFrame(loop)});
-st.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x;if(Math.abs(dx)>6)moved=true;const now=performance.now();drag.v=(e.clientX-drag.lx)/Math.max(1,now-drag.t);drag.lx=e.clientX;drag.t=now;pos=drag.p-dx/(W()*.8);target=pos});
-function end(){if(!drag)return;const v=drag.v;drag=null;st.classList.remove('drag');go(Math.round(pos-v*0.9))}
+st.addEventListener('pointerdown',e=>{drag={x:e.clientX,p:pos,t:performance.now(),lx:e.clientX,v:0};moved=false;drag.id=e.pointerId;if(!raf)raf=requestAnimationFrame(loop)});
+st.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x;if(!moved&&Math.abs(dx)>6){moved=true;st.classList.add('drag');try{st.setPointerCapture(drag.id)}catch(_){}}const now=performance.now();drag.v=(e.clientX-drag.lx)/Math.max(1,now-drag.t);drag.lx=e.clientX;drag.t=now;pos=drag.p-dx/(W()*.8);target=pos});
+function end(){if(!drag)return;const v=drag.v;drag=null;st.classList.remove('drag');go(Math.round(pos-Math.max(-1.5,Math.min(1.5,v*0.9))))}
 st.addEventListener('pointerup',end);st.addEventListener('pointercancel',end);
 cards.forEach((c,i)=>c.addEventListener('click',e=>{if(moved){e.preventDefault();return}const d=wrap(i-Math.round(pos));if(d!==0){e.preventDefault();go(Math.round(target)+d)}}));
 
