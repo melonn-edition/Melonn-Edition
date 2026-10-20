@@ -1025,6 +1025,13 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
 .paso-num{background:rgba(77,42,173,.10);color:#4D2AAD;border:1px solid rgba(77,42,173,.25)}
 .camino .paso-num{background:rgba(255,255,255,.10);color:#BA80FF;border-color:rgba(186,128,255,.45)}
 .tl-item .info-num{background:rgba(186,128,255,.12);color:#BA80FF;border:1px solid rgba(186,128,255,.4)}
+.docs{max-width:1100px;margin:0 auto;text-align:center;padding:8px 0 8px}
+.docs-title{font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:24px}
+.docs-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.doc-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#fff;font-weight:700;font-size:15px;text-decoration:none;transition:border-color .3s,box-shadow .3s,background .3s}
+.doc-btn svg{width:20px;height:20px;color:#00DCD6;flex:none}
+.doc-btn:hover{border-color:#00DCD6;background:rgba(0,220,214,.08);box-shadow:0 0 0 1px rgba(0,220,214,.6),0 0 18px rgba(0,220,214,.45)}
+#documentacion{padding-top:24px;padding-bottom:24px}
 </style>
 <script async src="/posthog.js"></script><script async src="/ga4.js"></script>
 </head>
@@ -1243,6 +1250,17 @@ section[data-launch-screen]:has(.bens-grid) .rc-card:hover::after{border-color:#
 </section>
 
 <dialog class="zoom-dlg" id="zoomDlg"><button type="button" class="zoom-x" id="zoomX">Cerrar · esc</button><img id="zoomImg" alt="" /></dialog>
+
+<!-- ============ DOCUMENTACIÓN (links de Notion, pedido de Mariana 20-oct) ============ -->
+<section data-launch-screen id="documentacion" class="is-dark">
+  <div class="docs">
+    <h2 class="docs-title">¿Quieres el paso a&nbsp;paso?</h2>
+    <div class="docs-btns">
+      <a class="doc-btn" href="https://melonn.notion.site/Detalle-del-explorador-de-rdenes-busca-y-filtra-rdenes-ya-existentes-30b3bfd6145d80029231c1c91360a442" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Documentación del explorador</a>
+      <a class="doc-btn" href="https://melonn.notion.site/Detalle-de-la-orden-de-venta-D2c-y-sus-paquetes-ecc3ba8e4120421e8f535ee7d6cfbb5d" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Documentación de la orden de venta</a>
+    </div>
+  </div>
+</section>
 
 <!-- ============ CIERRE + FOOTER ============ -->
 <div class="screen-closing" data-launch-screen>
