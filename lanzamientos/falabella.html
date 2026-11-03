@@ -845,15 +845,21 @@ header.hero .eyebrow{justify-content:flex-start}
 header.hero .hero-foot{justify-content:flex-start}
 /* Falabella: eyebrow y pie a todo el ancho del módulo; en medio 3 columnas: texto | video (2 y 3) hasta el borde derecho */
 header.hero .hero-content{max-width:var(--maxw);margin-left:auto;margin-right:auto;padding-left:var(--pad-x);padding-right:var(--pad-x)}
-header.hero .eyebrow{margin-bottom:28px}
-.hero-main{display:grid;grid-template-columns:repeat(3,1fr);column-gap:32px;align-items:center}
+header.hero .eyebrow{margin-bottom:8px}
+.hero-main{display:grid;grid-template-columns:repeat(3,1fr);column-gap:32px;align-items:start}
+header.hero .hero-copy{padding-top:24px}
 header.hero .hero-copy{grid-column:1;max-width:none}
 header.hero .h-title{font-size:clamp(34px,3.6vw,54px);margin:0 0 20px;max-width:none}
 header.hero .h-tagline{margin:0}
-.hero-media{grid-column:2 / 4;margin-right:calc((100vw - min(100vw, var(--maxw))) / -2 - var(--pad-x));overflow:hidden;aspect-ratio:1130/630;line-height:0}
+.hero-media{grid-column:2 / 4;margin-right:calc((100vw - min(100vw, var(--maxw))) / -2 - var(--pad-x));overflow:hidden;aspect-ratio:1130/550;line-height:0}
 /* se recorta el lila vacío de la izquierda del video (340 de 1470 px) para que la escena arranque en la columna 2 */
-.hero-video{width:130.09%;margin-left:-30.09%;max-width:none;height:auto;aspect-ratio:1470/630;object-fit:cover;display:block;pointer-events:none;background:#DAD1F9;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
-header.hero .hero-foot{margin-top:28px}
+.hero-video{width:130.09%;margin-left:-30.09%;margin-top:-2.65%;max-width:none;height:auto;aspect-ratio:1470/630;object-fit:cover;display:block;pointer-events:none;background:#DAD1F9;-webkit-mask-image:linear-gradient(90deg,transparent 23.1%,#000 24.6%),linear-gradient(180deg,transparent 0,#000 4%,#000 90%,transparent 98%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 23.1%,#000 24.6%),linear-gradient(180deg,transparent 0,#000 4%,#000 90%,transparent 98%);mask-composite:intersect}
+header.hero .hero-foot{margin-top:8px}
+/* el eyebrow conserva su altura: el bloque arranca arriba en vez de centrarse */
+@media(min-width:1025px){
+  header.hero[data-launch-screen]{align-items:start}
+  header.hero .hero-content{margin-top:53px;padding-left:calc(var(--pad-x) * 2)}
+}
 @media(max-width:1024px){
   .hero-main{grid-template-columns:1fr;row-gap:28px}
   header.hero .hero-copy,.hero-media{grid-column:1}
