@@ -20,7 +20,6 @@
   }
 }
 </script>
-<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/build/three.module.js" crossorigin />
 <style>
 :root{
   --bg-0:#050410;
@@ -828,8 +827,15 @@ section[data-launch-screen]:has(.cond-grid) .cond-table-wrap{background:rgba(10,
 .hero-bg::before,.hero-bg::after,
 .hero-cosmos::before,.hero-cosmos::after { content:none!important }
 .hero-cosmos > span { display:none }
-header.hero[data-launch-screen]{background-color:#F8F8FC!important}
-header.hero[data-launch-screen] .hero-bg{background-color:#F8F8FC}
+header.hero[data-launch-screen]{background-color:#DAD1F9!important}
+header.hero[data-launch-screen] .hero-bg{background-color:#DAD1F9}
+/* Falabella: video del hero a la derecha, mismo fondo que el video */
+.hero-video{position:absolute;right:0;top:50%;transform:translateY(-46%);width:min(62vw,calc((100vw - 760px) / .75));height:auto;aspect-ratio:1470/630;object-fit:cover;display:block;pointer-events:none;background:#DAD1F9}
+.hero-video{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%),linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 14%),linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-composite:intersect}
+@media(max-width:1100px){
+  header.hero[data-launch-screen]{padding-bottom:calc(43vw + 24px)}
+  .hero-video{top:auto;bottom:0;transform:none;width:100vw;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10%);mask-image:linear-gradient(180deg,transparent 0,#000 10%)}
+}
 @media(max-width:768px){
   .page-bg::before,.page-bg::after{display:none}
 }
@@ -962,8 +968,11 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 <div class="hero-wrap">
 <header class="hero is-active" data-launch-screen="hero">
   <div class="hero-bg">
-    <canvas id="hero-wave-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
-    <div id="conveyor-layer"></div>
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero-poster.webp" aria-label="Una venta en Falabella llega a Melonn, se empaca en el CEDI y llega a las manos de tu comprador">
+      <source src="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero.webm" type="video/webm" />
+      <source src="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero.mp4" type="video/mp4" />
+    </video>
+    <script>if(matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('video.hero-video').forEach(v=>{v.removeAttribute('autoplay');v.pause()})}</script>
   </div>
 
   <div class="hero-cosmos">
@@ -982,25 +991,25 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   <div class="hero-content">
     <div class="hero-copy">
       <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Integración Falabella</div>
-      <h1 class="h-title">Tus ventas en Falabella, <span style="color:#BA80FF">despachadas desde&nbsp;Melonn.</span></h1>
+      <h1 class="h-title">Tus ventas en Falabella, <span style="color:#4D2AAD">despachadas desde&nbsp;Melonn.</span></h1>
       <p class="h-tagline">Conecta tu tienda de Falabella con Melonn y deja que tus órdenes, tus guías y tu stock se sincronicen&nbsp;solos.</p>
     </div>
 
     <div class="hero-foot">
       <div class="hf-item">
-        <span class="hf-key" style="color:#BA80FF">Categoría</span>
+        <span class="hf-key" style="color:#4D2AAD">Categoría</span>
         <span class="hf-val">Canales de venta</span>
       </div>
       <div class="hf-item">
-        <span class="hf-key" style="color:#BA80FF">Disponibilidad</span>
+        <span class="hf-key" style="color:#4D2AAD">Disponibilidad</span>
         <span class="hf-val">Colombia · Chile</span>
       </div>
       <div class="hf-item">
-        <span class="hf-key" style="color:#BA80FF">Impacta a</span>
+        <span class="hf-key" style="color:#4D2AAD">Impacta a</span>
         <span class="hf-val">Sellers</span>
       </div>
       <div class="hf-item">
-        <span class="hf-key" style="color:#BA80FF">Fecha</span>
+        <span class="hf-key" style="color:#4D2AAD">Fecha</span>
         <span class="hf-val">NOV · 2026</span>
       </div>
       <span class="tag live"><span class="dot"></span>Nuevo</span>
@@ -1049,13 +1058,6 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
     <div class="panel-preview">
       <div class="callout">
-        <div class="callout-img-wrap">
-          <video class="callout-img" autoplay muted loop playsinline preload="auto" poster="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero-poster.webp" aria-label="Una venta en Falabella llega a Melonn, se empaca en el CEDI y llega a las manos de tu comprador">
-            <source src="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero.webm" type="video/webm" />
-            <source src="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <script>if(matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('video.callout-img').forEach(v=>{v.removeAttribute('autoplay');v.pause()})}</script>
         <div class="callout-inner" style="display:flex;flex-direction:row;align-items:center;gap:36px">
           <div class="callout-mark">
             <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1487,6 +1489,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
 <script type="module">
 (async () => {
+  if (!document.getElementById('hero-wave-canvas')) return; // Falabella: el hero usa video
   const conveyorReady = window.innerWidth > 768 ? import('./casepack-conveyor.js') : null;
   try {
     const { createWaveGrid } = await import('../experiments/melonn-wave-grid/main.js');
