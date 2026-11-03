@@ -813,6 +813,10 @@ section[data-launch-screen]:has(.cond-grid) .cond-table-wrap{background:rgba(10,
 .hero-wrap{min-height:0}
 header.hero[data-launch-screen]{min-height:0;padding-bottom:56px}
 .hero-panel .panel-stage[data-launch-screen]{padding-top:0;padding-bottom:96px}
+/* card: icono y párrafo centrados como un solo bloque, arriba y abajo iguales */
+.panel-stage[data-launch-screen] .callout-inner{padding-top:0!important;justify-content:center}
+.panel-stage[data-launch-screen] .callout-text{flex:0 1 auto;max-width:44ch;text-wrap:pretty}
+@media(max-width:1024px){.panel-stage[data-launch-screen] .callout-inner{align-items:center!important}.panel-stage[data-launch-screen] .callout-text{text-align:center;text-wrap:balance}}
 @media(max-width:1024px){.hero-panel .panel-stage[data-launch-screen]{padding-top:0;padding-bottom:56px}}
 .panel-stage[data-launch-screen] .callout{background:rgba(255,255,255,.94);border-color:rgba(255,255,255,.18);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px -20px rgba(0,0,0,.4)}
 .panel-stage[data-launch-screen] .callout::before{background:linear-gradient(90deg,transparent,rgba(94,234,212,.5),transparent);box-shadow:0 0 16px rgba(94,234,212,.2)}
