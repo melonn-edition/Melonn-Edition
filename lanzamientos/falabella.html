@@ -829,13 +829,6 @@ section[data-launch-screen]:has(.cond-grid) .cond-table-wrap{background:rgba(10,
 .hero-cosmos > span { display:none }
 header.hero[data-launch-screen]{background-color:#DAD1F9!important}
 header.hero[data-launch-screen] .hero-bg{background-color:#DAD1F9}
-/* Falabella: video del hero a la derecha, mismo fondo que el video */
-.hero-video{position:absolute;right:0;top:50%;transform:translateY(-46%);width:min(62vw,calc((100vw - 760px) / .75));height:auto;aspect-ratio:1470/630;object-fit:cover;display:block;pointer-events:none;background:#DAD1F9}
-.hero-video{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%),linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 14%),linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-composite:intersect}
-@media(max-width:1100px){
-  header.hero[data-launch-screen]{padding-bottom:calc(43vw + 24px)}
-  .hero-video{top:auto;bottom:0;transform:none;width:100vw;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10%);mask-image:linear-gradient(180deg,transparent 0,#000 10%)}
-}
 @media(max-width:768px){
   .page-bg::before,.page-bg::after{display:none}
 }
@@ -850,6 +843,22 @@ header.hero .hero-content{
 header.hero .hero-copy{margin:0;text-align:left;max-width:560px}
 header.hero .eyebrow{justify-content:flex-start}
 header.hero .hero-foot{justify-content:flex-start}
+/* Falabella: eyebrow y pie a todo el ancho del módulo; en medio 3 columnas: texto | video (2 y 3) hasta el borde derecho */
+header.hero .hero-content{max-width:var(--maxw);margin-left:auto;margin-right:auto;padding-left:var(--pad-x);padding-right:var(--pad-x)}
+header.hero .eyebrow{margin-bottom:28px}
+.hero-main{display:grid;grid-template-columns:repeat(3,1fr);column-gap:32px;align-items:center}
+header.hero .hero-copy{grid-column:1;max-width:none}
+header.hero .h-title{font-size:clamp(34px,3.6vw,54px);margin:0 0 20px;max-width:none}
+header.hero .h-tagline{margin:0}
+.hero-media{grid-column:2 / 4;margin-right:calc((100vw - min(100vw, var(--maxw))) / -2 - var(--pad-x));overflow:hidden;aspect-ratio:1130/630;line-height:0}
+/* se recorta el lila vacío de la izquierda del video (340 de 1470 px) para que la escena arranque en la columna 2 */
+.hero-video{width:130.09%;margin-left:-30.09%;max-width:none;height:auto;aspect-ratio:1470/630;object-fit:cover;display:block;pointer-events:none;background:#DAD1F9;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+header.hero .hero-foot{margin-top:28px}
+@media(max-width:1024px){
+  .hero-main{grid-template-columns:1fr;row-gap:28px}
+  header.hero .hero-copy,.hero-media{grid-column:1}
+  .hero-media{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+}
 @media(max-width:768px){
   header.hero .hero-content{margin-left:auto;padding-left:40px;padding-right:40px;max-width:100%}
   header.hero .hero-copy{margin:0;text-align:left}
@@ -968,11 +977,6 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 <div class="hero-wrap">
 <header class="hero is-active" data-launch-screen="hero">
   <div class="hero-bg">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero-poster.webp" aria-label="Una venta en Falabella llega a Melonn, se empaca en el CEDI y llega a las manos de tu comprador">
-      <source src="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero.webm" type="video/webm" />
-      <source src="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero.mp4" type="video/mp4" />
-    </video>
-    <script>if(matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('video.hero-video').forEach(v=>{v.removeAttribute('autoplay');v.pause()})}</script>
   </div>
 
   <div class="hero-cosmos">
@@ -989,10 +993,20 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   </div>
 
   <div class="hero-content">
+    <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Integración Falabella</div>
+
+    <div class="hero-main">
     <div class="hero-copy">
-      <div class="eyebrow"><span class="line"></span>Nuevo lanzamiento · Integración Falabella</div>
       <h1 class="h-title">Tus ventas en Falabella, <span style="color:#4D2AAD">despachadas desde&nbsp;Melonn.</span></h1>
       <p class="h-tagline">Conecta tu tienda de Falabella con Melonn y deja que tus órdenes, tus guías y tu stock se sincronicen&nbsp;solos.</p>
+    </div>
+    <div class="hero-media">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero-poster.webp" aria-label="Una venta en Falabella llega a Melonn, se empaca en el CEDI y llega a las manos de tu comprador">
+        <source src="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero.webm" type="video/webm" />
+        <source src="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero.mp4" type="video/mp4" />
+      </video>
+      <script>if(matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('video.hero-video').forEach(v=>{v.removeAttribute('autoplay');v.pause()})}</script>
+    </div>
     </div>
 
     <div class="hero-foot">
