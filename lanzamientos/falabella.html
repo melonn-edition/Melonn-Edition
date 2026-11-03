@@ -149,6 +149,7 @@ a{color:inherit;text-decoration:none}
 }
 .callout-img-wrap{margin:-64px -56px 0;overflow:hidden;border-radius:calc(var(--r-xl) - 1px) calc(var(--r-xl) - 1px) 0 0;line-height:0;position:relative;z-index:2}
 .callout-img{width:100%;height:auto;display:block}
+video.callout-img{aspect-ratio:1470/630;object-fit:cover;background:#E4DCFA}
 @media(max-width:768px){.callout-img-wrap{margin:-40px -28px 0}}
 .panel-preview .callout{padding:56px 56px}
 .panel-preview .callout-inner{padding-top:40px}
@@ -1048,7 +1049,13 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
     <div class="panel-preview">
       <div class="callout">
-        <!-- BANNER: pendiente (logos Falabella + Melonn, con permiso de uso) -->
+        <div class="callout-img-wrap">
+          <video class="callout-img" autoplay muted loop playsinline preload="auto" poster="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero-poster.webp" aria-label="Una venta en Falabella llega a Melonn, se empaca en el CEDI y llega a las manos de tu comprador">
+            <source src="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero.webm" type="video/webm" />
+            <source src="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <script>if(matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('video.callout-img').forEach(v=>{v.removeAttribute('autoplay');v.pause()})}</script>
         <div class="callout-inner" style="display:flex;flex-direction:row;align-items:center;gap:36px">
           <div class="callout-mark">
             <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
