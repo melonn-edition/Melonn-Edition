@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <link rel="shortcut icon" href="../IMAGE/FAVICON/FANTASMA_MELONN_FULLFILMENT.png">
 <title>Integración Falabella – Melonn Editions</title>
-<meta name="description" content="Falabella ya está integrado con Melonn en Colombia y Chile: abre un nuevo canal de ventas y despáchalo desde tu inventario en Melonn." />
+<meta name="description" content="Falabella ya está en Melonn: vende en Falabella y Melonn se encarga del alistamiento y el despacho, en Colombia y Chile." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -384,6 +384,11 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:100px clam
 .steps-list .info-h{margin:6px 0 6px}
 .steps-list .info-p{max-width:70ch}
 .cond-note.aviso{font-weight:400}
+/* Falabella: cards fijas (sin pulso ni levitación); al pasar el mouse crecen para leer mejor */
+.info-card::after{animation:none!important}
+.info-card.is-levitating,.bens-grid .info-card.is-levitating{animation:none!important}
+.info-card{transition:scale .25s ease}
+@media(hover:hover){.info-card:hover{scale:1.04;z-index:2}}
 @media(max-width:768px){.steps-card{padding:4px 22px}.steps-list li{gap:14px;padding:20px 0}.cond-note.aviso strong{display:block;margin-bottom:4px}}
 /* Falabella: el texto bajo el banner sí se muestra en tableta y celular */
 @media(max-width:1024px){.hero-panel .panel-stage{display:flex;padding-top:56px;padding-bottom:56px}}
@@ -1012,8 +1017,8 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 
     <div class="hero-main">
     <div class="hero-copy">
-      <h1 class="h-title">Falabella, tu nuevo canal <span style="color:#4D2AAD">despachado desde&nbsp;Melonn.</span></h1>
-      <p class="h-tagline">Conecta tu tienda en Colombia o Chile y despacha cada venta con el inventario que ya tienes en&nbsp;Melonn.</p>
+      <h1 class="h-title">Falabella ya está <span style="color:#4D2AAD">en&nbsp;Melonn.</span></h1>
+      <p class="h-tagline">Vende en Falabella y Melonn se encarga: alistamos y despachamos cada orden con el inventario que ya tienes con nosotros, en Colombia y&nbsp;Chile.</p>
     </div>
     <div class="hero-media">
       <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="../IMAGE/LANZAMIENTOS/FALABELLA/falabella-hero-v2-poster.webp" aria-label="Una venta en Falabella llega a Melonn, se empaca en el CEDI y llega a las manos de tu comprador">
@@ -1106,7 +1111,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
       <div class="s-eyebrow"><span class="num">01</span>Lo que ganas</div>
-      <h2 class="s-title">Vendes en Falabella. <span style="color:#BA80FF">Del resto nos&nbsp;encargamos.</span></h2>
+      <h2 class="s-title">Vende en Falabella. <span style="color:#BA80FF">Del resto nos&nbsp;encargamos.</span></h2>
     </div>
     <p class="s-aside">Llegas a millones de compradores nuevos sin cambiar tu&nbsp;operación.</p>
   </div>
@@ -1115,7 +1120,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
     <div class="info-card">
       <p class="info-num">01</p>
       <h3 class="info-h">Tus órdenes ingresan automáticamente</h3>
-      <p class="info-p">Cada venta en Falabella se crea en Melonn en minutos, con su fecha límite de despacho. Así cumples a tiempo y cuidas tu&nbsp;reputación.</p>
+      <p class="info-p">Cada venta llega a Melonn en minutos y se despacha con su fecha límite, cuidando tu reputación en el&nbsp;marketplace.</p>
     </div>
     <div class="info-card">
       <p class="info-num">02</p>
@@ -1136,65 +1141,49 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
 </section>
 
 
-<!-- ============ 02 — PARA QUE TODO FUNCIONE ============ -->
+<!-- ============ 02 — PREGUNTAS FRECUENTES ============ -->
 <section data-launch-screen>
   <div class="s-head" style="flex-direction:column;align-items:flex-start;gap:16px">
     <div>
-      <div class="s-eyebrow"><span class="num">02</span>Para que todo funcione</div>
-      <h2 class="s-title">Lo que necesitas <span style="color:#00DCD6">para que todo&nbsp;fluya.</span></h2>
+      <div class="s-eyebrow"><span class="num">02</span>Preguntas frecuentes</div>
+      <h2 class="s-title">Lo que necesitas <span style="color:#00DCD6">para empezar a&nbsp;vender.</span></h2>
     </div>
-    <p class="s-aside" style="color:rgba(255,255,255,.80)">Ten presentes estas&nbsp;reglas:</p>
+    <p class="s-aside" style="color:rgba(255,255,255,.80)">Melonn conecta tu operación a Falabella para que te enfoques en&nbsp;crecer.</p>
   </div>
 
   <div class="cond-grid">
 
     <div class="cond-block" style="background:rgba(20,9,91,.35);border-color:rgba(196,181,253,.25)">
-      <div class="cond-label" style="color:#BA80FF">
-        <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;flex-shrink:0"></span>
-        Para conectar y operar tu integración:
+      <div class="cond-item">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;flex-shrink:0;margin-top:5px"></span>
+        <span><strong>¿En qué países está disponible?</strong> En Colombia y Chile, con un CEDI por integración: de ahí salen todas tus&nbsp;órdenes.</span>
       </div>
       <div class="cond-item">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:5px"></span>
-        <span><strong>Tienda activa en Falabella,</strong> con tu perfil creado y&nbsp;operando.</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;flex-shrink:0;margin-top:5px"></span>
+        <span><strong>¿Qué necesito para empezar?</strong> Una tienda activa en Falabella y tus SKU idénticos en Falabella y en Melonn, sin caracteres especiales. Nosotros te acompañamos en la&nbsp;conexión.</span>
       </div>
       <div class="cond-item">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:5px"></span>
-        <span><strong>Un solo CEDI por integración:</strong> de ahí salen todas tus&nbsp;órdenes.</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;flex-shrink:0;margin-top:5px"></span>
+        <span><strong>¿Quién entrega mis pedidos?</strong> Melonn alista y despacha cada orden. La entrega la hace la transportadora que asigna&nbsp;Falabella.</span>
       </div>
       <div class="cond-item">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:5px"></span>
-        <span><strong>Sincroniza tu catálogo a mano.</strong> Cada vez que creas o cambias un producto en Falabella, actualízalo en Melonn. Tus SKU deben ser idénticos en ambos lados, sin caracteres&nbsp;especiales.</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;flex-shrink:0;margin-top:5px"></span>
+        <span><strong>¿Cómo mantengo mi catálogo al día?</strong> Cada vez que creas o cambias un producto en Falabella, sincronízalo en Melonn. Así tus órdenes ingresan sin&nbsp;tropiezos.</span>
       </div>
       <div class="cond-item">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:5px"></span>
-        <span><strong>Sin órdenes manuales.</strong> Todas ingresan automáticamente por la integración, así que no las crees a mano en&nbsp;Melonn.</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;flex-shrink:0;margin-top:5px"></span>
+        <span><strong>¿Tengo que crear las órdenes a mano?</strong> No. Todas ingresan automáticamente por la integración, así que no hace falta crearlas en&nbsp;Melonn.</span>
       </div>
       <div class="cond-item">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:5px"></span>
-        <span><strong>Modalidad Dropshipping.</strong> No incluye pago contra&nbsp;entrega.</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;flex-shrink:0;margin-top:5px"></span>
+        <span><strong>¿Qué modalidad de envío admite?</strong> Dropshipping de Falabella. No incluye pago contra&nbsp;entrega.</span>
       </div>
       <div class="cond-item">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;margin-top:5px"></span>
-        <span><strong>Devoluciones y cancelaciones parciales:</strong> las gestionas a mano en&nbsp;Melonn.</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#BA80FF;box-shadow:0 0 8px #BA80FF;flex-shrink:0;margin-top:5px"></span>
+        <span><strong>¿Cómo manejo devoluciones y cancelaciones parciales?</strong> Las gestionas a mano en&nbsp;Melonn.</span>
       </div>
     </div>
 
-  </div>
-
-  <div class="cond-note aviso" role="note" style="display:flex;align-items:center;gap:16px;background:rgba(255,200,0,.07);border-color:rgba(255,200,0,.30);color:rgba(255,240,200,.92)">
-    <span aria-hidden="true" style="flex-shrink:0;width:40px;height:40px;border-radius:10px;background:#FFC800;color:#000;display:grid;place-items:center">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3.5 2.5 20h19z"/>
-        <path d="M12 10v4.5"/>
-        <circle cx="12" cy="17.2" r=".4"/>
-      </svg>
-    </span>
-    <span><strong style="color:#FFC800;font-weight:600">Importante:</strong> si no sincronizas tu catálogo, las órdenes con esos productos quedan inválidas. Melonn no responde por las penalidades o cancelaciones que aplique&nbsp;Falabella.</span>
-  </div>
-
-  <div class="s-guide-cta">
-    <h3 class="s-guide-cta__title">¿Quieres el paso a&nbsp;paso?</h3>
-    <p class="s-guide-cta__desc">La guía completa, con imágenes, llega a Aprende con Melonn el día del&nbsp;lanzamiento.</p>
   </div>
 </section>
 
@@ -1205,9 +1194,12 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   <div class="cierre">
     <div class="ring-deco"></div>
     <p class="c-eyebrow">Integración Falabella</p>
-    <h2 class="c-title"><span style="color:#00DCD6">Tú vendes en Falabella.</span> Nosotros lo&nbsp;despachamos.</h2>
-    <p class="c-sub">Conéctate desde Canales de venta en Órbita y empieza a&nbsp;vender.</p>
+    <h2 class="c-title"><span style="color:#00DCD6">Vende en Falabella.</span> Melonn se&nbsp;encarga.</h2>
+    <p class="c-sub">Escríbenos a nuestro canal de soporte en Órbita y te ayudamos a conectarte. Si prefieres hacerlo tú mismo, descarga la&nbsp;documentación.</p>
     <div class="c-actions">
+      <!-- LINKS PENDIENTES: canal de soporte en Órbita y documentación (validar CTA con Nati) -->
+      <a class="btn btn-primary" href="#" aria-disabled="true">Escríbenos en Órbita</a>
+      <a class="btn btn-ghost" href="#" aria-disabled="true">Descarga la documentación</a>
       <a class="btn btn-ghost" href="../">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 18-6-6 6-6"/></svg>
         Volver a lanzamientos
