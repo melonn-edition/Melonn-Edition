@@ -802,6 +802,12 @@ section[data-launch-screen]:has(.cond-grid) .cond-item{align-items:center;gap:16
 section[data-launch-screen]:has(.cond-grid) .cond-item > span:first-child{width:10px!important;height:10px!important;margin-top:0!important;background:#00C77C!important;box-shadow:0 0 6px #00C77C,0 0 14px rgba(0,199,124,.7),0 0 26px rgba(0,199,124,.35)!important;animation:led-on 2.4s ease-in-out infinite!important}
 section[data-launch-screen]:has(.cond-grid) .cond-item:nth-child(2n) > span:first-child{animation-delay:-1.2s!important}
 @keyframes led-on{0%,100%{opacity:1}50%{opacity:.55}}
+/* cápsulas más anchas hacia los lados: el texto no se mueve ni cambia de ancho; el led se corre a la izquierda */
+@media(min-width:769px){
+  section[data-launch-screen]:has(.cond-grid) .cond-item{margin-inline:-48px;padding-left:48px;padding-right:72px;gap:40px}
+}
+section[data-launch-screen]:has(.cond-grid) .cond-item{transition:scale .25s ease;position:relative}
+@media(hover:hover){section[data-launch-screen]:has(.cond-grid) .cond-item:hover{scale:1.2;z-index:2}}
 @media(prefers-reduced-motion:reduce){section[data-launch-screen]:has(.cond-grid) .cond-item > span:first-child{animation:none!important}}
 @media(max-width:600px){section[data-launch-screen]:has(.cond-grid) .cond-item{border-radius:20px;padding:14px 18px;align-items:flex-start}section[data-launch-screen]:has(.cond-grid) .cond-item > span:first-child{margin-top:6px!important}}
 section[data-launch-screen]:has(.cond-grid) .cond-note{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.10);color:rgba(255,255,255,.70)}
