@@ -384,6 +384,9 @@ section{position:relative;max-width:var(--maxw);margin:0 auto;padding:100px clam
 .steps-list .info-h{margin:6px 0 6px}
 .steps-list .info-p{max-width:70ch}
 .cond-note.aviso{font-weight:400}
+/* Falabella: cards quietas (sin levitar ni borde que late) */
+.chars-grid .info-card,.chars-grid .info-card.is-levitating{animation-name:none!important}
+.chars-grid .info-card::after{animation:none!important}
 /* Falabella: al pasar el mouse la card crece para leerla mejor */
 .chars-grid .info-card{transition:scale .25s ease}
 @media(hover:hover){.chars-grid .info-card:hover{scale:1.08;z-index:2}}
