@@ -1404,7 +1404,7 @@ header.hero .hero-foot{animation:hero-in 700ms cubic-bezier(.22,1,.36,1) 560ms b
   }
 
   const eligibles = Array.from(document.querySelectorAll('section,.panel-stage'))
-    .filter(s => s.querySelector('.s-eyebrow,.callout'));
+    .filter(s => s.querySelector('.s-eyebrow,.s-title,.callout'));
 
   /* Pre-split all titles into char spans (hides them until wave fires) */
   const titleEls = eligibles.map(s => s.querySelector('.s-title')).filter(Boolean);
